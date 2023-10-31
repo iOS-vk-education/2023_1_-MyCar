@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  MyCar
+//  MyCarrrr
 //
-//  Created by Anton Sharin on 26.10.2023.
+//  Created by tearsoverbeers on 31.10.2023.
 //
 
 import UIKit
