@@ -17,7 +17,8 @@ class TabBarController: UITabBarController {
     }
     
     private func setupTabBar() {
-        viewControllers = [setupViewControllers(vC: MyCarsViewController(), image: UIImage(named: "garage")), setupViewControllers(vC: MapViewController(), image: UIImage(named: "map")) ]
+        viewControllers = [setupViewControllers(vC: MyCarsViewController(), image: UIImage(named: "garage")),
+                           setupViewControllers(vC: MapViewController(), image: UIImage(named: "map"))]
     }
     
     private func setupViewControllers(vC: UIViewController, image: UIImage?) -> UIViewController {
