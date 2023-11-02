@@ -58,8 +58,17 @@ class CarCardView: UIView {
             editCarButton.heightAnchor.constraint(equalToConstant: 64)
         ])
         
-//        editCarButton.addTarget(self, action: <#Selector#>, for: .touchUpInside)
+        editCarButton.addTarget(self, action: #selector(editCarButtonTapped), for: .touchUpInside)
     }
+    
+    //TODO: fix this!
+    @objc func editCarButtonTapped(){
+        let vc = AddCarViewController()
+        if let topViewController = UIApplication.shared.keyWindow?.rootViewController {
+                topViewController.present(vc, animated: true, completion: nil)
+            }
+    }
+    
     
     private func setupContentField(_ car: Car) {
         //Настройка label для текстовых полей
