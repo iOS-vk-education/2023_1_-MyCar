@@ -12,13 +12,15 @@ class CarCardView: UIView {
     
     private let headerLabel = UILabel()
     private let editCarButton = UIButton()
-    private let car = Car(brand: "BMW", model: "5 series", year: 2022, mileage: 100_000, color: "Black", vinNumber: 1234567890)
+    var car = Car(brand: "BMW", model: "5 series", year: 2022, mileage: 100_000, color: "Black", vinNumber: 1234567890)
+    
+    
     
     init() {
         super.init(frame: .zero)
         self.backgroundColor = .gray
         setupHeaderLabel("Автомобиль")
-        setupContentField(car)
+        setupContentField(&car)
         setupAddCarButton()
         
     }
@@ -70,7 +72,14 @@ class CarCardView: UIView {
     }
     
     
-    private func setupContentField(_ car: Car) {
+    private func setupContentField(_ car: inout Car) {
+        
+        let api = Api(vin: "")
+        let names = api.getBrandAndModel()
+        
+        car.brand = names[0]
+        car.model = names[1]
+        
         //Настройка label для текстовых полей
         let carBrandLabel = UILabel()
         configureTextLabel(carBrandLabel, text: "Марка:")

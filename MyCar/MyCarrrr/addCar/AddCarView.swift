@@ -44,51 +44,56 @@ class AddCarView: UIView {
     }
     
     private func setupContentField() {
+        
+        
+        
+        
+        
         //Настройка label для текстовых полей
-        let carBrandLabel = UILabel()
-        configureTextLabel(carBrandLabel, text: "Марка:")
+        let vinCodeLabel = UILabel()
+        configureTextLabel(vinCodeLabel, text: "Введите VIN:")
         
-        let carModelLabel = UILabel()
-        configureTextLabel(carModelLabel, text: "Модель:")
-        
-        let carYearLabel = UILabel()
-        configureTextLabel(carYearLabel, text: "од выпуска:")
-        
-        let carMileageLabel = UILabel()
-        configureTextLabel(carMileageLabel, text: "Пробег:")
-        
-        let carColorLabel = UILabel()
-        configureTextLabel(carColorLabel, text: "Цвет:")
-        
-        let vinNumberLabel = UILabel()
-        configureTextLabel(vinNumberLabel, text: "ВИН номер:")
+//        let carModelLabel = UILabel()
+//        configureTextLabel(carModelLabel, text: "Модель:")
+//
+//        let carYearLabel = UILabel()
+//        configureTextLabel(carYearLabel, text: "Год выпуска:")
+//
+//        let carMileageLabel = UILabel()
+//        configureTextLabel(carMileageLabel, text: "Пробег:")
+//
+//        let carColorLabel = UILabel()
+//        configureTextLabel(carColorLabel, text: "Цвет:")
+//
+//        let vinNumberLabel = UILabel()
+//        configureTextLabel(vinNumberLabel, text: "ВИН номер:")
 
         
         
         //Настройка текстовых полей
-        let carBrandTextField = UITextField()
+        let vinCodeTextField = UITextField()
         // Настройка текстового поля для марки
-        configureTextField(carBrandTextField, placeholder: "Enter car brand")
+        configureTextField(vinCodeTextField, placeholder: "Enter car brand")
 
-        let carModelTextField = UITextField()
-        // Настройка текстового поля для модели
-        configureTextField(carModelTextField, placeholder: "Enter car model")
-        
-        let carYearTextField = UITextField()
-        // Настройка текстового поля для цвета
-        configureTextField(carYearTextField, placeholder: "Enter car year")
-        
-        let carMileageTextField = UITextField()
-        // Настройка текстового поля для пробега
-        configureTextField(carMileageTextField, placeholder: "Enter car mileage")
-        
-        let carColorTextField = UITextField()
-        // Настройка текстового поля для цвета
-        configureTextField(carColorTextField, placeholder: "Enter car color")
-
-        let vinNumberTextField = UITextField()
-        // Настройка текстового поля для ВИН номера
-        configureTextField(vinNumberTextField, placeholder: "Enter VIN number")
+//        let carModelTextField = UITextField()
+//        // Настройка текстового поля для модели
+//        configureTextField(carModelTextField, placeholder: "Enter car model")
+//
+//        let carYearTextField = UITextField()
+//        // Настройка текстового поля для цвета
+//        configureTextField(carYearTextField, placeholder: "Enter car year")
+//
+//        let carMileageTextField = UITextField()
+//        // Настройка текстового поля для пробега
+//        configureTextField(carMileageTextField, placeholder: "Enter car mileage")
+//
+//        let carColorTextField = UITextField()
+//        // Настройка текстового поля для цвета
+//        configureTextField(carColorTextField, placeholder: "Enter car color")
+//
+//        let vinNumberTextField = UITextField()
+//        // Настройка текстового поля для ВИН номера
+//        configureTextField(vinNumberTextField, placeholder: "Enter VIN number")
         
         
         //добавление картинки
@@ -108,35 +113,35 @@ class AddCarView: UIView {
         
         NSLayoutConstraint.activate([
             
-            carBrandLabel.topAnchor.constraint(equalTo: carImageView.bottomAnchor, constant: 20),
-            carBrandLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            carBrandTextField.centerYAnchor.constraint(equalTo: carBrandLabel.centerYAnchor),
-            carBrandTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+            vinCodeLabel.topAnchor.constraint(equalTo: carImageView.bottomAnchor, constant: 20),
+            vinCodeLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+            vinCodeTextField.centerYAnchor.constraint(equalTo: vinCodeLabel.centerYAnchor),
+            vinCodeTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20)
 
-            carModelLabel.topAnchor.constraint(equalTo: carBrandLabel.bottomAnchor, constant: 20),
-            carModelLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            carModelTextField.centerYAnchor.constraint(equalTo: carModelLabel.centerYAnchor),
-            carModelTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-            
-            carYearLabel.topAnchor.constraint(equalTo: carModelLabel.bottomAnchor, constant: 20),
-            carYearLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            carYearTextField.centerYAnchor.constraint(equalTo: carYearLabel.centerYAnchor),
-            carYearTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-            
-            carMileageLabel.topAnchor.constraint(equalTo: carYearLabel.bottomAnchor, constant: 20),
-            carMileageLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            carMileageTextField.centerYAnchor.constraint(equalTo: carMileageLabel.centerYAnchor),
-            carMileageTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-
-            carColorLabel.topAnchor.constraint(equalTo: carMileageLabel.bottomAnchor, constant: 20),
-            carColorLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            carColorTextField.centerYAnchor.constraint(equalTo: carColorLabel.centerYAnchor),
-            carColorTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-            
-            vinNumberLabel.topAnchor.constraint(equalTo: carColorLabel.bottomAnchor, constant: 20),
-            vinNumberLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            vinNumberTextField.centerYAnchor.constraint(equalTo: vinNumberLabel.centerYAnchor),
-            vinNumberTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20)
+//            carModelLabel.topAnchor.constraint(equalTo: carBrandLabel.bottomAnchor, constant: 20),
+//            carModelLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+//            carModelTextField.centerYAnchor.constraint(equalTo: carModelLabel.centerYAnchor),
+//            carModelTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+//
+//            carYearLabel.topAnchor.constraint(equalTo: carModelLabel.bottomAnchor, constant: 20),
+//            carYearLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+//            carYearTextField.centerYAnchor.constraint(equalTo: carYearLabel.centerYAnchor),
+//            carYearTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+//
+//            carMileageLabel.topAnchor.constraint(equalTo: carYearLabel.bottomAnchor, constant: 20),
+//            carMileageLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+//            carMileageTextField.centerYAnchor.constraint(equalTo: carMileageLabel.centerYAnchor),
+//            carMileageTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+//
+//            carColorLabel.topAnchor.constraint(equalTo: carMileageLabel.bottomAnchor, constant: 20),
+//            carColorLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+//            carColorTextField.centerYAnchor.constraint(equalTo: carColorLabel.centerYAnchor),
+//            carColorTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+//
+//            vinNumberLabel.topAnchor.constraint(equalTo: carColorLabel.bottomAnchor, constant: 20),
+//            vinNumberLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+//            vinNumberTextField.centerYAnchor.constraint(equalTo: vinNumberLabel.centerYAnchor),
+//            vinNumberTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20)
         ])
 
     }
@@ -200,8 +205,18 @@ class AddCarView: UIView {
 
         
         //TODO: Добавьте обработчики действий для кнопок
-//        button1.addTarget(self, action: #selector(button1Tapped), for: .touchUpInside)
+        updateButton.addTarget(self, action: #selector(updateButtonTapped), for: .touchUpInside)
 //        button2.addTarget(self, action: #selector(button2Tapped), for: .touchUpInside)
+        
+    }
+    
+    
+    //TODO: fix this!
+    @objc func updateButtonTapped(){
+        let vc = CarCardViewController()
+        if let topViewController = UIApplication.shared.keyWindow?.rootViewController {
+                topViewController.present(vc, animated: true, completion: nil)
+            }
     }
     
 }

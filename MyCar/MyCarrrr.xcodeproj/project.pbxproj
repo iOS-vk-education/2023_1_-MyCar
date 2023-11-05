@@ -22,6 +22,7 @@
 		840D3B932AF29CF50093FA04 /* AddCarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840D3B922AF29CF50093FA04 /* AddCarView.swift */; };
 		840D3B952AF29D040093FA04 /* AddCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840D3B942AF29D040093FA04 /* AddCarViewController.swift */; };
 		846C0EB22AF2E242002754BB /* CarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C0EB12AF2E242002754BB /* CarModel.swift */; };
+		849397CE2AF73536000F7C54 /* ApiRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849397CD2AF73536000F7C54 /* ApiRequest.swift */; };
 		84A314192AF3E3F2007E7C8E /* MyNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A314182AF3E3F2007E7C8E /* MyNavigationController.swift */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,7 @@
 		840D3B922AF29CF50093FA04 /* AddCarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCarView.swift; sourceTree = "<group>"; };
 		840D3B942AF29D040093FA04 /* AddCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCarViewController.swift; sourceTree = "<group>"; };
 		846C0EB12AF2E242002754BB /* CarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarModel.swift; sourceTree = "<group>"; };
+		849397CD2AF73536000F7C54 /* ApiRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRequest.swift; sourceTree = "<group>"; };
 		84A314182AF3E3F2007E7C8E /* MyNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNavigationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -77,6 +79,7 @@
 		559EFBB32AF14A5F0098672F /* MyCarrrr */ = {
 			isa = PBXGroup;
 			children = (
+				849397CC2AF73519000F7C54 /* Network */,
 				846C0EB02AF2E20A002754BB /* Model */,
 				840D3B8D2AF29C650093FA04 /* addCar */,
 				840D3B872AF289440093FA04 /* CarCard */,
@@ -127,6 +130,14 @@
 				846C0EB12AF2E242002754BB /* CarModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		849397CC2AF73519000F7C54 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				849397CD2AF73536000F7C54 /* ApiRequest.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,6 +223,7 @@
 				846C0EB22AF2E242002754BB /* CarModel.swift in Sources */,
 				840D3B932AF29CF50093FA04 /* AddCarView.swift in Sources */,
 				559EFBCF2AF17C350098672F /* MapViewController.swift in Sources */,
+				849397CE2AF73536000F7C54 /* ApiRequest.swift in Sources */,
 				840D3B892AF28C770093FA04 /* CarCardViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -359,6 +371,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6UV938CGZH;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MyCarrrr/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -386,6 +399,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6UV938CGZH;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MyCarrrr/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
