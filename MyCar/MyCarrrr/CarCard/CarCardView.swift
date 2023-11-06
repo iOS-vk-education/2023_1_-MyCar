@@ -10,17 +10,22 @@ import UIKit
 
 class CarCardView: UIView {
     
+    weak var delegate: CarCardViewControllerDelegate?
+    
     private let headerLabel = UILabel()
     private let editCarButton = UIButton()
-    var car = Car(brand: "BMW", model: "5 series", year: 2022, mileage: 100_000, color: "Black", vinNumber: 1234567890)
+    
+    
+    var car: Car
     
     
     
-    init() {
+    init(car: Car) {
+        self.car = car
         super.init(frame: .zero)
         self.backgroundColor = .gray
         setupHeaderLabel("Автомобиль")
-        setupContentField(&car)
+        setupContentField(car)
         setupAddCarButton()
         
     }
@@ -63,22 +68,28 @@ class CarCardView: UIView {
         editCarButton.addTarget(self, action: #selector(editCarButtonTapped), for: .touchUpInside)
     }
     
-    //TODO: fix this!
-    @objc func editCarButtonTapped(){
-        let vc = AddCarViewController()
-        if let topViewController = UIApplication.shared.keyWindow?.rootViewController {
-                topViewController.present(vc, animated: true, completion: nil)
-            }
+    @objc func editCarButtonTapped() {
+        delegate?.goTo()
+//        delegate?.enterVin()
     }
     
     
-    private func setupContentField(_ car: inout Car) {
+    
+
+
+    
+    //TODO: заглушка
+    private func isValidVin(_ vin: String) -> Bool {
+        return true
+    }
+    
+    private func setupContentField(_ car: Car) {
         
-        let api = Api(vin: "")
-        let names = api.getBrandAndModel()
-        
-        car.brand = names[0]
-        car.model = names[1]
+//        let api = Api(vin: "WBAGG83461DN81194")
+//        let names = api.getBrandAndModel()
+//
+//        car.brand = names[0]
+//        car.model = names[1]
         
         //Настройка label для текстовых полей
         let carBrandLabel = UILabel()

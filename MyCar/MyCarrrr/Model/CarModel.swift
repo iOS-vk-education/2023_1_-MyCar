@@ -12,6 +12,6 @@ struct Car {
     var mileage: Int
     var color: String
     var vinNumber: Int
-    
-
 }
+
+var car = Car(brand: "BMW", model: "5 series", year: 2022, mileage: 100_000, color: "Black", vinNumber: 1234567890)

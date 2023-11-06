@@ -14,8 +14,12 @@ class Api {
     }
 
     func getRequest() -> String {
+        let vin = self.vin
+        let vinChevi = "1G1AF1F57A7192174"
+        let vinBmw = "WBAGG83461DN81194"
+        let vinTesla = "5YJSA1E62NF016329"
         // Замените URL на фактический URL вашего API, используя VIN-номер
-        let apiUrlString = "https://auto.dev/api/vin/1G1AF1F57A7192174?apikey=ZrQEPSkKc2VyZ2V5LnZhc2lsaWV3MjAxNkBnbWFpbC5jb20="
+        let apiUrlString = "https://auto.dev/api/vin/\(vin)?apikey=ZrQEPSkKc2VyZ2V5LnZhc2lsaWV3MjAxNkBnbWFpbC5jb20="
 
         if let url = URL(string: apiUrlString) {
             var resultString = "" // Создаем переменную для результата
@@ -59,15 +63,31 @@ class Api {
     }
 
     func decodeJsonObj(data: [String: Any]) -> String {
-        guard let model = data["model"] as? [String: Any] else {
-            return "Error in decode"
+        
+        var brand = ""
+        var model = ""
+
+        guard let makeField = data["make"] as? [String: Any] else {
+            return "Error in decode brand"
         }
         
-        if let id = model["id"] as? String {
-            return id
+        if let brandName = makeField["name"] as? String {
+            brand = brandName
         } else {
-            return "ID not found"
+            return "Brand not found"
         }
+        
+        guard let modelField = data["model"] as? [String: Any] else {
+            return "Error in decode model"
+        }
+        
+        if let modelName = modelField["name"] as? String {
+            model = modelName
+        } else {
+            return "Model not found"
+        }
+        
+        return brand + "_" + model
     }
     
     
