@@ -1,5 +1,5 @@
 //
-//  MainScreenView.swift
+//
 //  MyCarrrr
 //
 //  Created by tearsoverbeers on 31.10.2023.
@@ -13,20 +13,24 @@ class MyCarsView: UIView, UITableViewDelegate {
     let carsTable = UITableView()
     private let addCarButton = UIButton()
     
-    var carsMas = [CellContent]()
+    var cars = [CellContent]()
     
     private var tapOnAddCarButton: () -> Void = { }
     
     init() {
         super.init(frame: .zero)
         self.backgroundColor = .yellow
-        setupHeaderLabel()
-        setupAddCarButton()
-        setupCarTable()
+        setupUI()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setupUI() {
+        setupHeaderLabel()
+        setupAddCarButton()
+        setupCarTable()
     }
     
     private func setupHeaderLabel() {
@@ -82,7 +86,7 @@ class MyCarsView: UIView, UITableViewDelegate {
     }
     
     func removeItem(at index: Int) {
-        carsMas.remove(at: index)
+        cars.remove(at: index)
     }
     
     func setTapOnAddCarButton(tapOnAddCarButton: @escaping () -> Void) {
@@ -96,13 +100,16 @@ class MyCarsView: UIView, UITableViewDelegate {
 
 extension MyCarsView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return carsMas.count
+        return cars.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CarCellTableViewCell.identifier, for: indexPath)
+       // let cell = tableView.dequeueReusableCell(withIdentifier: CarCellTableViewCell.identifier, for: indexPath)
+        
+        guard let cell = tableView.dequeueReusableCell( withIdentifier: CarCellTableViewCell.identifier, for: indexPath) as? CarCellTableViewCell else { return UITableViewCell() }
+        
         let customCell = cell as? CarCellTableViewCell
-        customCell?.update(with: carsMas[indexPath.row])
+        customCell?.update(with: cars[indexPath.row])
         return cell
     }
     
@@ -118,6 +125,4 @@ extension MyCarsView: UITableViewDataSource {
     }
 }
 
-struct CellContent {
-    let carMark: String
-}
+

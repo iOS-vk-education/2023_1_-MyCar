@@ -9,10 +9,8 @@ import UIKit
 
 class MyCarsViewController: UIViewController {
     
-    private var contentView: MyCarsView {
-        view as! MyCarsView
-    }
-    
+    private var contentView = MyCarsView()
+        
     override func loadView() {
         view = MyCarsView()
     }
@@ -22,7 +20,6 @@ class MyCarsViewController: UIViewController {
         contentView.setTapOnAddCarButton {
             self.addCar()
         }
-        
     }
     
     private func addCar() {
@@ -45,7 +42,7 @@ class MyCarsViewController: UIViewController {
             }
             
             let cellContent = CellContent(carMark: carName)
-            contentView.carsMas.append(cellContent)
+            contentView.cars.append(cellContent)
             contentView.carsTable.reloadData()
         }))
         present(alert, animated: true)
