@@ -49,7 +49,7 @@ class CarCellTableViewCell: UITableViewCell {
     }
     
     func update(with car: CellContent) {
-        carLabel.text = String(car.carMark)
+        carLabel.text = String(car.manufacturer)
 
     }
 

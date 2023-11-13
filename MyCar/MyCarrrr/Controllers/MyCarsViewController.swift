@@ -41,7 +41,7 @@ class MyCarsViewController: UIViewController {
                 return
             }
             
-            let cellContent = CellContent(carMark: carName)
+            let cellContent = CellContent(manufacturer: carName)
             contentView.cars.append(cellContent)
             contentView.carsTable.reloadData()
         }))
