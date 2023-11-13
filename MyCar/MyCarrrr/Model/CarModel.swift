@@ -8,5 +8,5 @@
 import Foundation
 
 struct CellContent {
-    let carMark: String
+    let manufacturer: String
 }

@@ -9,10 +9,10 @@ import UIKit
 
 class MyCarsViewController: UIViewController {
     
-    private var contentView = MyCarsView()
+    private let contentView = MyCarsView()
         
     override func loadView() {
-        view = MyCarsView()
+        view = contentView
     }
 
     override func viewDidLoad() {
