@@ -86,6 +86,18 @@ class AddCarViewController: UIViewController {
                 present(errorAlert, animated: true)
                 return
             }
+            let networkService = NetworkService()
+            networkService.homePageCall { result in
+                switch result {
+                case .success(let carViewModel):
+                    // Handle the success case with the retrieved CarViewModel
+                    print("Success: \(carViewModel)")
+                case .failure(let error):
+                    // Handle the failure case with the encountered error
+                    print("Error: \(error)")
+                }
+            }
+            
 //            let api = APICaller(vin: vinCode)
 //            let names = api.getBrandAndModel()
 //
