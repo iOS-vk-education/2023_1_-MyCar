@@ -12,6 +12,9 @@ class CarCellTableViewCell: UITableViewCell {
     static let identifier = "carCell"
     
     private let carLabel = UILabel()
+    private let colorLabel = UILabel()
+    private let milleageLabel = UILabel()
+
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

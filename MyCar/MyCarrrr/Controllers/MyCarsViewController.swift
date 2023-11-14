@@ -7,16 +7,33 @@
 
 import UIKit
 
+protocol ViewToViewController: AnyObject {
+    func cars() -> [CarViewModel]
+    func removeCar(index: Int)
+    func goToAnotherScreen()
+}
+
 class MyCarsViewController: UIViewController {
     
     private let contentView = MyCarsView()
-        
+    private let model: HomeCarsModel
+    
+    init(model: HomeCarsModel) {
+        self.model = model
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func loadView() {
         view = contentView
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        contentView.delegate = self
         contentView.setTapOnAddCarButton {
             self.addCar()
         }
@@ -42,11 +59,31 @@ class MyCarsViewController: UIViewController {
             }
             
             let cellContent = CellContent(manufacturer: carName)
-            contentView.cars.append(cellContent)
-            contentView.carsTable.reloadData()
+            //contentView.cars.append(cellContent)
+            model.addCar(CarViewModel(manufacturer: "",
+                                      milleage: 0,
+                                      purchaseDate: "",
+                                      color: "",
+                                      vinNumber: ""))
+            contentView.updateTable()
         }))
         present(alert, animated: true)
     }
 
+}
+
+extension MyCarsViewController: ViewToViewController {
+    func cars() -> [CarViewModel] {
+        model.allCars()
+    }
+    
+    func removeCar(index: Int) {
+        model.remove(at: index)
+    }
+    
+    func goToAnotherScreen() {
+        let vc = MapViewController()
+        present(vc, animated: true)
+    }
 }
 

@@ -9,11 +9,11 @@ import UIKit
 
 class MyCarsView: UIView, UITableViewDelegate {
     
-    private let headerLabel = UILabel()
-    let carsTable = UITableView()
-    private let addCarButton = UIButton()
+    weak var delegate: ViewToViewController?
     
-    var cars = [CellContent]()
+    private let headerLabel = UILabel()
+    private let addCarButton = UIButton()
+    private let carsTable = UITableView()
     
     private var tapOnAddCarButton: () -> Void = { }
     
@@ -25,6 +25,10 @@ class MyCarsView: UIView, UITableViewDelegate {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func updateTable() {
+        self.carsTable.reloadData()
     }
     
     func setupUI() {
@@ -85,31 +89,31 @@ class MyCarsView: UIView, UITableViewDelegate {
         carsTable.register(CarCellTableViewCell.self, forCellReuseIdentifier: CarCellTableViewCell.identifier)
     }
     
-    func removeItem(at index: Int) {
-        cars.remove(at: index)
+    private func removeItem(at index: Int) {
+        delegate?.removeCar(index: index)
     }
     
     func setTapOnAddCarButton(tapOnAddCarButton: @escaping () -> Void) {
         self.tapOnAddCarButton = tapOnAddCarButton
     }
     
-    @objc func didTapAddCarButton() {
+    @objc private func didTapAddCarButton() {
         tapOnAddCarButton()
     }
 }
 
 extension MyCarsView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cars.count
+        return delegate?.cars().count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       // let cell = tableView.dequeueReusableCell(withIdentifier: CarCellTableViewCell.identifier, for: indexPath)
         
-        guard let cell = tableView.dequeueReusableCell( withIdentifier: CarCellTableViewCell.identifier, for: indexPath) as? CarCellTableViewCell else { return UITableViewCell() }
-        
-        let customCell = cell as? CarCellTableViewCell
-        customCell?.update(with: cars[indexPath.row])
+        guard let cell = tableView.dequeueReusableCell( withIdentifier: CarCellTableViewCell.identifier, for: indexPath) as? CarCellTableViewCell else {
+            return UITableViewCell()
+        }
+        let car = delegate?.cars()[indexPath.row]
+        //cell.update(with: car)
         return cell
     }
     
@@ -124,5 +128,3 @@ extension MyCarsView: UITableViewDataSource {
         }
     }
 }
-
-
