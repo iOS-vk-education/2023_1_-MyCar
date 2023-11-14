@@ -11,7 +11,6 @@ struct CarViewModel: Codable {
     let manufacturer: String
     let milleage: Int
     let purchaseDate: String
-    let color: String
     let vinNumber: String
     
 }

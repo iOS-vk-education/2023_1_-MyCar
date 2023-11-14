@@ -17,6 +17,8 @@ class MyCarsView: UIView, UITableViewDelegate {
     
     private var tapOnAddCarButton: () -> Void = { }
     
+    
+    
     init() {
         super.init(frame: .zero)
         self.backgroundColor = .yellow
@@ -28,7 +30,7 @@ class MyCarsView: UIView, UITableViewDelegate {
     }
     
     func updateTable() {
-        self.carsTable.reloadData()
+        carsTable.reloadData()
     }
     
     func setupUI() {
@@ -113,7 +115,7 @@ extension MyCarsView: UITableViewDataSource {
             return UITableViewCell()
         }
         let car = delegate?.cars()[indexPath.row]
-        //cell.update(with: car)
+        cell.update(with: car)
         return cell
     }
     

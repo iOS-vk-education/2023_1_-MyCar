@@ -11,6 +11,7 @@ protocol ViewToViewController: AnyObject {
     func cars() -> [CarViewModel]
     func removeCar(index: Int)
     func goToAnotherScreen()
+    func updateCell(_ vc: AddCarViewController)
 }
 
 class MyCarsViewController: UIViewController {
@@ -39,40 +40,22 @@ class MyCarsViewController: UIViewController {
         }
     }
     
+    
+    
+    
     private func addCar() {
-        let alert = UIAlertController(title: "Добавить новую машину", message: "Напишите марку новой машины", preferredStyle: .alert)
-        alert.addTextField { field in
-            field.placeholder = "Марка"
-            field.returnKeyType = .next
-            field.keyboardType = .default
-        }
+        contentView.delegate?.goToAnotherScreen()
         
-        alert.addAction(UIAlertAction(title: "Закрыть", style: .cancel))
-        alert.addAction(UIAlertAction(title: "Добавить", style: .default, handler: { [self] _ in
-            guard let field = alert.textFields, field.count == 1 else {
-                return
-            }
-            let carField = field[0]
-            guard let carName = carField.text, !carName.isEmpty else{
-                print("Напишите правильное значение")
-                return
-            }
-            
-            let cellContent = CellContent(manufacturer: carName)
-            //contentView.cars.append(cellContent)
-            model.addCar(CarViewModel(manufacturer: "",
-                                      milleage: 0,
-                                      purchaseDate: "",
-                                      color: "",
-                                      vinNumber: ""))
-            contentView.updateTable()
-        }))
-        present(alert, animated: true)
+        
+        print(model.allCars())
+        print("gggggggg")
+        
     }
 
 }
 
 extension MyCarsViewController: ViewToViewController {
+    
     func cars() -> [CarViewModel] {
         model.allCars()
     }
@@ -82,8 +65,16 @@ extension MyCarsViewController: ViewToViewController {
     }
     
     func goToAnotherScreen() {
-        let vc = MapViewController()
+        let vc = AddCarViewController(model: model)
+        updateCell(vc)
         present(vc, animated: true)
     }
+    
+    func updateCell(_ vc: AddCarViewController) {
+        vc.updateTableCompletion = {
+            self.contentView.updateTable()
+        }
+    }
+
 }
 
