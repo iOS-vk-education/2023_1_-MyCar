@@ -48,7 +48,6 @@ class MyCarsViewController: UIViewController {
         
         
         print(model.allCars())
-        print("gggggggg")
         
     }
 

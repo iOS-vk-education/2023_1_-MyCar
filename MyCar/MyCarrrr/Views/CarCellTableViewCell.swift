@@ -12,6 +12,7 @@ class CarCellTableViewCell: UITableViewCell {
     static let identifier = "carCell"
     
     private let carLabel = UILabel()
+    private let carModel = UILabel()
     private let colorLabel = UILabel()
     private let milleageLabel = UILabel()
 
@@ -20,6 +21,7 @@ class CarCellTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupContentView()
         setupCarLabel()
+        setupCarModel()
         setupCarMilleage()
     }
     
@@ -52,17 +54,27 @@ class CarCellTableViewCell: UITableViewCell {
             carLabel.heightAnchor.constraint(equalToConstant: 30)])
     }
     
+    private func setupCarModel() {
+        contentView.addSubview(carModel)
+        carModel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            carModel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -32),
+            carModel.topAnchor.constraint(equalTo: self.topAnchor, constant: 46),
+            carModel.heightAnchor.constraint(equalToConstant: 30)])
+    }
+    
     private func setupCarMilleage() {
         contentView.addSubview(milleageLabel)
         milleageLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             milleageLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -32),
-            milleageLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 46),
+            milleageLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 76),
             milleageLabel.heightAnchor.constraint(equalToConstant: 30)])
     }
     
     func update(with car: CarViewModel?) {
         carLabel.text = String(car!.manufacturer)
+        carModel.text = String(car!.model)
         milleageLabel.text = String(car!.milleage)
 
     }

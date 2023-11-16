@@ -23,7 +23,7 @@ final class NetworkService {
     
     
     
-    func homePageCall(completion: @escaping (Result<CarViewModel,Error>)-> Void)  {
+    func homePageCall(completion: @escaping (Result<CarInfo,Error>)-> Void)  {
         
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, _, error in
             guard let data = data, error == nil else {
@@ -31,9 +31,8 @@ final class NetworkService {
             }
             
             do {
-                let decoded = try JSONDecoder().decode(CarViewModel.self, from: data)
+                let decoded = try JSONDecoder().decode(CarInfo.self, from: data)
                 completion(.success(decoded))
-                print("gg")
             }
             catch {
                 completion(.failure(error))
