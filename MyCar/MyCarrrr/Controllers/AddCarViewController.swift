@@ -12,6 +12,8 @@ class AddCarViewController: UIViewController {
             return view as! AddCarView
         }
     
+//    private var contentView = AddCarView()
+    
     override func loadView() {
         view = AddCarView()
     }

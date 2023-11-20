@@ -11,12 +11,12 @@ class AddCarView: UIView {
     private let addVINButton = UIButton()
 
     
-    var carBrandTextField: UITextField!
-    var carModelTextField: UITextField!
-    var carYearTextField: UITextField!
-    var carMileageTextField: UITextField!
-    var carColorTextField: UITextField!
-    var vinNumberTextField: UITextField!
+    var carBrandTextField = UITextField()
+    var carModelTextField = UITextField()
+    var carYearTextField = UITextField()
+    var carMileageTextField = UITextField()
+    var carColorTextField = UITextField()
+    var vinNumberTextField = UITextField()
 
     var updateButtonTappedHandler: (() -> Void)?
     var cancelButtonTappedHandler: (() -> Void)?

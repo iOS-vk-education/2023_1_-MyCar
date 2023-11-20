@@ -15,9 +15,9 @@ final class HomeCarsModel {
     func carDataFromVin(vin: String, completion: @escaping (String?, String?) -> Void) {
         networkService.homePageCall { result in
             switch result {
-            case .success(let success):
-                let manufacturer = success.make.name
-                let model = success.model.name
+            case .success(let car):
+                let manufacturer = car.make.name
+                let model = car.model.name
                 
                 completion(manufacturer, model)
             case .failure(let failure):
