@@ -1,10 +1,3 @@
-//
-//  UserDafaultsService.swift
-//  MyCarrrr
-//
-//  Created by Anton Sharin on 13.11.2023.
-//
-
 import Foundation
 
 final class UserDafaultsService {

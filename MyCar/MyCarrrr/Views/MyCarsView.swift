@@ -1,10 +1,3 @@
-//
-//
-//  MyCarrrr
-//
-//  Created by tearsoverbeers on 31.10.2023.
-//
-
 import UIKit
 
 class MyCarsView: UIView, UITableViewDelegate {

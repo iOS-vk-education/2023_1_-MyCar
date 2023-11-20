@@ -1,9 +1,3 @@
-//
-//  AddCarView.swift
-//  MyCarrrr
-//
-//  Created by Сергей Васильев on 13.11.2023.
-//
 import Foundation
 import UIKit
 

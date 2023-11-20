@@ -1,10 +1,3 @@
-//
-//  AddCarViewController.swift
-//  MyCarrrr
-//
-//  Created by Сергей Васильев on 13.11.2023.
-//
-
 import UIKit
 
 
