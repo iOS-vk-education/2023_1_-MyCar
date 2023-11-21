@@ -8,14 +8,11 @@ class AddCarViewController: UIViewController {
     
     var updateTableCompletion: (() -> Void)?
     
-    private var contentView: AddCarView {
-            return view as! AddCarView
-        }
     
-//    private var contentView = AddCarView()
+    private var contentView = AddCarView()
     
     override func loadView() {
-        view = AddCarView()
+        view = contentView
     }
 
     override func viewDidLoad() {
