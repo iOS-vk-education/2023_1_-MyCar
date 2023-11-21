@@ -3,7 +3,7 @@ import Foundation
 final class HomeCarsModel {
     
     private var cars : [CarViewModel] = []
-//    private var carsInfo : [CarInfo] = []
+
     
     private let networkService = NetworkService()
     
@@ -26,19 +26,7 @@ final class HomeCarsModel {
         }
     }
     
-//    func carDataFromVin(vin: String) {
-//        networkService.homePageCall { result in
-//            switch result {
-//            case .success(let success):
-//                let manufacturer = success.make.name
-//                let model = success.model.name
-////                let car = CarViewModel(manufacturer: manufacturer, milleage: 0, purchaseDate: "", vinNumber: "")
-////                self.cars.append(car)
-//            case .failure(let failure):
-//                print(failure)
-//            }
-//        }
-//    }
+
     
     func remove(at index: Int) {
         cars.remove(at: index)

@@ -219,23 +219,14 @@ class AddCarView: UIView {
         ])
 
         
-        //TODO: Добавьте обработчики действий для кнопок
+        
         updateButton.addTarget(self, action: #selector(updateButtonTapped), for: .touchUpInside)
         cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
         
     }
 
     
-//    var enteredCar: Car {
-//        let brand = carBrandTextField.text ?? ""
-//        let model = carModelTextField.text ?? ""
-//        let year = Int(carYearTextField.text ?? "") ?? 0
-//        let mileage = Int(carMileageTextField.text ?? "") ?? 0
-//        let color = carColorTextField.text ?? ""
-//        let vinNumber = vinNumberTextField.text ?? ""
-//        
-//        return Car(brand: brand, model: model, year: year, mileage: mileage, color: color, vinNumber: vinNumber)
-//    }
+
     
     @objc
     private func updateButtonTapped() {
@@ -245,7 +236,7 @@ class AddCarView: UIView {
     
     @objc
     private func cancelButtonTapped() {
-            // Вызываем замыкание при нажатии на кнопку "Обновить"
+            // Вызываем замыкание при нажатии на кнопку "Отмена"
             cancelButtonTappedHandler?()
         }
     

@@ -94,27 +94,7 @@ class AddCarViewController: UIViewController {
             }
             
             
-//            networkService.homePageCall { result in
-//                switch result {
-//                case .success(let carViewModel):
-//                    // Handle the success case with the retrieved CarViewModel
-//                    print("Success: \(carViewModel)")
-//                    saveCarFromVIN()
-//                case .failure(let error):
-//                    // Handle the failure case with the encountered error
-//                    print("Error: \(error)")
-//                }
-//            }
-            
-//            let api = APICaller(vin: vinCode)
-//            let names = api.getBrandAndModel()
-//
-//            let words = names.components(separatedBy: "_")
-//
-//
-//            contentView.carBrandTextField.text = words[0]
-//            contentView.carModelTextField.text = words[1]
-//            contentView.vinNumberTextField.text = vinCode
+
         }))
         present(alert, animated: true)
     }

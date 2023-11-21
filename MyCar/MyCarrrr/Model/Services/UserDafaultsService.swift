@@ -6,7 +6,7 @@ final class UserDafaultsService {
     
     func data(for key: String) -> Data {
         let someData = defaults.object(forKey: key)
-        //return someData
+        
         return Data()
     }
 }
