@@ -83,7 +83,7 @@ class AddCarViewController: UIViewController {
                 present(errorAlert, animated: true)
                 return
             }
-//            model.carDataFromVin(vin: vinCode, completion: )
+
             model.carDataFromVin(vin: vinCode) { manufacturer, model in
                 if let manufacturer = manufacturer, let model = model {
                     print("Manufacturer: \(manufacturer), Model: \(model)")

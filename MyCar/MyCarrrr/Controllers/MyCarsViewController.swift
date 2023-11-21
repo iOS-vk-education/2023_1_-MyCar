@@ -37,8 +37,8 @@ class MyCarsViewController: UIViewController {
     
     
     private func addCar() {
-        contentView.delegate?.goToAnotherScreen()
         
+        goToAnotherScreen()
         
         print(model.allCars())
         
