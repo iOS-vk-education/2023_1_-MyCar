@@ -19,8 +19,8 @@ class AddCarViewController: UIViewController {
         contentView.cancelButtonTappedHandler = { [weak self] in
             self?.cancelAdd()
         }
-        contentView.addVINButtonTappedHandler = { [weak self] in
-            self?.callAlert()
+        contentView.checkVINButtonTappedHandler = { [weak self] in
+            self?.checkVIN()
         }
 
     }
@@ -61,42 +61,41 @@ class AddCarViewController: UIViewController {
         print(#function)
     }
     
-    private func callAlert() {
-        let alert = UIAlertController(title: "Добавить новую машину", message: "Введите VIN автомобиля", preferredStyle: .alert)
-        alert.addTextField { field in
-            field.placeholder = "VIN code"
-            field.returnKeyType = .next
-            field.keyboardType = .default
+    
+    private func checkVIN() {
+        
+        guard let vinNumber = contentView.vinNumberTextField.text, !vinNumber.isEmpty && vinNumber.count == 17 else{
+            let errorAlert = UIAlertController(title: "Ошибка", message: "Некорректный VIN код", preferredStyle: .alert)
+            errorAlert.addAction(UIAlertAction(title: "OK", style: .cancel))
+            DispatchQueue.main.async {
+                self.contentView.checkVINButton.isEnabled = true
+                self.contentView.checkVINButton.setTitle("Check", for: .normal)
+                (self.contentView.checkVINButton.subviews.first { $0 is UIActivityIndicatorView } as? UIActivityIndicatorView)?.stopAnimating()
+            }
+            self.contentView.checkVINCompletion?()
+            present(errorAlert, animated: true)
+            return
         }
         
-        alert.addAction(UIAlertAction(title: "Закрыть", style: .cancel))
-        alert.addAction(UIAlertAction(title: "Добавить", style: .default, handler: { [self] _ in
-            guard let field = alert.textFields, field.count == 1 else {
-                return
+        model.carDataFromVin(vin: vinNumber) { manufacturer, model, year in
+            DispatchQueue.main.async {
+                self.contentView.checkVINButton.isEnabled = true
+                self.contentView.checkVINButton.setTitle("Check", for: .normal)
+                (self.contentView.checkVINButton.subviews.first { $0 is UIActivityIndicatorView } as? UIActivityIndicatorView)?.stopAnimating()
             }
-            var vinCodeField = field[0]
-            vinCodeField.text = "WBAGG83461DN81194"
-            guard let vinCode = vinCodeField.text, !vinCode.isEmpty && vinCode.count == 17 else{
-                let errorAlert = UIAlertController(title: "Ошибка", message: "Некорректный VIN код", preferredStyle: .alert)
-                errorAlert.addAction(UIAlertAction(title: "OK", style: .cancel))
-                present(errorAlert, animated: true)
-                return
+            if let manufacturer = manufacturer, let model = model, let year = year{
+                print("Manufacturer: \(manufacturer), Model: \(model), year: \(year)")
+                self.enterFieldCarFromVIN(manufacturer, model, year)
+            } else {
+                print("Failed to fetch car data.")
             }
-
-            model.carDataFromVin(vin: vinCode) { manufacturer, model, year in
-                if let manufacturer = manufacturer, let model = model, let year = year{
-                    print("Manufacturer: \(manufacturer), Model: \(model), year: \(year)")
-                    self.enterFieldCarFromVIN(manufacturer, model, year)
-                } else {
-                    print("Failed to fetch car data.")
-                }
-            }
-            
-            
-
-        }))
-        present(alert, animated: true)
+        }
+        
+        // Call the completion handler in AddCarView
+        self.contentView.checkVINCompletion?()
+        
     }
+    
 
 }
 
