@@ -131,7 +131,7 @@ class AddCarView: UIView {
     
     private func setupCheckButton() {
         self.addSubview(checkVINButton)
-        checkVINButton.setTitle("Check", for: .normal)
+        checkVINButton.setTitle("Заполнить по VIN", for: .normal)
         checkVINButton.setTitleColor(.white, for: .normal)
         checkVINButton.backgroundColor = .darkGray
         checkVINButton.layer.cornerRadius = 10
