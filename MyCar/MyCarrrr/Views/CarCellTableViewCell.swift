@@ -6,7 +6,7 @@ class CarCellTableViewCell: UITableViewCell {
     
     private let carLabel = UILabel()
     private let carModel = UILabel()
-    private let colorLabel = UILabel()
+    private let yearLabel = UILabel()
     private let milleageLabel = UILabel()
 
 
@@ -16,6 +16,7 @@ class CarCellTableViewCell: UITableViewCell {
         setupCarLabel()
         setupCarModel()
         setupCarMilleage()
+        setupCarYear()
     }
     
     required init?(coder: NSCoder) {
@@ -56,19 +57,31 @@ class CarCellTableViewCell: UITableViewCell {
             carModel.heightAnchor.constraint(equalToConstant: 30)])
     }
     
+    private func setupCarYear() {
+        contentView.addSubview(yearLabel)
+        yearLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            yearLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -32),
+            yearLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 76),
+            yearLabel.heightAnchor.constraint(equalToConstant: 30)])
+    }
+    
     private func setupCarMilleage() {
         contentView.addSubview(milleageLabel)
         milleageLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             milleageLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -32),
-            milleageLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 76),
+            milleageLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 106),
             milleageLabel.heightAnchor.constraint(equalToConstant: 30)])
     }
     
+    
+    
     func update(with car: CarViewModel?) {
-        carLabel.text = String(car!.manufacturer)
-        carModel.text = String(car!.model)
-        milleageLabel.text = String(car!.milleage)
+        carLabel.text = "Manufacturer: " + String(car!.manufacturer)
+        carModel.text = "Model: " + String(car!.model)
+        yearLabel.text = "Year: " + String(car!.purchaseDate)
+        milleageLabel.text = "Milleage: " + String(car!.milleage)
 
     }
 

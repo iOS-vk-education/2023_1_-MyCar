@@ -43,7 +43,7 @@ class AddCarViewController: UIViewController {
         model.addCar(CarViewModel(manufacturer: contentView.carBrandTextField.text ?? "",
                                   model: contentView.carModelTextField.text ?? "",
                                   milleage: Int(contentView.carMileageTextField.text ?? "") ?? 0,
-                                  purchaseDate: "",
+                                  purchaseDate: contentView.carYearTextField.text ?? "",
                                   vinNumber: contentView.vinNumberTextField.text ?? ""))
         // Отправка уведомления о том, что данные были обновлены
         NotificationCenter.default.post(name: .dataUpdated, object: nil)

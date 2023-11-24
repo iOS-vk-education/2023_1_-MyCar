@@ -3,23 +3,20 @@ import Foundation
 final class HomeCarsModel {
     
     private var cars : [CarViewModel] = []
-
-    
-    private let networkService = NetworkService()
     
     func loadCars() {
         // user defaults get
     }
     
-    
     func carDataFromVin(vin: String, completion: @escaping (String?, String?, Int?) -> Void) {
+        let networkService = NetworkService(vin)
+
         networkService.homePageCall { result in
             switch result {
             case .success(let car):
                 let manufacturer = car.make.name
                 let model = car.model.name
                 let year = car.years.first?.year
-//                print(car.years.first?.year ?? "year")
                 completion(manufacturer, model, year)
             case .failure(let failure):
                 print(failure)
