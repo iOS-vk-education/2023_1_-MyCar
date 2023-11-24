@@ -4,7 +4,6 @@ protocol ViewToViewController: AnyObject {
     func cars() -> [CarViewModel]
     func removeCar(index: Int)
     func goToAnotherScreen()
-    func updateCell(_ vc: AddCarViewController)
 }
 
 class MyCarsViewController: UIViewController {
@@ -31,19 +30,20 @@ class MyCarsViewController: UIViewController {
         contentView.setTapOnAddCarButton {
             self.addCar()
         }
+        // Регистрация для получения уведомлений о обновлении данных
+        NotificationCenter.default.addObserver(self, selector: #selector(handleDataUpdated), name: .dataUpdated, object: nil)
     }
     
-    
+    @objc func handleDataUpdated() {
+        // Обновление таблицы
+        contentView.updateTable()
+        }
     
     
     private func addCar() {
-        
         goToAnotherScreen()
-        
         print(model.allCars())
-        
     }
-
 }
 
 extension MyCarsViewController: ViewToViewController {
@@ -58,15 +58,12 @@ extension MyCarsViewController: ViewToViewController {
     
     func goToAnotherScreen() {
         let vc = AddCarViewController(model: model)
-        updateCell(vc)
         present(vc, animated: true)
     }
     
-    func updateCell(_ vc: AddCarViewController) {
-        vc.updateTableCompletion = {
-            self.contentView.updateTable()
-        }
-    }
+}
 
+extension Notification.Name {
+    static let dataUpdated = Notification.Name("dataUpdated")
 }
 

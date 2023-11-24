@@ -5,10 +5,6 @@ import UIKit
 class AddCarViewController: UIViewController {
     
     private let model: HomeCarsModel
-    
-    var updateTableCompletion: (() -> Void)?
-    
-    
     private var contentView = AddCarView()
     
     override func loadView() {
@@ -49,7 +45,8 @@ class AddCarViewController: UIViewController {
                                   milleage: Int(contentView.carMileageTextField.text ?? "") ?? 0,
                                   purchaseDate: "",
                                   vinNumber: contentView.vinNumberTextField.text ?? ""))
-        updateTableCompletion?()
+        // Отправка уведомления о том, что данные были обновлены
+        NotificationCenter.default.post(name: .dataUpdated, object: nil)
         print(model.allCars())
         // Закрытие AddCarViewController
         dismiss(animated: true)

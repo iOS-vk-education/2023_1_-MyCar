@@ -5,10 +5,10 @@ class AddCarView: UIView {
     
     
     private let headerLabel = UILabel()
-    private let updateButton = UIButton()
-    private let cancelButton = UIButton()
+    private let updateButton = UIButton(type: .system)
+    private let cancelButton = UIButton(type: .system)
     
-    private let addVINButton = UIButton()
+    private let addVINButton = UIButton(type: .system)
 
     
     var carBrandTextField = UITextField()
@@ -35,6 +35,7 @@ class AddCarView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     
     private func setupAddVINButton() {
         self.addSubview(addVINButton)
@@ -196,6 +197,7 @@ class AddCarView: UIView {
         updateButton.setTitleColor(.white, for: .normal)
         updateButton.backgroundColor = .darkGray
         updateButton.layer.cornerRadius = 20
+        
         
         
         let cancelButton = UIButton()
