@@ -23,9 +23,30 @@ struct CarInfo: Codable {
         let name: String
         let niceName: String
     }
+    
+    struct Years: Codable {
+        let id: Int
+        let year: Int
+        let styles: [Style]
+    }
 
+    struct Style: Codable {
+        let id: Int
+        let name: String
+        let submodel: Submodel
+        let trim: String
+    }
+
+    struct Submodel: Codable {
+        let body: String
+        let modelName: String
+        let niceName: String
+    }
+    
     let make: Make
     let model: Model
+    let years: [Years]
+
 }
 
 

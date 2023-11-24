@@ -12,6 +12,7 @@ final class NetworkService {
     init() {
         self.vin = "WBAGG83461DN81194"
         self.url = URL(string: "https://auto.dev/api/vin/\(vin)?apikey=ZrQEPSkKc2VyZ2V5LnZhc2lsaWV3MjAxNkBnbWFpbC5jb20=")!
+        
     }
     
     

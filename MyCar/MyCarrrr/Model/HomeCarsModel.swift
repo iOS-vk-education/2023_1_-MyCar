@@ -12,14 +12,15 @@ final class HomeCarsModel {
     }
     
     
-    func carDataFromVin(vin: String, completion: @escaping (String?, String?) -> Void) {
+    func carDataFromVin(vin: String, completion: @escaping (String?, String?, Int?) -> Void) {
         networkService.homePageCall { result in
             switch result {
             case .success(let car):
                 let manufacturer = car.make.name
                 let model = car.model.name
-                
-                completion(manufacturer, model)
+                let year = car.years.first?.year
+//                print(car.years.first?.year ?? "year")
+                completion(manufacturer, model, year)
             case .failure(let failure):
                 print(failure)
             }

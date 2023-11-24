@@ -52,10 +52,11 @@ class AddCarViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    private func enterFieldCarFromVIN(_ manufacturer: String, _ model: String) {
+    private func enterFieldCarFromVIN(_ manufacturer: String, _ model: String, _ year: Int) {
         DispatchQueue.main.async {
             self.contentView.carBrandTextField.text = manufacturer
             self.contentView.carModelTextField.text = model
+            self.contentView.carYearTextField.text = String(year)
             }
         print(#function)
     }
@@ -73,7 +74,8 @@ class AddCarViewController: UIViewController {
             guard let field = alert.textFields, field.count == 1 else {
                 return
             }
-            let vinCodeField = field[0]
+            var vinCodeField = field[0]
+            vinCodeField.text = "WBAGG83461DN81194"
             guard let vinCode = vinCodeField.text, !vinCode.isEmpty && vinCode.count == 17 else{
                 let errorAlert = UIAlertController(title: "Ошибка", message: "Некорректный VIN код", preferredStyle: .alert)
                 errorAlert.addAction(UIAlertAction(title: "OK", style: .cancel))
@@ -81,10 +83,10 @@ class AddCarViewController: UIViewController {
                 return
             }
 
-            model.carDataFromVin(vin: vinCode) { manufacturer, model in
-                if let manufacturer = manufacturer, let model = model {
-                    print("Manufacturer: \(manufacturer), Model: \(model)")
-                    self.enterFieldCarFromVIN(manufacturer, model)
+            model.carDataFromVin(vin: vinCode) { manufacturer, model, year in
+                if let manufacturer = manufacturer, let model = model, let year = year{
+                    print("Manufacturer: \(manufacturer), Model: \(model), year: \(year)")
+                    self.enterFieldCarFromVIN(manufacturer, model, year)
                 } else {
                     print("Failed to fetch car data.")
                 }
