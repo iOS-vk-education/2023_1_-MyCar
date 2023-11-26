@@ -1,10 +1,3 @@
-//
-//  CarCellableViewCell.swift
-//  MyCarrrr
-//
-//  Created by tearsoverbeers on 31.10.2023.
-//
-
 import UIKit
 
 class CarCellTableViewCell: UITableViewCell {
@@ -12,11 +5,18 @@ class CarCellTableViewCell: UITableViewCell {
     static let identifier = "carCell"
     
     private let carLabel = UILabel()
+    private let carModel = UILabel()
+    private let yearLabel = UILabel()
+    private let milleageLabel = UILabel()
+
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupContentView()
         setupCarLabel()
+        setupCarModel()
+        setupCarMilleage()
+        setupCarYear()
     }
     
     required init?(coder: NSCoder) {
@@ -48,8 +48,40 @@ class CarCellTableViewCell: UITableViewCell {
             carLabel.heightAnchor.constraint(equalToConstant: 30)])
     }
     
-    func update(with car: CellContent) {
-        carLabel.text = String(car.manufacturer)
+    private func setupCarModel() {
+        contentView.addSubview(carModel)
+        carModel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            carModel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -32),
+            carModel.topAnchor.constraint(equalTo: self.topAnchor, constant: 46),
+            carModel.heightAnchor.constraint(equalToConstant: 30)])
+    }
+    
+    private func setupCarYear() {
+        contentView.addSubview(yearLabel)
+        yearLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            yearLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -32),
+            yearLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 76),
+            yearLabel.heightAnchor.constraint(equalToConstant: 30)])
+    }
+    
+    private func setupCarMilleage() {
+        contentView.addSubview(milleageLabel)
+        milleageLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            milleageLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -32),
+            milleageLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 106),
+            milleageLabel.heightAnchor.constraint(equalToConstant: 30)])
+    }
+    
+    
+    
+    func update(with car: CarViewModel?) {
+        carLabel.text = "Manufacturer: " + String(car!.manufacturer)
+        carModel.text = "Model: " + String(car!.model)
+        yearLabel.text = "Year: " + String(car!.purchaseDate)
+        milleageLabel.text = "Milleage: " + String(car!.milleage)
 
     }
 

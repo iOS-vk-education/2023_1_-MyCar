@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  MyCarrrr
-//
-//  Created by tearsoverbeers on 31.10.2023.
-//
-
 import UIKit
 
 @main
