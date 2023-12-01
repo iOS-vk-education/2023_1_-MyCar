@@ -69,7 +69,7 @@ class AddCarViewController: UIViewController {
             errorAlert.addAction(UIAlertAction(title: "OK", style: .cancel))
             DispatchQueue.main.async {
                 self.contentView.checkVINButton.isEnabled = true
-                self.contentView.checkVINButton.setTitle("Check", for: .normal)
+                self.contentView.checkVINButton.setTitle("Заполнить по VIN", for: .normal)
                 (self.contentView.checkVINButton.subviews.first { $0 is UIActivityIndicatorView } as? UIActivityIndicatorView)?.stopAnimating()
             }
             self.contentView.checkVINCompletion?()
@@ -80,7 +80,7 @@ class AddCarViewController: UIViewController {
         model.carDataFromVin(vin: vinNumber) { manufacturer, model, year in
             DispatchQueue.main.async {
                 self.contentView.checkVINButton.isEnabled = true
-                self.contentView.checkVINButton.setTitle("Check", for: .normal)
+                self.contentView.checkVINButton.setTitle("Заполнить по VIN", for: .normal)
                 (self.contentView.checkVINButton.subviews.first { $0 is UIActivityIndicatorView } as? UIActivityIndicatorView)?.stopAnimating()
             }
             if let manufacturer = manufacturer, let model = model, let year = year{

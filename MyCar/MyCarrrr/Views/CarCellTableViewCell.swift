@@ -8,15 +8,19 @@ class CarCellTableViewCell: UITableViewCell {
     private let carModel = UILabel()
     private let yearLabel = UILabel()
     private let milleageLabel = UILabel()
+    
+    private let carImageView = UIImageView()
 
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.backgroundColor = .darkGray
         setupContentView()
         setupCarLabel()
         setupCarModel()
         setupCarMilleage()
         setupCarYear()
+        setupCarImageView()
     }
     
     required init?(coder: NSCoder) {
@@ -36,7 +40,7 @@ class CarCellTableViewCell: UITableViewCell {
             contentView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
             contentView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0),
             contentView.widthAnchor.constraint(equalToConstant: 358),
-            contentView.heightAnchor.constraint(equalToConstant: 300)])
+            contentView.heightAnchor.constraint(equalToConstant: 200)])
     }
     
     private func setupCarLabel() {
@@ -75,6 +79,22 @@ class CarCellTableViewCell: UITableViewCell {
             milleageLabel.heightAnchor.constraint(equalToConstant: 30)])
     }
     
+    private func setupCarImageView() {
+        contentView.addSubview(carImageView)
+        carImageView.image = UIImage(named: "bmw5") // Specify the image name
+        carImageView.contentMode = .scaleToFill
+        carImageView.layer.cornerRadius = 70 // Set half of the desired width/height for a circular shape
+        carImageView.layer.masksToBounds = true // Clip to bounds for a circular shape
+        carImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            carImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8), // Adjust the leading anchor
+            carImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor), // Center vertically
+            carImageView.widthAnchor.constraint(equalToConstant: 140), // Set your desired width
+            carImageView.heightAnchor.constraint(equalToConstant: 140) // Set your desired height
+            
+        ])
+    }
     
     
     func update(with car: CarViewModel?) {
