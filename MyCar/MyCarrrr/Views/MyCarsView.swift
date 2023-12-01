@@ -68,23 +68,40 @@ class MyCarsView: UIView, UITableViewDelegate {
         ])
     }
     
+    
     private func setupAddCarButton() {
-        self.addSubview(addCarButton)
-        addCarButton.setTitle("+", for: .normal)
-        addCarButton.backgroundColor = .black
-        addCarButton.layer.cornerRadius = 30
-        addCarButton.setTitleColor(.yellow, for: .normal)
+        let addButton = UIButton(type: .contactAdd)
+        addButton.setTitle("", for: .normal)
+        addButton.addTarget(self, action: #selector(didTapAddCarButton), for: .touchUpInside)
         
-        addCarButton.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(addButton)
+
+        addButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            addCarButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -85),
-            addCarButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
-            addCarButton.widthAnchor.constraint(equalToConstant: 64),
-            addCarButton.heightAnchor.constraint(equalToConstant: 64)
+            addButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 45),
+            addButton.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -8),
+            addButton.widthAnchor.constraint(equalToConstant: 60),
+            addButton.heightAnchor.constraint(equalToConstant: 33)
         ])
-        
-        addCarButton.addTarget(self, action: #selector(didTapAddCarButton), for: .touchUpInside)
     }
+    
+//    private func setupAddCarButton() {
+//        self.addSubview(addCarButton)
+//        addCarButton.setTitle("+", for: .normal)
+//        addCarButton.backgroundColor = .black
+//        addCarButton.layer.cornerRadius = 30
+//        addCarButton.setTitleColor(.yellow, for: .normal)
+//
+//        addCarButton.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//            addCarButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -85),
+//            addCarButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
+//            addCarButton.widthAnchor.constraint(equalToConstant: 64),
+//            addCarButton.heightAnchor.constraint(equalToConstant: 64)
+//        ])
+//
+//        addCarButton.addTarget(self, action: #selector(didTapAddCarButton), for: .touchUpInside)
+//    }
     
     private func setupCarTable(){
         self.addSubview(carsTable)
@@ -93,11 +110,11 @@ class MyCarsView: UIView, UITableViewDelegate {
         carsTable.separatorStyle = .none
         carsTable.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            carsTable.topAnchor.constraint(equalTo: self.topAnchor, constant: 90),
+            carsTable.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 16),
             carsTable.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
             carsTable.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
-            carsTable.widthAnchor.constraint(equalToConstant: 358),
-            carsTable.heightAnchor.constraint(equalToConstant: 550)
+            carsTable.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -10), // Adjust the constant
+            carsTable.widthAnchor.constraint(equalToConstant: 358)
         ])
         
         carsTable.register(CarCellTableViewCell.self, forCellReuseIdentifier: CarCellTableViewCell.identifier)
