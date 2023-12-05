@@ -71,6 +71,13 @@ extension MyCarsViewController: ViewToViewController {
         
     }
     
+    func goToMileageScreen() {
+        let vc = TOViewController(model: model)
+        vc.modalPresentationStyle = .pageSheet
+        vc.sheetPresentationController?.detents = [.medium()]
+        present(vc, animated: true)
+    }
+    
 }
 
 extension Notification.Name {
