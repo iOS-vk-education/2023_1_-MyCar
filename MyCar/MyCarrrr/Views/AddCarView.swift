@@ -205,7 +205,7 @@ class AddCarView: UIView {
         stackView.spacing = 10
         
         let updateButton = UIButton()
-        updateButton.setTitle("Обновить", for: .normal)
+        updateButton.setTitle("Добавить", for: .normal)
         updateButton.setTitleColor(.white, for: .normal)
         updateButton.backgroundColor = .darkGray
         updateButton.layer.cornerRadius = 20

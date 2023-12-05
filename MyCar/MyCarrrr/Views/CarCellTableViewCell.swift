@@ -1,7 +1,13 @@
 import UIKit
 
-class CarCellTableViewCell: UITableViewCell {
 
+protocol CellViewDelegate: AnyObject {
+    func didTapButtonOnCell()
+}
+
+class CarCellTableViewCell: UITableViewCell {
+    
+    
     static let identifier = "carCell"
     
     private let carLabel = UILabel()
@@ -11,16 +17,33 @@ class CarCellTableViewCell: UITableViewCell {
     
     private let carImageView = UIImageView()
 
+    
+    private let toButtonView = TOButtonView()
+    private let insuranceButtonView = InsuranceButtonView()
+    private let mileageButtonView = MileageButtonView()
+    
+    weak var delegate: CellViewDelegate?
+
+
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.backgroundColor = .darkGray
+            
         setupContentView()
         setupCarLabel()
         setupCarModel()
         setupCarMilleage()
         setupCarYear()
         setupCarImageView()
+        setupMileageView()
+        setupTOView()
+        setupInsuranceView()
+        
+        
+        
+        toButtonView.delegate = self
+
     }
     
     required init?(coder: NSCoder) {
@@ -96,6 +119,47 @@ class CarCellTableViewCell: UITableViewCell {
         ])
     }
     
+    private func setupMileageView() {
+        contentView.addSubview(mileageButtonView)
+        mileageButtonView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            mileageButtonView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            mileageButtonView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            mileageButtonView.widthAnchor.constraint(equalToConstant: 99),
+            mileageButtonView.heightAnchor.constraint(equalToConstant: 99)
+        ])
+    }
+    
+    private func setupTOView() {
+        contentView.addSubview(toButtonView)
+        toButtonView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            toButtonView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 110),
+            toButtonView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            toButtonView.widthAnchor.constraint(equalToConstant: 99),
+            toButtonView.heightAnchor.constraint(equalToConstant: 99)
+        ])
+    }
+    
+    private func setupInsuranceView() {
+        contentView.addSubview(insuranceButtonView)
+        insuranceButtonView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            insuranceButtonView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 210),
+            insuranceButtonView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            insuranceButtonView.widthAnchor.constraint(equalToConstant: 99),
+            insuranceButtonView.heightAnchor.constraint(equalToConstant: 99)
+        ])
+    }
+    
+    
+  
+    
+    
+    
     
     func update(with car: CarViewModel?) {
         carLabel.text = "Manufacturer: " + String(car!.manufacturer)
@@ -105,4 +169,16 @@ class CarCellTableViewCell: UITableViewCell {
 
     }
 
+}
+
+extension CarCellTableViewCell: TOButtonViewDelegate {
+    func didTapButton() {
+        didTapButtonOnCell()
+    }
+}
+
+extension CarCellTableViewCell: CellViewDelegate {
+    func didTapButtonOnCell() {
+        delegate?.didTapButtonOnCell()
+    }
 }

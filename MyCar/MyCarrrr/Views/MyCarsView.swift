@@ -8,7 +8,6 @@ class MyCarsView: UIView, UITableViewDelegate {
     private let addCarButton = UIButton()
     private let carsTable = UITableView()
     
-    private var tapOnAddCarButton: () -> Void = { }
     
     private let emptyStateImageView = UIImageView()
 
@@ -25,10 +24,7 @@ class MyCarsView: UIView, UITableViewDelegate {
     
     func updateTable() {
         carsTable.reloadData()
-        
         emptyStateImageView.isHidden = !(delegate?.cars().isEmpty ?? true)
-        
-
     }
     
     func setupUI() {
@@ -85,23 +81,6 @@ class MyCarsView: UIView, UITableViewDelegate {
         ])
     }
     
-//    private func setupAddCarButton() {
-//        self.addSubview(addCarButton)
-//        addCarButton.setTitle("+", for: .normal)
-//        addCarButton.backgroundColor = .black
-//        addCarButton.layer.cornerRadius = 30
-//        addCarButton.setTitleColor(.yellow, for: .normal)
-//
-//        addCarButton.translatesAutoresizingMaskIntoConstraints = false
-//        NSLayoutConstraint.activate([
-//            addCarButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -85),
-//            addCarButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
-//            addCarButton.widthAnchor.constraint(equalToConstant: 64),
-//            addCarButton.heightAnchor.constraint(equalToConstant: 64)
-//        ])
-//
-//        addCarButton.addTarget(self, action: #selector(didTapAddCarButton), for: .touchUpInside)
-//    }
     
     private func setupCarTable(){
         self.addSubview(carsTable)
@@ -124,12 +103,9 @@ class MyCarsView: UIView, UITableViewDelegate {
         delegate?.removeCar(index: index)
     }
     
-    func setTapOnAddCarButton(tapOnAddCarButton: @escaping () -> Void) {
-        self.tapOnAddCarButton = tapOnAddCarButton
-    }
-    
+
     @objc private func didTapAddCarButton() {
-        tapOnAddCarButton()
+        delegate?.goToAddScreen()
     }
 }
 
@@ -145,6 +121,9 @@ extension MyCarsView: UITableViewDataSource {
         }
         let car = delegate?.cars()[indexPath.row]
         cell.update(with: car)
+        
+        cell.delegate = delegate as? any CellViewDelegate
+        
         return cell
     }
     

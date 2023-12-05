@@ -16,6 +16,11 @@
 		559EFBCB2AF169610098672F /* CarCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559EFBCA2AF169610098672F /* CarCellTableViewCell.swift */; };
 		559EFBCD2AF179870098672F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559EFBCC2AF179870098672F /* TabBarController.swift */; };
 		559EFBCF2AF17C350098672F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559EFBCE2AF17C350098672F /* MapViewController.swift */; };
+		846AA1C82B1FB3DF001FC13D /* TOButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AA1C72B1FB3DF001FC13D /* TOButtonView.swift */; };
+		846AA1CA2B1FD6E0001FC13D /* InsuranceButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AA1C92B1FD6E0001FC13D /* InsuranceButtonView.swift */; };
+		846AA1CC2B1FD835001FC13D /* MileageButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AA1CB2B1FD835001FC13D /* MileageButtonView.swift */; };
+		849908402B1A889D00304317 /* TOViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8499083F2B1A889D00304317 /* TOViewController.swift */; };
+		849908422B1A88BA00304317 /* TOView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849908412B1A88BA00304317 /* TOView.swift */; };
 		84CE9ADB2B02FFC80070A8B2 /* CarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE9ADA2B02FFC80070A8B2 /* CarViewModel.swift */; };
 		84CE9ADD2B02FFE80070A8B2 /* HomeCarsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE9ADC2B02FFE80070A8B2 /* HomeCarsModel.swift */; };
 		84CE9AE02B03003F0070A8B2 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE9ADF2B03003F0070A8B2 /* NetworkService.swift */; };
@@ -36,6 +41,11 @@
 		559EFBCA2AF169610098672F /* CarCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarCellTableViewCell.swift; sourceTree = "<group>"; };
 		559EFBCC2AF179870098672F /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		559EFBCE2AF17C350098672F /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		846AA1C72B1FB3DF001FC13D /* TOButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TOButtonView.swift; sourceTree = "<group>"; };
+		846AA1C92B1FD6E0001FC13D /* InsuranceButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceButtonView.swift; sourceTree = "<group>"; };
+		846AA1CB2B1FD835001FC13D /* MileageButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MileageButtonView.swift; sourceTree = "<group>"; };
+		8499083F2B1A889D00304317 /* TOViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TOViewController.swift; sourceTree = "<group>"; };
+		849908412B1A88BA00304317 /* TOView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TOView.swift; sourceTree = "<group>"; };
 		84CE9ADA2B02FFC80070A8B2 /* CarViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarViewModel.swift; sourceTree = "<group>"; };
 		84CE9ADC2B02FFE80070A8B2 /* HomeCarsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCarsModel.swift; sourceTree = "<group>"; };
 		84CE9ADF2B03003F0070A8B2 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -62,6 +72,7 @@
 				559EFBCC2AF179870098672F /* TabBarController.swift */,
 				559EFBCE2AF17C350098672F /* MapViewController.swift */,
 				84CE9AE52B03073F0070A8B2 /* AddCarViewController.swift */,
+				8499083F2B1A889D00304317 /* TOViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -72,6 +83,10 @@
 				559EFBC82AF14B740098672F /* MyCarsView.swift */,
 				559EFBCA2AF169610098672F /* CarCellTableViewCell.swift */,
 				84CE9AE32B0307370070A8B2 /* AddCarView.swift */,
+				849908412B1A88BA00304317 /* TOView.swift */,
+				846AA1C72B1FB3DF001FC13D /* TOButtonView.swift */,
+				846AA1C92B1FD6E0001FC13D /* InsuranceButtonView.swift */,
+				846AA1CB2B1FD835001FC13D /* MileageButtonView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -196,17 +211,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				84CE9AE02B03003F0070A8B2 /* NetworkService.swift in Sources */,
+				846AA1CC2B1FD835001FC13D /* MileageButtonView.swift in Sources */,
 				556C3AE42AF9A8CE00D334B8 /* CarModel.swift in Sources */,
 				84CE9ADD2B02FFE80070A8B2 /* HomeCarsModel.swift in Sources */,
 				559EFBB92AF14A5F0098672F /* MyCarsViewController.swift in Sources */,
 				559EFBB52AF14A5F0098672F /* AppDelegate.swift in Sources */,
+				849908422B1A88BA00304317 /* TOView.swift in Sources */,
 				559EFBB72AF14A5F0098672F /* SceneDelegate.swift in Sources */,
 				559EFBCD2AF179870098672F /* TabBarController.swift in Sources */,
 				84CE9AE62B03073F0070A8B2 /* AddCarViewController.swift in Sources */,
+				849908402B1A889D00304317 /* TOViewController.swift in Sources */,
 				559EFBC92AF14B740098672F /* MyCarsView.swift in Sources */,
 				84CE9AE22B0300460070A8B2 /* UserDafaultsService.swift in Sources */,
 				559EFBCB2AF169610098672F /* CarCellTableViewCell.swift in Sources */,
+				846AA1CA2B1FD6E0001FC13D /* InsuranceButtonView.swift in Sources */,
 				84CE9AE42B0307370070A8B2 /* AddCarView.swift in Sources */,
+				846AA1C82B1FB3DF001FC13D /* TOButtonView.swift in Sources */,
 				84CE9ADB2B02FFC80070A8B2 /* CarViewModel.swift in Sources */,
 				559EFBCF2AF17C350098672F /* MapViewController.swift in Sources */,
 			);

@@ -3,13 +3,19 @@ import UIKit
 protocol ViewToViewController: AnyObject {
     func cars() -> [CarViewModel]
     func removeCar(index: Int)
-    func goToAnotherScreen()
+    func goToAddScreen()
+    func goToTOScreen()
 }
+
+
 
 class MyCarsViewController: UIViewController {
     
     private let contentView = MyCarsView()
     private let model: HomeCarsModel
+    
+    
+
     
     init(model: HomeCarsModel) {
         self.model = model
@@ -27,23 +33,20 @@ class MyCarsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         contentView.delegate = self
-        contentView.setTapOnAddCarButton {
-            self.addCar()
-        }
+        
+        
+        
+        
+
         // Регистрация для получения уведомлений о обновлении данных
         NotificationCenter.default.addObserver(self, selector: #selector(handleDataUpdated), name: .dataUpdated, object: nil)
     }
     
     @objc func handleDataUpdated() {
-        // Обновление таблицы
         contentView.updateTable()
         }
     
     
-    private func addCar() {
-        goToAnotherScreen()
-        print(model.allCars())
-    }
 }
 
 extension MyCarsViewController: ViewToViewController {
@@ -56,9 +59,16 @@ extension MyCarsViewController: ViewToViewController {
         model.remove(at: index)
     }
     
-    func goToAnotherScreen() {
+    func goToAddScreen() {
         let vc = AddCarViewController(model: model)
         present(vc, animated: true)
+        print(model.allCars())
+    }
+    
+    func goToTOScreen() {
+        let vc = TOViewController(model: model)
+        present(vc, animated: true)
+        
     }
     
 }
@@ -66,4 +76,12 @@ extension MyCarsViewController: ViewToViewController {
 extension Notification.Name {
     static let dataUpdated = Notification.Name("dataUpdated")
 }
+
+extension MyCarsViewController: CellViewDelegate {
+    func didTapButtonOnCell() {
+       goToTOScreen()
+    }
+    
+}
+
 

@@ -1,6 +1,6 @@
 import Foundation
 
-struct CarViewModel: Codable {
+struct CarViewModel {
     
     let manufacturer: String
     let model: String
@@ -8,6 +8,7 @@ struct CarViewModel: Codable {
     let purchaseDate: String
     let vinNumber: String
     
+//    var TO: [TO]?
 }
 
 struct CarInfo: Codable {
