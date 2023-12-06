@@ -12,8 +12,12 @@ class CarCellTableViewCell: UITableViewCell {
     
     private let carLabel = UILabel()
     private let carModel = UILabel()
-    private let yearLabel = UILabel()
-    private let milleageLabel = UILabel()
+   
+    private let nextTOFrame = UIView()
+    private let nextTOLabel = UILabel()
+    
+    private let nextInsuranceFrame = UIView()
+    private let nextInsuranceLabel = UILabel()
     
     private let carImageView = UIImageView()
 
@@ -33,9 +37,11 @@ class CarCellTableViewCell: UITableViewCell {
         setupContentView()
         setupCarLabel()
         setupCarModel()
-        setupCarMilleage()
-        setupCarYear()
+        
+        setupNextTOFrame()
+        setupNextInsuranceFrame()
         setupCarImageView()
+        
         setupMileageView()
         setupTOView()
         setupInsuranceView()
@@ -51,8 +57,8 @@ class CarCellTableViewCell: UITableViewCell {
     }
     
     private func setupContentView() {
-        contentView.backgroundColor = .init(UIColor(red: 0.95, green: 0.96, blue: 0.97, alpha: 1.0))
-//        contentView.backgroundColor = .black
+//        contentView.backgroundColor = .init(UIColor(red: 0.95, green: 0.96, blue: 0.97, alpha: 1.0))
+        contentView.backgroundColor = .black
         contentView.layer.cornerRadius = 36
         selectedBackgroundView = UIView()
         selectedBackgroundView?.backgroundColor = .clear
@@ -68,54 +74,98 @@ class CarCellTableViewCell: UITableViewCell {
     }
     
     private func setupCarLabel() {
+        carLabel.textColor = .white
+        carLabel.font = UIFont.boldSystemFont(ofSize: 30)
+        carLabel.textAlignment = .center
+        
         contentView.addSubview(carLabel)
         carLabel.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
-            carLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -32),
-            carLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
-            carLabel.heightAnchor.constraint(equalToConstant: 30)])
+            carLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 14),
+            carLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 21)
+            ])
     }
     
     private func setupCarModel() {
+        carModel.textColor = .white
+        carModel.font = UIFont.boldSystemFont(ofSize: 30)
+        carModel.textAlignment = .center
+        
         contentView.addSubview(carModel)
         carModel.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
-            carModel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -32),
-            carModel.topAnchor.constraint(equalTo: self.topAnchor, constant: 46),
-            carModel.heightAnchor.constraint(equalToConstant: 30)])
+            carModel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 48),
+            carModel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 21)
+            ])
     }
     
-    private func setupCarYear() {
-        contentView.addSubview(yearLabel)
-        yearLabel.translatesAutoresizingMaskIntoConstraints = false
+    private func setupNextTOFrame() {
+        nextTOFrame.layer.cornerRadius = 4
+        nextTOFrame.backgroundColor = UIColor(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0, alpha: 1.0)
+        self.addSubview(nextTOFrame)
+
+        nextTOFrame.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            yearLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -32),
-            yearLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 76),
-            yearLabel.heightAnchor.constraint(equalToConstant: 30)])
+            nextTOFrame.topAnchor.constraint(equalTo: carModel.bottomAnchor, constant: 10),
+            nextTOFrame.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 21),
+            nextTOFrame.widthAnchor.constraint(equalToConstant: 210),
+            nextTOFrame.heightAnchor.constraint(equalToConstant: 33)
+        ])
+
+        self.addSubview(nextTOLabel)
+        nextTOLabel.textColor = .white
+        nextTOLabel.font = UIFont.boldSystemFont(ofSize: 14)
+        nextTOLabel.textAlignment = .center
+
+        nextTOLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            nextTOLabel.topAnchor.constraint(equalTo: nextTOFrame.topAnchor, constant: 8),
+            nextTOLabel.centerXAnchor.constraint(equalTo: nextTOFrame.centerXAnchor),
+        ])
     }
     
-    private func setupCarMilleage() {
-        contentView.addSubview(milleageLabel)
-        milleageLabel.translatesAutoresizingMaskIntoConstraints = false
+    private func setupNextInsuranceFrame() {
+        nextInsuranceFrame.layer.cornerRadius = 4
+        nextInsuranceFrame.backgroundColor = UIColor(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0, alpha: 1.0)
+        self.addSubview(nextInsuranceFrame)
+
+        nextInsuranceFrame.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            milleageLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -32),
-            milleageLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 106),
-            milleageLabel.heightAnchor.constraint(equalToConstant: 30)])
+            nextInsuranceFrame.topAnchor.constraint(equalTo: nextTOFrame.bottomAnchor, constant: 10),
+            nextInsuranceFrame.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 21),
+            nextInsuranceFrame.widthAnchor.constraint(equalToConstant: 210),
+            nextInsuranceFrame.heightAnchor.constraint(equalToConstant: 33)
+        ])
+
+        self.addSubview(nextInsuranceLabel)
+        nextInsuranceLabel.textColor = .white
+        nextInsuranceLabel.font = UIFont.boldSystemFont(ofSize: 14)
+        nextInsuranceLabel.textAlignment = .center
+
+        nextInsuranceLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            nextInsuranceLabel.topAnchor.constraint(equalTo: nextInsuranceFrame.topAnchor, constant: 8),
+            nextInsuranceLabel.centerXAnchor.constraint(equalTo: nextInsuranceFrame.centerXAnchor),
+        ])
     }
+    
     
     private func setupCarImageView() {
         contentView.addSubview(carImageView)
-        carImageView.image = UIImage(named: "bmw5") // Specify the image name
+        carImageView.image = UIImage(named: "jeep") // Specify the image name
         carImageView.contentMode = .scaleToFill
-        carImageView.layer.cornerRadius = 70 // Set half of the desired width/height for a circular shape
-        carImageView.layer.masksToBounds = true // Clip to bounds for a circular shape
+        carImageView.layer.cornerRadius = 15 // Set half of the desired width/height for a circular shape
+        carImageView.clipsToBounds = true // Необходимо установить в true, чтобы обрезать изображение внутри рамки carImageView
+
         carImageView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            carImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8), // Adjust the leading anchor
-            carImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor), // Center vertically
-            carImageView.widthAnchor.constraint(equalToConstant: 140), // Set your desired width
-            carImageView.heightAnchor.constraint(equalToConstant: 140) // Set your desired height
+            carImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -21), // Adjust the leading anchor
+            carImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 21), // Center vertically
+            carImageView.widthAnchor.constraint(equalToConstant: 99), // Set your desired width
+            carImageView.heightAnchor.constraint(equalToConstant: 99) // Set your desired height
             
         ])
     }
@@ -125,8 +175,8 @@ class CarCellTableViewCell: UITableViewCell {
         mileageButtonView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            mileageButtonView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-            mileageButtonView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            mileageButtonView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 21),
+            mileageButtonView.topAnchor.constraint(equalTo: nextInsuranceFrame.bottomAnchor, constant: 15),
             mileageButtonView.widthAnchor.constraint(equalToConstant: 99),
             mileageButtonView.heightAnchor.constraint(equalToConstant: 99)
         ])
@@ -137,8 +187,8 @@ class CarCellTableViewCell: UITableViewCell {
         toButtonView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            toButtonView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 110),
-            toButtonView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            toButtonView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            toButtonView.topAnchor.constraint(equalTo: nextInsuranceFrame.bottomAnchor, constant: 15),
             toButtonView.widthAnchor.constraint(equalToConstant: 99),
             toButtonView.heightAnchor.constraint(equalToConstant: 99)
         ])
@@ -149,25 +199,20 @@ class CarCellTableViewCell: UITableViewCell {
         insuranceButtonView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            insuranceButtonView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 210),
-            insuranceButtonView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            insuranceButtonView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -21),
+            insuranceButtonView.topAnchor.constraint(equalTo: nextInsuranceFrame.bottomAnchor, constant: 15),
             insuranceButtonView.widthAnchor.constraint(equalToConstant: 99),
             insuranceButtonView.heightAnchor.constraint(equalToConstant: 99)
         ])
     }
     
     
-  
-    
-    
-    
-    
     func update(with car: CarViewModel?) {
-        carLabel.text = "Manufacturer: " + String(car!.manufacturer)
-        carModel.text = "Model: " + String(car!.model)
-        yearLabel.text = "Year: " + String(car!.purchaseDate)
-        milleageLabel.text = "Milleage: " + String(car!.milleage)
-
+        carLabel.text = String(car!.manufacturer)
+        carModel.text = String(car!.model)
+        
+        nextTOLabel.text = "Следующее ТО: 20.02.2023"
+        nextInsuranceLabel.text = "Страховка до: 21.02.2023"
     }
 
 }
