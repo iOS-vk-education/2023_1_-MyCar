@@ -14,7 +14,7 @@ class MyCarsViewController: UIViewController {
     private let contentView = MyCarsView()
     private let model: HomeCarsModel
     
-    
+
 
     
     init(model: HomeCarsModel) {
@@ -33,14 +33,12 @@ class MyCarsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         contentView.delegate = self
-        
-        
-        
-        
-
+    
         // Регистрация для получения уведомлений о обновлении данных
         NotificationCenter.default.addObserver(self, selector: #selector(handleDataUpdated), name: .dataUpdated, object: nil)
     }
+    
+
     
     @objc func handleDataUpdated() {
         contentView.updateTable()
@@ -66,9 +64,34 @@ extension MyCarsViewController: ViewToViewController {
     }
     
     func goToTOScreen() {
-        let vc = TOViewController(model: model)
-        present(vc, animated: true)
+        //        let vc = TOViewController(model: model)
+        //        present(vc, animated: true)
         
+        
+        let toViewController = TOViewController(model: model)
+        
+        // Создаем UINavigationController
+        let navigationController = UINavigationController(rootViewController: toViewController)
+        
+        // Добавляем "Назад" кнопку
+        let backButton = UIBarButtonItem(title: "Назад", style: .plain, target: self, action: #selector(goBack))
+        let addButton = UIBarButtonItem(title: "Добавить", style: .plain, target: self, action: #selector(goBack))
+        toViewController.navigationItem.leftBarButtonItem = backButton
+        toViewController.navigationItem.rightBarButtonItem = addButton
+        
+        navigationController.modalPresentationStyle = .fullScreen
+        navigationController.modalTransitionStyle = .flipHorizontal
+        
+        // Презентуем UINavigationController с анимацией
+        present(navigationController, animated: true, completion: nil)
+        
+        
+        
+        
+    }
+    
+    @objc func goBack() {
+        dismiss(animated: true, completion: nil)
     }
     
     func goToMileageScreen() {

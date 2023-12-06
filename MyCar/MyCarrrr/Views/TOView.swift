@@ -71,7 +71,7 @@ class TOView: UIView, UITableViewDelegate {
         
         carLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            carLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
+            carLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 0),
             carLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
             carLabel.widthAnchor.constraint(equalToConstant: 390),
             carLabel.heightAnchor.constraint(equalToConstant: 33)
@@ -105,7 +105,9 @@ class TOView: UIView, UITableViewDelegate {
         
         labelFrame.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            labelFrame.topAnchor.constraint(equalTo: self.topAnchor, constant: 11),
+//            labelFrame.topAnchor.constraint(equalTo: self.topAnchor, constant: 11),
+            labelFrame.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 0),
+
             labelFrame.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 17),
             labelFrame.widthAnchor.constraint(equalToConstant: 361),
             labelFrame.heightAnchor.constraint(equalToConstant: 80)
