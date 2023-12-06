@@ -32,7 +32,8 @@ class CarCellTableViewCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.backgroundColor = .darkGray
+        self.backgroundColor = .clear
+        
             
         setupContentView()
         setupCarLabel()
@@ -57,7 +58,6 @@ class CarCellTableViewCell: UITableViewCell {
     }
     
     private func setupContentView() {
-//        contentView.backgroundColor = .init(UIColor(red: 0.95, green: 0.96, blue: 0.97, alpha: 1.0))
         contentView.backgroundColor = .black
         contentView.layer.cornerRadius = 36
         selectedBackgroundView = UIView()

@@ -14,7 +14,9 @@ class MyCarsView: UIView, UITableViewDelegate {
     
     init() {
         super.init(frame: .zero)
-        self.backgroundColor = .darkGray
+//        self.backgroundColor = .darkGray
+        self.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
+
         setupUI()
     }
     
@@ -24,14 +26,14 @@ class MyCarsView: UIView, UITableViewDelegate {
     
     func updateTable() {
         carsTable.reloadData()
-        emptyStateImageView.isHidden = !(delegate?.cars().isEmpty ?? true)
+//        emptyStateImageView.isHidden = !(delegate?.cars().isEmpty ?? true)
     }
     
     func setupUI() {
         setupHeaderLabel()
         setupAddCarButton()
         setupCarTable()
-        setupEmptyStateImageView()
+//        setupEmptyStateImageView()
 
     }
     private func setupEmptyStateImageView() {
@@ -51,7 +53,7 @@ class MyCarsView: UIView, UITableViewDelegate {
     private func setupHeaderLabel() {
         self.addSubview(headerLabel)
         headerLabel.text = "Мои автомобили"
-        headerLabel.textColor = .black
+        headerLabel.textColor = .white
         headerLabel.font = UIFont.boldSystemFont(ofSize: 24)
         headerLabel.textAlignment = .center
         
@@ -85,7 +87,7 @@ class MyCarsView: UIView, UITableViewDelegate {
     private func setupCarTable(){
         self.addSubview(carsTable)
         carsTable.dataSource = self
-        carsTable.backgroundColor = .darkGray
+        carsTable.backgroundColor = .clear
         carsTable.separatorStyle = .none
         carsTable.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
