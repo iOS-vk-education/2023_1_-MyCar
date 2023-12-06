@@ -52,7 +52,8 @@ class CarCellTableViewCell: UITableViewCell {
     
     private func setupContentView() {
         contentView.backgroundColor = .init(UIColor(red: 0.95, green: 0.96, blue: 0.97, alpha: 1.0))
-        contentView.layer.cornerRadius = 15
+//        contentView.backgroundColor = .black
+        contentView.layer.cornerRadius = 36
         selectedBackgroundView = UIView()
         selectedBackgroundView?.backgroundColor = .clear
         
@@ -62,8 +63,8 @@ class CarCellTableViewCell: UITableViewCell {
             contentView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
             contentView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
             contentView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0),
-            contentView.widthAnchor.constraint(equalToConstant: 358),
-            contentView.heightAnchor.constraint(equalToConstant: 200)])
+            contentView.widthAnchor.constraint(equalToConstant: 361),
+            contentView.heightAnchor.constraint(equalToConstant: 307)])
     }
     
     private func setupCarLabel() {

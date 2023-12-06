@@ -19,6 +19,10 @@
 		846AA1C82B1FB3DF001FC13D /* TOButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AA1C72B1FB3DF001FC13D /* TOButtonView.swift */; };
 		846AA1CA2B1FD6E0001FC13D /* InsuranceButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AA1C92B1FD6E0001FC13D /* InsuranceButtonView.swift */; };
 		846AA1CC2B1FD835001FC13D /* MileageButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AA1CB2B1FD835001FC13D /* MileageButtonView.swift */; };
+		8472EBF02B2109B30027B383 /* WorkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472EBEF2B2109B30027B383 /* WorkModel.swift */; };
+		8472EBF22B210BD40027B383 /* TOCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472EBF12B210BD40027B383 /* TOCellTableViewCell.swift */; };
+		8472EBF42B210E6E0027B383 /* HomeWorkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472EBF32B210E6E0027B383 /* HomeWorkModel.swift */; };
+		8472EBF62B21188E0027B383 /* ChequeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472EBF52B21188E0027B383 /* ChequeButtonView.swift */; };
 		849908402B1A889D00304317 /* TOViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8499083F2B1A889D00304317 /* TOViewController.swift */; };
 		849908422B1A88BA00304317 /* TOView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849908412B1A88BA00304317 /* TOView.swift */; };
 		84CE9ADB2B02FFC80070A8B2 /* CarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE9ADA2B02FFC80070A8B2 /* CarViewModel.swift */; };
@@ -44,6 +48,10 @@
 		846AA1C72B1FB3DF001FC13D /* TOButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TOButtonView.swift; sourceTree = "<group>"; };
 		846AA1C92B1FD6E0001FC13D /* InsuranceButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceButtonView.swift; sourceTree = "<group>"; };
 		846AA1CB2B1FD835001FC13D /* MileageButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MileageButtonView.swift; sourceTree = "<group>"; };
+		8472EBEF2B2109B30027B383 /* WorkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkModel.swift; sourceTree = "<group>"; };
+		8472EBF12B210BD40027B383 /* TOCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TOCellTableViewCell.swift; sourceTree = "<group>"; };
+		8472EBF32B210E6E0027B383 /* HomeWorkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWorkModel.swift; sourceTree = "<group>"; };
+		8472EBF52B21188E0027B383 /* ChequeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChequeButtonView.swift; sourceTree = "<group>"; };
 		8499083F2B1A889D00304317 /* TOViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TOViewController.swift; sourceTree = "<group>"; };
 		849908412B1A88BA00304317 /* TOView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TOView.swift; sourceTree = "<group>"; };
 		84CE9ADA2B02FFC80070A8B2 /* CarViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarViewModel.swift; sourceTree = "<group>"; };
@@ -87,6 +95,8 @@
 				846AA1C72B1FB3DF001FC13D /* TOButtonView.swift */,
 				846AA1C92B1FD6E0001FC13D /* InsuranceButtonView.swift */,
 				846AA1CB2B1FD835001FC13D /* MileageButtonView.swift */,
+				8472EBF12B210BD40027B383 /* TOCellTableViewCell.swift */,
+				8472EBF52B21188E0027B383 /* ChequeButtonView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -98,6 +108,8 @@
 				84CE9ADC2B02FFE80070A8B2 /* HomeCarsModel.swift */,
 				84CE9ADA2B02FFC80070A8B2 /* CarViewModel.swift */,
 				556C3AE32AF9A8CE00D334B8 /* CarModel.swift */,
+				8472EBEF2B2109B30027B383 /* WorkModel.swift */,
+				8472EBF32B210E6E0027B383 /* HomeWorkModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -211,6 +223,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84CE9AE02B03003F0070A8B2 /* NetworkService.swift in Sources */,
+				8472EBF22B210BD40027B383 /* TOCellTableViewCell.swift in Sources */,
 				846AA1CC2B1FD835001FC13D /* MileageButtonView.swift in Sources */,
 				556C3AE42AF9A8CE00D334B8 /* CarModel.swift in Sources */,
 				84CE9ADD2B02FFE80070A8B2 /* HomeCarsModel.swift in Sources */,
@@ -218,10 +231,13 @@
 				559EFBB52AF14A5F0098672F /* AppDelegate.swift in Sources */,
 				849908422B1A88BA00304317 /* TOView.swift in Sources */,
 				559EFBB72AF14A5F0098672F /* SceneDelegate.swift in Sources */,
+				8472EBF42B210E6E0027B383 /* HomeWorkModel.swift in Sources */,
 				559EFBCD2AF179870098672F /* TabBarController.swift in Sources */,
 				84CE9AE62B03073F0070A8B2 /* AddCarViewController.swift in Sources */,
+				8472EBF02B2109B30027B383 /* WorkModel.swift in Sources */,
 				849908402B1A889D00304317 /* TOViewController.swift in Sources */,
 				559EFBC92AF14B740098672F /* MyCarsView.swift in Sources */,
+				8472EBF62B21188E0027B383 /* ChequeButtonView.swift in Sources */,
 				84CE9AE22B0300460070A8B2 /* UserDafaultsService.swift in Sources */,
 				559EFBCB2AF169610098672F /* CarCellTableViewCell.swift in Sources */,
 				846AA1CA2B1FD6E0001FC13D /* InsuranceButtonView.swift in Sources */,

@@ -92,8 +92,8 @@ class MyCarsView: UIView, UITableViewDelegate {
             carsTable.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 16),
             carsTable.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
             carsTable.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
-            carsTable.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -10), // Adjust the constant
-            carsTable.widthAnchor.constraint(equalToConstant: 358)
+            carsTable.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -10), 
+            carsTable.widthAnchor.constraint(equalToConstant: 361)
         ])
         
         carsTable.register(CarCellTableViewCell.self, forCellReuseIdentifier: CarCellTableViewCell.identifier)

@@ -10,6 +10,8 @@ import UIKit
 
 class TOView: UIView, UITableViewDelegate {
     
+    
+    
     weak var delegate: ViewToViewController?
     
     
@@ -19,25 +21,29 @@ class TOView: UIView, UITableViewDelegate {
     private let labelFrame = UIView()
     private let mainContentFrame = UIView()
     
-    private let dateFrame = UIView()
-    private let dateLabel = UILabel()
     
-    private let mileageFrame = UIView()
-    private let mileageLabel = UILabel()
+    private let toTable = UITableView()
+
     
-    private let contentFrame = UIView()
-    private let contentLabel = UILabel()
-    
-    private let priceFrame = UIView()
-    private let priceLabel = UILabel()
-    
-    private let chequeFrame = UIView()
-    private let chequeLabel = UILabel()
-    
-    
-    private let updateButton = UIButton()
-    private let cancelButton = UIButton()
-    
+//    private let dateFrame = UIView()
+//    private let dateLabel = UILabel()
+//
+//    private let mileageFrame = UIView()
+//    private let mileageLabel = UILabel()
+//
+//    private let contentFrame = UIView()
+//    private let contentLabel = UILabel()
+//
+//    private let priceFrame = UIView()
+//    private let priceLabel = UILabel()
+//
+//    private let chequeFrame = UIView()
+//    private let chequeLabel = UILabel()
+//
+//
+//    private let updateButton = UIButton()
+//    private let cancelButton = UIButton()
+//
     
     
     init() {
@@ -46,12 +52,13 @@ class TOView: UIView, UITableViewDelegate {
         setupHeaderLabel("BMW 7 Series")
         setupWorkListLabel()
         setupFrameForLabel()
-        setupFrameForContent()
-        setupDateFrame()
-        setupMileageFrame()
-        setupContentFrame()
-        setupPriceFrame()
-        setupСhequeFrame()
+        setupCarTable()
+//        setupFrameForContent()
+//        setupDateFrame()
+//        setupMileageFrame()
+//        setupContentFrame()
+//        setupPriceFrame()
+//        setupСhequeFrame()
         
         
     }
@@ -114,155 +121,187 @@ class TOView: UIView, UITableViewDelegate {
         ])
     }
     
-    private func setupFrameForContent() {
-        mainContentFrame.layer.cornerRadius = 15
-        mainContentFrame.backgroundColor = .black
-        self.addSubview(mainContentFrame)
-        
-
-        mainContentFrame.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            mainContentFrame.topAnchor.constraint(equalTo: labelFrame.bottomAnchor, constant: 11),
-            mainContentFrame.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 17),
-            mainContentFrame.widthAnchor.constraint(equalToConstant: 361),
-            mainContentFrame.heightAnchor.constraint(equalToConstant: 188)
-        ])
-    }
     
-    private func setupDateFrame() {
-        dateFrame.layer.cornerRadius = 4
-        dateFrame.backgroundColor = UIColor(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0, alpha: 1.0)
-        self.addSubview(dateFrame)
-
-        dateFrame.translatesAutoresizingMaskIntoConstraints = false
+    private func setupCarTable(){
+        
+        
+        self.addSubview(toTable)
+        toTable.dataSource = self
+        toTable.backgroundColor = .red
+        toTable.separatorStyle = .none
+        toTable.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            dateFrame.topAnchor.constraint(equalTo: mainContentFrame.topAnchor, constant: 21),
-            dateFrame.leadingAnchor.constraint(equalTo: mainContentFrame.leadingAnchor, constant: 21),
-            dateFrame.widthAnchor.constraint(equalToConstant: 154),
-            dateFrame.heightAnchor.constraint(equalToConstant: 33)
+            toTable.topAnchor.constraint(equalTo: labelFrame.bottomAnchor, constant: 11),
+            toTable.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+            toTable.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
+            toTable.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: 0),
+            toTable.widthAnchor.constraint(equalToConstant: 361)
         ])
         
-        self.addSubview(dateLabel)
-        dateLabel.text = "Дата: 20.02.2023"
-        dateLabel.textColor = .white
-        dateLabel.font = .systemFont(ofSize: 14)
-        dateLabel.textAlignment = .center
-        
-        dateLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            dateLabel.topAnchor.constraint(equalTo: dateFrame.topAnchor, constant: 8),
-            dateLabel.centerXAnchor.constraint(equalTo: dateFrame.centerXAnchor),
-        ])
+        toTable.register(TOCellTableViewCell.self, forCellReuseIdentifier: TOCellTableViewCell.identifier)
     }
-    
-    private func setupMileageFrame() {
-        mileageFrame.layer.cornerRadius = 4
-        mileageFrame.backgroundColor = UIColor(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0, alpha: 1.0)
-        self.addSubview(mileageFrame)
-
-        mileageFrame.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            mileageFrame.topAnchor.constraint(equalTo: mainContentFrame.topAnchor, constant: 21),
-            mileageFrame.trailingAnchor.constraint(equalTo: mainContentFrame.trailingAnchor, constant: -21),
-            mileageFrame.widthAnchor.constraint(equalToConstant: 154),
-            mileageFrame.heightAnchor.constraint(equalToConstant: 33)
-        ])
-        
-        self.addSubview(mileageLabel)
-        mileageLabel.text = "Пробег: 100000 Км"
-        mileageLabel.textColor = .white
-        mileageLabel.font = .systemFont(ofSize: 14)
-        mileageLabel.textAlignment = .center
-        
-        mileageLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            mileageLabel.topAnchor.constraint(equalTo: mileageFrame.topAnchor, constant: 8),
-            mileageLabel.centerXAnchor.constraint(equalTo: mileageFrame.centerXAnchor)
-        ])
-    }
-    
-    private func setupContentFrame() {
-        contentFrame.layer.cornerRadius = 4
-        contentFrame.backgroundColor = UIColor(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0, alpha: 1.0)
-        self.addSubview(contentFrame)
-
-        contentFrame.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            contentFrame.topAnchor.constraint(equalTo: mileageFrame.bottomAnchor, constant: 11),
-            contentFrame.leadingAnchor.constraint(equalTo: mainContentFrame.leadingAnchor, constant: 21),
-            contentFrame.widthAnchor.constraint(equalToConstant: 319),
-            contentFrame.heightAnchor.constraint(equalToConstant: 58)
-        ])
-        
-        self.addSubview(contentLabel)
-        contentLabel.text = "Замена масла - 700 р \n Мойка - 500 р"
-        contentLabel.numberOfLines = 2
-        contentLabel.textColor = .white
-        contentLabel.font = .systemFont(ofSize: 14)
-        contentLabel.textAlignment = .center
-        
-        contentLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            contentLabel.topAnchor.constraint(equalTo: contentFrame.topAnchor, constant: 8),
-            contentLabel.leadingAnchor.constraint(equalTo: contentFrame.leadingAnchor, constant: 11)
-        ])
-    }
-    
-    private func setupPriceFrame() {
-        priceFrame.layer.cornerRadius = 4
-        priceFrame.backgroundColor = UIColor(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0, alpha: 1.0)
-        self.addSubview(priceFrame)
-
-        priceFrame.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            priceFrame.bottomAnchor.constraint(equalTo: mainContentFrame.bottomAnchor, constant: -21),
-            priceFrame.leadingAnchor.constraint(equalTo: mainContentFrame.leadingAnchor, constant: 21),
-            priceFrame.widthAnchor.constraint(equalToConstant: 154),
-            priceFrame.heightAnchor.constraint(equalToConstant: 33)
-        ])
-        
-        self.addSubview(priceLabel)
-        priceLabel.text = "Стоимость: 20000 р"
-        priceLabel.textColor = .white
-        priceLabel.font = .systemFont(ofSize: 14)
-        priceLabel.textAlignment = .center
-        
-        priceLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            priceLabel.topAnchor.constraint(equalTo: priceFrame.topAnchor, constant: 8),
-            priceLabel.centerXAnchor.constraint(equalTo: priceFrame.centerXAnchor)
-        ])
-    }
-    
-    //TODO: это должно быть кнопкой
-    private func setupСhequeFrame() {
-        chequeFrame.layer.cornerRadius = 4
-        chequeFrame.backgroundColor = UIColor(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0, alpha: 1.0)
-        self.addSubview(chequeFrame)
-
-        chequeFrame.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            chequeFrame.bottomAnchor.constraint(equalTo: mainContentFrame.bottomAnchor, constant: -21),
-            chequeFrame.trailingAnchor.constraint(equalTo: mainContentFrame.trailingAnchor, constant: -21),
-            chequeFrame.widthAnchor.constraint(equalToConstant: 154),
-            chequeFrame.heightAnchor.constraint(equalToConstant: 33)
-        ])
-        
-        self.addSubview(chequeLabel)
-        chequeLabel.text = "Квитанция"
-        chequeLabel.textColor = .white
-        chequeLabel.font = .systemFont(ofSize: 14)
-        chequeLabel.textAlignment = .center
-        
-        chequeLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            chequeLabel.topAnchor.constraint(equalTo: chequeFrame.topAnchor, constant: 8),
-            chequeLabel.centerXAnchor.constraint(equalTo: chequeFrame.centerXAnchor)
-        ])
-    }
+//    private func setupFrameForContent() {
+//        mainContentFrame.layer.cornerRadius = 15
+//        mainContentFrame.backgroundColor = .black
+//        self.addSubview(mainContentFrame)
+//        
+//
+//        mainContentFrame.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//            mainContentFrame.topAnchor.constraint(equalTo: labelFrame.bottomAnchor, constant: 11),
+//            mainContentFrame.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 17),
+//            mainContentFrame.widthAnchor.constraint(equalToConstant: 361),
+//            mainContentFrame.heightAnchor.constraint(equalToConstant: 188)
+//        ])
+//    }
+//
+//    private func setupDateFrame() {
+//        dateFrame.layer.cornerRadius = 4
+//        dateFrame.backgroundColor = UIColor(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0, alpha: 1.0)
+//        self.addSubview(dateFrame)
+//
+//        dateFrame.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//            dateFrame.topAnchor.constraint(equalTo: mainContentFrame.topAnchor, constant: 21),
+//            dateFrame.leadingAnchor.constraint(equalTo: mainContentFrame.leadingAnchor, constant: 21),
+//            dateFrame.widthAnchor.constraint(equalToConstant: 154),
+//            dateFrame.heightAnchor.constraint(equalToConstant: 33)
+//        ])
+//
+//        self.addSubview(dateLabel)
+//        dateLabel.text = "Дата: 20.02.2023"
+//        dateLabel.textColor = .white
+//        dateLabel.font = .systemFont(ofSize: 14)
+//        dateLabel.textAlignment = .center
+//
+//        dateLabel.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//            dateLabel.topAnchor.constraint(equalTo: dateFrame.topAnchor, constant: 8),
+//            dateLabel.centerXAnchor.constraint(equalTo: dateFrame.centerXAnchor),
+//        ])
+//    }
+//
+//    private func setupMileageFrame() {
+//        mileageFrame.layer.cornerRadius = 4
+//        mileageFrame.backgroundColor = UIColor(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0, alpha: 1.0)
+//        self.addSubview(mileageFrame)
+//
+//        mileageFrame.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//            mileageFrame.topAnchor.constraint(equalTo: mainContentFrame.topAnchor, constant: 21),
+//            mileageFrame.trailingAnchor.constraint(equalTo: mainContentFrame.trailingAnchor, constant: -21),
+//            mileageFrame.widthAnchor.constraint(equalToConstant: 154),
+//            mileageFrame.heightAnchor.constraint(equalToConstant: 33)
+//        ])
+//
+//        self.addSubview(mileageLabel)
+//        mileageLabel.text = "Пробег: 100000 Км"
+//        mileageLabel.textColor = .white
+//        mileageLabel.font = .systemFont(ofSize: 14)
+//        mileageLabel.textAlignment = .center
+//
+//        mileageLabel.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//            mileageLabel.topAnchor.constraint(equalTo: mileageFrame.topAnchor, constant: 8),
+//            mileageLabel.centerXAnchor.constraint(equalTo: mileageFrame.centerXAnchor)
+//        ])
+//    }
+//
+//    private func setupContentFrame() {
+//        contentFrame.layer.cornerRadius = 4
+//        contentFrame.backgroundColor = UIColor(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0, alpha: 1.0)
+//        self.addSubview(contentFrame)
+//
+//        contentFrame.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//            contentFrame.topAnchor.constraint(equalTo: mileageFrame.bottomAnchor, constant: 11),
+//            contentFrame.leadingAnchor.constraint(equalTo: mainContentFrame.leadingAnchor, constant: 21),
+//            contentFrame.widthAnchor.constraint(equalToConstant: 319),
+//            contentFrame.heightAnchor.constraint(equalToConstant: 58)
+//        ])
+//
+//        self.addSubview(contentLabel)
+//        contentLabel.text = "Замена масла - 700 р \n Мойка - 500 р"
+//        contentLabel.numberOfLines = 2
+//        contentLabel.textColor = .white
+//        contentLabel.font = .systemFont(ofSize: 14)
+//        contentLabel.textAlignment = .center
+//
+//        contentLabel.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//            contentLabel.topAnchor.constraint(equalTo: contentFrame.topAnchor, constant: 8),
+//            contentLabel.leadingAnchor.constraint(equalTo: contentFrame.leadingAnchor, constant: 11)
+//        ])
+//    }
+//
+//    private func setupPriceFrame() {
+//        priceFrame.layer.cornerRadius = 4
+//        priceFrame.backgroundColor = UIColor(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0, alpha: 1.0)
+//        self.addSubview(priceFrame)
+//
+//        priceFrame.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//            priceFrame.bottomAnchor.constraint(equalTo: mainContentFrame.bottomAnchor, constant: -21),
+//            priceFrame.leadingAnchor.constraint(equalTo: mainContentFrame.leadingAnchor, constant: 21),
+//            priceFrame.widthAnchor.constraint(equalToConstant: 154),
+//            priceFrame.heightAnchor.constraint(equalToConstant: 33)
+//        ])
+//
+//        self.addSubview(priceLabel)
+//        priceLabel.text = "Стоимость: 20000 р"
+//        priceLabel.textColor = .white
+//        priceLabel.font = .systemFont(ofSize: 14)
+//        priceLabel.textAlignment = .center
+//
+//        priceLabel.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//            priceLabel.topAnchor.constraint(equalTo: priceFrame.topAnchor, constant: 8),
+//            priceLabel.centerXAnchor.constraint(equalTo: priceFrame.centerXAnchor)
+//        ])
+//    }
+//
+//    //TODO: это должно быть кнопкой
+//    private func setupСhequeFrame() {
+//        chequeFrame.layer.cornerRadius = 4
+//        chequeFrame.backgroundColor = UIColor(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0, alpha: 1.0)
+//        self.addSubview(chequeFrame)
+//
+//        chequeFrame.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//            chequeFrame.bottomAnchor.constraint(equalTo: mainContentFrame.bottomAnchor, constant: -21),
+//            chequeFrame.trailingAnchor.constraint(equalTo: mainContentFrame.trailingAnchor, constant: -21),
+//            chequeFrame.widthAnchor.constraint(equalToConstant: 154),
+//            chequeFrame.heightAnchor.constraint(equalToConstant: 33)
+//        ])
+//
+//        self.addSubview(chequeLabel)
+//        chequeLabel.text = "Квитанция"
+//        chequeLabel.textColor = .white
+//        chequeLabel.font = .systemFont(ofSize: 14)
+//        chequeLabel.textAlignment = .center
+//
+//        chequeLabel.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//            chequeLabel.topAnchor.constraint(equalTo: chequeFrame.topAnchor, constant: 8),
+//            chequeLabel.centerXAnchor.constraint(equalTo: chequeFrame.centerXAnchor)
+//        ])
+//    }
     
     
 }
 
+extension TOView: UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell( withIdentifier: TOCellTableViewCell.identifier, for: indexPath) as? TOCellTableViewCell else {
+            return UITableViewCell()
+        }
+        return cell
+    }
+    
+}
 
 

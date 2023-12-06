@@ -8,6 +8,12 @@
 import Foundation
 import UIKit
 
+//protocol TOViewControllerDelegate: AnyObject {
+//    func works() -> [WorkModel]
+////    func removeWork(index: Int)
+//}
+
+
 class TOViewController: UIViewController {
     
     private let model: HomeCarsModel
@@ -19,7 +25,7 @@ class TOViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+//        contentView.delegate = self
     }
     
     init(model: HomeCarsModel) {
@@ -33,6 +39,16 @@ class TOViewController: UIViewController {
    
 
 }
+
+//extension TOViewController : TOViewControllerDelegate {
+//    func works() -> [WorkModel] {
+//        model.allWorks()
+//    }
+    
+//    func removeWork(index: Int) {
+//        model.remove(at: index)
+//    }
+
 
 
 
