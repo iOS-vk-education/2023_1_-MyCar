@@ -26,11 +26,11 @@ class MapView: UIView {
         self.addSubview(map)
         map.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            map.topAnchor.constraint(equalTo: self.topAnchor, constant: 90),
+            map.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
             map.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
             map.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0),
-            map.widthAnchor.constraint(equalToConstant: 400),
-            map.heightAnchor.constraint(equalToConstant: 800)
+            map.widthAnchor.constraint(equalToConstant: 500),
+            map.heightAnchor.constraint(equalToConstant: 900)
         ])
         
     }

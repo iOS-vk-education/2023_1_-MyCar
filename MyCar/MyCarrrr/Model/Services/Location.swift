@@ -8,12 +8,13 @@
 import Foundation
 import CoreLocation
 
-class LocationManager: NSObject, CLLocationManagerDelegate{
+class LocationManager: NSObject,  CLLocationManagerDelegate{
     
     static let shareLocation = LocationManager()
     let manager = CLLocationManager()
     var completion: ((CLLocation) -> Void)?
     
+    //нахождение локации, но его наверное надо будет переделать
     public func getLocation(completion: @escaping((CLLocation) -> Void)) {
         self.completion = completion
         manager.requestWhenInUseAuthorization()
@@ -28,4 +29,6 @@ class LocationManager: NSObject, CLLocationManagerDelegate{
         completion?(location)
         manager.startUpdatingLocation()
     }
+    
+    
 }
