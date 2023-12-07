@@ -1,4 +1,4 @@
-# 2023_1_-StudentEducation
+# 2023_1_-MyCar
 Проект команды StudentEducation по курсу "Мобильный разработчик на iOS" от VK
 
 <h1 align="center" id="title">MyCar</h1>
