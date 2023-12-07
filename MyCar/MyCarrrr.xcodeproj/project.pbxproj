@@ -16,6 +16,8 @@
 		559EFBCB2AF169610098672F /* CarCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559EFBCA2AF169610098672F /* CarCellTableViewCell.swift */; };
 		559EFBCD2AF179870098672F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559EFBCC2AF179870098672F /* TabBarController.swift */; };
 		559EFBCF2AF17C350098672F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559EFBCE2AF17C350098672F /* MapViewController.swift */; };
+		55DAF91F2B209D2E003BB552 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DAF91E2B209D2D003BB552 /* MapView.swift */; };
+		55DAF9212B20B3E4003BB552 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DAF9202B20B3E4003BB552 /* Location.swift */; };
 		84CE9ADB2B02FFC80070A8B2 /* CarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE9ADA2B02FFC80070A8B2 /* CarViewModel.swift */; };
 		84CE9ADD2B02FFE80070A8B2 /* HomeCarsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE9ADC2B02FFE80070A8B2 /* HomeCarsModel.swift */; };
 		84CE9AE02B03003F0070A8B2 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE9ADF2B03003F0070A8B2 /* NetworkService.swift */; };
@@ -36,6 +38,8 @@
 		559EFBCA2AF169610098672F /* CarCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarCellTableViewCell.swift; sourceTree = "<group>"; };
 		559EFBCC2AF179870098672F /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		559EFBCE2AF17C350098672F /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		55DAF91E2B209D2D003BB552 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		55DAF9202B20B3E4003BB552 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		84CE9ADA2B02FFC80070A8B2 /* CarViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarViewModel.swift; sourceTree = "<group>"; };
 		84CE9ADC2B02FFE80070A8B2 /* HomeCarsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCarsModel.swift; sourceTree = "<group>"; };
 		84CE9ADF2B03003F0070A8B2 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -72,6 +76,7 @@
 				559EFBC82AF14B740098672F /* MyCarsView.swift */,
 				559EFBCA2AF169610098672F /* CarCellTableViewCell.swift */,
 				84CE9AE32B0307370070A8B2 /* AddCarView.swift */,
+				55DAF91E2B209D2D003BB552 /* MapView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -120,6 +125,7 @@
 		84CE9ADE2B03001D0070A8B2 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				55DAF9202B20B3E4003BB552 /* Location.swift */,
 				84CE9ADF2B03003F0070A8B2 /* NetworkService.swift */,
 				84CE9AE12B0300460070A8B2 /* UserDafaultsService.swift */,
 			);
@@ -197,11 +203,13 @@
 			files = (
 				84CE9AE02B03003F0070A8B2 /* NetworkService.swift in Sources */,
 				556C3AE42AF9A8CE00D334B8 /* CarModel.swift in Sources */,
+				55DAF9212B20B3E4003BB552 /* Location.swift in Sources */,
 				84CE9ADD2B02FFE80070A8B2 /* HomeCarsModel.swift in Sources */,
 				559EFBB92AF14A5F0098672F /* MyCarsViewController.swift in Sources */,
 				559EFBB52AF14A5F0098672F /* AppDelegate.swift in Sources */,
 				559EFBB72AF14A5F0098672F /* SceneDelegate.swift in Sources */,
 				559EFBCD2AF179870098672F /* TabBarController.swift in Sources */,
+				55DAF91F2B209D2E003BB552 /* MapView.swift in Sources */,
 				84CE9AE62B03073F0070A8B2 /* AddCarViewController.swift in Sources */,
 				559EFBC92AF14B740098672F /* MyCarsView.swift in Sources */,
 				84CE9AE22B0300460070A8B2 /* UserDafaultsService.swift in Sources */,
