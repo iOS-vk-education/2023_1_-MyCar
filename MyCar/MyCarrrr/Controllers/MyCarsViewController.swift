@@ -108,9 +108,13 @@ extension Notification.Name {
 }
 
 extension MyCarsViewController: CellViewDelegate {
-    func didTapButtonOnCell() {
-       goToTOScreen()
+    func didTapButtonOnCell(on cell: CarCellTableViewCell) {
+        goToTOScreen()
     }
+    
+//    func didTapButtonOnCell() {
+//       goToTOScreen()
+//    }
     
 }
 

@@ -47,7 +47,7 @@ class AddCarView: UIView {
     private func setupHeaderLabel( _ label: String) {
         self.addSubview(headerLabel)
         headerLabel.text = label
-        headerLabel.textColor = .black
+        headerLabel.textColor = .white
         headerLabel.font = UIFont.boldSystemFont(ofSize: 24)
         headerLabel.textAlignment = .center
         
@@ -177,6 +177,7 @@ class AddCarView: UIView {
     
     
     private func configureTextField(_ textField: UITextField, placeholder: String) {
+        textField.textColor = .black
         textField.clearButtonMode = .always
         textField.text = ""
         textField.placeholder = placeholder

@@ -188,13 +188,14 @@ class TOCellTableViewCell: UITableViewCell {
     }
     
     
-//    func update(with work: WorkModel?) {
-//        carLabel.text = "date: " + String(work!.date)
-//        carModel.text = "mileage: " + String(work!.mileage)
-//        yearLabel.text = "content: " + String(work!.content)
-//        milleageLabel.text = "price: " + String(work!.price)
-//
-//    }
+    func update(with work: WorkModel?) {
+
+        dateLabel.text = String(work!.date)
+        mileageLabel.text = String(work!.mileage)
+        contentLabel.text = String(work!.content)
+        priceLabel.text = String(work!.price)
+        
+    }
 
 }
 

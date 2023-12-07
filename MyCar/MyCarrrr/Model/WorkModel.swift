@@ -14,3 +14,4 @@ struct WorkModel {
     let price: String
     
 }
+

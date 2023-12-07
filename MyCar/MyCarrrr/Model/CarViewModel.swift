@@ -8,7 +8,7 @@ struct CarViewModel {
     let purchaseDate: String
     let vinNumber: String
     
-//    var TO: [TO]?
+    var works: [WorkModel]?
 }
 
 struct CarInfo: Codable {

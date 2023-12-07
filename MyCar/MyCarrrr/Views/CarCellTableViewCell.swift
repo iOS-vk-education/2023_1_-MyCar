@@ -2,11 +2,12 @@ import UIKit
 
 
 protocol CellViewDelegate: AnyObject {
-    func didTapButtonOnCell()
+    func didTapButtonOnCell(on cell: CarCellTableViewCell)
 }
 
 class CarCellTableViewCell: UITableViewCell {
     
+    weak var tableView: UITableView?
     
     static let identifier = "carCell"
     
@@ -219,12 +220,20 @@ class CarCellTableViewCell: UITableViewCell {
 
 extension CarCellTableViewCell: TOButtonViewDelegate {
     func didTapButton() {
-        didTapButtonOnCell()
+        didTapButtonOnCell(on: self)
     }
+    
+//    func didTapButton() {
+//        didTapButtonOnCell()
+//    }
 }
 
 extension CarCellTableViewCell: CellViewDelegate {
-    func didTapButtonOnCell() {
-        delegate?.didTapButtonOnCell()
+    func didTapButtonOnCell(on cell: CarCellTableViewCell) {
+        delegate?.didTapButtonOnCell(on: self)
     }
+    
+//    func didTapButtonOnCell() {
+//        delegate?.didTapButtonOnCell(on: self)
+//    }
 }

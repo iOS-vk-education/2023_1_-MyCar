@@ -14,7 +14,7 @@ class MyCarsView: UIView, UITableViewDelegate {
     
     init() {
         super.init(frame: .zero)
-//        self.backgroundColor = .darkGray
+//        self.backgroundColor = .darkGrayBMW
         self.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
 
         setupUI()

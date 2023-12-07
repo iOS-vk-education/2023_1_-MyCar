@@ -4,6 +4,7 @@ final class HomeCarsModel {
     
     private var cars : [CarViewModel] = []
     
+    
     func loadCars() {
         // user defaults get
     }
@@ -41,4 +42,13 @@ final class HomeCarsModel {
     func allCars() -> [CarViewModel] {
         cars
     }
+    //MARK: fix
+    func allWorks(_ car: inout CarViewModel) -> [WorkModel] {
+         car.works ?? [WorkModel(date: "1", mileage: "100000", content: "content", price: "2000"), WorkModel(date: "2", mileage: "100000", content: "content2", price: "3000")]
+    }
+    
+    func work(carIndex: Int, workIndex: Int) -> WorkModel {
+        cars[carIndex].works?[workIndex] ?? WorkModel(date: "3", mileage: "1000", content: "content", price: "40000")
+    }
+    
 }

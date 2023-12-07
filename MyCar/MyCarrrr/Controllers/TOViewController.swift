@@ -8,10 +8,11 @@
 import Foundation
 import UIKit
 
-//protocol TOViewControllerDelegate: AnyObject {
-//    func works() -> [WorkModel]
-////    func removeWork(index: Int)
-//}
+protocol TOViewControllerDelegate: AnyObject {
+    func works(carIndex: Int) -> [WorkModel]
+    
+    func work(carIndex: Int, workIndex: Int) -> WorkModel
+}
 
 
 class TOViewController: UIViewController {
@@ -25,7 +26,7 @@ class TOViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        contentView.delegate = self
+        contentView.toDelegate = self
     }
     
     init(model: HomeCarsModel) {
@@ -39,16 +40,22 @@ class TOViewController: UIViewController {
    
 
 }
-
-//extension TOViewController : TOViewControllerDelegate {
-//    func works() -> [WorkModel] {
-//        model.allWorks()
-//    }
+//MARK: fix
+extension TOViewController : TOViewControllerDelegate {
+    func works(carIndex: Int) -> [WorkModel] {
+        var car = model.car(index: carIndex)
+        return model.allWorks(&car)
+    }
     
-//    func removeWork(index: Int) {
-//        model.remove(at: index)
-//    }
-
+    func work(carIndex: Int, workIndex: Int) -> WorkModel {
+        model.work(carIndex: carIndex, workIndex: workIndex)
+    }
+    
+    
+    //    func removeWork(index: Int) {
+    //        model.remove(at: index)
+    //    }
+}
 
 
 
