@@ -99,6 +99,11 @@ extension MyCarsViewController: ViewToViewController {
         present(mileageViewController, animated: true)
     }
     
+    func goToEditScreen() {
+        let editViewController = EditCarViewController(model: model)
+        present(editViewController, animated: true)
+    }
+    
 }
 
 extension Notification.Name {
@@ -106,6 +111,10 @@ extension Notification.Name {
 }
 
 extension MyCarsViewController: CellViewDelegate {
+    func didTapEditCarButtonOnCell() {
+        goToEditScreen()
+    }
+    
     func didTapMileageButtonOnCell() {
         goToMileageScreen()
     }

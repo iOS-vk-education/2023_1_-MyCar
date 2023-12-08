@@ -5,6 +5,7 @@ protocol CellViewDelegate: AnyObject {
     func didTapButtonOnCell(on cell: CarCellTableViewCell)
     func didTapMileageButtonOnCell()
     func didTapInsuranceButtonOnCell()
+    func didTapEditCarButtonOnCell()
 }
 
 class CarCellTableViewCell: UITableViewCell {
@@ -55,7 +56,12 @@ class CarCellTableViewCell: UITableViewCell {
         toButtonView.delegate = self
         mileageButtonView.delegate = self
         insuranceButtonView.delegate = self
-
+        
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapCell))
+        contentView.addGestureRecognizer(tapGesture)
+        contentView.isUserInteractionEnabled = true
+        
     }
     
     required init?(coder: NSCoder) {
@@ -211,6 +217,10 @@ class CarCellTableViewCell: UITableViewCell {
         ])
     }
     
+    @objc func didTapCell() {
+        didTapEditCarButtonOnCell()
+    }
+    
     
     func update(with car: CarViewModel?) {
         carLabel.text = String(car!.manufacturer)
@@ -238,6 +248,10 @@ extension CarCellTableViewCell: TOButtonViewDelegate {
 }
 
 extension CarCellTableViewCell: CellViewDelegate {
+    func didTapEditCarButtonOnCell() {
+        delegate?.didTapEditCarButtonOnCell()
+    }
+    
     func didTapMileageButtonOnCell() {
         delegate?.didTapMileageButtonOnCell()
     }
