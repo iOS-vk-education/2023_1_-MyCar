@@ -3,6 +3,8 @@ import UIKit
 
 protocol CellViewDelegate: AnyObject {
     func didTapButtonOnCell(on cell: CarCellTableViewCell)
+    func didTapMileageButtonOnCell()
+    func didTapInsuranceButtonOnCell()
 }
 
 class CarCellTableViewCell: UITableViewCell {
@@ -51,6 +53,8 @@ class CarCellTableViewCell: UITableViewCell {
         
         
         toButtonView.delegate = self
+        mileageButtonView.delegate = self
+        insuranceButtonView.delegate = self
 
     }
     
@@ -219,16 +223,29 @@ class CarCellTableViewCell: UITableViewCell {
 }
 
 extension CarCellTableViewCell: TOButtonViewDelegate {
-    func didTapButton() {
+    func didTapMileageButton() {
+        didTapMileageButtonOnCell()
+    }
+    
+    func didTapInsuranceButton() {
+        didTapInsuranceButtonOnCell()
+    }
+    
+    func didTapTOButton() {
         didTapButtonOnCell(on: self)
     }
     
-//    func didTapButton() {
-//        didTapButtonOnCell()
-//    }
 }
 
 extension CarCellTableViewCell: CellViewDelegate {
+    func didTapMileageButtonOnCell() {
+        delegate?.didTapMileageButtonOnCell()
+    }
+    
+    func didTapInsuranceButtonOnCell() {
+        delegate?.didTapInsuranceButtonOnCell()
+    }
+    
     func didTapButtonOnCell(on cell: CarCellTableViewCell) {
         delegate?.didTapButtonOnCell(on: self)
     }

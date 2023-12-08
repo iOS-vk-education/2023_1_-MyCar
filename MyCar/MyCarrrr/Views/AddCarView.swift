@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class AddCarView: UIView {
+class AddCarView: UIView{
     
     
     private let headerLabel = UILabel()
@@ -23,6 +23,7 @@ class AddCarView: UIView {
     var carMileageTextField = UITextField()
     var vinNumberTextField = UITextField()
     
+    
     var updateButtonTappedHandler: (() -> Void)?
     var cancelButtonTappedHandler: (() -> Void)?
     
@@ -36,6 +37,7 @@ class AddCarView: UIView {
         self.backgroundColor = UIColor(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0, alpha: 1.0)
         setupHeaderLabel("Автомобиль")
         setupContentField()
+        
         setupButtons()
         setupCheckButton()
         
@@ -209,7 +211,7 @@ class AddCarView: UIView {
         stackView.distribution = .fillEqually
         stackView.spacing = 10
         
-        let updateButton = UIButton()
+        let updateButton = UIButton(type: .system)
         updateButton.setTitle("Добавить", for: .normal)
         updateButton.setTitleColor(.white, for: .normal)
 //        updateButton.backgroundColor = .darkGray
@@ -218,7 +220,7 @@ class AddCarView: UIView {
         
         
         
-        let cancelButton = UIButton()
+        let cancelButton = UIButton(type: .system)
         cancelButton.setTitle("Отмена", for: .normal)
         cancelButton.setTitleColor(.black, for: .normal)
         cancelButton.backgroundColor = .white
@@ -271,4 +273,7 @@ class AddCarView: UIView {
     }
     
 }
+
+
+
 

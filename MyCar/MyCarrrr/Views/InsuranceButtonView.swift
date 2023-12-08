@@ -9,14 +9,10 @@ import Foundation
 import UIKit
 
 
-//protocol TOButtonViewDelegate: AnyObject {
-//    func didTapButton()
-//}
-
 
 class InsuranceButtonView: UIView {
     
-//    weak var delegate: TOButtonViewDelegate?
+    weak var delegate: TOButtonViewDelegate?
 
     private let label = UILabel()
 

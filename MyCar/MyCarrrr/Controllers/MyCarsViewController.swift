@@ -84,10 +84,7 @@ extension MyCarsViewController: ViewToViewController {
         
         // Презентуем UINavigationController с анимацией
         present(navigationController, animated: true, completion: nil)
-        
-        
-        
-        
+    
     }
     
     @objc func goBack() {
@@ -95,10 +92,11 @@ extension MyCarsViewController: ViewToViewController {
     }
     
     func goToMileageScreen() {
-        let vc = TOViewController(model: model)
-        vc.modalPresentationStyle = .pageSheet
-        vc.sheetPresentationController?.detents = [.medium()]
-        present(vc, animated: true)
+        let mileageViewController = MileageViewController(model: model)
+    
+        mileageViewController.modalPresentationStyle = .pageSheet
+        mileageViewController.sheetPresentationController?.detents = [.medium()]
+        present(mileageViewController, animated: true)
     }
     
 }
@@ -108,6 +106,14 @@ extension Notification.Name {
 }
 
 extension MyCarsViewController: CellViewDelegate {
+    func didTapMileageButtonOnCell() {
+        goToMileageScreen()
+    }
+    
+    func didTapInsuranceButtonOnCell() {
+        print("страховка")
+    }
+    
     func didTapButtonOnCell(on cell: CarCellTableViewCell) {
         goToTOScreen()
     }

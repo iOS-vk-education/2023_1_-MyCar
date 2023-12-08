@@ -10,7 +10,10 @@ import UIKit
 
 
 protocol TOButtonViewDelegate: AnyObject {
-    func didTapButton()
+    func didTapTOButton()
+    func didTapMileageButton()
+    func didTapInsuranceButton()
+    
 }
 
 
@@ -69,6 +72,6 @@ class TOButtonView: UIView {
     
     @objc
     private func didTapButton() {
-            delegate?.didTapButton()
+            delegate?.didTapTOButton()
         }
 }

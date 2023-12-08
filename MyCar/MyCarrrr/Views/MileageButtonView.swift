@@ -9,14 +9,14 @@ import Foundation
 import UIKit
 
 
-//protocol TOButtonViewDelegate: AnyObject {
-//    func didTapButton()
-//}
+
 
 
 class MileageButtonView: UIView {
     
-//    weak var delegate: TOButtonViewDelegate?
+    
+    
+    weak var delegate: TOButtonViewDelegate?
 
     private let label = UILabel()
     private let mileageLabel = UILabel()
@@ -85,6 +85,8 @@ class MileageButtonView: UIView {
     @objc
     private func didTapButton() {
 //            delegate?.didTapButton()
-        print("Mileage button pressed")
+        delegate?.didTapMileageButton()
+        
         }
 }
+
