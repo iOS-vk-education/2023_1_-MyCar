@@ -32,7 +32,8 @@ class AddCarView: UIView {
     
     init() {
         super.init(frame: .zero)
-        self.backgroundColor = .gray
+//        self.backgroundColor = .black
+        self.backgroundColor = UIColor(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0, alpha: 1.0)
         setupHeaderLabel("Автомобиль")
         setupContentField()
         setupButtons()
@@ -63,19 +64,23 @@ class AddCarView: UIView {
     private func setupContentField() {
         //Настройка label для текстовых полей
         
-        configureTextLabel(carBrandLabel, text: "Введите марку:")
+        configureTextLabel(carBrandLabel, text: "Марка:")
         configureTextLabel(carModelLabel, text: "Модель:")
         configureTextLabel(carYearLabel, text: "Год выпуска:")
         configureTextLabel(carMileageLabel, text: "Пробег:")
         configureTextLabel(vinNumberLabel, text: "ВИН номер:")
         
+        configureTextField(carBrandTextField, placeholder: "Введите марку авто")
+        configureTextField(carModelTextField, placeholder: "Введите модель авто")
+        configureTextField(carYearTextField, placeholder: "Введите год выпуска")
+        configureTextField(carMileageTextField, placeholder: "Введите пробег авто")
+        configureTextField(vinNumberTextField, placeholder: "Введите VIN номер")
         
-        
-        configureTextField(carBrandTextField, placeholder: "Enter car brand")
-        configureTextField(carModelTextField, placeholder: "Enter car model")
-        configureTextField(carYearTextField, placeholder: "Enter car year")
-        configureTextField(carMileageTextField, placeholder: "Enter car mileage")
-        configureTextField(vinNumberTextField, placeholder: "Enter VIN number")
+//        configureTextField(carBrandTextField, placeholder: "Enter car brand")
+//        configureTextField(carModelTextField, placeholder: "Enter car model")
+//        configureTextField(carYearTextField, placeholder: "Enter car year")
+//        configureTextField(carMileageTextField, placeholder: "Enter car mileage")
+//        configureTextField(vinNumberTextField, placeholder: "Enter VIN number")
         
         
         //добавление картинки
@@ -120,12 +125,7 @@ class AddCarView: UIView {
             carMileageTextField.centerYAnchor.constraint(equalTo: carMileageLabel.centerYAnchor),
             carMileageTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20)
             
-            
-            
         ])
-        
-        
-        
         
     }
     
@@ -133,7 +133,10 @@ class AddCarView: UIView {
         self.addSubview(checkVINButton)
         checkVINButton.setTitle("Заполнить по VIN", for: .normal)
         checkVINButton.setTitleColor(.white, for: .normal)
-        checkVINButton.backgroundColor = .darkGray
+//        checkVINButton.backgroundColor = .darkGray
+        checkVINButton.backgroundColor = .black
+        
+        
         checkVINButton.layer.cornerRadius = 10
         
         checkVINButton.translatesAutoresizingMaskIntoConstraints = false
@@ -170,6 +173,7 @@ class AddCarView: UIView {
     
     
     private func configureTextLabel(_ textLabel: UILabel, text: String) {
+        textLabel.textColor = .white
         textLabel.text = text
         self.addSubview(textLabel)
         textLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -208,8 +212,9 @@ class AddCarView: UIView {
         let updateButton = UIButton()
         updateButton.setTitle("Добавить", for: .normal)
         updateButton.setTitleColor(.white, for: .normal)
-        updateButton.backgroundColor = .darkGray
-        updateButton.layer.cornerRadius = 20
+//        updateButton.backgroundColor = .darkGray
+        updateButton.backgroundColor = .black
+        updateButton.layer.cornerRadius = 15
         
         
         
@@ -217,7 +222,7 @@ class AddCarView: UIView {
         cancelButton.setTitle("Отмена", for: .normal)
         cancelButton.setTitleColor(.black, for: .normal)
         cancelButton.backgroundColor = .white
-        cancelButton.layer.cornerRadius = 20
+        cancelButton.layer.cornerRadius = 15
         
         
         stackView.addArrangedSubview(cancelButton)
