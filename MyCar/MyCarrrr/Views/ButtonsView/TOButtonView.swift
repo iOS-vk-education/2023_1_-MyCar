@@ -13,7 +13,6 @@ protocol TOButtonViewDelegate: AnyObject {
     func didTapTOButton()
     func didTapMileageButton()
     func didTapInsuranceButton()
-    
 }
 
 

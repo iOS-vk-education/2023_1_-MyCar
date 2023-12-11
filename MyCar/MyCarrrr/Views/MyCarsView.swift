@@ -124,6 +124,8 @@ extension MyCarsView: UITableViewDataSource {
         let car = delegate?.cars()[indexPath.row]
         cell.update(with: car)
         
+        cell.tag = indexPath.row
+        
         cell.delegate = delegate as? any CellViewDelegate
         
         return cell

@@ -10,6 +10,7 @@ import UIKit
 
 class MileageViewController: UIViewController {
     
+    private let tag: Int
     private let model: HomeCarsModel
     private var contentView = MileageView()
     
@@ -19,11 +20,12 @@ class MileageViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        contentView.toDelegate = self
+        contentView.delegate = self
     }
     
-    init(model: HomeCarsModel) {
+    init(model: HomeCarsModel, tag: Int) {
         self.model = model
+        self.tag = tag
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -32,6 +34,15 @@ class MileageViewController: UIViewController {
     }
    
 
+}
+
+extension MileageViewController: MileageViewDelegate {
+    func didTapMileageButton(_ mileage: Int) {
+        model.updateMileage(tag, mileage: mileage)
+        dismiss(animated: true, completion: nil)
+        NotificationCenter.default.post(name: .dataUpdated, object: nil)
+    }
+    
 }
 
 

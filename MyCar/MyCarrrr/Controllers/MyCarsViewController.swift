@@ -91,8 +91,8 @@ extension MyCarsViewController: ViewToViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    func goToMileageScreen() {
-        let mileageViewController = MileageViewController(model: model)
+    func goToMileageScreen(tag: Int) {
+        let mileageViewController = MileageViewController(model: model, tag: tag)
     
         mileageViewController.modalPresentationStyle = .pageSheet
         mileageViewController.sheetPresentationController?.detents = [.medium()]
@@ -111,12 +111,13 @@ extension Notification.Name {
 }
 
 extension MyCarsViewController: CellViewDelegate {
+    
     func didTapEditCarButtonOnCell() {
         goToEditScreen()
     }
     
-    func didTapMileageButtonOnCell() {
-        goToMileageScreen()
+    func didTapMileageButtonOnCell(_ tag: Int) {
+        goToMileageScreen(tag: tag)
     }
     
     func didTapInsuranceButtonOnCell() {

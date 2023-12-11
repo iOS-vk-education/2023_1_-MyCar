@@ -44,12 +44,12 @@ final class HomeCarsModel {
     }
     
     func editCar(_ car: CarViewModel) {
-//        cars[0].manufacturer = car.manufacturer
-//        cars[0].model = car.model
-//        cars[0].purchaseDate = car.purchaseDate
-//        cars[0].vinNumber = car.vinNumber
-//        cars[0].milleage = car.milleage
+        cars[0].manufacturer = car.manufacturer
         print("Car edit function!")
+    }
+    
+    func updateMileage(_ carIndex: Int, mileage: Int){
+        cars[carIndex].milleage = mileage
     }
     //MARK: fix
     func allWorks(_ car: inout CarViewModel) -> [WorkModel] {

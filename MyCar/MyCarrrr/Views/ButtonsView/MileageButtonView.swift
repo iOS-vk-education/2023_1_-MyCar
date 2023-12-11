@@ -64,7 +64,6 @@ class MileageButtonView: UIView {
             label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -29)
         ])
         
-        mileageLabel.text = "100000 Км"
         mileageLabel.textColor = .white
         mileageLabel.numberOfLines = 1
         mileageLabel.font = .systemFont(ofSize: 12)
@@ -80,6 +79,10 @@ class MileageButtonView: UIView {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapButton))
         addGestureRecognizer(tapGesture)
         isUserInteractionEnabled = true
+    }
+    
+    func updateMileageLabel (_ mileage: Int) {
+        mileageLabel.text = String(mileage) + " Км"
     }
     
     @objc

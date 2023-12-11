@@ -9,9 +9,14 @@ import Foundation
 import UIKit
 
 
+protocol MileageViewDelegate: AnyObject {
+    func didTapMileageButton(_ mileage: Int)
+}
+
 class MileageView: UIView {
     
-    
+    weak var delegate: MileageViewDelegate?
+
     
     private let carLabel = UILabel()
     private let updateLabel = UILabel()
@@ -145,9 +150,11 @@ class MileageView: UIView {
     }
     
     @objc private func didTapUpdateButton () {
-        print("button pressed")
+        let mileage = Int(mileageTextField.text ?? "") ?? 0
+        delegate?.didTapMileageButton(mileage)
     }
     
 }
+
 
 
