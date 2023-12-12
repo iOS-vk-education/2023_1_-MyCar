@@ -71,4 +71,22 @@ extension EditCarViewController: EditCarViewDelegate {
 
 }
 
+extension EditCarViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate{
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        var newImage: UIImage
+
+        if let possibleImage = info[.editedImage] as? UIImage {
+            newImage = possibleImage
+        } else if let possibleImage = info[.originalImage] as? UIImage {
+            newImage = possibleImage
+        } else {
+            return
+        }
+
+        // do something interesting here!
+        print(newImage.size)
+
+        dismiss(animated: true)
+    }
+}
 

@@ -23,6 +23,9 @@ class CarCellTableViewCell: UITableViewCell {
     private let nextInsuranceFrame = UIView()
     private let nextInsuranceLabel = UILabel()
     
+    private let yearFrame = UIView()
+    private let yearLabel = UILabel()
+    
     private let carImageView = UIImageView()
 
     
@@ -45,11 +48,13 @@ class CarCellTableViewCell: UITableViewCell {
         
         setupNextTOFrame()
         setupNextInsuranceFrame()
+        setupNextYearFrame()
         setupCarImageView()
         
         setupMileageView()
         setupTOView()
         setupInsuranceView()
+        
         
         
         
@@ -162,6 +167,33 @@ class CarCellTableViewCell: UITableViewCell {
         ])
     }
     
+    private func setupNextYearFrame() {
+        yearFrame.layer.cornerRadius = 4
+        yearFrame.backgroundColor = UIColor(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0, alpha: 1.0)
+        self.addSubview(yearFrame)
+
+        yearFrame.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            yearFrame.topAnchor.constraint(equalTo: nextTOFrame.bottomAnchor, constant: 10),
+            yearFrame.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -21),
+            yearFrame.widthAnchor.constraint(equalToConstant: 99),
+            yearFrame.heightAnchor.constraint(equalToConstant: 33)
+        ])
+
+        self.addSubview(yearLabel)
+        yearLabel.textColor = .white
+        yearLabel.font = UIFont.boldSystemFont(ofSize: 14)
+        yearLabel.textAlignment = .center
+
+        yearLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            yearLabel.topAnchor.constraint(equalTo: yearFrame.topAnchor, constant: 8),
+            yearLabel.centerXAnchor.constraint(equalTo: yearFrame.centerXAnchor),
+        ])
+    }
+    
+    
+    
     
     private func setupCarImageView() {
         contentView.addSubview(carImageView)
@@ -227,6 +259,8 @@ class CarCellTableViewCell: UITableViewCell {
         carLabel.text = String(car!.manufacturer)
         carModel.text = String(car!.model)
         mileageButtonView.updateMileageLabel(car!.milleage)
+        
+        yearLabel.text = String(car!.purchaseDate) + " Года"
         
         nextTOLabel.text = "Следующее ТО: 20.02.2023"
         nextInsuranceLabel.text = "Страховка до: 21.02.2023"

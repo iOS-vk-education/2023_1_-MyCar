@@ -143,3 +143,4 @@ extension MyCarsView: UITableViewDataSource {
     }
     
 }
+
