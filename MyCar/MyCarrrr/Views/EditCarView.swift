@@ -8,8 +8,13 @@
 import Foundation
 import UIKit
 
+protocol EditCarViewDelegate: AnyObject {
+    func fillField() -> CarViewModel
+}
+
 class EditCarView: UIView{
     
+    weak var delegate: EditCarViewDelegate?
     
     private let headerLabel = UILabel()
     private let updateButton = UIButton()
@@ -44,13 +49,29 @@ class EditCarView: UIView{
         self.backgroundColor = UIColor(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0, alpha: 1.0)
         setupHeaderLabel("Автомобиль")
         setupContentField()
-        
         setupButtons()
         
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    var carViewModel: CarViewModel? {
+        didSet {
+            updateUI()
+        }
+    }
+    
+    private func updateUI() {
+        guard let car = carViewModel else { return }
+        
+        carBrandTextField.text = car.manufacturer
+        carModelTextField.text = car.model
+        carYearTextField.text = car.purchaseDate
+        carMileageTextField.text = "\(car.milleage)"
+        vinNumberTextField.text = car.vinNumber
+        
     }
     
     private func setupHeaderLabel( _ label: String) {
@@ -68,6 +89,7 @@ class EditCarView: UIView{
             headerLabel.heightAnchor.constraint(equalToConstant: 33)
         ])
     }
+    
     
     private func setupContentField() {
         //Настройка label для текстовых полей
@@ -141,7 +163,7 @@ class EditCarView: UIView{
     private func configureTextField(_ textField: UITextField, placeholder: String) {
         textField.textColor = .black
         textField.clearButtonMode = .always
-        textField.text = ""
+//        textField.text = text
         textField.placeholder = placeholder
         textField.textAlignment = .center
         textField.layer.borderWidth = 2.0

@@ -43,8 +43,12 @@ final class HomeCarsModel {
         cars
     }
     
-    func editCar(_ car: CarViewModel) {
-        cars[0].manufacturer = car.manufacturer
+    func editCar(_ car: CarViewModel, _ tag: Int) {
+        cars[tag].manufacturer = car.manufacturer
+        cars[tag].model = car.model
+        cars[tag].vinNumber = car.vinNumber
+        cars[tag].purchaseDate = car.purchaseDate
+        cars[tag].milleage = car.milleage
         print("Car edit function!")
     }
     

@@ -5,7 +5,7 @@ protocol CellViewDelegate: AnyObject {
     func didTapButtonOnCell(on cell: CarCellTableViewCell)
     func didTapMileageButtonOnCell(_ tag: Int)
     func didTapInsuranceButtonOnCell()
-    func didTapEditCarButtonOnCell()
+    func didTapEditCarButtonOnCell(_ tag: Int)
 }
 
 class CarCellTableViewCell: UITableViewCell {
@@ -218,7 +218,7 @@ class CarCellTableViewCell: UITableViewCell {
     }
     
     @objc func didTapCell() {
-        didTapEditCarButtonOnCell()
+        didTapEditCarButtonOnCell(tag)
         print(tag)
     }
     
@@ -251,8 +251,8 @@ extension CarCellTableViewCell: TOButtonViewDelegate {
 }
 
 extension CarCellTableViewCell: CellViewDelegate {
-    func didTapEditCarButtonOnCell() {
-        delegate?.didTapEditCarButtonOnCell()
+    func didTapEditCarButtonOnCell(_ tag: Int) {
+        delegate?.didTapEditCarButtonOnCell(tag)
     }
     
     func didTapMileageButtonOnCell(_ tag: Int) {
