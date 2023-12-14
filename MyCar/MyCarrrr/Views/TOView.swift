@@ -30,7 +30,9 @@ class TOView: UIView, UITableViewDelegate {
     
     init() {
         super.init(frame: .zero)
-        self.backgroundColor = .gray
+//        self.backgroundColor = .gray
+        self.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
+
         setupHeaderLabel("BMW 7 Series")
         setupWorkListLabel()
         setupFrameForLabel()
@@ -55,7 +57,7 @@ class TOView: UIView, UITableViewDelegate {
         
         carLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            carLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 0),
+            carLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 10),
             carLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
             carLabel.widthAnchor.constraint(equalToConstant: 390),
             carLabel.heightAnchor.constraint(equalToConstant: 33)
@@ -71,7 +73,7 @@ class TOView: UIView, UITableViewDelegate {
         
         workListLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            workListLabel.topAnchor.constraint(equalTo: carLabel.bottomAnchor, constant: 4),
+            workListLabel.topAnchor.constraint(equalTo: carLabel.bottomAnchor, constant: -4),
             workListLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
             workListLabel.widthAnchor.constraint(equalToConstant: 390),
             workListLabel.heightAnchor.constraint(equalToConstant: 33)
@@ -104,7 +106,7 @@ class TOView: UIView, UITableViewDelegate {
         
         self.addSubview(toTable)
         toTable.dataSource = self
-        toTable.backgroundColor = .red
+        toTable.backgroundColor = .clear
         toTable.separatorStyle = .none
         toTable.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -114,6 +116,9 @@ class TOView: UIView, UITableViewDelegate {
             toTable.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: 0),
             toTable.widthAnchor.constraint(equalToConstant: 361)
         ])
+        
+        toTable.rowHeight = UITableView.automaticDimension
+        toTable.estimatedRowHeight = 44
         
         toTable.register(TOCellTableViewCell.self, forCellReuseIdentifier: TOCellTableViewCell.identifier)
     }
@@ -139,6 +144,10 @@ extension TOView: UITableViewDataSource{
         
         return cell
 
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
     
 }

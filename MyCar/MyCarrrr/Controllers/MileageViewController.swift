@@ -12,7 +12,7 @@ class MileageViewController: UIViewController {
     
     private let tag: Int
     private let model: HomeCarsModel
-    private var contentView = MileageView()
+    private var contentView: MileageView!
     
     override func loadView() {
         view = contentView
@@ -27,6 +27,7 @@ class MileageViewController: UIViewController {
         self.model = model
         self.tag = tag
         super.init(nibName: nil, bundle: nil)
+        contentView = MileageView(car: model.car(index: tag))
     }
     
     required init?(coder: NSCoder) {

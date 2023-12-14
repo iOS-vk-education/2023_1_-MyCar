@@ -66,9 +66,9 @@ extension MyCarsViewController: ViewToViewController {
     func goToTOScreen() {
         //        let vc = TOViewController(model: model)
         //        present(vc, animated: true)
+        let tag = 0
         
-        
-        let toViewController = TOViewController(model: model)
+        let toViewController = TOViewController(model: model, tag: tag)
         
         // Создаем UINavigationController
         let navigationController = UINavigationController(rootViewController: toViewController)
@@ -76,6 +76,8 @@ extension MyCarsViewController: ViewToViewController {
         // Добавляем "Назад" кнопку
         let backButton = UIBarButtonItem(title: "Назад", style: .plain, target: self, action: #selector(goBack))
         let addButton = UIBarButtonItem(title: "Добавить", style: .plain, target: self, action: #selector(goBack))
+//        backButton.tintColor = .white
+//        addButton.tintColor = .white
         toViewController.navigationItem.leftBarButtonItem = backButton
         toViewController.navigationItem.rightBarButtonItem = addButton
         

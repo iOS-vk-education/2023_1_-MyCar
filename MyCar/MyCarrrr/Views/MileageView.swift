@@ -16,8 +16,8 @@ protocol MileageViewDelegate: AnyObject {
 class MileageView: UIView {
     
     weak var delegate: MileageViewDelegate?
-
     
+    private var car: CarViewModel
     private let carLabel = UILabel()
     private let updateLabel = UILabel()
     
@@ -29,10 +29,12 @@ class MileageView: UIView {
     
     
     
-    init() {
+    init(car: CarViewModel) {
+        self.car = car
         super.init(frame: .zero)
         self.backgroundColor = UIColor(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0, alpha: 1.0)
-        setupHeaderLabel("BMW 7 Series")
+        
+        setupHeaderLabel()
         setupCarLabel("Обновление пробега")
         setupMileageTextField()
         setupMeasurementSegmentedControl()
@@ -44,10 +46,12 @@ class MileageView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+   
     
-    private func setupHeaderLabel( _ label: String) {
+    private func setupHeaderLabel() {
         self.addSubview(carLabel)
-        carLabel.text = label
+        carLabel.text = car.manufacturer
+//        carLabel.text = label
         carLabel.textColor = .white
         carLabel.font = UIFont.boldSystemFont(ofSize: 22)
         carLabel.textAlignment = .center

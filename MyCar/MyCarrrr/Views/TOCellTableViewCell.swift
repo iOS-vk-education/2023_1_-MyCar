@@ -8,8 +8,9 @@
 import UIKit
 
 
-class TOCellTableViewCell: UITableViewCell {
-    
+class TOCellTableViewCell: UITableViewCell, UITableViewDelegate, UITextFieldDelegate {
+
+
 
     static let identifier = "toCell"
 
@@ -21,6 +22,17 @@ class TOCellTableViewCell: UITableViewCell {
 
     private let contentFrame = UIView()
     private let contentLabel = UILabel()
+    
+    private var contentField = UITextField()
+
+
+    private var contentTextView = UITextView()
+
+    
+    
+    private let tableView = UITableView()
+    private var contentArray: [String] = [""]
+
 
     private let priceFrame = UIView()
     private let priceLabel = UILabel()
@@ -33,19 +45,30 @@ class TOCellTableViewCell: UITableViewCell {
     
     private let chequeButtonView = ChequeButtonView()
     
+    private var contentViewHeightConstraint: NSLayoutConstraint?
 
 
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.backgroundColor = .darkGray
+        self.backgroundColor = .clear
+        
             
         setupContentView()
         setupDateFrame()
         setupMileageFrame()
-        setupContentFrame()
+        
+        
+        
         setupPriceFrame()
         setupChequeButtonView()
+        
+        
+//        setupContentTestView()
+//        setupContentTextField()
+        setupContentTextView()
+        
+
     }
     
     required init?(coder: NSCoder) {
@@ -59,13 +82,21 @@ class TOCellTableViewCell: UITableViewCell {
         selectedBackgroundView?.backgroundColor = .clear
         
         contentView.translatesAutoresizingMaskIntoConstraints = false
+        
+        contentViewHeightConstraint = contentView.heightAnchor.constraint(equalToConstant: 196)
+            contentViewHeightConstraint?.isActive = true
+        
         NSLayoutConstraint.activate([
             contentView.topAnchor.constraint(equalTo: self.topAnchor, constant: 8),
-            contentView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
+            contentView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8),
             contentView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
             contentView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0),
+            
             contentView.widthAnchor.constraint(equalToConstant: 361),
-            contentView.heightAnchor.constraint(equalToConstant: 196)])
+//            contentView.heightAnchor.constraint(greaterThanOrEqualToConstant: 196)
+//            contentView.heightAnchor.constraint(greaterThanOrEqualToConstant: 200)
+        ])
+        
     }
     
  
@@ -122,33 +153,35 @@ class TOCellTableViewCell: UITableViewCell {
         ])
     }
 
-    private func setupContentFrame() {
-        contentFrame.layer.cornerRadius = 4
-        contentFrame.backgroundColor = UIColor(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0, alpha: 1.0)
-        self.addSubview(contentFrame)
 
-        contentFrame.translatesAutoresizingMaskIntoConstraints = false
+    
+    private func setupContentTextView() {
+        contentTextView.backgroundColor = .white
+        contentTextView.layer.cornerRadius = 4
+        contentTextView.textAlignment = .left
+        contentTextView.textColor = .black
+        contentTextView.font = .systemFont(ofSize: 14)
+        contentTextView.layer.borderWidth = 1.0
+        contentTextView.layer.borderColor = UIColor.black.cgColor
+        
+        contentTextView.isScrollEnabled = false // Disable scrolling
+
+        
+        
+        contentView.addSubview(contentTextView)
+        
+        contentTextView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            contentFrame.topAnchor.constraint(equalTo: mileageFrame.bottomAnchor, constant: 11),
-            contentFrame.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 21),
-            contentFrame.widthAnchor.constraint(equalToConstant: 319),
-            contentFrame.heightAnchor.constraint(equalToConstant: 58)
+            contentTextView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 64),
+            contentTextView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 21),
+            contentTextView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -21),
+            contentTextView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -64),
+            contentTextView.heightAnchor.constraint(greaterThanOrEqualToConstant: 100),
         ])
-
-        self.addSubview(contentLabel)
-        contentLabel.text = "Замена масла - 700 р \n Мойка - 500 р"
-        contentLabel.numberOfLines = 2
-        contentLabel.textColor = .white
-        contentLabel.font = .systemFont(ofSize: 14)
-        contentLabel.textAlignment = .center
-
-        contentLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            contentLabel.topAnchor.constraint(equalTo: contentFrame.topAnchor, constant: 8),
-            contentLabel.leadingAnchor.constraint(equalTo: contentFrame.leadingAnchor, constant: 11)
-        ])
+        
     }
-
+    
+    
     private func setupPriceFrame() {
         priceFrame.layer.cornerRadius = 4
         priceFrame.backgroundColor = UIColor(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0, alpha: 1.0)
@@ -156,6 +189,7 @@ class TOCellTableViewCell: UITableViewCell {
 
         priceFrame.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
+//            priceFrame.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -21),
             priceFrame.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -21),
             priceFrame.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 21),
             priceFrame.widthAnchor.constraint(equalToConstant: 154),
@@ -176,7 +210,7 @@ class TOCellTableViewCell: UITableViewCell {
     }
     
     private func setupChequeButtonView() {
-        contentView.addSubview(chequeButtonView)
+        self.addSubview(chequeButtonView)
         chequeButtonView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -185,6 +219,12 @@ class TOCellTableViewCell: UITableViewCell {
             chequeButtonView.widthAnchor.constraint(equalToConstant: 154),
             chequeButtonView.heightAnchor.constraint(equalToConstant: 33)
         ])
+    }
+    
+    func updateHeigth() {
+        
+        contentViewHeightConstraint?.constant += 400
+        
     }
     
     

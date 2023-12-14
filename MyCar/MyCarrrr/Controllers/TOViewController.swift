@@ -17,6 +17,7 @@ protocol TOViewControllerDelegate: AnyObject {
 
 class TOViewController: UIViewController {
     
+    private let tag: Int
     private let model: HomeCarsModel
     private var contentView = TOView()
     
@@ -29,8 +30,9 @@ class TOViewController: UIViewController {
         contentView.toDelegate = self
     }
     
-    init(model: HomeCarsModel) {
+    init(model: HomeCarsModel, tag: Int) {
         self.model = model
+        self.tag = tag
         super.init(nibName: nil, bundle: nil)
     }
     
