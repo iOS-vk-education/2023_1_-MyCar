@@ -16,26 +16,28 @@ class TOView: UIView, UITableViewDelegate {
     
     weak var toDelegate: TOViewControllerDelegate?
     
-    
+    private var car: CarViewModel
     private let carLabel = UILabel()
     private let workListLabel = UILabel()
-    
+        
     private let labelFrame = UIView()
     private let mainContentFrame = UIView()
     
     
-    private let toTable = UITableView()
+    let toTable = UITableView()
 
     
     
-    init() {
+    init(car: CarViewModel) {
+        self.car = car
         super.init(frame: .zero)
 //        self.backgroundColor = .gray
         self.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
 
-        setupHeaderLabel("BMW 7 Series")
+        setupHeaderLabel(car.manufacturer)
         setupWorkListLabel()
         setupFrameForLabel()
+
         setupCarTable()
 
         
@@ -46,7 +48,9 @@ class TOView: UIView, UITableViewDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
-   
+    func updateTable() {
+        toTable.reloadData()
+    }
     
     private func setupHeaderLabel( _ label: String) {
         self.addSubview(carLabel)
@@ -128,19 +132,19 @@ class TOView: UIView, UITableViewDelegate {
 
 extension TOView: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return toDelegate?.works(carIndex: 0).count ?? 0
+        return toDelegate?.works(carIndex: tag).count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell( withIdentifier: TOCellTableViewCell.identifier, for: indexPath) as? TOCellTableViewCell else {
             return UITableViewCell()
         }
-        
-        let work = toDelegate?.work(carIndex: 0, workIndex: indexPath.row)
+        cell.tag = indexPath.row
+        let work = toDelegate?.work(carIndex: tag, workIndex: indexPath.row)
         cell.update(with: work)
         
         
-//        cell.delegate = delegate as? any CellViewDelegate
+        cell.cellDelegate = toDelegate as? TOCellViewDelegate
         
         return cell
 

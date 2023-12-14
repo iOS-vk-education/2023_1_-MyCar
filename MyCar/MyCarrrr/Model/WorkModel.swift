@@ -8,10 +8,10 @@
 import Foundation
 
 struct WorkModel {
-    let date: String
-    let mileage: String
-    let content: String
-    let price: String
+    var date: String
+    var mileage: String
+    var content: String
+    var price: String
     
 }
 

@@ -56,6 +56,7 @@ class ChequeButtonView: UIView {
     @objc
     private func didTapButton() {
 //            delegate?.didTapButton()
+        
         print("Квитанция button pressed")
         }
 }

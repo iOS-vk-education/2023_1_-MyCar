@@ -55,13 +55,22 @@ final class HomeCarsModel {
     func updateMileage(_ carIndex: Int, mileage: Int){
         cars[carIndex].milleage = mileage
     }
-    //MARK: fix
-    func allWorks(_ car: inout CarViewModel) -> [WorkModel] {
-         car.works ?? [WorkModel(date: "1", mileage: "100000", content: "content", price: "2000"), WorkModel(date: "2", mileage: "100000", content: "content2", price: "3000")]
+    
+    func updateTOMileage(_ carIndex: Int, workIndex: Int, _ mileage: Int) {
+        cars[carIndex].works[workIndex].mileage = String(mileage)
+    }
+    
+    
+    func addWork(_ work: WorkModel, _ tag: Int) {
+        cars[tag].works.append(work)
+    }
+    
+    func allWorks(_ carIndex: Int) -> [WorkModel] {
+        cars[carIndex].works
     }
     
     func work(carIndex: Int, workIndex: Int) -> WorkModel {
-        cars[carIndex].works?[workIndex] ?? WorkModel(date: "3", mileage: "1000", content: "content", price: "40000")
+        cars[carIndex].works[workIndex]
     }
     
 }

@@ -4,7 +4,7 @@ protocol ViewToViewController: AnyObject {
     func cars() -> [CarViewModel]
     func removeCar(index: Int)
     func goToAddScreen()
-    func goToTOScreen()
+    func goToTOScreen(tag: Int)
 }
 
 
@@ -63,19 +63,26 @@ extension MyCarsViewController: ViewToViewController {
         print(model.allCars())
     }
     
-    func goToTOScreen() {
+    func goToTOScreen(tag: Int) {
         //        let vc = TOViewController(model: model)
         //        present(vc, animated: true)
-        let tag = 0
+        
         
         let toViewController = TOViewController(model: model, tag: tag)
         
+
         // Создаем UINavigationController
         let navigationController = UINavigationController(rootViewController: toViewController)
         
         // Добавляем "Назад" кнопку
         let backButton = UIBarButtonItem(title: "Назад", style: .plain, target: self, action: #selector(goBack))
-        let addButton = UIBarButtonItem(title: "Добавить", style: .plain, target: self, action: #selector(goBack))
+//        let addButton = UIBarButtonItem(title: "Добавить", style: .plain, target: self, action: #selector(addWork))
+        
+        let addButton = UIBarButtonItem(title: "Добавить", style: .plain, target: toViewController, action: #selector(toViewController.addWorkAction(_:)))
+
+        print(tag)
+        addButton.tag = tag
+        
 //        backButton.tintColor = .white
 //        addButton.tintColor = .white
         toViewController.navigationItem.leftBarButtonItem = backButton
@@ -88,6 +95,7 @@ extension MyCarsViewController: ViewToViewController {
         present(navigationController, animated: true, completion: nil)
     
     }
+
     
     @objc func goBack() {
         dismiss(animated: true, completion: nil)
@@ -126,8 +134,8 @@ extension MyCarsViewController: CellViewDelegate {
         print("страховка")
     }
     
-    func didTapButtonOnCell(on cell: CarCellTableViewCell) {
-        goToTOScreen()
+    func didTapButtonOnCell(_ tag: Int) {
+        goToTOScreen(tag: tag)
     }
     
 //    func didTapButtonOnCell() {

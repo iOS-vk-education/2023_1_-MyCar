@@ -8,9 +8,15 @@
 import UIKit
 
 
+protocol TOCellViewDelegate: AnyObject {
+//    func didTapButtonOnCell(_ tag: Int)
+    func didTapDateButtonOnCell(_ tag: Int)
+    func didTapMileageButtonOnCell(_ tag: Int)
+    func didTapPriceButtonOnCell(_ tag: Int)
+}
+
+
 class TOCellTableViewCell: UITableViewCell, UITableViewDelegate, UITextFieldDelegate {
-
-
 
     static let identifier = "toCell"
 
@@ -46,6 +52,9 @@ class TOCellTableViewCell: UITableViewCell, UITableViewDelegate, UITextFieldDele
     private let chequeButtonView = ChequeButtonView()
     
     private var contentViewHeightConstraint: NSLayoutConstraint?
+
+    
+    weak var cellDelegate: TOCellViewDelegate?
 
 
 
@@ -114,6 +123,11 @@ class TOCellTableViewCell: UITableViewCell, UITableViewDelegate, UITextFieldDele
             dateFrame.heightAnchor.constraint(equalToConstant: 33)
         ])
 
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dataFrameTapped))
+        dateFrame.addGestureRecognizer(tapGesture)
+        dateFrame.isUserInteractionEnabled = true
+        
         self.addSubview(dateLabel)
         dateLabel.text = "Дата: 20.02.2023"
         dateLabel.textColor = .white
@@ -139,7 +153,11 @@ class TOCellTableViewCell: UITableViewCell, UITableViewDelegate, UITextFieldDele
             mileageFrame.widthAnchor.constraint(equalToConstant: 154),
             mileageFrame.heightAnchor.constraint(equalToConstant: 33)
         ])
-
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(mileageFrameTapped))
+        mileageFrame.addGestureRecognizer(tapGesture)
+        mileageFrame.isUserInteractionEnabled = true
+        
         self.addSubview(mileageLabel)
         mileageLabel.text = "Пробег: 100000 Км"
         mileageLabel.textColor = .white
@@ -195,7 +213,11 @@ class TOCellTableViewCell: UITableViewCell, UITableViewDelegate, UITextFieldDele
             priceFrame.widthAnchor.constraint(equalToConstant: 154),
             priceFrame.heightAnchor.constraint(equalToConstant: 33)
         ])
-
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(priceFrameTapped))
+        priceFrame.addGestureRecognizer(tapGesture)
+        priceFrame.isUserInteractionEnabled = true
+        
         self.addSubview(priceLabel)
         priceLabel.text = "Стоимость: 20000 р"
         priceLabel.textColor = .white
@@ -221,6 +243,19 @@ class TOCellTableViewCell: UITableViewCell, UITableViewDelegate, UITextFieldDele
         ])
     }
     
+    @objc private func dataFrameTapped() {
+        didTapDateButtonOnCell(tag)
+//        cellDelegate?.didTapPriceButtonOnCell(tag)
+    }
+    @objc private func mileageFrameTapped() {
+        didTapMileageButtonOnCell(tag)
+
+    }
+    @objc private func priceFrameTapped() {
+        didTapPriceButtonOnCell(tag)
+
+    }
+    
     func updateHeigth() {
         
         contentViewHeightConstraint?.constant += 400
@@ -230,12 +265,30 @@ class TOCellTableViewCell: UITableViewCell, UITableViewDelegate, UITextFieldDele
     
     func update(with work: WorkModel?) {
 
-        dateLabel.text = String(work!.date)
-        mileageLabel.text = String(work!.mileage)
+        dateLabel.text = "Дата: " + String(work!.date)
+        mileageLabel.text = "Пробег: " + String(work!.mileage)
         contentLabel.text = String(work!.content)
-        priceLabel.text = String(work!.price)
+        priceLabel.text = "Цена: " + String(work!.price)
         
     }
 
 }
 
+extension TOCellTableViewCell: TOCellViewDelegate {
+    func didTapDateButtonOnCell(_ tag: Int) {
+        cellDelegate?.didTapPriceButtonOnCell(tag)
+        
+    }
+    
+    func didTapMileageButtonOnCell(_ tag: Int) {
+        cellDelegate?.didTapMileageButtonOnCell(tag)
+
+
+    }
+    
+    func didTapPriceButtonOnCell(_ tag: Int) {
+        cellDelegate?.didTapPriceButtonOnCell(tag)
+
+
+    }
+}

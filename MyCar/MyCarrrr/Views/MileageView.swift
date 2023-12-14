@@ -13,6 +13,7 @@ protocol MileageViewDelegate: AnyObject {
     func didTapMileageButton(_ mileage: Int)
 }
 
+
 class MileageView: UIView {
     
     weak var delegate: MileageViewDelegate?

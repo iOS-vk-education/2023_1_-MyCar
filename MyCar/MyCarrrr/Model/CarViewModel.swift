@@ -8,8 +8,8 @@ struct CarViewModel {
     var purchaseDate: String
     var vinNumber: String
     
-//    var works: [WorkModel] = []
-    var works: [WorkModel]?
+    var works: [WorkModel] = []
+//    var works: [WorkModel]?
 }
 
 struct CarInfo: Codable {
