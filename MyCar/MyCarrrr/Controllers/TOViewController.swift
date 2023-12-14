@@ -51,11 +51,19 @@ class TOViewController: UIViewController {
     }
     
     func goToMileageScreen(_ tag: Int) {
-        let mileageViewController = TOMileageViewController(carTag: carTag, tag: tag, model: model)
+        let mileageViewController = TOMileageViewController(carTag: carTag, tag: tag, model: model, label: "Обновление пробега")
     
         mileageViewController.modalPresentationStyle = .pageSheet
         mileageViewController.sheetPresentationController?.detents = [.medium()]
         present(mileageViewController, animated: true)
+    }
+    
+    func goToPriceScreen(_ tag: Int) {
+        let priceViewController = TOPriceViewController(carTag: carTag, tag: tag, model: model, label: "Обновление стоимости")
+    
+        priceViewController.modalPresentationStyle = .pageSheet
+        priceViewController.sheetPresentationController?.detents = [.medium()]
+        present(priceViewController, animated: true)
     }
     
     @objc func workTableDataUpdated() {
@@ -73,7 +81,7 @@ class TOViewController: UIViewController {
         model.addWork(WorkModel(date: dateString,
                                 mileage: mileage,
                                 content: "",
-                                price: "100000 Руб."),
+                                price: "0"),
                                 tag)
 //        contentView.toTable.reloadData()
         NotificationCenter.default.post(name: .workTableDataUpdated, object: nil)
@@ -116,12 +124,12 @@ extension TOViewController: TOCellViewDelegate {
     
     func didTapMileageButtonOnCell(_ tag: Int) {
         goToMileageScreen(tag)
-        print(tag)
+//        print(tag)
 
     }
     
     func didTapPriceButtonOnCell(_ tag: Int) {
-        print("price VC")
+        goToPriceScreen(tag)
 
     }
 }

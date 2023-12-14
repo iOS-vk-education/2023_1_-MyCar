@@ -60,6 +60,11 @@ final class HomeCarsModel {
         cars[carIndex].works[workIndex].mileage = String(mileage)
     }
     
+    func updateTOPrice(_ carIndex: Int, workIndex: Int, _ price: Int) {
+        cars[carIndex].works[workIndex].price = String(price)
+    }
+
+    
     
     func addWork(_ work: WorkModel, _ tag: Int) {
         cars[tag].works.append(work)
