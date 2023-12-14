@@ -63,6 +63,10 @@ final class HomeCarsModel {
     func updateTOPrice(_ carIndex: Int, workIndex: Int, _ price: Int) {
         cars[carIndex].works[workIndex].price = String(price)
     }
+    
+    func updateTODate(_ carIndex: Int, workIndex: Int, _ date: String) {
+        cars[carIndex].works[workIndex].date = date
+    }
 
     
     

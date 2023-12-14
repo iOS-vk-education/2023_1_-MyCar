@@ -276,7 +276,7 @@ class TOCellTableViewCell: UITableViewCell, UITableViewDelegate, UITextFieldDele
 
 extension TOCellTableViewCell: TOCellViewDelegate {
     func didTapDateButtonOnCell(_ tag: Int) {
-        cellDelegate?.didTapPriceButtonOnCell(tag)
+        cellDelegate?.didTapDateButtonOnCell(tag)
         
     }
     

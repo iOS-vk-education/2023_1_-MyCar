@@ -66,6 +66,14 @@ class TOViewController: UIViewController {
         present(priceViewController, animated: true)
     }
     
+    func goToDateScreen(_ tag: Int) {
+        let dateViewController = TODateViewController(carTag: carTag, tag: tag, model: model, label: "Обновление даты")
+    
+        dateViewController.modalPresentationStyle = .pageSheet
+        dateViewController.sheetPresentationController?.detents = [.medium()]
+        present(dateViewController, animated: true)
+    }
+    
     @objc func workTableDataUpdated() {
             contentView.updateTable()
         }
@@ -118,9 +126,10 @@ extension Notification.Name {
 
 extension TOViewController: TOCellViewDelegate {
     func didTapDateButtonOnCell(_ tag: Int) {
-        print("didTapDateButtonOnCell VC")
+       goToDateScreen(tag)
         
     }
+    
     
     func didTapMileageButtonOnCell(_ tag: Int) {
         goToMileageScreen(tag)

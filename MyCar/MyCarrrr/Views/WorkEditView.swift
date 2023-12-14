@@ -36,7 +36,7 @@ class WorkEditView: UIView {
         setupHeaderLabel()
         setupCarLabel(label)
         setupMileageTextField()
-        setupMeasurementSegmentedControl()
+//        setupMeasurementSegmentedControl()
         setupUpdateButton()
         
     }
@@ -83,14 +83,14 @@ class WorkEditView: UIView {
         mileageTextField.textColor = .black
         mileageTextField.clearButtonMode = .always
         mileageTextField.text = ""
-        mileageTextField.placeholder = "Введите новый пробег"
+        mileageTextField.placeholder = "Введите новое значение"
         mileageTextField.textAlignment = .center
         mileageTextField.layer.borderWidth = 2.0
         mileageTextField.backgroundColor = .white
         mileageTextField.layer.cornerRadius = 9
         // Установка фиксированной ширины текстового поля
-        let fixedWidth: CGFloat = 210
-        mileageTextField.widthAnchor.constraint(equalToConstant: fixedWidth).isActive = true
+//        let fixedWidth: CGFloat = 210
+//        mileageTextField.widthAnchor.constraint(equalToConstant: fixedWidth).isActive = true
         
         
         let fixedHeight: CGFloat = 40
@@ -102,34 +102,14 @@ class WorkEditView: UIView {
         NSLayoutConstraint.activate([
             mileageTextField.topAnchor.constraint(equalTo: updateLabel.bottomAnchor, constant: 21),
             
-            mileageTextField.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 21)
+            mileageTextField.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 21),
+            mileageTextField.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -21),
+            
         ])
     }
     
-    private func setupMeasurementSegmentedControl() {
-        measurementSegmentedControl.selectedSegmentIndex = 0
-        
-        let font = UIFont.boldSystemFont(ofSize: 16)
-        measurementSegmentedControl.setTitleTextAttributes([.font: font], for: .normal)
-        
-        
-        measurementSegmentedControl.addTarget(self, action: #selector(measurementSegmentedControlDidChange), for: .valueChanged)
-        self.addSubview(measurementSegmentedControl)
-        
-        measurementSegmentedControl.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            measurementSegmentedControl.topAnchor.constraint(equalTo: updateLabel.bottomAnchor, constant: 21),
-            measurementSegmentedControl.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -21),
-            measurementSegmentedControl.heightAnchor.constraint(equalToConstant: 40)
-        ])
-    }
     
-    @objc private func measurementSegmentedControlDidChange() {
-        let selectedUnitIndex = measurementSegmentedControl.selectedSegmentIndex
-        let selectedUnit = measurementSegmentedControl.titleForSegment(at: selectedUnitIndex) ?? ""
-        
-        print(selectedUnit)
-    }
+   
     
     private func setupUpdateButton () {
         
