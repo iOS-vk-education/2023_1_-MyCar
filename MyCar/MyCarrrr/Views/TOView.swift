@@ -17,6 +17,9 @@ class TOView: UIView, UITableViewDelegate {
     weak var toDelegate: TOViewControllerDelegate?
     
     private var car: CarViewModel
+    private var carTag: Int
+    
+    
     private let carLabel = UILabel()
     private let workListLabel = UILabel()
         
@@ -24,12 +27,13 @@ class TOView: UIView, UITableViewDelegate {
     private let mainContentFrame = UIView()
     
     
-    let toTable = UITableView()
+    private var toTable = UITableView()
 
     
     
-    init(car: CarViewModel) {
+    init(car: CarViewModel, carTag: Int) {
         self.car = car
+        self.carTag = carTag
         super.init(frame: .zero)
 //        self.backgroundColor = .gray
         self.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
@@ -107,7 +111,6 @@ class TOView: UIView, UITableViewDelegate {
     
     private func setupCarTable(){
         
-        
         self.addSubview(toTable)
         toTable.dataSource = self
         toTable.backgroundColor = .clear
@@ -132,7 +135,8 @@ class TOView: UIView, UITableViewDelegate {
 
 extension TOView: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return toDelegate?.works(carIndex: tag).count ?? 0
+
+        return toDelegate?.works(carIndex: carTag).count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -140,7 +144,7 @@ extension TOView: UITableViewDataSource{
             return UITableViewCell()
         }
         cell.tag = indexPath.row
-        let work = toDelegate?.work(carIndex: tag, workIndex: indexPath.row)
+        let work = toDelegate?.work(carIndex: carTag, workIndex: indexPath.row)
         cell.update(with: work)
         
         

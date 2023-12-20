@@ -42,7 +42,7 @@ class TOViewController: UIViewController {
         self.carTag = tag
         self.car = model.car(index: carTag)
         super.init(nibName: nil, bundle: nil)
-        contentView = TOView(car: model.car(index: carTag))
+        contentView = TOView(car: model.car(index: carTag), carTag: carTag)
         
     }
     
@@ -80,6 +80,7 @@ class TOViewController: UIViewController {
     
     @objc func addWorkAction(_ sender: UIBarButtonItem) {
         let tag = sender.tag // Retrieve the tag from the sender
+
         let mileage = String(model.car(index: tag).milleage)
         // Получить текущую дату и время
         let currentDate = Date()
@@ -94,7 +95,7 @@ class TOViewController: UIViewController {
 //        contentView.toTable.reloadData()
         NotificationCenter.default.post(name: .workTableDataUpdated, object: nil)
 
-//        print(model.allWorks(tag))
+        print(model.allWorks(tag))
     }
    
 
