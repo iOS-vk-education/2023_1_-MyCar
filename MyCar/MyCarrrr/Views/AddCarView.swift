@@ -47,6 +47,10 @@ class AddCarView: UIView{
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+            self.endEditing(true)
+        }
+    
     private func setupHeaderLabel( _ label: String) {
         self.addSubview(headerLabel)
         headerLabel.text = label

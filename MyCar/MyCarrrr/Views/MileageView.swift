@@ -28,7 +28,7 @@ class MileageView: UIView {
     
     private let measurementSegmentedControl = UISegmentedControl(items: ["Км", "Мили"])
     
-    
+    private var selectedUnit = "Км"
     
     init(car: CarViewModel) {
         self.car = car
@@ -128,7 +128,7 @@ class MileageView: UIView {
     
     @objc private func measurementSegmentedControlDidChange() {
         let selectedUnitIndex = measurementSegmentedControl.selectedSegmentIndex
-        let selectedUnit = measurementSegmentedControl.titleForSegment(at: selectedUnitIndex) ?? ""
+        selectedUnit = measurementSegmentedControl.titleForSegment(at: selectedUnitIndex) ?? ""
         
         print(selectedUnit)
     }
@@ -155,7 +155,14 @@ class MileageView: UIView {
     }
     
     @objc private func didTapUpdateButton () {
-        let mileage = Int(mileageTextField.text ?? "") ?? 0
+        var result: Double
+        if selectedUnit == "Мили"{
+            result = Double(mileageTextField.text ?? "") ?? 0
+            result = result * 1.6093
+        }else {
+            result = Double(mileageTextField.text ?? "") ?? 0
+        }
+        let mileage = Int(result)
         delegate?.didTapMileageButton(mileage)
     }
     

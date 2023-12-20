@@ -28,9 +28,6 @@ class TOCellTableViewCell: UITableViewCell, UITableViewDelegate, UITextFieldDele
 
     private let contentFrame = UIView()
     private let contentLabel = UILabel()
-    
-    private var contentField = UITextField()
-
 
     private var contentTextView = UITextView()
 
@@ -51,7 +48,6 @@ class TOCellTableViewCell: UITableViewCell, UITableViewDelegate, UITextFieldDele
     
     private let chequeButtonView = ChequeButtonView()
     
-    private var contentViewHeightConstraint: NSLayoutConstraint?
 
     
     weak var cellDelegate: TOCellViewDelegate?
@@ -84,6 +80,10 @@ class TOCellTableViewCell: UITableViewCell, UITableViewDelegate, UITextFieldDele
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+            self.endEditing(true)
+        }
+    
     private func setupContentView() {
         contentView.backgroundColor = .black
         contentView.layer.cornerRadius = 15
@@ -92,9 +92,6 @@ class TOCellTableViewCell: UITableViewCell, UITableViewDelegate, UITextFieldDele
         
         contentView.translatesAutoresizingMaskIntoConstraints = false
         
-        contentViewHeightConstraint = contentView.heightAnchor.constraint(equalToConstant: 196)
-            contentViewHeightConstraint?.isActive = true
-        
         NSLayoutConstraint.activate([
             contentView.topAnchor.constraint(equalTo: self.topAnchor, constant: 8),
             contentView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8),
@@ -102,7 +99,7 @@ class TOCellTableViewCell: UITableViewCell, UITableViewDelegate, UITextFieldDele
             contentView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0),
             
             contentView.widthAnchor.constraint(equalToConstant: 361),
-//            contentView.heightAnchor.constraint(greaterThanOrEqualToConstant: 196)
+            contentView.heightAnchor.constraint(greaterThanOrEqualToConstant: 307)
 //            contentView.heightAnchor.constraint(greaterThanOrEqualToConstant: 200)
         ])
         
@@ -182,7 +179,8 @@ class TOCellTableViewCell: UITableViewCell, UITableViewDelegate, UITextFieldDele
         contentTextView.layer.borderWidth = 1.0
         contentTextView.layer.borderColor = UIColor.black.cgColor
         
-        contentTextView.isScrollEnabled = false // Disable scrolling
+        contentTextView.isScrollEnabled = true
+        contentTextView.resignFirstResponder()
 
         
         
@@ -254,12 +252,6 @@ class TOCellTableViewCell: UITableViewCell, UITableViewDelegate, UITextFieldDele
     @objc private func priceFrameTapped() {
         didTapPriceButtonOnCell(tag)
 
-    }
-    
-    func updateHeigth() {
-        
-        contentViewHeightConstraint?.constant += 400
-        
     }
     
     

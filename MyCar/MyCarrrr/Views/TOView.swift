@@ -52,6 +52,10 @@ class TOView: UIView, UITableViewDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+            self.endEditing(true)
+        }
+    
     func updateTable() {
         toTable.reloadData()
     }
@@ -154,9 +158,7 @@ extension TOView: UITableViewDataSource{
 
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-    }
+   
     
 }
 

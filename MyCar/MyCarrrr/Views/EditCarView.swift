@@ -57,6 +57,10 @@ class EditCarView: UIView{
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+            self.endEditing(true)
+        }
+    
     var carViewModel: CarViewModel? {
         didSet {
             updateUI()
