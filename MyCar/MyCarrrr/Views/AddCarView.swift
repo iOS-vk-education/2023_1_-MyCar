@@ -35,7 +35,7 @@ class AddCarView: UIView{
         super.init(frame: .zero)
 //        self.backgroundColor = .black
         self.backgroundColor = UIColor(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0, alpha: 1.0)
-        setupHeaderLabel("Автомобиль")
+        setupHeaderLabel("Новый автомобиль")
         setupContentField()
         
         setupButtons()
@@ -70,23 +70,17 @@ class AddCarView: UIView{
     private func setupContentField() {
         //Настройка label для текстовых полей
         
-        configureTextLabel(carBrandLabel, text: "Марка:")
-        configureTextLabel(carModelLabel, text: "Модель:")
-        configureTextLabel(carYearLabel, text: "Год выпуска:")
-        configureTextLabel(carMileageLabel, text: "Пробег:")
-        configureTextLabel(vinNumberLabel, text: "ВИН номер:")
+        configureTextLabel(carBrandLabel, text: "Марка")
+        configureTextLabel(carModelLabel, text: "Модель")
+        configureTextLabel(carYearLabel, text: "Год выпуска")
+        configureTextLabel(carMileageLabel, text: "Пробег")
+        configureTextLabel(vinNumberLabel, text: "ВИН номер")
         
         configureTextField(carBrandTextField, placeholder: "Введите марку авто")
         configureTextField(carModelTextField, placeholder: "Введите модель авто")
         configureTextField(carYearTextField, placeholder: "Введите год выпуска")
         configureTextField(carMileageTextField, placeholder: "Введите пробег авто")
         configureTextField(vinNumberTextField, placeholder: "Введите VIN номер")
-        
-//        configureTextField(carBrandTextField, placeholder: "Enter car brand")
-//        configureTextField(carModelTextField, placeholder: "Enter car model")
-//        configureTextField(carYearTextField, placeholder: "Enter car year")
-//        configureTextField(carMileageTextField, placeholder: "Enter car mileage")
-//        configureTextField(vinNumberTextField, placeholder: "Enter VIN number")
         
         
         //добавление картинки
@@ -100,38 +94,71 @@ class AddCarView: UIView{
         // Констрейнты для картинки
         carImageView.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 20).isActive = true
         carImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        carImageView.heightAnchor.constraint(equalToConstant: 200).isActive = true // Установите нужную высоту
-        carImageView.widthAnchor.constraint(equalToConstant: 400).isActive = true // Установите нужную ширину
-        
+        carImageView.heightAnchor.constraint(equalToConstant: 100).isActive = true // Установите нужную высоту
+        carImageView.widthAnchor.constraint(equalToConstant: 200).isActive = true // Установите нужную ширину
         
         NSLayoutConstraint.activate([
             
             vinNumberLabel.topAnchor.constraint(equalTo: carImageView.bottomAnchor, constant: 20),
-            vinNumberLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            vinNumberTextField.centerYAnchor.constraint(equalTo: vinNumberLabel.centerYAnchor),
-            vinNumberTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+            vinNumberLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 21),
+            vinNumberTextField.topAnchor.constraint(equalTo: vinNumberLabel.bottomAnchor, constant: 5),
+            vinNumberTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 21),
             
-            carBrandLabel.topAnchor.constraint(equalTo: vinNumberLabel.bottomAnchor, constant: 80),
-            carBrandLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            carBrandTextField.centerYAnchor.constraint(equalTo: carBrandLabel.centerYAnchor),
-            carBrandTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
             
-            carModelLabel.topAnchor.constraint(equalTo: carBrandLabel.bottomAnchor, constant: 20),
-            carModelLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            carModelTextField.centerYAnchor.constraint(equalTo: carModelLabel.centerYAnchor),
-            carModelTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+            carBrandLabel.topAnchor.constraint(equalTo: vinNumberTextField.bottomAnchor, constant: 60),
+            carBrandLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 21),
+            carBrandTextField.topAnchor.constraint(equalTo: carBrandLabel.bottomAnchor, constant: 0),
+            carBrandTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 21),
             
-            carYearLabel.topAnchor.constraint(equalTo: carModelLabel.bottomAnchor, constant: 20),
-            carYearLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            carYearTextField.centerYAnchor.constraint(equalTo: carYearLabel.centerYAnchor),
-            carYearTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
             
-            carMileageLabel.topAnchor.constraint(equalTo: carYearLabel.bottomAnchor, constant: 20),
-            carMileageLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            carMileageTextField.centerYAnchor.constraint(equalTo: carMileageLabel.centerYAnchor),
-            carMileageTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20)
+            carModelLabel.topAnchor.constraint(equalTo: carBrandTextField.bottomAnchor, constant: 21),
+            carModelLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 21),
+            carModelTextField.topAnchor.constraint(equalTo: carModelLabel.bottomAnchor, constant: 0),
+            carModelTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 21),
+            
+            
+            carYearLabel.topAnchor.constraint(equalTo: carModelTextField.bottomAnchor, constant: 21),
+            carYearLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 21),
+            carYearTextField.topAnchor.constraint(equalTo: carYearLabel.bottomAnchor, constant: 0),
+            carYearTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 21),
+            
+            
+            carMileageLabel.topAnchor.constraint(equalTo: carYearTextField.bottomAnchor, constant: 21),
+            carMileageLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 21),
+            carMileageTextField.topAnchor.constraint(equalTo: carMileageLabel.bottomAnchor, constant: 0),
+            carMileageTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 21),
+            
+            
             
         ])
+//        NSLayoutConstraint.activate([
+//
+//            vinNumberLabel.topAnchor.constraint(equalTo: carImageView.bottomAnchor, constant: 20),
+//            vinNumberLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+//            vinNumberTextField.centerYAnchor.constraint(equalTo: vinNumberLabel.centerYAnchor),
+//            vinNumberTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+//
+//            carBrandLabel.topAnchor.constraint(equalTo: vinNumberLabel.bottomAnchor, constant: 80),
+//            carBrandLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+//            carBrandTextField.centerYAnchor.constraint(equalTo: carBrandLabel.centerYAnchor),
+//            carBrandTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+//
+//            carModelLabel.topAnchor.constraint(equalTo: carBrandLabel.bottomAnchor, constant: 20),
+//            carModelLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+//            carModelTextField.centerYAnchor.constraint(equalTo: carModelLabel.centerYAnchor),
+//            carModelTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+//
+//            carYearLabel.topAnchor.constraint(equalTo: carModelLabel.bottomAnchor, constant: 20),
+//            carYearLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+//            carYearTextField.centerYAnchor.constraint(equalTo: carYearLabel.centerYAnchor),
+//            carYearTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+//
+//            carMileageLabel.topAnchor.constraint(equalTo: carYearLabel.bottomAnchor, constant: 20),
+//            carMileageLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+//            carMileageTextField.centerYAnchor.constraint(equalTo: carMileageLabel.centerYAnchor),
+//            carMileageTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20)
+//
+//        ])
         
     }
     
@@ -149,7 +176,7 @@ class AddCarView: UIView{
         
         NSLayoutConstraint.activate([
             
-            checkVINButton.topAnchor.constraint(equalTo: vinNumberLabel.bottomAnchor, constant: 20),
+            checkVINButton.topAnchor.constraint(equalTo: vinNumberTextField.bottomAnchor, constant: 16),
             checkVINButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
             checkVINButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
         ])
@@ -187,21 +214,28 @@ class AddCarView: UIView{
     
     
     private func configureTextField(_ textField: UITextField, placeholder: String) {
-        textField.textColor = .black
+        textField.textColor = .white
+        textField.font = .boldSystemFont(ofSize: 20)
         textField.clearButtonMode = .always
         textField.text = ""
-        textField.placeholder = placeholder
-        textField.textAlignment = .center
-        textField.layer.borderWidth = 2.0
-        textField.backgroundColor = .white
+        let attributes = [
+            NSAttributedString.Key.foregroundColor: UIColor.gray,
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .regular)
+        ]
+        textField.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: attributes)
+        textField.textAlignment = .left
+        textField.backgroundColor = .clear
         textField.layer.cornerRadius = 5
         // Установка фиксированной ширины текстового поля
-        let fixedWidth: CGFloat = 225
+        let fixedWidth: CGFloat = 350
         textField.widthAnchor.constraint(equalToConstant: fixedWidth).isActive = true
-
         
         let fixedHeight: CGFloat = 30
         textField.heightAnchor.constraint(equalToConstant: fixedHeight).isActive = true
+        
+        let separatorView = UIView(frame: CGRect(x: 0, y: 30, width: 350, height: 1))
+        separatorView.backgroundColor = .white
+        textField.addSubview(separatorView)
         
         self.addSubview(textField)
         
