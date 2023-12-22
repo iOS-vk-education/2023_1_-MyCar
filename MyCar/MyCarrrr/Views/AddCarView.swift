@@ -94,8 +94,8 @@ class AddCarView: UIView{
         // Констрейнты для картинки
         carImageView.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 20).isActive = true
         carImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        carImageView.heightAnchor.constraint(equalToConstant: 100).isActive = true // Установите нужную высоту
-        carImageView.widthAnchor.constraint(equalToConstant: 200).isActive = true // Установите нужную ширину
+        carImageView.heightAnchor.constraint(equalToConstant: 150).isActive = true // Установите нужную высоту
+        carImageView.widthAnchor.constraint(equalToConstant: 400).isActive = true // Установите нужную ширину
         
         NSLayoutConstraint.activate([
             
@@ -131,34 +131,7 @@ class AddCarView: UIView{
             
             
         ])
-//        NSLayoutConstraint.activate([
-//
-//            vinNumberLabel.topAnchor.constraint(equalTo: carImageView.bottomAnchor, constant: 20),
-//            vinNumberLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-//            vinNumberTextField.centerYAnchor.constraint(equalTo: vinNumberLabel.centerYAnchor),
-//            vinNumberTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-//
-//            carBrandLabel.topAnchor.constraint(equalTo: vinNumberLabel.bottomAnchor, constant: 80),
-//            carBrandLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-//            carBrandTextField.centerYAnchor.constraint(equalTo: carBrandLabel.centerYAnchor),
-//            carBrandTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-//
-//            carModelLabel.topAnchor.constraint(equalTo: carBrandLabel.bottomAnchor, constant: 20),
-//            carModelLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-//            carModelTextField.centerYAnchor.constraint(equalTo: carModelLabel.centerYAnchor),
-//            carModelTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-//
-//            carYearLabel.topAnchor.constraint(equalTo: carModelLabel.bottomAnchor, constant: 20),
-//            carYearLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-//            carYearTextField.centerYAnchor.constraint(equalTo: carYearLabel.centerYAnchor),
-//            carYearTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-//
-//            carMileageLabel.topAnchor.constraint(equalTo: carYearLabel.bottomAnchor, constant: 20),
-//            carMileageLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-//            carMileageTextField.centerYAnchor.constraint(equalTo: carMileageLabel.centerYAnchor),
-//            carMileageTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20)
-//
-//        ])
+
         
     }
     
