@@ -66,7 +66,6 @@ class InsuranceButtonView: UIView {
     
     @objc
     private func didTapButton() {
-        print("Button pressed!")
-//            delegate?.didTapButton()
+        delegate?.didTapInsuranceButton()
         }
 }

@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 struct CarViewModel {
     
@@ -9,7 +10,10 @@ struct CarViewModel {
     var vinNumber: String
     
     var works: [WorkModel] = []
-//    var works: [WorkModel]?
+    
+    var insurenceImage: UIImage?
+    var insurenceDate: String?
+//    var insurenceImage = UIImage(named: "bmw5")
 }
 
 struct CarInfo: Codable {

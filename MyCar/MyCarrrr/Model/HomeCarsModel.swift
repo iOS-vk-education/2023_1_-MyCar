@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 final class HomeCarsModel {
     
@@ -67,7 +68,6 @@ final class HomeCarsModel {
     func updateTODate(_ carIndex: Int, workIndex: Int, _ date: String) {
         cars[carIndex].works[workIndex].date = date
     }
-
     
     
     func addWork(_ work: WorkModel, _ tag: Int) {
@@ -81,5 +81,15 @@ final class HomeCarsModel {
     func work(carIndex: Int, workIndex: Int) -> WorkModel {
         cars[carIndex].works[workIndex]
     }
+    
+    
+    func updateInsuranceImage(_ image: UIImage, _ tag: Int) {
+        cars[tag].insurenceImage = image
+    }
+    
+    func updateInsureanceDate(_ carIndex: Int, date: String){
+        cars[carIndex].insurenceDate = date
+    }
+    
     
 }

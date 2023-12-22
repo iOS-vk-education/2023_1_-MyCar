@@ -4,7 +4,7 @@ import UIKit
 protocol CellViewDelegate: AnyObject {
     func didTapButtonOnCell(_ tag: Int)
     func didTapMileageButtonOnCell(_ tag: Int)
-    func didTapInsuranceButtonOnCell()
+    func didTapInsuranceButtonOnCell(_ tag: Int)
     func didTapEditCarButtonOnCell(_ tag: Int)
 }
 
@@ -263,7 +263,13 @@ class CarCellTableViewCell: UITableViewCell {
         yearLabel.text = String(car!.purchaseDate) + " Года"
         
         nextTOLabel.text = "Следующее ТО: 20.02.2023"
-        nextInsuranceLabel.text = "Страховка до: 21.02.2023"
+//        nextInsuranceLabel.text = "Страховка до: 21.02.2023"
+        if (car!.insurenceDate != nil) {
+            nextInsuranceLabel.text = "Страховка до: \(car!.insurenceDate!)"
+        }else {
+            nextInsuranceLabel.text = "Стаховой полис отсутствует"
+        }
+
     }
 
 }
@@ -275,7 +281,7 @@ extension CarCellTableViewCell: TOButtonViewDelegate {
     }
     
     func didTapInsuranceButton() {
-        didTapInsuranceButtonOnCell()
+        didTapInsuranceButtonOnCell(tag)
     }
     
     func didTapTOButton() {
@@ -293,8 +299,8 @@ extension CarCellTableViewCell: CellViewDelegate {
         delegate?.didTapMileageButtonOnCell(tag)
     }
     
-    func didTapInsuranceButtonOnCell() {
-        delegate?.didTapInsuranceButtonOnCell()
+    func didTapInsuranceButtonOnCell(_ tag: Int) {
+        delegate?.didTapInsuranceButtonOnCell(tag)
     }
     
     func didTapButtonOnCell(_ tag: Int) {

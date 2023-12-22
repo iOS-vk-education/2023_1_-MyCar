@@ -66,18 +66,13 @@ extension MyCarsViewController: ViewToViewController {
     func goToTOScreen(tag: Int) {
         //        let vc = TOViewController(model: model)
         //        present(vc, animated: true)
-        
-        
         let toViewController = TOViewController(model: model, tag: tag)
-        
 
         // Создаем UINavigationController
         let navigationController = UINavigationController(rootViewController: toViewController)
         
         // Добавляем "Назад" кнопку
         let backButton = UIBarButtonItem(title: "Назад", style: .plain, target: self, action: #selector(goBack))
-//        let addButton = UIBarButtonItem(title: "Добавить", style: .plain, target: self, action: #selector(addWork))
-        
         let addButton = UIBarButtonItem(title: "Добавить", style: .plain, target: toViewController, action: #selector(toViewController.addWorkAction(_:)))
 
         print(tag)
@@ -94,6 +89,11 @@ extension MyCarsViewController: ViewToViewController {
         // Презентуем UINavigationController с анимацией
         present(navigationController, animated: true, completion: nil)
     
+    }
+    
+    func goToInsurenceScreen(tag: Int) {
+        let vc = InsurenceViewController(model: model, tag: tag)
+        present(vc, animated: true)
     }
 
     
@@ -130,8 +130,8 @@ extension MyCarsViewController: CellViewDelegate {
         goToMileageScreen(tag: tag)
     }
     
-    func didTapInsuranceButtonOnCell() {
-        print("страховка")
+    func didTapInsuranceButtonOnCell(_ tag: Int) {
+        goToInsurenceScreen(tag: tag)
     }
     
     func didTapButtonOnCell(_ tag: Int) {
