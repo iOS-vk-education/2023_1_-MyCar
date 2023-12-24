@@ -8,6 +8,7 @@ class AddCarView: UIView{
     private let updateButton = UIButton()
     private let cancelButton = UIButton()
     
+    let carImageView = UIImageView()
     
     let checkVINButton = UIButton()
     
@@ -26,6 +27,8 @@ class AddCarView: UIView{
     
     var updateButtonTappedHandler: (() -> Void)?
     var cancelButtonTappedHandler: (() -> Void)?
+    
+    var imageButtonTappedHandler: (() -> Void)?
     
     var checkVINButtonTappedHandler: (() -> Void)?
     var checkVINCompletion: (() -> Void)?
@@ -84,11 +87,15 @@ class AddCarView: UIView{
         
         
         //добавление картинки
-        let carImageView = UIImageView()
-        carImageView.image = UIImage(named: "bmw5") // Укажите имя вашей картинки
+//        let carImageView = UIImageView()
+        carImageView.image = UIImage(named: "addPhoto") // Укажите имя вашей картинки
         carImageView.contentMode = .scaleAspectFit
         carImageView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(carImageView)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapImage))
+        carImageView.addGestureRecognizer(tapGesture)
+        carImageView.isUserInteractionEnabled = true
         
         
         // Констрейнты для картинки
@@ -258,6 +265,10 @@ class AddCarView: UIView{
         
     }
     
+    func updateImage(_ image: UIImage) {
+        carImageView.image = image
+    }
+    
     
     @objc private func checkButtonTapped() {
         // Включаем активити индикатор и блокируем кнопку
@@ -281,6 +292,11 @@ class AddCarView: UIView{
     private func cancelButtonTapped() {
         // Вызываем замыкание при нажатии на кнопку "Отмена"
         cancelButtonTappedHandler?()
+    }
+    
+    @objc
+    private func didTapImage() {
+        imageButtonTappedHandler?()
     }
     
 }

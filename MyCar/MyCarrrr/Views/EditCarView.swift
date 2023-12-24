@@ -20,6 +20,7 @@ class EditCarView: UIView{
     private let updateButton = UIButton()
     private let cancelButton = UIButton()
     
+    let carImageView = UIImageView()
     
     let checkVINButton = UIButton()
     
@@ -38,6 +39,7 @@ class EditCarView: UIView{
     
     var updateButtonTappedHandler: (() -> Void)?
     var cancelButtonTappedHandler: (() -> Void)?
+    var imageButtonTappedHandler: (() -> Void)?
     
     var checkVINButtonTappedHandler: (() -> Void)?
     var checkVINCompletion: (() -> Void)?
@@ -76,6 +78,8 @@ class EditCarView: UIView{
         carMileageTextField.text = "\(car.milleage)"
         vinNumberTextField.text = car.vinNumber
         
+        carImageView.image = car.carImage
+        
     }
     
     private func setupHeaderLabel( _ label: String) {
@@ -111,11 +115,15 @@ class EditCarView: UIView{
         configureTextField(vinNumberTextField, placeholder: "Введите VIN номер")
         
         //добавление картинки
-        let carImageView = UIImageView()
-        carImageView.image = UIImage(named: "bmw5") // Укажите имя вашей картинки
+        
+        carImageView.image = UIImage(named: "jeep") // Укажите имя вашей картинки
         carImageView.contentMode = .scaleAspectFit
         carImageView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(carImageView)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapImage))
+        carImageView.addGestureRecognizer(tapGesture)
+        carImageView.isUserInteractionEnabled = true
         
         
         // Констрейнты для картинки
@@ -235,6 +243,10 @@ class EditCarView: UIView{
         
     }
     
+    func updateImage(_ image: UIImage) {
+        carImageView.image = image
+    }
+    
     @objc
     private func updateButtonTapped() {
         // Вызываем замыкание при нажатии на кнопку "Обновить"
@@ -245,6 +257,11 @@ class EditCarView: UIView{
     private func cancelButtonTapped() {
         // Вызываем замыкание при нажатии на кнопку "Отмена"
         cancelButtonTappedHandler?()
+    }
+    
+    @objc
+    private func didTapImage() {
+        imageButtonTappedHandler?()
     }
     
 }

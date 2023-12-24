@@ -50,6 +50,7 @@ final class HomeCarsModel {
         cars[tag].vinNumber = car.vinNumber
         cars[tag].purchaseDate = car.purchaseDate
         cars[tag].milleage = car.milleage
+        cars[tag].carImage = car.carImage
         print("Car edit function!")
     }
     
@@ -89,6 +90,10 @@ final class HomeCarsModel {
     
     func updateInsureanceDate(_ carIndex: Int, date: String){
         cars[carIndex].insurenceDate = date
+    }
+    
+    func updateCarImage(_ image: UIImage, _ tag: Int){
+        cars[tag].carImage = image
     }
     
     

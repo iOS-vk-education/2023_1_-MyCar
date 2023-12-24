@@ -125,6 +125,7 @@ extension MyCarsView: UITableViewDataSource {
         cell.update(with: car)
         
         cell.tag = indexPath.row
+        print(cell.tag)
         
         cell.delegate = delegate as? any CellViewDelegate
         
@@ -139,6 +140,8 @@ extension MyCarsView: UITableViewDataSource {
         if editingStyle == .delete {
             removeItem(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            carsTable.reloadData()
+            
         }
     }
     

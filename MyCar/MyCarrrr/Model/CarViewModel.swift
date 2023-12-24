@@ -11,6 +11,7 @@ struct CarViewModel {
     
     var works: [WorkModel] = []
     
+    var carImage: UIImage?
     var insurenceImage: UIImage?
     var insurenceDate: String?
 //    var insurenceImage = UIImage(named: "bmw5")

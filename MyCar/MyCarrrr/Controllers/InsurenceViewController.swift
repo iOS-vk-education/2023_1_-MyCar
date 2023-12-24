@@ -61,9 +61,6 @@ class InsurenceViewController: UIViewController, InsurenceViewDelegate  {
 
         present(actionSheet, animated: true)
         
-        
-
-        
     }
     
     func didTapImage() {

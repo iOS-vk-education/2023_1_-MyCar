@@ -262,6 +262,8 @@ class CarCellTableViewCell: UITableViewCell {
         
         yearLabel.text = String(car!.purchaseDate) + " Года"
         
+        carImageView.image = car!.carImage
+        
         nextTOLabel.text = "Следующее ТО: 20.02.2023"
 //        nextInsuranceLabel.text = "Страховка до: 21.02.2023"
         if (car!.insurenceDate != nil) {

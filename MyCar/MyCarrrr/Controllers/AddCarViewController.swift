@@ -7,6 +7,9 @@ class AddCarViewController: UIViewController {
     private let model: HomeCarsModel
     private var contentView = AddCarView()
     
+    let imagePicker = UIImagePickerController()
+    private var image = UIImage(named: "jeep")
+    
     override func loadView() {
         view = contentView
     }
@@ -22,6 +25,12 @@ class AddCarViewController: UIViewController {
         contentView.checkVINButtonTappedHandler = { [weak self] in
             self?.checkVIN()
         }
+        contentView.imageButtonTappedHandler = { [weak self] in
+            self?.changeImage()
+        }
+        
+        imagePicker.delegate = self
+
 
     }
     
@@ -34,17 +43,47 @@ class AddCarViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private func changeImage() {
+        // вызов метода определяющего тип выбора изображения (camera / photo library)
+        let actionSheet = UIAlertController(title: nil, message: "Выберите изображение", preferredStyle: .actionSheet)
+        
+        actionSheet.addAction(UIAlertAction(title: "Камера", style: .default, handler: { _ in
+            self.camera()
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Галерея", style: .default, handler: { _ in
+            self.photoLibrary()
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Отменить", style: .cancel, handler: nil))
+        
+        present(actionSheet, animated: true)
+    }
+    
+    func camera() {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            imagePicker.sourceType = .camera
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+    }
+    
+    func photoLibrary() {
+        self.imagePicker.sourceType = .photoLibrary
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+    
     private func cancelAdd() {
         dismiss(animated: true)
     }
     
     private func saveCar() {
-        
         model.addCar(CarViewModel(manufacturer: contentView.carBrandTextField.text ?? "",
                                   model: contentView.carModelTextField.text ?? "",
                                   milleage: Int(contentView.carMileageTextField.text ?? "") ?? 0,
                                   purchaseDate: contentView.carYearTextField.text ?? "",
-                                  vinNumber: contentView.vinNumberTextField.text ?? ""))
+                                  vinNumber: contentView.vinNumberTextField.text ?? "",
+                                  carImage: image
+                                 ))
         // Отправка уведомления о том, что данные были обновлены
         NotificationCenter.default.post(name: .dataUpdated, object: nil)
         print(model.allCars())
@@ -98,5 +137,19 @@ class AddCarViewController: UIViewController {
     
 
 }
-
+extension AddCarViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate{
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            
+            image = selectedImage
+            contentView.updateImage(selectedImage)
+            
+        }
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+}
 
