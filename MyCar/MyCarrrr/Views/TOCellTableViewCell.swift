@@ -9,10 +9,13 @@ import UIKit
 
 
 protocol TOCellViewDelegate: AnyObject {
-//    func didTapButtonOnCell(_ tag: Int)
+    
+    func didTapChequeButtonOnCell(_ tag: Int)
+    
     func didTapDateButtonOnCell(_ tag: Int)
     func didTapMileageButtonOnCell(_ tag: Int)
     func didTapPriceButtonOnCell(_ tag: Int)
+    
 }
 
 
@@ -239,6 +242,10 @@ class TOCellTableViewCell: UITableViewCell, UITableViewDelegate, UITextFieldDele
             chequeButtonView.widthAnchor.constraint(equalToConstant: 154),
             chequeButtonView.heightAnchor.constraint(equalToConstant: 33)
         ])
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(chequeFrameTapped))
+        chequeButtonView.addGestureRecognizer(tapGesture)
+        chequeButtonView.isUserInteractionEnabled = true
     }
     
     @objc private func dataFrameTapped() {
@@ -251,6 +258,10 @@ class TOCellTableViewCell: UITableViewCell, UITableViewDelegate, UITextFieldDele
     }
     @objc private func priceFrameTapped() {
         didTapPriceButtonOnCell(tag)
+
+    }
+    @objc private func chequeFrameTapped() {
+        didTapChequeButtonOnCell(tag)
 
     }
     
@@ -267,6 +278,10 @@ class TOCellTableViewCell: UITableViewCell, UITableViewDelegate, UITextFieldDele
 }
 
 extension TOCellTableViewCell: TOCellViewDelegate {
+    func didTapChequeButtonOnCell(_ tag: Int) {
+        cellDelegate?.didTapChequeButtonOnCell(tag)
+    }
+    
     func didTapDateButtonOnCell(_ tag: Int) {
         cellDelegate?.didTapDateButtonOnCell(tag)
         

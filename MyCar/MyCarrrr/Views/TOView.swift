@@ -133,6 +133,10 @@ class TOView: UIView, UITableViewDelegate {
         
         toTable.register(TOCellTableViewCell.self, forCellReuseIdentifier: TOCellTableViewCell.identifier)
     }
+    
+    private func removeItem(at index: Int) {
+        toDelegate?.removeWork(index: index)
+    }
 
     
 }
@@ -156,6 +160,14 @@ extension TOView: UITableViewDataSource{
         
         return cell
 
+    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            removeItem(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            toTable.reloadData()
+            
+        }
     }
     
    

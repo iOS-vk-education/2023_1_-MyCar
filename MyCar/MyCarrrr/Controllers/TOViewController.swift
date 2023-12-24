@@ -13,6 +13,8 @@ protocol TOViewControllerDelegate: AnyObject {
     
     func work(carIndex: Int, workIndex: Int) -> WorkModel
     func addWork(carIndex: Int, work: WorkModel)
+    
+    func removeWork(index: Int)
 }
 
 
@@ -74,6 +76,14 @@ class TOViewController: UIViewController {
         present(dateViewController, animated: true)
     }
     
+    func goToChequeScreen(_ tag: Int) {
+        let priceViewController = ChequeViewController(model: model, carTag: carTag, tag: tag)
+    
+//        priceViewController.modalPresentationStyle = .pageSheet
+//        priceViewController.sheetPresentationController?.detents = [.medium()]
+        present(priceViewController, animated: true)
+    }
+    
     @objc func workTableDataUpdated() {
             contentView.updateTable()
         }
@@ -102,6 +112,10 @@ class TOViewController: UIViewController {
 }
 //MARK: fix
 extension TOViewController : TOViewControllerDelegate {
+    func removeWork(index: Int) {
+        model.removeWork(at: index, carTag: carTag)
+    }
+    
     func addWork(carIndex: Int, work: WorkModel) {
         print("addwork")
     }
@@ -126,6 +140,10 @@ extension Notification.Name {
 }
 
 extension TOViewController: TOCellViewDelegate {
+    func didTapChequeButtonOnCell(_ tag: Int) {
+        goToChequeScreen(tag)
+    }
+    
     func didTapDateButtonOnCell(_ tag: Int) {
        goToDateScreen(tag)
         
@@ -134,7 +152,6 @@ extension TOViewController: TOCellViewDelegate {
     
     func didTapMileageButtonOnCell(_ tag: Int) {
         goToMileageScreen(tag)
-//        print(tag)
 
     }
     

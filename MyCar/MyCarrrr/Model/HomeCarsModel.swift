@@ -32,6 +32,10 @@ final class HomeCarsModel {
         cars.remove(at: index)
     }
     
+    func removeWork(at index: Int, carTag: Int){
+        cars[carTag].works.remove(at: index)
+    }
+    
     func car(index: Int) -> CarViewModel {
         cars[index]
     }
@@ -96,5 +100,11 @@ final class HomeCarsModel {
         cars[tag].carImage = image
     }
     
+//    func updateChequeImage(_ image: UIImage, _ tag: Int) {
+//        cars[tag].insurenceImage = image
+//    }
+    func updateChequeImage(_ carIndex: Int, workIndex: Int, _ image: UIImage) {
+        cars[carIndex].works[workIndex].workImage = image
+    }
     
 }

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct WorkModel {
     var date: String
@@ -13,5 +14,6 @@ struct WorkModel {
     var content: String
     var price: String
     
+    var workImage: UIImage?
 }
 

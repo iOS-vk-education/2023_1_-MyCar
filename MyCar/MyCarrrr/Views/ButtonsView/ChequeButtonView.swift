@@ -8,14 +8,7 @@
 import Foundation
 import UIKit
 
-//protocol TOButtonViewDelegate: AnyObject {
-//    func didTapButton()
-//}
-
-
 class ChequeButtonView: UIView {
-    
-//    weak var delegate: TOButtonViewDelegate?
 
     private let label = UILabel()
 
@@ -48,15 +41,7 @@ class ChequeButtonView: UIView {
             label.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapButton))
-        addGestureRecognizer(tapGesture)
-        isUserInteractionEnabled = true
     }
     
-    @objc
-    private func didTapButton() {
-//            delegate?.didTapButton()
-        
-        print("Квитанция button pressed")
-        }
+    
 }
