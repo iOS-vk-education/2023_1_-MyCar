@@ -447,6 +447,7 @@
 				DEVELOPMENT_TEAM = 6UV938CGZH;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MyCarrrr/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = myCar;
 				INFOPLIST_KEY_NSCameraUsageDescription = MyCarrrr;
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = MyCarrrr;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -479,6 +480,7 @@
 				DEVELOPMENT_TEAM = 6UV938CGZH;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MyCarrrr/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = myCar;
 				INFOPLIST_KEY_NSCameraUsageDescription = MyCarrrr;
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = MyCarrrr;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
