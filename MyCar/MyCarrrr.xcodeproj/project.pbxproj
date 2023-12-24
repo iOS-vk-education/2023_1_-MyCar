@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		551805CE2B2266C700674218 /* PlaceClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551805CD2B2266C700674218 /* PlaceClass.swift */; };
 		556C3AE42AF9A8CE00D334B8 /* CarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C3AE32AF9A8CE00D334B8 /* CarModel.swift */; };
 		559EFBB52AF14A5F0098672F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559EFBB42AF14A5F0098672F /* AppDelegate.swift */; };
 		559EFBB72AF14A5F0098672F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559EFBB62AF14A5F0098672F /* SceneDelegate.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		551805CD2B2266C700674218 /* PlaceClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceClass.swift; sourceTree = "<group>"; };
 		556C3AE32AF9A8CE00D334B8 /* CarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarModel.swift; sourceTree = "<group>"; };
 		559EFBB12AF14A5F0098672F /* MyCarrrr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyCarrrr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		559EFBB42AF14A5F0098672F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 		84CE9ADE2B03001D0070A8B2 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				551805CD2B2266C700674218 /* PlaceClass.swift */,
 				55DAF9202B20B3E4003BB552 /* Location.swift */,
 				84CE9ADF2B03003F0070A8B2 /* NetworkService.swift */,
 				84CE9AE12B0300460070A8B2 /* UserDafaultsService.swift */,
@@ -207,6 +210,7 @@
 				84CE9ADD2B02FFE80070A8B2 /* HomeCarsModel.swift in Sources */,
 				559EFBB92AF14A5F0098672F /* MyCarsViewController.swift in Sources */,
 				559EFBB52AF14A5F0098672F /* AppDelegate.swift in Sources */,
+				551805CE2B2266C700674218 /* PlaceClass.swift in Sources */,
 				559EFBB72AF14A5F0098672F /* SceneDelegate.swift in Sources */,
 				559EFBCD2AF179870098672F /* TabBarController.swift in Sources */,
 				55DAF91F2B209D2E003BB552 /* MapView.swift in Sources */,

@@ -28,6 +28,7 @@ class CarCellTableViewCell: UITableViewCell {
         contentView.layer.cornerRadius = 15
         selectedBackgroundView = UIView()
         selectedBackgroundView?.backgroundColor = .clear
+        selectedBackgroundView?.layer.cornerRadius = 15
         
         contentView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
