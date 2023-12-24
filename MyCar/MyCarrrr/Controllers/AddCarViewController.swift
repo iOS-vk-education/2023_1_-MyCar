@@ -77,6 +77,13 @@ class AddCarViewController: UIViewController {
     }
     
     private func saveCar() {
+        if (contentView.carBrandTextField.text == "" ||  contentView.carModelTextField.text == "") {
+            let errorAlert = UIAlertController(title: "Ошибка", message: "Поля марка и модель не могут быть пустыми", preferredStyle: .alert)
+            errorAlert.addAction(UIAlertAction(title: "OK", style: .cancel))
+            present(errorAlert, animated: true)
+
+            return
+        }
         model.addCar(CarViewModel(manufacturer: contentView.carBrandTextField.text ?? "",
                                   model: contentView.carModelTextField.text ?? "",
                                   milleage: Int(contentView.carMileageTextField.text ?? "") ?? 0,

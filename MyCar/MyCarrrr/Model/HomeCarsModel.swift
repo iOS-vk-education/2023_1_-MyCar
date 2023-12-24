@@ -74,6 +74,9 @@ final class HomeCarsModel {
         cars[carIndex].works[workIndex].date = date
     }
     
+    func updateNextTODate(_ carIndex: Int, _ date: String) {
+        cars[carIndex].nextTODate = date
+    }
     
     func addWork(_ work: WorkModel, _ tag: Int) {
         cars[tag].works.append(work)

@@ -14,6 +14,7 @@ struct CarViewModel {
     var carImage: UIImage?
     var insurenceImage: UIImage?
     var insurenceDate: String?
+    var nextTODate: String?
 //    var insurenceImage = UIImage(named: "bmw5")
 }
 

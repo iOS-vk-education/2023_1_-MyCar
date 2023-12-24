@@ -26,6 +26,8 @@ class TOView: UIView, UITableViewDelegate {
     private let labelFrame = UIView()
     private let mainContentFrame = UIView()
     
+    private let addNextTOButton = UIButton(type: .system)
+    private let addNextTOFrame = UIView()
     
     private var toTable = UITableView()
 
@@ -41,6 +43,8 @@ class TOView: UIView, UITableViewDelegate {
         setupHeaderLabel(car.manufacturer)
         setupWorkListLabel()
         setupFrameForLabel()
+//        setupFrameForButton()
+        setupButton()
 
         setupCarTable()
 
@@ -112,6 +116,33 @@ class TOView: UIView, UITableViewDelegate {
         ])
     }
     
+    private func setupButton() {
+        addNextTOButton.layer.cornerRadius = 15
+        addNextTOButton.backgroundColor = .black
+        self.addSubview(addNextTOButton)
+        
+        addNextTOButton.setTitle("Запланировать новое ТО", for: .normal)
+        addNextTOButton.tintColor = .white
+        addNextTOButton.addTarget(self, action: #selector(didTapNextTOButton), for: .touchUpInside)
+        
+        
+        addNextTOButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            
+            addNextTOButton.topAnchor.constraint(equalTo: labelFrame.bottomAnchor, constant: 10),
+
+            addNextTOButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 17),
+            addNextTOButton.widthAnchor.constraint(equalToConstant: 361),
+            addNextTOButton.heightAnchor.constraint(equalToConstant: 40),
+        ])
+    }
+    
+    @objc
+    private func didTapNextTOButton() {
+        toDelegate?.updateTODate()
+    }
+    
     
     private func setupCarTable(){
         
@@ -121,7 +152,7 @@ class TOView: UIView, UITableViewDelegate {
         toTable.separatorStyle = .none
         toTable.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            toTable.topAnchor.constraint(equalTo: labelFrame.bottomAnchor, constant: 11),
+            toTable.topAnchor.constraint(equalTo: addNextTOButton.bottomAnchor, constant: 11),
             toTable.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
             toTable.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
             toTable.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: 0),

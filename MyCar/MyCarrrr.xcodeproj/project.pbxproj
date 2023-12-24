@@ -38,6 +38,7 @@
 		849908422B1A88BA00304317 /* TOView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849908412B1A88BA00304317 /* TOView.swift */; };
 		84B2F8342B38AD54006426FF /* ChequeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2F8332B38AD54006426FF /* ChequeViewController.swift */; };
 		84B2F8362B38AFB2006426FF /* ChequeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2F8352B38AFB2006426FF /* ChequeView.swift */; };
+		84B2F8382B38C15D006426FF /* NextTODateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2F8372B38C15D006426FF /* NextTODateViewController.swift */; };
 		84CE9ADB2B02FFC80070A8B2 /* CarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE9ADA2B02FFC80070A8B2 /* CarViewModel.swift */; };
 		84CE9ADD2B02FFE80070A8B2 /* HomeCarsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE9ADC2B02FFE80070A8B2 /* HomeCarsModel.swift */; };
 		84CE9AE02B03003F0070A8B2 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE9ADF2B03003F0070A8B2 /* NetworkService.swift */; };
@@ -82,6 +83,7 @@
 		849908412B1A88BA00304317 /* TOView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TOView.swift; sourceTree = "<group>"; };
 		84B2F8332B38AD54006426FF /* ChequeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChequeViewController.swift; sourceTree = "<group>"; };
 		84B2F8352B38AFB2006426FF /* ChequeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChequeView.swift; sourceTree = "<group>"; };
+		84B2F8372B38C15D006426FF /* NextTODateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextTODateViewController.swift; sourceTree = "<group>"; };
 		84CE9ADA2B02FFC80070A8B2 /* CarViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarViewModel.swift; sourceTree = "<group>"; };
 		84CE9ADC2B02FFE80070A8B2 /* HomeCarsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCarsModel.swift; sourceTree = "<group>"; };
 		84CE9ADF2B03003F0070A8B2 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				84F8EEAC2B337D170059F5A2 /* InsurenceViewController.swift */,
 				843945432B35C14500977D6A /* InsurenceDateViewController.swift */,
 				84B2F8332B38AD54006426FF /* ChequeViewController.swift */,
+				84B2F8372B38C15D006426FF /* NextTODateViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 				8472EBF02B2109B30027B383 /* WorkModel.swift in Sources */,
 				840B60AA2B2AD44A001FEA12 /* TOMileageViewController.swift in Sources */,
 				840B60B22B2AE6DA001FEA12 /* TODateViewController.swift in Sources */,
+				84B2F8382B38C15D006426FF /* NextTODateViewController.swift in Sources */,
 				849908402B1A889D00304317 /* TOViewController.swift in Sources */,
 				847566EB2B23C07E003BC1F6 /* EditCarView.swift in Sources */,
 				559EFBC92AF14B740098672F /* MyCarsView.swift in Sources */,
@@ -443,12 +447,13 @@
 				DEVELOPMENT_TEAM = 6UV938CGZH;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MyCarrrr/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME)";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "$(PRODUCT_NAME)";
+				INFOPLIST_KEY_NSCameraUsageDescription = MyCarrrr;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = MyCarrrr;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -456,9 +461,11 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "-.MyCarrrr";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -472,12 +479,13 @@
 				DEVELOPMENT_TEAM = 6UV938CGZH;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MyCarrrr/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME)";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "$(PRODUCT_NAME)";
+				INFOPLIST_KEY_NSCameraUsageDescription = MyCarrrr;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = MyCarrrr;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -485,9 +493,11 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "-.MyCarrrr";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -15,6 +15,8 @@ protocol TOViewControllerDelegate: AnyObject {
     func addWork(carIndex: Int, work: WorkModel)
     
     func removeWork(index: Int)
+    
+    func updateTODate()
 }
 
 
@@ -84,6 +86,14 @@ class TOViewController: UIViewController {
         present(priceViewController, animated: true)
     }
     
+    func goToUpdateTODateScreen(_ tag: Int) {
+        let dateViewController = NextTODateViewController(carTag: carTag, model: model, label: "Обновление даты предстоящего ТО")
+    
+        dateViewController.modalPresentationStyle = .pageSheet
+        dateViewController.sheetPresentationController?.detents = [.medium()]
+        present(dateViewController, animated: true)
+    }
+    
     @objc func workTableDataUpdated() {
             contentView.updateTable()
         }
@@ -112,6 +122,10 @@ class TOViewController: UIViewController {
 }
 //MARK: fix
 extension TOViewController : TOViewControllerDelegate {
+    func updateTODate() {
+        goToUpdateTODateScreen(carTag)
+    }
+    
     func removeWork(index: Int) {
         model.removeWork(at: index, carTag: carTag)
     }
