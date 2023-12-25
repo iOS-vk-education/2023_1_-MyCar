@@ -270,8 +270,8 @@
             filePath = "MyCarrrr/Views/TOCellTableViewCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "291"
-            endingLineNumber = "291"
+            startingLineNumber = "301"
+            endingLineNumber = "301"
             landmarkName = "didTapMileageButtonOnCell(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -286,10 +286,10 @@
             filePath = "MyCarrrr/Views/TOCellTableViewCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "269"
-            endingLineNumber = "269"
-            landmarkName = "update(with:)"
-            landmarkType = "7">
+            startingLineNumber = "275"
+            endingLineNumber = "275"
+            landmarkName = "TOCellTableViewCell"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

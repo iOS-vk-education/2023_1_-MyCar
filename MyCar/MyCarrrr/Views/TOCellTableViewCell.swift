@@ -16,10 +16,11 @@ protocol TOCellViewDelegate: AnyObject {
     func didTapMileageButtonOnCell(_ tag: Int)
     func didTapPriceButtonOnCell(_ tag: Int)
     
+    func didEndEditingTextView(_ newText: String, _ tag: Int)
 }
 
 
-class TOCellTableViewCell: UITableViewCell, UITableViewDelegate, UITextFieldDelegate {
+class TOCellTableViewCell: UITableViewCell, UITableViewDelegate, UITextFieldDelegate, UITextViewDelegate {
 
     static let identifier = "toCell"
 
@@ -28,9 +29,6 @@ class TOCellTableViewCell: UITableViewCell, UITableViewDelegate, UITextFieldDele
 
     private let mileageFrame = UIView()
     private let mileageLabel = UILabel()
-
-    private let contentFrame = UIView()
-    private let contentLabel = UILabel()
 
     private var contentTextView = UITextView()
 
@@ -84,8 +82,9 @@ class TOCellTableViewCell: UITableViewCell, UITableViewDelegate, UITextFieldDele
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-            self.endEditing(true)
-        }
+        print("fdsfsdfds")
+        self.endEditing(true)
+    }
     
     private func setupContentView() {
         contentView.backgroundColor = .black
@@ -185,7 +184,7 @@ class TOCellTableViewCell: UITableViewCell, UITableViewDelegate, UITextFieldDele
         contentTextView.isScrollEnabled = true
         contentTextView.resignFirstResponder()
 
-        
+        contentTextView.delegate = self
         
         contentView.addSubview(contentTextView)
         
@@ -248,6 +247,13 @@ class TOCellTableViewCell: UITableViewCell, UITableViewDelegate, UITextFieldDele
         chequeButtonView.isUserInteractionEnabled = true
     }
     
+    @objc func textViewDidEndEditing(_ textView: UITextView) {
+        // Call your custom function here
+        // For example, you can call a method from the delegate
+         didEndEditingTextView(textView.text, tag)
+        
+    }
+    
     @objc private func dataFrameTapped() {
         didTapDateButtonOnCell(tag)
 //        cellDelegate?.didTapPriceButtonOnCell(tag)
@@ -270,14 +276,18 @@ class TOCellTableViewCell: UITableViewCell, UITableViewDelegate, UITextFieldDele
 
         dateLabel.text = "Дата: " + String(work!.date)
         mileageLabel.text = "Пробег: " + String(work!.mileage)
-        contentLabel.text = String(work!.content)
         priceLabel.text = "Цена: " + String(work!.price)
+        contentTextView.text = work!.content
         
     }
 
 }
 
 extension TOCellTableViewCell: TOCellViewDelegate {
+    func didEndEditingTextView(_ newText: String, _ tag: Int) {
+        cellDelegate?.didEndEditingTextView(newText, tag)
+    }
+    
     func didTapChequeButtonOnCell(_ tag: Int) {
         cellDelegate?.didTapChequeButtonOnCell(tag)
     }

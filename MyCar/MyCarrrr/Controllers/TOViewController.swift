@@ -199,6 +199,12 @@ extension TOViewController: TOCellViewDelegate {
         goToPriceScreen(tag)
 
     }
+    
+    func didEndEditingTextView(_ newText: String, _ tag: Int) {
+        // Handle the completion of text view editing here
+        model.addWorkContent(carTag, workIndex: tag, newText)
+//        print(newText)
+    }
 }
 
 

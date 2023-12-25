@@ -110,4 +110,8 @@ final class HomeCarsModel {
         cars[carIndex].works[workIndex].workImage = image
     }
     
+    func addWorkContent(_ carIndex: Int, workIndex: Int, _ text: String) {
+        cars[carIndex].works[workIndex].content = text
+    }
+    
 }
