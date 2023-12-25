@@ -30,7 +30,16 @@ class AddCarViewController: UIViewController {
         }
         
         imagePicker.delegate = self
-
+        
+        contentView.carBrandTextField.delegate = self
+        contentView.carModelTextField.delegate = self
+        contentView.carMileageTextField.delegate = self
+        contentView.carYearTextField.delegate = self
+        contentView.vinNumberTextField.delegate = self
+        
+        // Register for keyboard notifications
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
 
     }
     
@@ -42,6 +51,27 @@ class AddCarViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
+    
+//
+        @objc private func keyboardWillShow(notification: Notification) {
+            guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+                else {
+                  // if keyboard size is not available for some reason, dont do anything
+                  return
+                }
+
+                let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height , right: 0.0)
+            contentView.scrollView.isScrollEnabled = true
+            contentView.scrollView.contentOffset = CGPoint(x: 0, y: 200)
+            contentView.scrollView.scrollIndicatorInsets = contentInsets
+        }
+
+        @objc private func keyboardWillHide(notification: Notification) {
+            contentView.scrollView.isScrollEnabled = false
+            contentView.scrollView.contentOffset = CGPoint.zero
+        }
     
     private func changeImage() {
         // вызов метода определяющего тип выбора изображения (camera / photo library)
@@ -142,6 +172,11 @@ class AddCarViewController: UIViewController {
         
     }
     
+    deinit {
+            // Unregister keyboard notifications when the view controller is deallocated
+            NotificationCenter.default.removeObserver(self)
+        }
+    
 
 }
 extension AddCarViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate{
@@ -157,6 +192,13 @@ extension AddCarViewController: UIImagePickerControllerDelegate & UINavigationCo
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
+    }
+}
+extension AddCarViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        // Скрыть клавиатуру при нажатии на Return
+        textField.resignFirstResponder()
+        return true
     }
 }
 

@@ -59,8 +59,8 @@ extension MyCarsViewController: ViewToViewController {
     
     func goToAddScreen() {
         let vc = AddCarViewController(model: model)
+//        vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
-        print(model.allCars())
     }
     
     func goToTOScreen(tag: Int) {

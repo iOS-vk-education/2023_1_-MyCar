@@ -33,11 +33,13 @@ class AddCarView: UIView{
     var checkVINButtonTappedHandler: (() -> Void)?
     var checkVINCompletion: (() -> Void)?
     
-    
+    let scrollView = UIScrollView()
+        
     init() {
         super.init(frame: .zero)
 //        self.backgroundColor = .black
         self.backgroundColor = UIColor(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0, alpha: 1.0)
+        setupScrollView()
         setupHeaderLabel("Новый автомобиль")
         setupContentField()
         
@@ -54,8 +56,31 @@ class AddCarView: UIView{
             self.endEditing(true)
         }
     
+    private func setupScrollView() {
+        addSubview(scrollView)
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Set constraints for the UIScrollView to cover the entire view
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: self.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+        ])
+        
+        scrollView.contentSize = CGSize(width: self.frame.width, height: 1000) // Adjust the height accordingly
+        scrollView.isScrollEnabled = false
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapScreen))
+        scrollView.addGestureRecognizer(tapGesture)
+        scrollView.isUserInteractionEnabled = true
+
+    }
+    
     private func setupHeaderLabel( _ label: String) {
-        self.addSubview(headerLabel)
+//        self.addSubview(headerLabel)
+        scrollView.addSubview(headerLabel)
+        
         headerLabel.text = label
         headerLabel.textColor = .white
         headerLabel.font = UIFont.boldSystemFont(ofSize: 24)
@@ -63,7 +88,7 @@ class AddCarView: UIView{
         
         headerLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            headerLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 45),
+            headerLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 16),
             headerLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
             headerLabel.widthAnchor.constraint(equalToConstant: 390),
             headerLabel.heightAnchor.constraint(equalToConstant: 33)
@@ -91,14 +116,16 @@ class AddCarView: UIView{
         carImageView.image = UIImage(named: "addPhoto") // Укажите имя вашей картинки
         carImageView.contentMode = .scaleAspectFit
         carImageView.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(carImageView)
+//        self.addSubview(carImageView)
+        scrollView.addSubview(carImageView)
+
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapImage))
         carImageView.addGestureRecognizer(tapGesture)
         carImageView.isUserInteractionEnabled = true
         
         
-        // Констрейнты для картинки
+//         Констрейнты для картинки
         carImageView.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 20).isActive = true
         carImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         carImageView.heightAnchor.constraint(equalToConstant: 150).isActive = true // Установите нужную высоту
@@ -106,11 +133,11 @@ class AddCarView: UIView{
         
         NSLayoutConstraint.activate([
             
+
             vinNumberLabel.topAnchor.constraint(equalTo: carImageView.bottomAnchor, constant: 20),
             vinNumberLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 21),
             vinNumberTextField.topAnchor.constraint(equalTo: vinNumberLabel.bottomAnchor, constant: 5),
             vinNumberTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 21),
-            
             
             carBrandLabel.topAnchor.constraint(equalTo: vinNumberTextField.bottomAnchor, constant: 60),
             carBrandLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 21),
@@ -128,14 +155,13 @@ class AddCarView: UIView{
             carYearLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 21),
             carYearTextField.topAnchor.constraint(equalTo: carYearLabel.bottomAnchor, constant: 0),
             carYearTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 21),
-            
+
             
             carMileageLabel.topAnchor.constraint(equalTo: carYearTextField.bottomAnchor, constant: 21),
             carMileageLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 21),
             carMileageTextField.topAnchor.constraint(equalTo: carMileageLabel.bottomAnchor, constant: 0),
             carMileageTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 21),
-            
-            
+
             
         ])
 
@@ -143,7 +169,9 @@ class AddCarView: UIView{
     }
     
     private func setupCheckButton() {
-        self.addSubview(checkVINButton)
+//        self.addSubview(checkVINButton)
+        scrollView.addSubview(checkVINButton)
+
         checkVINButton.setTitle("Заполнить по VIN", for: .normal)
         checkVINButton.setTitleColor(.white, for: .normal)
 //        checkVINButton.backgroundColor = .darkGray
@@ -169,6 +197,7 @@ class AddCarView: UIView{
         
         checkVINButton.addSubview(activityIndicator)
         
+        
         // Устанавливаем ограничения для активити индикатора
         NSLayoutConstraint.activate([
             activityIndicator.centerXAnchor.constraint(equalTo: checkVINButton.centerXAnchor),
@@ -188,7 +217,8 @@ class AddCarView: UIView{
     private func configureTextLabel(_ textLabel: UILabel, text: String) {
         textLabel.textColor = .white
         textLabel.text = text
-        self.addSubview(textLabel)
+//        self.addSubview(textLabel)
+        scrollView.addSubview(textLabel)
         textLabel.translatesAutoresizingMaskIntoConstraints = false
     }
     
@@ -217,7 +247,9 @@ class AddCarView: UIView{
         separatorView.backgroundColor = .white
         textField.addSubview(separatorView)
         
-        self.addSubview(textField)
+//        self.addSubview(textField)
+        scrollView.addSubview(textField)
+        
         
         textField.translatesAutoresizingMaskIntoConstraints = false
     }
@@ -248,7 +280,9 @@ class AddCarView: UIView{
         stackView.addArrangedSubview(cancelButton)
         stackView.addArrangedSubview(updateButton)
         
-        self.addSubview(stackView)
+//        self.addSubview(stackView)
+        scrollView.addSubview(stackView)
+        
         
         NSLayoutConstraint.activate([
             stackView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor),
@@ -278,7 +312,16 @@ class AddCarView: UIView{
         
         checkVINButtonTappedHandler?()
         checkVINCompletion?()
-        
+    
+    }
+    
+    @objc
+    private func didTapScreen() {
+        carBrandTextField.resignFirstResponder()
+        carModelTextField.resignFirstResponder()
+        carYearTextField.resignFirstResponder()
+        carMileageTextField.resignFirstResponder()
+        vinNumberTextField.resignFirstResponder()
     }
     
     
