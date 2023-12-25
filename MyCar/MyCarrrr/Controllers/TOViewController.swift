@@ -38,6 +38,10 @@ class TOViewController: UIViewController {
         contentView.toDelegate = self
         
         NotificationCenter.default.addObserver(self, selector: #selector(workTableDataUpdated), name: .workTableDataUpdated, object: nil)
+        
+        // Register for keyboard notifications
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
 
     }
     
@@ -52,6 +56,27 @@ class TOViewController: UIViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc private func keyboardWillShow(notification: Notification) {
+        
+        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+        else {
+          // if keyboard size is not available for some reason, dont do anything
+          return
+        }
+
+        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height , right: 0.0)
+        contentView.toTable.contentInset = contentInsets
+
+    }
+    
+    @objc private func keyboardWillHide(notification: Notification) {
+        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
+            
+        // reset back the content inset to zero after keyboard is gone
+        contentView.toTable.contentInset = contentInsets
+        
     }
     
     func goToMileageScreen(_ tag: Int) {
@@ -93,6 +118,7 @@ class TOViewController: UIViewController {
         dateViewController.sheetPresentationController?.detents = [.medium()]
         present(dateViewController, animated: true)
     }
+    
     
     @objc func workTableDataUpdated() {
             contentView.updateTable()

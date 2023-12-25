@@ -29,7 +29,7 @@ class TOView: UIView, UITableViewDelegate {
     private let addNextTOButton = UIButton(type: .system)
     private let addNextTOFrame = UIView()
     
-    private var toTable = UITableView()
+    var toTable = UITableView()
 
     
     
