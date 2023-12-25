@@ -44,11 +44,13 @@ class EditCarView: UIView{
     var checkVINButtonTappedHandler: (() -> Void)?
     var checkVINCompletion: (() -> Void)?
     
+    let scrollView = UIScrollView()
     
     init() {
         super.init(frame: .zero)
 //        self.backgroundColor = .black
         self.backgroundColor = UIColor(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0, alpha: 1.0)
+        setupScrollView()
         setupHeaderLabel("Автомобиль")
         setupContentField()
         setupButtons()
@@ -82,8 +84,31 @@ class EditCarView: UIView{
         
     }
     
+    private func setupScrollView() {
+        addSubview(scrollView)
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Set constraints for the UIScrollView to cover the entire view
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: self.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+        ])
+        
+        scrollView.contentSize = CGSize(width: self.frame.width, height: 1000) // Adjust the height accordingly
+        scrollView.isScrollEnabled = false
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapScreen))
+        scrollView.addGestureRecognizer(tapGesture)
+        scrollView.isUserInteractionEnabled = true
+
+    }
+    
     private func setupHeaderLabel( _ label: String) {
-        self.addSubview(headerLabel)
+//        self.addSubview(headerLabel)
+        scrollView.addSubview(headerLabel)
+
         headerLabel.text = label
         headerLabel.textColor = .white
         headerLabel.font = UIFont.boldSystemFont(ofSize: 24)
@@ -91,7 +116,7 @@ class EditCarView: UIView{
         
         headerLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            headerLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 45),
+            headerLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 45),
             headerLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
             headerLabel.widthAnchor.constraint(equalToConstant: 390),
             headerLabel.heightAnchor.constraint(equalToConstant: 33)
@@ -119,7 +144,9 @@ class EditCarView: UIView{
         carImageView.image = UIImage(named: "jeep") // Укажите имя вашей картинки
         carImageView.contentMode = .scaleAspectFit
         carImageView.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(carImageView)
+//        self.addSubview(carImageView)
+        scrollView.addSubview(carImageView)
+
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapImage))
         carImageView.addGestureRecognizer(tapGesture)
@@ -167,7 +194,8 @@ class EditCarView: UIView{
     private func configureTextLabel(_ textLabel: UILabel, text: String) {
         textLabel.textColor = .white
         textLabel.text = text
-        self.addSubview(textLabel)
+//        self.addSubview(textLabel)
+        scrollView.addSubview(textLabel)
         textLabel.translatesAutoresizingMaskIntoConstraints = false
     }
     
@@ -196,7 +224,9 @@ class EditCarView: UIView{
         separatorView.backgroundColor = .white
         textField.addSubview(separatorView)
         
-        self.addSubview(textField)
+//        self.addSubview(textField)
+        scrollView.addSubview(textField)
+
         
         textField.translatesAutoresizingMaskIntoConstraints = false
     }
@@ -226,7 +256,8 @@ class EditCarView: UIView{
         stackView.addArrangedSubview(cancelButton)
         stackView.addArrangedSubview(updateButton)
         
-        self.addSubview(stackView)
+//        self.addSubview(stackView)
+        scrollView.addSubview(stackView)
         
         NSLayoutConstraint.activate([
             stackView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor),
@@ -245,6 +276,15 @@ class EditCarView: UIView{
     
     func updateImage(_ image: UIImage) {
         carImageView.image = image
+    }
+    
+    @objc
+    private func didTapScreen() {
+        carBrandTextField.resignFirstResponder()
+        carModelTextField.resignFirstResponder()
+        carYearTextField.resignFirstResponder()
+        carMileageTextField.resignFirstResponder()
+        vinNumberTextField.resignFirstResponder()
     }
     
     @objc

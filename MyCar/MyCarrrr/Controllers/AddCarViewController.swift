@@ -54,24 +54,23 @@ class AddCarViewController: UIViewController {
     
     
     
-//
-        @objc private func keyboardWillShow(notification: Notification) {
-            guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
-                else {
-                  // if keyboard size is not available for some reason, dont do anything
-                  return
-                }
-
-                let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height , right: 0.0)
-            contentView.scrollView.isScrollEnabled = true
-            contentView.scrollView.contentOffset = CGPoint(x: 0, y: 200)
-            contentView.scrollView.scrollIndicatorInsets = contentInsets
+    @objc private func keyboardWillShow(notification: Notification) {
+        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+        else {
+            // if keyboard size is not available for some reason, dont do anything
+            return
         }
-
-        @objc private func keyboardWillHide(notification: Notification) {
-            contentView.scrollView.isScrollEnabled = false
-            contentView.scrollView.contentOffset = CGPoint.zero
-        }
+        
+        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height , right: 0.0)
+        contentView.scrollView.isScrollEnabled = true
+        contentView.scrollView.contentOffset = CGPoint(x: 0, y: 200)
+        contentView.scrollView.scrollIndicatorInsets = contentInsets
+    }
+    
+    @objc private func keyboardWillHide(notification: Notification) {
+        contentView.scrollView.isScrollEnabled = false
+        contentView.scrollView.contentOffset = CGPoint.zero
+    }
     
     private func changeImage() {
         // вызов метода определяющего тип выбора изображения (camera / photo library)
