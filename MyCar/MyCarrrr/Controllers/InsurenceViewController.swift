@@ -126,7 +126,7 @@ extension InsurenceViewController: InsurenceDateViewControllerDelegate {
         let content = UNMutableNotificationContent()
         content.title = "Заканчивается страховка!"
         content.body = "У вашего \(car.manufacturer) остался один день до окончания страховки."
-        
+        content.sound = .default
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy"
@@ -147,7 +147,7 @@ extension InsurenceViewController: InsurenceDateViewControllerDelegate {
 //        let request = UNNotificationRequest(identifier: "notification", content: content, trigger: trigger)
 
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-        let request = UNNotificationRequest(identifier: "calendarNotification", content: content, trigger: trigger)
+        let request = UNNotificationRequest(identifier: "InsurenceNotification", content: content, trigger: trigger)
 
         UNUserNotificationCenter.current().add(request) { error in
             if let error = error {
