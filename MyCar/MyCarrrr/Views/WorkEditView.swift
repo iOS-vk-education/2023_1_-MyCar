@@ -45,7 +45,9 @@ class WorkEditView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-   
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+            self.endEditing(true)
+        }
     
     private func setupHeaderLabel() {
         self.addSubview(carLabel)
@@ -88,6 +90,7 @@ class WorkEditView: UIView {
         mileageTextField.layer.borderWidth = 2.0
         mileageTextField.backgroundColor = .white
         mileageTextField.layer.cornerRadius = 9
+        mileageTextField.keyboardType = .numberPad
         // Установка фиксированной ширины текстового поля
 //        let fixedWidth: CGFloat = 210
 //        mileageTextField.widthAnchor.constraint(equalToConstant: fixedWidth).isActive = true

@@ -14,7 +14,8 @@ class TOMileageViewController: UIViewController {
     private let carTag: Int
     private let tag: Int
     private var model: HomeCarsModel
-    private var contentView: WorkEditView!
+//    private var contentView: WorkEditView!
+    private var contentView: MileageView!
     private let label: String
     
     override func loadView() {
@@ -32,7 +33,8 @@ class TOMileageViewController: UIViewController {
         self.model = model
         self.label = label
         super.init(nibName: nil, bundle: nil)
-        contentView = WorkEditView(car: model.car(index: carTag), label: label)
+//        contentView = WorkEditView(car: model.car(index: carTag), label: label)
+        contentView = MileageView(car: model.car(index: carTag))
     }
     
     required init?(coder: NSCoder) {
