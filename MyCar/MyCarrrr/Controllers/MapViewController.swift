@@ -11,12 +11,14 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         
                 
         // Настройка отображения карты
         contentView.map.showsUserLocation = true
         contentView.map.delegate = self
         takeLocation()
+
     }
     
     //берем геопозицию и в этой же функции запрашиваем автосервисы рядом

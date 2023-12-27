@@ -3,13 +3,19 @@ import UIKit
 protocol ViewToViewController: AnyObject {
     func cars() -> [CarViewModel]
     func removeCar(index: Int)
-    func goToAnotherScreen()
+    func goToAddScreen()
+    func goToTOScreen(tag: Int)
 }
+
+
 
 class MyCarsViewController: UIViewController {
     
     private let contentView = MyCarsView()
     private let model: HomeCarsModel
+    
+
+
     
     init(model: HomeCarsModel) {
         self.model = model
@@ -27,23 +33,18 @@ class MyCarsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         contentView.delegate = self
-        contentView.setTapOnAddCarButton {
-            self.addCar()
-        }
+    
         // Регистрация для получения уведомлений о обновлении данных
         NotificationCenter.default.addObserver(self, selector: #selector(handleDataUpdated), name: .dataUpdated, object: nil)
     }
     
+
+    
     @objc func handleDataUpdated() {
-        // Обновление таблицы
         contentView.updateTable()
         }
     
     
-    private func addCar() {
-        goToAnotherScreen()
-        print(model.allCars())
-    }
 }
 
 extension MyCarsViewController: ViewToViewController {
@@ -56,9 +57,61 @@ extension MyCarsViewController: ViewToViewController {
         model.remove(at: index)
     }
     
-    func goToAnotherScreen() {
+    func goToAddScreen() {
         let vc = AddCarViewController(model: model)
+//        vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
+    }
+    
+    func goToTOScreen(tag: Int) {
+        //        let vc = TOViewController(model: model)
+        //        present(vc, animated: true)
+        let toViewController = TOViewController(model: model, tag: tag)
+
+        // Создаем UINavigationController
+        let navigationController = UINavigationController(rootViewController: toViewController)
+        
+        // Добавляем "Назад" кнопку
+        let backButton = UIBarButtonItem(title: "Назад", style: .plain, target: self, action: #selector(goBack))
+        let addButton = UIBarButtonItem(title: "Добавить", style: .plain, target: toViewController, action: #selector(toViewController.addWorkAction(_:)))
+
+        print(tag)
+        addButton.tag = tag
+        
+//        backButton.tintColor = .white
+//        addButton.tintColor = .white
+        toViewController.navigationItem.leftBarButtonItem = backButton
+        toViewController.navigationItem.rightBarButtonItem = addButton
+        
+        navigationController.modalPresentationStyle = .fullScreen
+        navigationController.modalTransitionStyle = .flipHorizontal
+        
+        // Презентуем UINavigationController с анимацией
+        present(navigationController, animated: true, completion: nil)
+    
+    }
+    
+    func goToInsurenceScreen(tag: Int) {
+        let vc = InsurenceViewController(model: model, tag: tag)
+        present(vc, animated: true)
+    }
+
+    
+    @objc func goBack() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func goToMileageScreen(tag: Int) {
+        let mileageViewController = MileageViewController(model: model, tag: tag)
+    
+        mileageViewController.modalPresentationStyle = .pageSheet
+        mileageViewController.sheetPresentationController?.detents = [.medium()]
+        present(mileageViewController, animated: true)
+    }
+    
+    func goToEditScreen(_ tag: Int) {
+        let editViewController = EditCarViewController(model: model, tag: tag)
+        present(editViewController, animated: true)
     }
     
 }
@@ -66,4 +119,29 @@ extension MyCarsViewController: ViewToViewController {
 extension Notification.Name {
     static let dataUpdated = Notification.Name("dataUpdated")
 }
+
+extension MyCarsViewController: CellViewDelegate {
+    
+    func didTapEditCarButtonOnCell(_ tag: Int) {
+        goToEditScreen(tag)
+    }
+    
+    func didTapMileageButtonOnCell(_ tag: Int) {
+        goToMileageScreen(tag: tag)
+    }
+    
+    func didTapInsuranceButtonOnCell(_ tag: Int) {
+        goToInsurenceScreen(tag: tag)
+    }
+    
+    func didTapButtonOnCell(_ tag: Int) {
+        goToTOScreen(tag: tag)
+    }
+    
+//    func didTapButtonOnCell() {
+//       goToTOScreen()
+//    }
+    
+}
+
 

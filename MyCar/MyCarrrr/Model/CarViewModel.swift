@@ -1,13 +1,21 @@
 import Foundation
+import UIKit
 
-struct CarViewModel: Codable {
+struct CarViewModel {
     
-    let manufacturer: String
-    let model: String
-    let milleage: Int
-    let purchaseDate: String
-    let vinNumber: String
+    var manufacturer: String
+    var model: String
+    var milleage: Int
+    var purchaseDate: String
+    var vinNumber: String
     
+    var works: [WorkModel] = []
+    
+    var carImage: UIImage?
+    var insurenceImage: UIImage?
+    var insurenceDate: String?
+    var nextTODate: String?
+//    var insurenceImage = UIImage(named: "bmw5")
 }
 
 struct CarInfo: Codable {
