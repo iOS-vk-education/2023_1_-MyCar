@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class TOView: UIView, UITableViewDelegate {
+class TOView: UIView {
     
     
     
@@ -148,6 +148,7 @@ class TOView: UIView, UITableViewDelegate {
         
         self.addSubview(toTable)
         toTable.dataSource = self
+        toTable.delegate = self
         toTable.backgroundColor = .clear
         toTable.separatorStyle = .none
         toTable.translatesAutoresizingMaskIntoConstraints = false
@@ -192,17 +193,35 @@ extension TOView: UITableViewDataSource{
         return cell
 
     }
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            removeItem(at: indexPath.row)
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        if editingStyle == .delete {
+//            removeItem(at: indexPath.row)
+//            tableView.deleteRows(at: [indexPath], with: .fade)
+//            toTable.reloadData()
+//            
+//        }
+//    }
+}
+
+extension TOView: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (_, _, completionHandler) in
+            self?.removeItem(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-            toTable.reloadData()
-            
+            self?.toTable.reloadData()
+            completionHandler(true)
+
         }
+
+        // Customize the delete button color
+        deleteAction.backgroundColor = UIColor.red
+        let deleteIcon = UIImage(systemName: "trash")?.withRenderingMode(.alwaysTemplate)
+        deleteAction.image = deleteIcon
+
+
+        return UISwipeActionsConfiguration(actions: [deleteAction])
     }
-    
-   
-    
 }
 
 
