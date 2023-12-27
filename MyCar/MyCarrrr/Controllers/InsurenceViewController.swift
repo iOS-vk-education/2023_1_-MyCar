@@ -122,6 +122,21 @@ extension InsurenceViewController: UIImagePickerControllerDelegate & UINavigatio
 extension InsurenceViewController: InsurenceDateViewControllerDelegate {
     func changeDate(_ date: String) {
         contentView.updateDate(date)
+        
+        let content = UNMutableNotificationContent()
+                content.title = "Заголовок уведомления"
+                content.body = "Текст уведомления"
+
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+                let request = UNNotificationRequest(identifier: "notification", content: content, trigger: trigger)
+
+                UNUserNotificationCenter.current().add(request) { error in
+                    if let error = error {
+                        print("Ошибка отправки уведомления: (error.localizedDescription)")
+                    } else {
+                        print("Уведомление успешно отправлено")
+                    }
+                }
     }
     
     
