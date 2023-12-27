@@ -19,5 +19,7 @@
 			</array>
 		</dict>
 	</dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Подтвердите использование Вашей геолокации!</string>
 </dict>
 </plist>
