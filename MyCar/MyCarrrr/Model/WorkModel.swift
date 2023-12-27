@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-struct WorkModel {
+struct WorkModel: Codable {
     var date: String
     var mileage: String
     var content: String

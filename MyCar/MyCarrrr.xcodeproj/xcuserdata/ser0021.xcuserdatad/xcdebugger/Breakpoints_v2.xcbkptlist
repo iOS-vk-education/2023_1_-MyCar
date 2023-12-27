@@ -420,5 +420,53 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "817EF796-E9DA-4F9E-9655-3F6B02CF80A7"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyCarrrr/Model/HomeCarsModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
+            landmarkName = "updateCarImage(_:_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "817EF796-E9DA-4F9E-9655-3F6B02CF80A7 - 47eac199006ea88e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyCarrrr.HomeCarsModel.updateCarImage(__C.UIImage, Swift.Int) -&gt; ()"
+                  moduleName = "MyCarrrr"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ser0021/Downloads/git/2023_1_-StudentEducation/MyCar/MyCarrrr/Model/HomeCarsModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "147"
+                  endingLineNumber = "147"
+                  offsetFromSymbolStart = "52">
+               </Location>
+               <Location
+                  uuid = "817EF796-E9DA-4F9E-9655-3F6B02CF80A7 - 47eac199006ea963"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyCarrrr.HomeCarsModel.updateCarImage(__C.UIImage, Swift.Int) -&gt; ()"
+                  moduleName = "MyCarrrr"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ser0021/Downloads/git/2023_1_-StudentEducation/MyCar/MyCarrrr/Model/HomeCarsModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "158"
+                  endingLineNumber = "158"
+                  offsetFromSymbolStart = "56">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
