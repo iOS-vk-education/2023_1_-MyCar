@@ -73,6 +73,9 @@ class TODateView: UIView {
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.tintColor = .white
+        datePicker.setValue(UIColor.white, forKey: "textColor")
+
+        
         self.addSubview(datePicker)
         
         datePicker.translatesAutoresizingMaskIntoConstraints = false

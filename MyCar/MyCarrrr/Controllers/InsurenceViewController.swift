@@ -124,19 +124,38 @@ extension InsurenceViewController: InsurenceDateViewControllerDelegate {
         contentView.updateDate(date)
         
         let content = UNMutableNotificationContent()
-                content.title = "Заголовок уведомления"
-                content.body = "Текст уведомления"
+        content.title = "Заканчивается страховка!"
+        content.body = "У вашего \(car.manufacturer) остался один день до окончания страховки."
+        
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        var dateComponents = DateComponents()
+        
+        if let date = dateFormatter.date(from: date) {
+            let calendar = Calendar.current
+            let previousDay = Calendar.current.date(byAdding: .day, value: -1, to: date)!
+            let dateComponents = Calendar.current.dateComponents([.year, .month, .day], from: previousDay)
 
-                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-                let request = UNNotificationRequest(identifier: "notification", content: content, trigger: trigger)
+        } else {
+            print("Ошибка преобразования строки в дату")
+        }
+        dateComponents.minute = 0
+        dateComponents.hour = 10
+        
+//        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+//        let request = UNNotificationRequest(identifier: "notification", content: content, trigger: trigger)
 
-                UNUserNotificationCenter.current().add(request) { error in
-                    if let error = error {
-                        print("Ошибка отправки уведомления: (error.localizedDescription)")
-                    } else {
-                        print("Уведомление успешно отправлено")
-                    }
-                }
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+        let request = UNNotificationRequest(identifier: "calendarNotification", content: content, trigger: trigger)
+
+        UNUserNotificationCenter.current().add(request) { error in
+            if let error = error {
+                print("Ошибка отправки уведомления: (error.localizedDescription)")
+            } else {
+                print("Уведомление успешно отправлено")
+            }
+        }
     }
     
     
