@@ -95,7 +95,7 @@ class TOCellTableViewCell: UITableViewCell, UITableViewDelegate, UITextFieldDele
         contentView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            contentView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
+            contentView.topAnchor.constraint(equalTo: self.topAnchor, constant: 8),
             contentView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
             contentView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
             contentView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0),
