@@ -26,7 +26,7 @@ final class HomeCarsModel {
     func loadCars() -> [CarViewModel] {
         if let savedData = UserDefaults.standard.data(forKey: "carsArrayKey") {
             do {
-                // 2. Преобразуйте данные в массив структур
+                // Преобразуйте данные в массив структур
                 let decoder = JSONDecoder()
                 let loadedCarsArray = try decoder.decode([CarViewModel].self, from: savedData)
 
@@ -148,9 +148,6 @@ final class HomeCarsModel {
         saveCars()
     }
     
-//    func updateChequeImage(_ image: UIImage, _ tag: Int) {
-//        cars[tag].insurenceImage = image
-//    }
     func updateChequeImage(_ carIndex: Int, workIndex: Int, _ image: UIImage) {
         cars[carIndex].works[workIndex].workImage = image
         saveCars()

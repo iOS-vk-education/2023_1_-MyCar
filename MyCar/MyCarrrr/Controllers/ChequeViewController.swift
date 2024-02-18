@@ -78,7 +78,7 @@ class ChequeViewController: UIViewController, ChequeViewDelegate  {
         self.present(imagePicker, animated: true, completion: nil)
     }
     
-    
+    // MARK: вот тут надо переделать чтобы нормально открывалась картинка
     func didTapImage() {
         print("image tapped")
 //        if let image = contentView.chequeImage.image {

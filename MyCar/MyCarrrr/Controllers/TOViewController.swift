@@ -146,7 +146,7 @@ class TOViewController: UIViewController {
    
 
 }
-//MARK: fix
+
 extension TOViewController : TOViewControllerDelegate {
     func updateTODate() {
         goToUpdateTODateScreen(carTag)
@@ -161,18 +161,13 @@ extension TOViewController : TOViewControllerDelegate {
     }
     
     func works(carIndex: Int) -> [WorkModel] {
-//        var car = model.car(index: carIndex)
         return model.allWorks(carIndex)
     }
     
     func work(carIndex: Int, workIndex: Int) -> WorkModel {
         model.work(carIndex: carIndex, workIndex: workIndex)
     }
-    
-    
-    //    func removeWork(index: Int) {
-    //        model.remove(at: index)
-    //    }
+
 }
 
 extension Notification.Name {

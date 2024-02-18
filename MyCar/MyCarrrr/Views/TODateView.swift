@@ -111,8 +111,6 @@ class TODateView: UIView {
     }
     
     @objc private func didTapUpdateButton () {
-//        let mileage = Int(mileageTextField.text ?? "") ?? 0
-//        delegate?.didTapMileageButton(mileage)
         let currentDate = datePicker.date
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy"

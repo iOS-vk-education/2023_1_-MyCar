@@ -59,22 +59,13 @@ class TOCellTableViewCell: UITableViewCell, UITableViewDelegate, UITextFieldDele
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.backgroundColor = .clear
         
-            
         setupContentView()
         setupDateFrame()
         setupMileageFrame()
-        
-        
-        
         setupPriceFrame()
         setupChequeButtonView()
-        
-        
-//        setupContentTestView()
-//        setupContentTextField()
         setupContentTextView()
         
-
     }
     
     required init?(coder: NSCoder) {
@@ -102,7 +93,7 @@ class TOCellTableViewCell: UITableViewCell, UITableViewDelegate, UITextFieldDele
             
             contentView.widthAnchor.constraint(equalToConstant: 361),
             contentView.heightAnchor.constraint(greaterThanOrEqualToConstant: 307)
-//            contentView.heightAnchor.constraint(greaterThanOrEqualToConstant: 200)
+
         ])
         
     }
@@ -207,7 +198,6 @@ class TOCellTableViewCell: UITableViewCell, UITableViewDelegate, UITextFieldDele
 
         priceFrame.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-//            priceFrame.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -21),
             priceFrame.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -21),
             priceFrame.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 21),
             priceFrame.widthAnchor.constraint(equalToConstant: 154),
@@ -256,7 +246,6 @@ class TOCellTableViewCell: UITableViewCell, UITableViewDelegate, UITextFieldDele
     
     @objc private func dataFrameTapped() {
         didTapDateButtonOnCell(tag)
-//        cellDelegate?.didTapPriceButtonOnCell(tag)
     }
     @objc private func mileageFrameTapped() {
         didTapMileageButtonOnCell(tag)

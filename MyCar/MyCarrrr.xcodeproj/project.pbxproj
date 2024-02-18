@@ -17,9 +17,9 @@
 		559EFBCB2AF169610098672F /* CarCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559EFBCA2AF169610098672F /* CarCellTableViewCell.swift */; };
 		559EFBCD2AF179870098672F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559EFBCC2AF179870098672F /* TabBarController.swift */; };
 		559EFBCF2AF17C350098672F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559EFBCE2AF17C350098672F /* MapViewController.swift */; };
-
+		55DAF91F2B209D2E003BB552 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DAF91E2B209D2D003BB552 /* MapView.swift */; };
+		55DAF9212B20B3E4003BB552 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DAF9202B20B3E4003BB552 /* Location.swift */; };
 		840B60AA2B2AD44A001FEA12 /* TOMileageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B60A92B2AD44A001FEA12 /* TOMileageViewController.swift */; };
-		840B60AC2B2AE21A001FEA12 /* PriceWorkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B60AB2B2AE21A001FEA12 /* PriceWorkViewController.swift */; };
 		840B60AE2B2AE251001FEA12 /* WorkEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B60AD2B2AE251001FEA12 /* WorkEditView.swift */; };
 		840B60B02B2AE3EA001FEA12 /* TOPriceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B60AF2B2AE3EA001FEA12 /* TOPriceViewController.swift */; };
 		840B60B22B2AE6DA001FEA12 /* TODateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B60B12B2AE6DA001FEA12 /* TODateViewController.swift */; };
@@ -41,10 +41,6 @@
 		84B2F8342B38AD54006426FF /* ChequeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2F8332B38AD54006426FF /* ChequeViewController.swift */; };
 		84B2F8362B38AFB2006426FF /* ChequeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2F8352B38AFB2006426FF /* ChequeView.swift */; };
 		84B2F8382B38C15D006426FF /* NextTODateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2F8372B38C15D006426FF /* NextTODateViewController.swift */; };
-
-		55DAF91F2B209D2E003BB552 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DAF91E2B209D2D003BB552 /* MapView.swift */; };
-		55DAF9212B20B3E4003BB552 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DAF9202B20B3E4003BB552 /* Location.swift */; };
-
 		84CE9ADB2B02FFC80070A8B2 /* CarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE9ADA2B02FFC80070A8B2 /* CarViewModel.swift */; };
 		84CE9ADD2B02FFE80070A8B2 /* HomeCarsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE9ADC2B02FFE80070A8B2 /* HomeCarsModel.swift */; };
 		84CE9AE02B03003F0070A8B2 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE9ADF2B03003F0070A8B2 /* NetworkService.swift */; };
@@ -68,9 +64,9 @@
 		559EFBCA2AF169610098672F /* CarCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarCellTableViewCell.swift; sourceTree = "<group>"; };
 		559EFBCC2AF179870098672F /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		559EFBCE2AF17C350098672F /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-
+		55DAF91E2B209D2D003BB552 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		55DAF9202B20B3E4003BB552 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		840B60A92B2AD44A001FEA12 /* TOMileageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TOMileageViewController.swift; sourceTree = "<group>"; };
-		840B60AB2B2AE21A001FEA12 /* PriceWorkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceWorkViewController.swift; sourceTree = "<group>"; };
 		840B60AD2B2AE251001FEA12 /* WorkEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkEditView.swift; sourceTree = "<group>"; };
 		840B60AF2B2AE3EA001FEA12 /* TOPriceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TOPriceViewController.swift; sourceTree = "<group>"; };
 		840B60B12B2AE6DA001FEA12 /* TODateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TODateViewController.swift; sourceTree = "<group>"; };
@@ -92,10 +88,6 @@
 		84B2F8332B38AD54006426FF /* ChequeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChequeViewController.swift; sourceTree = "<group>"; };
 		84B2F8352B38AFB2006426FF /* ChequeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChequeView.swift; sourceTree = "<group>"; };
 		84B2F8372B38C15D006426FF /* NextTODateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextTODateViewController.swift; sourceTree = "<group>"; };
-
-		55DAF91E2B209D2D003BB552 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
-		55DAF9202B20B3E4003BB552 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
-
 		84CE9ADA2B02FFC80070A8B2 /* CarViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarViewModel.swift; sourceTree = "<group>"; };
 		84CE9ADC2B02FFE80070A8B2 /* HomeCarsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCarsModel.swift; sourceTree = "<group>"; };
 		84CE9ADF2B03003F0070A8B2 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -128,7 +120,6 @@
 				84709F8F2B229F3A00AD8347 /* MileageViewController.swift */,
 				847566E82B23C039003BC1F6 /* EditCarViewController.swift */,
 				840B60A92B2AD44A001FEA12 /* TOMileageViewController.swift */,
-				840B60AB2B2AE21A001FEA12 /* PriceWorkViewController.swift */,
 				840B60AF2B2AE3EA001FEA12 /* TOPriceViewController.swift */,
 				840B60B12B2AE6DA001FEA12 /* TODateViewController.swift */,
 				84F8EEAC2B337D170059F5A2 /* InsurenceViewController.swift */,
@@ -146,7 +137,6 @@
 				559EFBC82AF14B740098672F /* MyCarsView.swift */,
 				559EFBCA2AF169610098672F /* CarCellTableViewCell.swift */,
 				84CE9AE32B0307370070A8B2 /* AddCarView.swift */,
-
 				849908412B1A88BA00304317 /* TOView.swift */,
 				8472EBF12B210BD40027B383 /* TOCellTableViewCell.swift */,
 				84709F912B229FCC00AD8347 /* MileageView.swift */,
@@ -155,9 +145,7 @@
 				840B60B32B2AE708001FEA12 /* TODateView.swift */,
 				84F8EEAE2B337D940059F5A2 /* InsurenceView.swift */,
 				84B2F8352B38AFB2006426FF /* ChequeView.swift */,
-
 				55DAF91E2B209D2D003BB552 /* MapView.swift */,
-
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -301,24 +289,17 @@
 				846AA1CC2B1FD835001FC13D /* MileageButtonView.swift in Sources */,
 				840B60AE2B2AE251001FEA12 /* WorkEditView.swift in Sources */,
 				556C3AE42AF9A8CE00D334B8 /* CarModel.swift in Sources */,
-
 				84F8EEAD2B337D170059F5A2 /* InsurenceViewController.swift in Sources */,
-
 				55DAF9212B20B3E4003BB552 /* Location.swift in Sources */,
-
 				84CE9ADD2B02FFE80070A8B2 /* HomeCarsModel.swift in Sources */,
 				84B2F8362B38AFB2006426FF /* ChequeView.swift in Sources */,
 				559EFBB92AF14A5F0098672F /* MyCarsViewController.swift in Sources */,
 				559EFBB52AF14A5F0098672F /* AppDelegate.swift in Sources */,
-
 				849908422B1A88BA00304317 /* TOView.swift in Sources */,
-
 				551805CE2B2266C700674218 /* PlaceClass.swift in Sources */,
-
 				559EFBB72AF14A5F0098672F /* SceneDelegate.swift in Sources */,
 				84709F902B229F3A00AD8347 /* MileageViewController.swift in Sources */,
 				8472EBF42B210E6E0027B383 /* HomeWorkModel.swift in Sources */,
-				840B60AC2B2AE21A001FEA12 /* PriceWorkViewController.swift in Sources */,
 				559EFBCD2AF179870098672F /* TabBarController.swift in Sources */,
 				55DAF91F2B209D2E003BB552 /* MapView.swift in Sources */,
 				84CE9AE62B03073F0070A8B2 /* AddCarViewController.swift in Sources */,

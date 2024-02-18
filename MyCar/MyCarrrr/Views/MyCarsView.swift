@@ -14,7 +14,6 @@ class MyCarsView: UIView {
     
     init() {
         super.init(frame: .zero)
-//        self.backgroundColor = .darkGrayBMW
         self.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
 
         setupUI()
@@ -26,14 +25,12 @@ class MyCarsView: UIView {
     
     func updateTable() {
         carsTable.reloadData()
-//        emptyStateImageView.isHidden = !(delegate?.cars().isEmpty ?? true)
     }
     
     func setupUI() {
         setupHeaderLabel()
         setupAddCarButton()
         setupCarTable()
-//        setupEmptyStateImageView()
 
     }
     private func setupEmptyStateImageView() {
@@ -137,14 +134,6 @@ extension MyCarsView: UITableViewDataSource {
         return true
     }
   
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-//            removeItem(at: indexPath.row)
-//            tableView.deleteRows(at: [indexPath], with: .fade)
-//            carsTable.reloadData()
-//            
-//        }
-//    }
     
 }
 

@@ -145,10 +145,7 @@ extension MyCarsViewController: CellViewDelegate {
     func didTapButtonOnCell(_ tag: Int) {
         goToTOScreen(tag: tag)
     }
-    
-//    func didTapButtonOnCell() {
-//       goToTOScreen()
-//    }
+
     
 }
 

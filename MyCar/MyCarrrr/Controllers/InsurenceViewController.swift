@@ -106,7 +106,6 @@ class InsurenceViewController: UIViewController, InsurenceViewDelegate  {
 extension InsurenceViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate{
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-//            car.insurenceImage = selectedImage
             model.updateInsuranceImage(selectedImage, carTag)
             let img = model.car(index: carTag).insurenceImage ?? UIImage(named: "nophoto")
             contentView.updateImage(img!)
@@ -143,6 +142,7 @@ extension InsurenceViewController: InsurenceDateViewControllerDelegate {
         dateComponents.minute = 0
         dateComponents.hour = 10
         
+        //MARK: это для презентации
 //        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
 //        let request = UNNotificationRequest(identifier: "notification", content: content, trigger: trigger)
 

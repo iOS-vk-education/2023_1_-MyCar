@@ -37,7 +37,6 @@ class AddCarView: UIView{
         
     init() {
         super.init(frame: .zero)
-//        self.backgroundColor = .black
         self.backgroundColor = UIColor(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0, alpha: 1.0)
         setupScrollView()
         setupHeaderLabel("Новый автомобиль")
@@ -78,7 +77,6 @@ class AddCarView: UIView{
     }
     
     private func setupHeaderLabel( _ label: String) {
-//        self.addSubview(headerLabel)
         scrollView.addSubview(headerLabel)
         
         headerLabel.text = label
@@ -112,11 +110,10 @@ class AddCarView: UIView{
         
         
         //добавление картинки
-//        let carImageView = UIImageView()
-        carImageView.image = UIImage(named: "addPhoto") // Укажите имя вашей картинки
+
+        carImageView.image = UIImage(named: "addPhoto")
         carImageView.contentMode = .scaleAspectFit
         carImageView.translatesAutoresizingMaskIntoConstraints = false
-//        self.addSubview(carImageView)
         scrollView.addSubview(carImageView)
 
         
@@ -169,12 +166,11 @@ class AddCarView: UIView{
     }
     
     private func setupCheckButton() {
-//        self.addSubview(checkVINButton)
+
         scrollView.addSubview(checkVINButton)
 
         checkVINButton.setTitle("Заполнить по VIN", for: .normal)
         checkVINButton.setTitleColor(.white, for: .normal)
-//        checkVINButton.backgroundColor = .darkGray
         checkVINButton.backgroundColor = .black
         
         
@@ -217,7 +213,6 @@ class AddCarView: UIView{
     private func configureTextLabel(_ textLabel: UILabel, text: String) {
         textLabel.textColor = .white
         textLabel.text = text
-//        self.addSubview(textLabel)
         scrollView.addSubview(textLabel)
         textLabel.translatesAutoresizingMaskIntoConstraints = false
     }
@@ -247,7 +242,7 @@ class AddCarView: UIView{
         separatorView.backgroundColor = .white
         textField.addSubview(separatorView)
         
-//        self.addSubview(textField)
+
         scrollView.addSubview(textField)
         
         
@@ -264,7 +259,6 @@ class AddCarView: UIView{
         let updateButton = UIButton(type: .system)
         updateButton.setTitle("Добавить", for: .normal)
         updateButton.setTitleColor(.white, for: .normal)
-//        updateButton.backgroundColor = .darkGray
         updateButton.backgroundColor = .black
         updateButton.layer.cornerRadius = 15
         
@@ -280,7 +274,6 @@ class AddCarView: UIView{
         stackView.addArrangedSubview(cancelButton)
         stackView.addArrangedSubview(updateButton)
         
-//        self.addSubview(stackView)
         scrollView.addSubview(stackView)
         
         

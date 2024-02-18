@@ -68,6 +68,7 @@ extension NextTODateViewController: DateViewDelegate {
         dateComponents.hour = 10
         dateComponents.second = 5
         
+        //MARK: для презентации
 //        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
 //        let request = UNNotificationRequest(identifier: "notification", content: content, trigger: trigger)
 

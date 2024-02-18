@@ -265,14 +265,14 @@ class CarCellTableViewCell: UITableViewCell {
         
         carImageView.image = car!.carImage
         
-//        nextTOLabel.text = "Следующее ТО: 20.02.2023"
+
         if (car!.nextTODate != nil) {
             nextTOLabel.text = "Следующее ТО: \(car!.nextTODate!)"
         }else {
             nextTOLabel.text = "Нет запланированных ТО"
         }
         
-//        nextInsuranceLabel.text = "Страховка до: 21.02.2023"
+
         if (car!.insurenceDate != nil) {
             nextInsuranceLabel.text = "Страховка до: \(car!.insurenceDate!)"
         }else {
@@ -316,7 +316,5 @@ extension CarCellTableViewCell: CellViewDelegate {
         delegate?.didTapButtonOnCell(tag)
     }
     
-//    func didTapButtonOnCell() {
-//        delegate?.didTapButtonOnCell(on: self)
-//    }
+
 }

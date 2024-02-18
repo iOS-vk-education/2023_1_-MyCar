@@ -87,7 +87,6 @@ class MileageButtonView: UIView {
     
     @objc
     private func didTapButton() {
-//            delegate?.didTapButton()
         delegate?.didTapMileageButton()
         
         }

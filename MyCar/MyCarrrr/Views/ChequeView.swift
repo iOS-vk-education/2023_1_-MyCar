@@ -40,9 +40,7 @@ class ChequeView: UIView {
         self.workTag = workTag
         
         super.init(frame: .zero)
-        //        self.backgroundColor = .gray
         self.backgroundColor = UIColor(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0, alpha: 1.0)
-//        print(tag)
         setupImage()
         setupChangeButton()
         addTapGestureToImage()
@@ -57,7 +55,6 @@ class ChequeView: UIView {
     private func setupImage() {
         
         self.addSubview(chequeImage)
-        //        insurenceImage.image = UIImage(named: "jeep")
         print(tag)
         if (car.works[workTag].workImage != nil) {
             chequeImage.image = car.works[workTag].workImage
