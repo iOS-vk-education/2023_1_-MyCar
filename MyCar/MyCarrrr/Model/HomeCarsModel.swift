@@ -41,8 +41,9 @@ final class HomeCarsModel {
         return []
         
     }
+   
     
-    func carDataFromVin(vin: String, completion: @escaping (String?, String?, Int?) -> Void) {
+    func carDataFromVin(vin: String, completion: @escaping (String?, String?, Int?, Error?) -> Void) {
         let networkService = NetworkService(vin)
 
         networkService.homePageCall { result in
@@ -51,9 +52,10 @@ final class HomeCarsModel {
                 let manufacturer = car.make.name
                 let model = car.model.name
                 let year = car.years.first?.year
-                completion(manufacturer, model, year)
+                completion(manufacturer, model, year, nil)
             case .failure(let failure):
                 print(failure)
+                completion(nil, nil, nil, failure)
             }
         }
     }

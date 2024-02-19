@@ -8,6 +8,7 @@ final class NetworkService {
 //    let vinChevi = "1G1AF1F57A7192174"
 //    let vinBmw = "WBAGG83461DN81194"
 //    let vinTesla = "5YJSA1E62NF016329"
+//    let vinTesla = "5YJS11112NF016329"
     
     init(_ vin: String) {
         self.vin = vin
