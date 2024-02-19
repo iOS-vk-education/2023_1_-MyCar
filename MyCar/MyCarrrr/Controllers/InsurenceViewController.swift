@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SwiftPhotoGallery
 
 class InsurenceViewController: UIViewController, InsurenceViewDelegate  {
     
@@ -64,15 +65,16 @@ class InsurenceViewController: UIViewController, InsurenceViewDelegate  {
     }
     
     func didTapImage() {
-        if let image = contentView.insurenceImage.image {
-            let fullscreenImageView = UIImageView(image: image)
-            fullscreenImageView.isUserInteractionEnabled = true
-            fullscreenImageView.contentMode = .scaleAspectFit
-            fullscreenImageView.frame = UIScreen.main.bounds
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissFullscreenImage(sender:)))
-            fullscreenImageView.addGestureRecognizer(tapGesture)
-            UIApplication.shared.keyWindow?.addSubview(fullscreenImageView)
-        }
+
+        let gallery = SwiftPhotoGallery(delegate: self, dataSource: self)
+
+        gallery.backgroundColor = UIColor.black
+//        gallery.pageIndicatorTintColor = UIColor.gray.withAlphaComponent(0.5)
+//        gallery.currentPageIndicatorTintColor = UIColor.white
+        gallery.hidePageControl = true
+
+        present(gallery, animated: true, completion: nil)
+        
     }
     
     @objc func dismissFullscreenImage(sender: UITapGestureRecognizer) {
@@ -143,11 +145,12 @@ extension InsurenceViewController: InsurenceDateViewControllerDelegate {
         dateComponents.hour = 10
         
         //MARK: это для презентации
-//        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-//        let request = UNNotificationRequest(identifier: "notification", content: content, trigger: trigger)
-
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-        let request = UNNotificationRequest(identifier: "InsurenceNotification", content: content, trigger: trigger)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+        let request = UNNotificationRequest(identifier: "notification", content: content, trigger: trigger)
+        
+        //MARK: это по дате
+//        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+//        let request = UNNotificationRequest(identifier: "InsurenceNotification", content: content, trigger: trigger)
 
         UNUserNotificationCenter.current().add(request) { error in
             if let error = error {
@@ -157,9 +160,23 @@ extension InsurenceViewController: InsurenceDateViewControllerDelegate {
             }
         }
     }
-    
-    
 }
+
+extension InsurenceViewController: SwiftPhotoGalleryDataSource, SwiftPhotoGalleryDelegate {
+    
+    func numberOfImagesInGallery(gallery: SwiftPhotoGallery) -> Int {
+        return 1
+    }
+
+    func imageInGallery(gallery: SwiftPhotoGallery, forIndex: Int) -> UIImage? {
+        return contentView.insurenceImage.image
+    }
+
+    func galleryDidTapToClose(gallery: SwiftPhotoGallery) {
+        dismiss(animated: true, completion: nil)
+    }
+}
+
 
 
 

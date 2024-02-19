@@ -49,9 +49,12 @@
 		84CE9AE62B03073F0070A8B2 /* AddCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE9AE52B03073F0070A8B2 /* AddCarViewController.swift */; };
 		84F8EEAD2B337D170059F5A2 /* InsurenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F8EEAC2B337D170059F5A2 /* InsurenceViewController.swift */; };
 		84F8EEAF2B337D940059F5A2 /* InsurenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F8EEAE2B337D940059F5A2 /* InsurenceView.swift */; };
+		C395F7468B294597335A7200 /* Pods_MyCarrrr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24864BD75FEDB4706EECD45B /* Pods_MyCarrrr.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		24864BD75FEDB4706EECD45B /* Pods_MyCarrrr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyCarrrr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		414A1C32185C7C1B85C40D23 /* Pods-MyCarrrr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyCarrrr.debug.xcconfig"; path = "Target Support Files/Pods-MyCarrrr/Pods-MyCarrrr.debug.xcconfig"; sourceTree = "<group>"; };
 		551805CD2B2266C700674218 /* PlaceClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceClass.swift; sourceTree = "<group>"; };
 		556C3AE32AF9A8CE00D334B8 /* CarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarModel.swift; sourceTree = "<group>"; };
 		559EFBB12AF14A5F0098672F /* MyCarrrr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyCarrrr.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,6 +99,7 @@
 		84CE9AE52B03073F0070A8B2 /* AddCarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCarViewController.swift; sourceTree = "<group>"; };
 		84F8EEAC2B337D170059F5A2 /* InsurenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsurenceViewController.swift; sourceTree = "<group>"; };
 		84F8EEAE2B337D940059F5A2 /* InsurenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsurenceView.swift; sourceTree = "<group>"; };
+		F95325BC3F5539279FA98343 /* Pods-MyCarrrr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyCarrrr.release.xcconfig"; path = "Target Support Files/Pods-MyCarrrr/Pods-MyCarrrr.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C395F7468B294597335A7200 /* Pods_MyCarrrr.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,6 +173,8 @@
 			children = (
 				559EFBB32AF14A5F0098672F /* MyCarrrr */,
 				559EFBB22AF14A5F0098672F /* Products */,
+				E69D7C04ED4F1E4202CA95AE /* Pods */,
+				E7364A90FF23722C40AF6864 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -215,6 +222,23 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		E69D7C04ED4F1E4202CA95AE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				414A1C32185C7C1B85C40D23 /* Pods-MyCarrrr.debug.xcconfig */,
+				F95325BC3F5539279FA98343 /* Pods-MyCarrrr.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		E7364A90FF23722C40AF6864 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				24864BD75FEDB4706EECD45B /* Pods_MyCarrrr.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -222,9 +246,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 559EFBC52AF14A620098672F /* Build configuration list for PBXNativeTarget "MyCarrrr" */;
 			buildPhases = (
+				1585B98CDF1C75709F674E11 /* [CP] Check Pods Manifest.lock */,
 				559EFBAD2AF14A5F0098672F /* Sources */,
 				559EFBAE2AF14A5F0098672F /* Frameworks */,
 				559EFBAF2AF14A5F0098672F /* Resources */,
+				D5E52F74C5F555F6EFC04FB7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -278,6 +304,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1585B98CDF1C75709F674E11 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MyCarrrr-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D5E52F74C5F555F6EFC04FB7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyCarrrr/Pods-MyCarrrr-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyCarrrr/Pods-MyCarrrr-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MyCarrrr/Pods-MyCarrrr-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		559EFBAD2AF14A5F0098672F /* Sources */ = {
@@ -447,6 +515,7 @@
 		};
 		559EFBC62AF14A620098672F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 414A1C32185C7C1B85C40D23 /* Pods-MyCarrrr.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -480,6 +549,7 @@
 		};
 		559EFBC72AF14A620098672F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F95325BC3F5539279FA98343 /* Pods-MyCarrrr.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
