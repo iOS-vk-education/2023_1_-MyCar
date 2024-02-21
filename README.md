@@ -29,13 +29,13 @@
 
 <h2>🛡️ Команда:</h2>
 
-*   Тимлид: Никита Громов 
-*   Разработчик: Сергей Васильев
+*   Тимлид: Сергей Васильев
+*   Разработчик: Нису Нисуев
 *   Ментор: Антон Шарин
 
 <h2> 📊 Макет </h2>
 
-Figma: https://www.figma.com/file/d96pDq3NxTMVAUOijOZEPM/U-test?type=design&node-id=0%3A1&mode=design&t=geljAVmJu23ntvWG-1
+Figma: https://www.figma.com/file/p48i82Wx26pmhdOzRtycuU/MyCars?type=design&node-id=0%3A1&mode=design&t=gT3IErTe4cQyVjgw-1
 
 <h2> 📸 Screenshots </h2>
 <img width="416" alt="image" src="https://github.com/SER0021/myCar/assets/95776133/71da533e-e75e-4962-97a5-c7b581055da2">
