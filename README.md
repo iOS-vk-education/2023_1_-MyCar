@@ -38,7 +38,7 @@
 
 <h2> 📊 Макет </h2>
 
-Figma: https://www.figma.com/file/d96pDq3NxTMVAUOijOZEPM/U-test?type=design&node-id=0%3A1&mode=design&t=geljAVmJu23ntvWG-1
+Figma: https://www.figma.com/file/p48i82Wx26pmhdOzRtycuU/MyCars?type=design&node-id=0%3A1&mode=design&t=gT3IErTe4cQyVjgw-1
 
 <h2> 📸 Screenshots </h2>
 
