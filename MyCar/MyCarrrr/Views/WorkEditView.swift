@@ -36,7 +36,6 @@ class WorkEditView: UIView {
         setupHeaderLabel()
         setupCarLabel(label)
         setupMileageTextField()
-//        setupMeasurementSegmentedControl()
         setupUpdateButton()
         
     }
@@ -52,7 +51,6 @@ class WorkEditView: UIView {
     private func setupHeaderLabel() {
         self.addSubview(carLabel)
         carLabel.text = car.manufacturer
-//        carLabel.text = label
         carLabel.textColor = .white
         carLabel.font = UIFont.boldSystemFont(ofSize: 22)
         carLabel.textAlignment = .center
@@ -91,9 +89,6 @@ class WorkEditView: UIView {
         mileageTextField.backgroundColor = .white
         mileageTextField.layer.cornerRadius = 9
         mileageTextField.keyboardType = .numberPad
-        // Установка фиксированной ширины текстового поля
-//        let fixedWidth: CGFloat = 210
-//        mileageTextField.widthAnchor.constraint(equalToConstant: fixedWidth).isActive = true
         
         
         let fixedHeight: CGFloat = 40

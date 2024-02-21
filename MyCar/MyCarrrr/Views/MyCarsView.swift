@@ -1,6 +1,6 @@
 import UIKit
 
-class MyCarsView: UIView, UITableViewDelegate {
+class MyCarsView: UIView {
     
     weak var delegate: ViewToViewController?
     
@@ -14,7 +14,6 @@ class MyCarsView: UIView, UITableViewDelegate {
     
     init() {
         super.init(frame: .zero)
-//        self.backgroundColor = .darkGrayBMW
         self.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
 
         setupUI()
@@ -26,14 +25,12 @@ class MyCarsView: UIView, UITableViewDelegate {
     
     func updateTable() {
         carsTable.reloadData()
-//        emptyStateImageView.isHidden = !(delegate?.cars().isEmpty ?? true)
     }
     
     func setupUI() {
         setupHeaderLabel()
         setupAddCarButton()
         setupCarTable()
-//        setupEmptyStateImageView()
 
     }
     private func setupEmptyStateImageView() {
@@ -87,6 +84,7 @@ class MyCarsView: UIView, UITableViewDelegate {
     private func setupCarTable(){
         self.addSubview(carsTable)
         carsTable.dataSource = self
+        carsTable.delegate = self
         carsTable.backgroundColor = .clear
         carsTable.separatorStyle = .none
         carsTable.translatesAutoresizingMaskIntoConstraints = false
@@ -136,14 +134,27 @@ extension MyCarsView: UITableViewDataSource {
         return true
     }
   
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            removeItem(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            carsTable.reloadData()
-            
-        }
-    }
     
+}
+
+extension MyCarsView: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (_, _, completionHandler) in
+            self?.removeItem(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            self?.carsTable.reloadData()
+            completionHandler(true)
+
+        }
+
+        // Customize the delete button color
+        deleteAction.backgroundColor = UIColor.red
+        let deleteIcon = UIImage(systemName: "trash")?.withRenderingMode(.alwaysTemplate)
+        deleteAction.image = deleteIcon
+
+
+        return UISwipeActionsConfiguration(actions: [deleteAction])
+    }
 }
 

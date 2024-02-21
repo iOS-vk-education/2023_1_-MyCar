@@ -36,6 +36,14 @@ class MyCarsViewController: UIViewController {
     
         // Регистрация для получения уведомлений о обновлении данных
         NotificationCenter.default.addObserver(self, selector: #selector(handleDataUpdated), name: .dataUpdated, object: nil)
+        
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+                    if granted {
+                        print("Уведомления разрешены")
+                    } else {
+                        print("Уведомления не разрешены")
+                    }
+                }
     }
     
 
@@ -137,10 +145,7 @@ extension MyCarsViewController: CellViewDelegate {
     func didTapButtonOnCell(_ tag: Int) {
         goToTOScreen(tag: tag)
     }
-    
-//    func didTapButtonOnCell() {
-//       goToTOScreen()
-//    }
+
     
 }
 

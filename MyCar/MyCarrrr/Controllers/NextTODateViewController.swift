@@ -46,6 +46,42 @@ extension NextTODateViewController: DateViewDelegate {
         model.updateNextTODate(carTag, date)
         dismiss(animated: true, completion: nil)
         NotificationCenter.default.post(name: .dataUpdated, object: nil)
+        
+        let content = UNMutableNotificationContent()
+        content.title = "Подходит время ТО!"
+        content.body = "Вы запланировали ТО для вашего \(model.car(index: carTag).manufacturer) на завтра."
+        content.sound = .default
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        var dateComponents = DateComponents()
+        
+        if let date = dateFormatter.date(from: date) {
+            let calendar = Calendar.current
+            let previousDay = Calendar.current.date(byAdding: .day, value: -1, to: date)!
+            let dateComponents = Calendar.current.dateComponents([.year, .month, .day], from: previousDay)
+
+        } else {
+            print("Ошибка преобразования строки в дату")
+        }
+        dateComponents.minute = 0
+        dateComponents.hour = 10
+        dateComponents.second = 5
+        
+        //MARK: для презентации
+//        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+//        let request = UNNotificationRequest(identifier: "notification", content: content, trigger: trigger)
+
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+        let request = UNNotificationRequest(identifier: "TONotification", content: content, trigger: trigger)
+
+        UNUserNotificationCenter.current().add(request) { error in
+            if let error = error {
+                print("Ошибка отправки уведомления: (error.localizedDescription)")
+            } else {
+                print("Уведомление успешно отправлено")
+            }
+        }
     }
     
 }

@@ -1,0 +1,6 @@
+framework module Pods_MyCarrrr {
+  umbrella header "Pods-MyCarrrr-umbrella.h"
+
+  export *
+  module * { export * }
+}

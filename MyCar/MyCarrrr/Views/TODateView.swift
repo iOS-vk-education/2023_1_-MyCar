@@ -73,6 +73,9 @@ class TODateView: UIView {
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.tintColor = .white
+        datePicker.setValue(UIColor.white, forKey: "textColor")
+
+        
         self.addSubview(datePicker)
         
         datePicker.translatesAutoresizingMaskIntoConstraints = false
@@ -108,8 +111,6 @@ class TODateView: UIView {
     }
     
     @objc private func didTapUpdateButton () {
-//        let mileage = Int(mileageTextField.text ?? "") ?? 0
-//        delegate?.didTapMileageButton(mileage)
         let currentDate = datePicker.date
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy"

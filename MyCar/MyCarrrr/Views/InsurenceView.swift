@@ -71,7 +71,6 @@ class InsurenceView: UIView {
         insurenceImage.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-//            insurenceImage.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -21), // Adjust the leading anchor
             insurenceImage.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             insurenceImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 21), // Center vertically
             insurenceImage.widthAnchor.constraint(equalToConstant: 300), // Set your desired width

@@ -14,7 +14,6 @@ class TOMileageViewController: UIViewController {
     private let carTag: Int
     private let tag: Int
     private var model: HomeCarsModel
-//    private var contentView: WorkEditView!
     private var contentView: MileageView!
     private let label: String
     
@@ -33,7 +32,6 @@ class TOMileageViewController: UIViewController {
         self.model = model
         self.label = label
         super.init(nibName: nil, bundle: nil)
-//        contentView = WorkEditView(car: model.car(index: carTag), label: label)
         contentView = MileageView(car: model.car(index: carTag))
     }
     
@@ -48,7 +46,6 @@ extension TOMileageViewController: MileageViewDelegate {
     func didTapMileageButton(_ mileage: Int) {
         model.updateTOMileage(carTag, workIndex: tag, mileage)
         dismiss(animated: true, completion: nil)
-//        print(model.car(index: carTag))
         NotificationCenter.default.post(name: .workTableDataUpdated, object: nil)
     }
     

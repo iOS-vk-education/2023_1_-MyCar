@@ -152,7 +152,7 @@ class AddCarViewController: UIViewController {
             return
         }
         
-        model.carDataFromVin(vin: vinNumber) { manufacturer, model, year in
+        model.carDataFromVin(vin: vinNumber) { manufacturer, model, year, error  in
             DispatchQueue.main.async {
                 self.contentView.checkVINButton.isEnabled = true
                 self.contentView.checkVINButton.setTitle("Заполнить по VIN", for: .normal)
@@ -163,6 +163,11 @@ class AddCarViewController: UIViewController {
                 self.enterFieldCarFromVIN(manufacturer, model, year)
             } else {
                 print("Failed to fetch car data.")
+                DispatchQueue.main.async {
+                    let errorAlert = UIAlertController(title: "Ошибка", message: "Неудалось определить авто по данному VIN", preferredStyle: .alert)
+                    errorAlert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                    self.present(errorAlert, animated: true)
+                }
             }
         }
         

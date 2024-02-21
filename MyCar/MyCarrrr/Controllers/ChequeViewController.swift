@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SwiftPhotoGallery
 
 class ChequeViewController: UIViewController, ChequeViewDelegate  {
     
@@ -80,7 +81,16 @@ class ChequeViewController: UIViewController, ChequeViewDelegate  {
     
     
     func didTapImage() {
-        print("image tapped")
+        
+        let gallery = SwiftPhotoGallery(delegate: self, dataSource: self)
+
+        gallery.backgroundColor = UIColor.black
+//        gallery.pageIndicatorTintColor = UIColor.gray.withAlphaComponent(0.5)
+//        gallery.currentPageIndicatorTintColor = UIColor.white
+        gallery.hidePageControl = true
+
+        present(gallery, animated: true, completion: nil)
+        
 //        if let image = contentView.chequeImage.image {
 //            let fullscreenImageView = UIImageView(image: image)
 //            fullscreenImageView.isUserInteractionEnabled = true
@@ -91,10 +101,6 @@ class ChequeViewController: UIViewController, ChequeViewDelegate  {
 //            UIApplication.shared.keyWindow?.addSubview(fullscreenImageView)
 //        }
     }
-
-//    @objc func dismissFullscreenImage(sender: UITapGestureRecognizer) {
-//        sender.view?.removeFromSuperview()
-//    }
 }
 
 
@@ -119,4 +125,17 @@ extension ChequeViewController: UIImagePickerControllerDelegate & UINavigationCo
 }
 
 
+extension ChequeViewController: SwiftPhotoGalleryDataSource, SwiftPhotoGalleryDelegate {
+    
+    func numberOfImagesInGallery(gallery: SwiftPhotoGallery) -> Int {
+        return 1
+    }
 
+    func imageInGallery(gallery: SwiftPhotoGallery, forIndex: Int) -> UIImage? {
+        return contentView.chequeImage.image
+    }
+
+    func galleryDidTapToClose(gallery: SwiftPhotoGallery) {
+        dismiss(animated: true, completion: nil)
+    }
+}

@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class TOView: UIView, UITableViewDelegate {
+class TOView: UIView {
     
     
     
@@ -37,13 +37,11 @@ class TOView: UIView, UITableViewDelegate {
         self.car = car
         self.carTag = carTag
         super.init(frame: .zero)
-//        self.backgroundColor = .gray
         self.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
 
         setupHeaderLabel(car.manufacturer)
         setupWorkListLabel()
         setupFrameForLabel()
-//        setupFrameForButton()
         setupButton()
 
         setupCarTable()
@@ -98,7 +96,7 @@ class TOView: UIView, UITableViewDelegate {
     
     private func setupFrameForLabel() {
         
-//        labelFrame = UIView(frame: CGRect(x: 17, y: 11, width: 361, height: 80))
+
         labelFrame.layer.cornerRadius = 15
         labelFrame.backgroundColor = .black
         self.addSubview(labelFrame)
@@ -107,7 +105,7 @@ class TOView: UIView, UITableViewDelegate {
         
         labelFrame.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-//            labelFrame.topAnchor.constraint(equalTo: self.topAnchor, constant: 11),
+
             labelFrame.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 0),
 
             labelFrame.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 17),
@@ -148,6 +146,7 @@ class TOView: UIView, UITableViewDelegate {
         
         self.addSubview(toTable)
         toTable.dataSource = self
+        toTable.delegate = self
         toTable.backgroundColor = .clear
         toTable.separatorStyle = .none
         toTable.translatesAutoresizingMaskIntoConstraints = false
@@ -192,17 +191,28 @@ extension TOView: UITableViewDataSource{
         return cell
 
     }
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            removeItem(at: indexPath.row)
+
+}
+
+extension TOView: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (_, _, completionHandler) in
+            self?.removeItem(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-            toTable.reloadData()
-            
+            self?.toTable.reloadData()
+            completionHandler(true)
+
         }
+
+        // Customize the delete button color
+        deleteAction.backgroundColor = UIColor.red
+        let deleteIcon = UIImage(systemName: "trash")?.withRenderingMode(.alwaysTemplate)
+        deleteAction.image = deleteIcon
+
+
+        return UISwipeActionsConfiguration(actions: [deleteAction])
     }
-    
-   
-    
 }
 
 

@@ -144,7 +144,6 @@ class EditCarView: UIView{
         carImageView.image = UIImage(named: "jeep") // Укажите имя вашей картинки
         carImageView.contentMode = .scaleAspectFit
         carImageView.translatesAutoresizingMaskIntoConstraints = false
-//        self.addSubview(carImageView)
         scrollView.addSubview(carImageView)
 
         
@@ -194,7 +193,6 @@ class EditCarView: UIView{
     private func configureTextLabel(_ textLabel: UILabel, text: String) {
         textLabel.textColor = .white
         textLabel.text = text
-//        self.addSubview(textLabel)
         scrollView.addSubview(textLabel)
         textLabel.translatesAutoresizingMaskIntoConstraints = false
     }
@@ -224,7 +222,7 @@ class EditCarView: UIView{
         separatorView.backgroundColor = .white
         textField.addSubview(separatorView)
         
-//        self.addSubview(textField)
+
         scrollView.addSubview(textField)
 
         
@@ -256,7 +254,7 @@ class EditCarView: UIView{
         stackView.addArrangedSubview(cancelButton)
         stackView.addArrangedSubview(updateButton)
         
-//        self.addSubview(stackView)
+
         scrollView.addSubview(stackView)
         
         NSLayoutConstraint.activate([
