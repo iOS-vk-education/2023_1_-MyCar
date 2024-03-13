@@ -1,6 +1,6 @@
 import UIKit
 import MapKit
-
+//new ver
 class MapViewController: UIViewController, MKMapViewDelegate {
     
     private var contentView = MapView()
