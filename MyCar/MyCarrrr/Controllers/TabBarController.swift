@@ -1,8 +1,11 @@
 import UIKit
+import SwiftUI
 
 class TabBarController: UITabBarController {
 
     private let model = HomeCarsModel()
+    
+    private let hostingVC = UIHostingController(rootView: MapView())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -13,7 +16,8 @@ class TabBarController: UITabBarController {
     
     private func setupTabBar() {
         viewControllers = [setImage(vC: MyCarsViewController(model: model), image: UIImage(named: "garage")),
-                           setImage(vC: MapViewController(), image: UIImage(named: "map"))
+//                           setImage(vC: MapViewController(), image: UIImage(named: "map")),
+                           setImage(vC: hostingVC, image: UIImage(named: "map"))
         ]
     }
     
