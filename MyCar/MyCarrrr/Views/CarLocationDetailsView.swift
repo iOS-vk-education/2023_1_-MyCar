@@ -11,7 +11,6 @@ import MapKit
 struct CarLocationDetailsView: View {
     @Binding var mapSelection: MKMapItem?
     @Binding var show: Bool
-    @State private var lookAroundScene: MKLookAroundScene?
     @Binding var getDirections: Bool
     @Binding var selectedCar: CarViewModel?
 
@@ -85,24 +84,7 @@ struct CarLocationDetailsView: View {
             .padding(.horizontal)
 
         }
-        .onAppear{
-            fetchLookAroundPreview()
-        }
-        .onChange(of: mapSelection) { oldValue, newValue in
-            fetchLookAroundPreview()
-            
-        }
     }
 }
 
-extension CarLocationDetailsView {
-    func fetchLookAroundPreview() {
-        if let mapSelection {
-            lookAroundScene = nil
-            Task {
-                let request = MKLookAroundSceneRequest(mapItem: mapSelection)
-                lookAroundScene = try? await request.scene
-            }
-        }
-    }
-}
+

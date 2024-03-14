@@ -26,6 +26,20 @@ struct LocationDetailsView: View {
                         .foregroundStyle(.gray)
                         .lineLimit(2)
                         .padding(.trailing)
+                //TODO: Error Failed to open URL tel://111-11-11: Error Domain=NSOSStatusErrorDomain Code=-10814 "(null)" UserInfo={_LSLine=277, _LSFunction=-[_LSDOpenClient openURL:fileHandle:options:completionHandler:]}
+                    Button{
+//                        guard let phoneNumber = mapSelection?.phoneNumber else { return }
+                        let telephone = "tel://"
+                        let phoneNumber = "111-11-11"
+                        let formattedString = telephone + phoneNumber
+                        guard let url = URL(string: formattedString) else { return }
+                        UIApplication.shared.open(url)
+                    } label: {
+                        Text(mapSelection?.phoneNumber ?? "")
+                            .font(.title3)
+                            .foregroundStyle(.blue)
+                            .padding(.trailing)
+                    }
                     
                 }
                 
@@ -43,14 +57,16 @@ struct LocationDetailsView: View {
             }
             .padding()
             
-            if let scene = lookAroundScene {
-                LookAroundPreview(initialScene: scene)
-                    .frame(height: 200)
-                    .clipShape(.buttonBorder)
-                    .padding()
-            }else {
-                ContentUnavailableView("No preview available", systemImage: "eye.slash")
-            }
+            
+            
+//            if let scene = lookAroundScene {
+//                LookAroundPreview(initialScene: scene)
+//                    .frame(height: 200)
+//                    .clipShape(.buttonBorder)
+//                    .padding()
+//            }else {
+//                ContentUnavailableView("No preview available", systemImage: "eye.slash")
+//            }
             
             HStack(spacing: 24){
                 Button{
