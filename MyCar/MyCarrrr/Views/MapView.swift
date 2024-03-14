@@ -56,45 +56,157 @@ struct MapView: View {
                     .stroke(.blue, lineWidth: 6)
             }
         }
-        .overlay(alignment: .top){
-            HStack{
-                TextField("Search for a location...", text: $searchText)
-                    .font(.subheadline)
-                    .padding(12)
-                    .background(.white)
-                    .padding()
-                    .shadow(radius: 10)
-                Button{
-                    
-                    withAnimation(.snappy){
-                        cameraPosition = .region(.userRegion)
-                        
-                        searchText = ""
-                        showDetails = false
-                        getDirections = false
-                        routeDisplaying = false
-                        
-                        results = [MKMapItem]()
-                        mapSelection = nil
-                        route = nil
-                        routeDestionation = nil
+        .overlay(alignment: .trailing){
+            VStack{
+                Spacer()
+                VStack{
+                    Button{
+                        clearView()
+                        withAnimation(.snappy){
+                            cameraPosition = .region(.userRegion)
+                        }
+                        searchText = "Парковка"
+                        Task{
+                            await searchPlaces()
+                        }
+                    } label: {
+                        Image("signage")
+                            .resizable()
+                            .frame(width: 32, height: 32)
                     }
+                    .padding(.vertical)
                     
+                    Button{
+                        clearView()
+                        withAnimation(.snappy){
+                            cameraPosition = .region(.userRegion)
+                        }
+                        searchText = "Автосервис"
+                        Task{
+                            await searchPlaces()
+                        }
+                    } label: {
+                        Image("car-service")
+                            .resizable()
+                            .frame(width: 32, height: 32)
+                    }
+                    .padding(.bottom)
+                    Button{
+                        clearView()
+                        withAnimation(.snappy){
+                            cameraPosition = .region(.userRegion)
+                        }
+                        searchText = "Автомойка"
+                        Task{
+                            await searchPlaces()
+                        }
+                    } label: {
+                        Image("car-wash")
+                            .resizable()
+                            .frame(width: 32, height: 32)
+                    }
+                    .padding(.bottom)
+                    Button{
+                        withAnimation(.snappy){
+                            cameraPosition = .region(.userRegion)
+                            
+                            searchText = ""
+                            showDetails = false
+                            getDirections = false
+                            routeDisplaying = false
+                            
+                            results = [MKMapItem]()
+                            mapSelection = nil
+                            route = nil
+                            routeDestionation = nil
+                        }
+                        
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .resizable()
+                            .frame(width: 32, height: 32)
+                            .foregroundStyle(.gray, Color(.systemGray6))
+                    }
+                    .padding(.bottom)
                     
-                } label: {
-                    Image(systemName: "xmark.circle.fill")
-                        .resizable()
-                        .frame(width: 32, height: 32)
-                        .foregroundStyle(.gray, Color(.systemGray6))
                 }
+                .padding(.horizontal, 10)
+                .background(Color.gray.opacity(0.5))
+                .clipShape(
+                    .rect(
+                        topLeadingRadius: 20,
+                        bottomLeadingRadius: 20,
+                        bottomTrailingRadius: 0,
+                        topTrailingRadius: 0
+                    )
+                )
+                
+                
+                
+                Spacer()
+                //                Button{
+                //
+                //                    withAnimation(.snappy){
+                //                        cameraPosition = .region(.userRegion)
+                //
+                //                        searchText = ""
+                //                        showDetails = false
+                //                        getDirections = false
+                //                        routeDisplaying = false
+                //
+                //                        results = [MKMapItem]()
+                //                        mapSelection = nil
+                //                        route = nil
+                //                        routeDestionation = nil
+                //                    }
+                //
+                //
+                //                } label: {
+                //                    Image(systemName: "xmark.circle.fill")
+                //                        .resizable()
+                //                        .frame(width: 32, height: 32)
+                //                        .foregroundStyle(.gray, Color(.systemGray6))
+                //                }
             }
-
+            
+            //            HStack{
+            //                TextField("Search for a location...", text: $searchText)
+            //                    .font(.subheadline)
+            //                    .padding(12)
+            //                    .background(.white)
+            //                    .padding()
+            //                    .shadow(radius: 10)
+            //                Button{
+            //
+            //                    withAnimation(.snappy){
+            //                        cameraPosition = .region(.userRegion)
+            //
+            //                        searchText = ""
+            //                        showDetails = false
+            //                        getDirections = false
+            //                        routeDisplaying = false
+            //
+            //                        results = [MKMapItem]()
+            //                        mapSelection = nil
+            //                        route = nil
+            //                        routeDestionation = nil
+            //                    }
+            //
+            //
+            //                } label: {
+            //                    Image(systemName: "xmark.circle.fill")
+            //                        .resizable()
+            //                        .frame(width: 32, height: 32)
+            //                        .foregroundStyle(.gray, Color(.systemGray6))
+            //                }
+            //            }
+            
         }
-        .onSubmit(of: .text) {
-            Task{
-                await searchPlaces()
-            }
-        }
+        //        .onSubmit(of: .text) {
+        //            Task{
+        //                await searchPlaces()
+        //            }
+        //        }
         .onChange(of: getDirections, { oldValue, newValue in
             if newValue {
                 fetchRoute()
@@ -152,6 +264,22 @@ extension MapView {
                     }
                 }
             }
+        }
+    }
+    
+    func clearView() {
+        withAnimation(.snappy){
+            cameraPosition = .region(.userRegion)
+            
+            searchText = ""
+            showDetails = false
+            getDirections = false
+            routeDisplaying = false
+            
+            results = [MKMapItem]()
+            mapSelection = nil
+            route = nil
+            routeDestionation = nil
         }
     }
 }
