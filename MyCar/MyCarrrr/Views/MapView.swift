@@ -25,10 +25,11 @@ struct MapView: View {
     @State private var routeDestionation: MKMapItem?
     
     @State private var carPlaceMark =  MKPlacemark(coordinate: .carLocation)
+    
+    @State private var cars = [CarViewModel]()
 
-//TODO: сделать чтобы он скачивал машины каждый раз по onAppear()
-//    private let homeCarsModel = HomeCarsModel()
-    private var cars = HomeCarsModel().allCars()
+    @State private var selectedCar: CarViewModel?
+
     
     @State private var selectedCarIndex = 0
     
@@ -49,7 +50,7 @@ struct MapView: View {
                 }
             }
             
-            Annotation(cars.first?.manufacturer ?? "", coordinate: .carLocation) {
+            Annotation(selectedCar?.manufacturer ?? "", coordinate: .carLocation) {
                 
                 ZStack{
                    RoundedRectangle(cornerRadius: 5)
@@ -93,7 +94,7 @@ struct MapView: View {
                 }
             }
             .tint(Color.black)
-            .background(Color.gray.opacity(0.5))
+            .background(Color.white)
             .clipShape(
                 .rect(
                     topLeadingRadius: 12,
@@ -102,6 +103,7 @@ struct MapView: View {
                     topTrailingRadius: 12
                 )
             )
+            .shadow(radius: 10)
             
         }
         .overlay(alignment: .trailing){
@@ -187,13 +189,18 @@ struct MapView: View {
             }
         }
         .onAppear(){
-//            cars = HomeCarsModel().allCars()
+            cars = HomeCarsModel().allCars()
+            selectedCar = cars[selectedCarIndex]
+
         }
         //        .onSubmit(of: .text) {
         //            Task{
         //                await searchPlaces()
         //            }
         //        }
+        .onChange(of: selectedCarIndex, { oldValue, newValue in
+            selectedCar = cars[newValue]
+        })
         .onChange(of: getDirections, { oldValue, newValue in
             if newValue {
                 fetchRoute()
@@ -222,7 +229,7 @@ struct MapView: View {
                 .presentationCornerRadius(12)
         })
         .sheet(isPresented: $showCarDetails, content: {
-            CarLocationDetailsView(mapSelection: $carSelection, show: $showCarDetails, getDirections: $getDirections)
+            CarLocationDetailsView(mapSelection: $carSelection, show: $showCarDetails, getDirections: $getDirections, selectedCar: $selectedCar)
                 .presentationDetents([.height(340)])
                 .presentationBackgroundInteraction(.enabled(upThrough: .height(340)))
                 .presentationCornerRadius(12)

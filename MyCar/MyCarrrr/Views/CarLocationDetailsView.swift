@@ -13,19 +13,21 @@ struct CarLocationDetailsView: View {
     @Binding var show: Bool
     @State private var lookAroundScene: MKLookAroundScene?
     @Binding var getDirections: Bool
+    @Binding var selectedCar: CarViewModel?
+
     
     var body: some View {
         VStack{
             HStack{
                 VStack(alignment: .leading) {
-                    Text("My Car name")
+                    Text(selectedCar?.manufacturer ?? "")
                         .font(.title2)
                         .fontWeight(.semibold)
-                    Text("my car model")
-                        .font(.footnote)
-                        .foregroundStyle(.gray)
-                        .lineLimit(2)
-                        .padding(.trailing)
+                        Text(selectedCar?.model ?? "")
+                            .font(.footnote)
+                            .foregroundStyle(.black)
+                            .lineLimit(2)
+                            .padding(.trailing)
                     
                 }
                 
@@ -43,11 +45,13 @@ struct CarLocationDetailsView: View {
             }
             .padding()
             
-            if let scene = lookAroundScene {
-                LookAroundPreview(initialScene: scene)
+            if let img = selectedCar?.carImage {
+                Image(uiImage: img)
+                    .resizable()
                     .frame(height: 200)
-                    .clipShape(.buttonBorder)
-                    .padding()
+                    .aspectRatio(contentMode: .fit)
+                    .clipShape(Rectangle())
+                    .clipped()
             }else {
                 ContentUnavailableView("No preview available", systemImage: "eye.slash")
             }
