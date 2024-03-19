@@ -13,6 +13,8 @@ struct LocationDetailsView: View {
     @Binding var show: Bool
     @State private var lookAroundScene: MKLookAroundScene?
     @Binding var getDirections: Bool
+    @Binding var distance: String?
+    @Binding var travelTime: String?
     
     var body: some View {
         VStack{
@@ -26,25 +28,13 @@ struct LocationDetailsView: View {
                         .foregroundStyle(.gray)
                         .lineLimit(2)
                         .padding(.trailing)
-                //TODO: Error Failed to open URL tel://111-11-11: Error Domain=NSOSStatusErrorDomain Code=-10814 "(null)" UserInfo={_LSLine=277, _LSFunction=-[_LSDOpenClient openURL:fileHandle:options:completionHandler:]}
-                    Button{
-//                        guard let phoneNumber = mapSelection?.phoneNumber else { return }
-                        let telephone = "tel://"
-                        let phoneNumber = "111-11-11"
-                        let formattedString = telephone + phoneNumber
-                        guard let url = URL(string: formattedString) else { return }
-                        UIApplication.shared.open(url)
-                    } label: {
-                        Text(mapSelection?.phoneNumber ?? "")
-                            .font(.title3)
-                            .foregroundStyle(.blue)
-                            .padding(.trailing)
-                    }
+                    //line here
+                    Rectangle()
+                        .frame(height: 1)
+                        .foregroundStyle(.gray)
                     
                 }
-                
                 Spacer()
-                
                 Button{
                     show.toggle()
                     mapSelection = nil
@@ -54,19 +44,57 @@ struct LocationDetailsView: View {
                         .frame(width: 24, height: 24)
                         .foregroundStyle(.gray, Color(.systemGray6))
                 }
+                
+
+            }
+            .padding(.horizontal)
+            .padding(.top)
+            
+            HStack(){
+                VStack(alignment: .leading){
+                    Text("Расстояние до точки: " + (distance ?? ""))
+                        .font(.footnote)
+                        .foregroundStyle(.gray)
+                        .padding(.trailing)
+                    Text("Время в пути: " + (travelTime ?? "net data"))
+                        .font(.footnote)
+                        .foregroundStyle(.gray)
+                        .padding(.trailing)
+                }
+                Spacer()
+            }
+            .padding(.horizontal)
+            
+            Spacer()
+            
+            HStack(){
+                VStack(alignment: .leading){
+                    Text("Номер телефона:")
+                        .font(.title3)
+                        .fontWeight(.semibold)
+                    Button{
+                        guard let phoneNumber = mapSelection?.phoneNumber else { return }
+                        let telephone = "tel://"
+                        let formattedString = telephone + phoneNumber
+                        guard let url = URL(string: formattedString) else { return }
+                        if UIApplication.shared.canOpenURL(url) {
+                            UIApplication.shared.open(url)
+                        } else {
+                            print("Can't open url on this device")
+                        }
+                    } label: {
+                        Text(mapSelection?.phoneNumber ?? "")
+                            .font(.title3)
+                            .foregroundStyle(.blue)
+                            .padding(.trailing)
+                    }
+                }
+                Spacer()
             }
             .padding()
+
             
             
-            
-//            if let scene = lookAroundScene {
-//                LookAroundPreview(initialScene: scene)
-//                    .frame(height: 200)
-//                    .clipShape(.buttonBorder)
-//                    .padding()
-//            }else {
-//                ContentUnavailableView("No preview available", systemImage: "eye.slash")
-//            }
             
             HStack(spacing: 24){
                 Button{

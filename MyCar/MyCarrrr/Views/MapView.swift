@@ -14,6 +14,10 @@ struct MapView: View {
     @State private var searchText = ""
     @State private var results = [MKMapItem]()
     @State private var mapSelection: MKMapItem?
+    
+    @State private var distance: String?
+    @State private var travelTime: String?
+    
     @State private var showDetails = false
     
     @State private var carSelection: MKMapItem?
@@ -193,11 +197,6 @@ struct MapView: View {
             selectedCar = cars[selectedCarIndex]
 
         }
-        //        .onSubmit(of: .text) {
-        //            Task{
-        //                await searchPlaces()
-        //            }
-        //        }
         .onChange(of: selectedCarIndex, { oldValue, newValue in
             selectedCar = cars[newValue]
         })
@@ -208,6 +207,9 @@ struct MapView: View {
         })
         .onChange(of: mapSelection, { oldValue, newValue in
             showDetails = newValue != nil
+            distance = getDistance()
+            travelTime = "Loading..."
+            calculateTravelTime()
             if let selection = mapSelection {
                 withAnimation(.snappy){
                     cameraPosition = .item(selection)
@@ -223,7 +225,7 @@ struct MapView: View {
             }
         })
         .sheet(isPresented: $showDetails, content: {
-            LocationDetailsView(mapSelection: $mapSelection, show: $showDetails, getDirections: $getDirections)
+            LocationDetailsView(mapSelection: $mapSelection, show: $showDetails, getDirections: $getDirections, distance: $distance, travelTime: $travelTime)
                 .presentationDetents([.height(340)])
                 .presentationBackgroundInteraction(.enabled(upThrough: .height(340)))
                 .presentationCornerRadius(12)
@@ -290,6 +292,36 @@ extension MapView {
             carSelection = nil
             route = nil
             routeDestionation = nil
+        }
+    }
+    
+    func getDistance() -> String {
+        let userLocation2D = CLLocationCoordinate2D.userLocation
+        let userLocation = CLLocation(latitude: userLocation2D.latitude, longitude: userLocation2D.longitude)
+        guard let destinationLocation = mapSelection?.placemark.location else {
+            return ""
+        }
+        let distanceInMeters = userLocation.distance(from: destinationLocation)
+        let distanceInKilometers = Measurement(value: distanceInMeters, unit: UnitLength.meters).converted(to: .kilometers)
+        return String(format: "%.2f км", distanceInKilometers.value)
+    }
+    
+    func calculateTravelTime() {
+        guard let mapSelection = mapSelection else {
+            return
+        }
+
+        let request = MKDirections.Request()
+        request.source = MKMapItem(placemark: .init(coordinate: .userLocation))
+        request.destination = mapSelection
+        request.transportType = .automobile
+
+        let directions = MKDirections(request: request)
+        directions.calculate { response, error in
+            guard let response = response, let route = response.routes.first else {
+                return
+            }
+            self.travelTime = String(format: "%.1f мин", route.expectedTravelTime / 60)
         }
     }
 }
