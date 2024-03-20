@@ -40,6 +40,7 @@ struct MapView: View {
     
     @State private var selectedCarIndex = 0
     
+    @State private var calculatingRoute = false
     
     
     var body: some View {
@@ -101,6 +102,18 @@ struct MapView: View {
                     .stroke(.blue, lineWidth: 6)
             }
         }
+        .overlay(alignment: .center){
+            if calculatingRoute {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(Color.gray.opacity(0.5))
+                        .frame(width: 50, height: 50)
+                    ProgressView()
+                        .scaleEffect(1.5)
+                }
+            }
+        }
+        .disabled(calculatingRoute)
         .overlay(alignment: .top){
             VStack{
                 HStack{
@@ -294,6 +307,7 @@ extension MapView {
     }
     
     func fetchRoute(selection: MKMapItem) {
+        calculatingRoute = true
         let request = MKDirections.Request()
         request.source = MKMapItem(placemark: .init(coordinate: .userLocation))
         request.destination = selection
@@ -311,6 +325,7 @@ extension MapView {
                     cameraPosition = .rect(rect)
                 }
             }
+            calculatingRoute = false
         }
     }
     
@@ -324,6 +339,7 @@ extension MapView {
             getDirections = false
             getCarDirections = false
             routeDisplaying = false
+            calculatingRoute = false
             
             results = [MKMapItem]()
             mapSelection = nil
