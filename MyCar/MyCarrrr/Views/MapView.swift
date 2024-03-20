@@ -233,7 +233,7 @@ struct MapView: View {
         })
         .sheet(isPresented: $showDetails, content: {
             LocationDetailsView(mapSelection: $mapSelection, show: $showDetails, getDirections: $getDirections, distance: $distance, travelTime: $travelTime)
-                .presentationDetents([.height(340)])
+                .presentationDetents([.height(240)])
                 .presentationBackgroundInteraction(.enabled(upThrough: .height(340)))
                 .presentationCornerRadius(12)
         })
