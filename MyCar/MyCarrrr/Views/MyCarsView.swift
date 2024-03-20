@@ -156,5 +156,24 @@ extension MyCarsView: UITableViewDelegate {
 
         return UISwipeActionsConfiguration(actions: [deleteAction])
     }
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let setCarLocationAction = UIContextualAction(style: .normal, title: "Set Location") { [weak self] (_, _, completionHandler) in
+            guard let tag = self?.carsTable.cellForRow(at: indexPath)?.tag else {
+                completionHandler(false)
+                return
+            }
+            self?.delegate?.setCarLocation(index: tag)
+            completionHandler(true)
+        }
+        
+        setCarLocationAction.backgroundColor = UIColor.systemCyan
+        let setLocationIcon = UIImage(systemName: "location")?.withRenderingMode(.alwaysTemplate)
+        setCarLocationAction.image = setLocationIcon
+        
+        return UISwipeActionsConfiguration(actions: [setCarLocationAction])
+    }
+
+    
 }
 
