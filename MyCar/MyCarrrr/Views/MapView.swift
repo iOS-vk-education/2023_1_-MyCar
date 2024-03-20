@@ -28,33 +28,21 @@ struct MapView: View {
     @State private var route: MKRoute?
     @State private var routeDestionation: MKMapItem?
     
-    @State private var carPlaceMark =  MKPlacemark(coordinate: .carLocation)
+    @State private var showCarsPosition = true
+    
     
     @State private var cars = [CarViewModel]()
-
+    
     @State private var selectedCar: CarViewModel?
-
+    
     
     @State private var selectedCarIndex = 0
     
+    
+    
     var body: some View {
+        
         Map(position: $cameraPosition, selection: $mapSelection) {
-            
-            
-            Annotation(selectedCar?.manufacturer ?? "", coordinate: .carLocation) {
-                
-                ZStack{
-                   RoundedRectangle(cornerRadius: 5)
-                        .fill(.background)
-                    RoundedRectangle(cornerRadius: 5)
-                        .stroke(.secondary, lineWidth: 5)
-                    Image(systemName: "car.side")
-                        .padding(5)
-                }
-                .onTapGesture {
-                    carSelection = MKMapItem(placemark: MKPlacemark(coordinate: .carLocation))
-                }
-            }
             
             Annotation("My Location", coordinate: .userLocation) {
                 
@@ -69,10 +57,29 @@ struct MapView: View {
                         .frame(width: 12, height: 12)
                         .foregroundStyle(.blue)
                 }
+                .zIndex(0)
             }
             
-
-
+            
+            if let carLocation = CLLocationCoordinate2D.carLocation(for: selectedCarIndex),
+               showCarsPosition
+            {
+                Annotation(selectedCar?.manufacturer ?? "", coordinate: carLocation) {
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 5)
+                            .fill(.background)
+                        RoundedRectangle(cornerRadius: 5)
+                            .stroke(.secondary, lineWidth: 5)
+                        Image(systemName: "car.side")
+                            .padding(5)
+                    }
+                    .zIndex(1)
+                    .onTapGesture {
+                        carSelection = MKMapItem(placemark: MKPlacemark(coordinate: carLocation))
+                    }
+                }
+                
+            }
             
             
             ForEach(results, id: \.self) { item in
@@ -95,11 +102,26 @@ struct MapView: View {
         }
         .overlay(alignment: .top){
             VStack{
-                Picker("", selection: $selectedCarIndex) {
-                    ForEach(0..<cars.count, id : \.self) {
-                        Text(cars[$0].manufacturer)
+                HStack{
+                    Button{
+                        withAnimation(.snappy){
+                            showCarsPosition.toggle()
+                        }
+                    } label: {
+                        if showCarsPosition {
+                            Image(systemName: "eye")
+                        }else {
+                            Image(systemName: "eye.slash")
+                        }
+                    }
+                    .padding(.leading)
+                    Picker("", selection: $selectedCarIndex) {
+                        ForEach(0..<cars.count, id : \.self) {
+                            Text(cars[$0].manufacturer)
+                        }
                     }
                 }
+                
             }
             .tint(Color.black)
             .background(Color.white)
@@ -120,7 +142,11 @@ struct MapView: View {
                 VStack{
                     Button{
                         clearView()
-                        carSelection = MKMapItem(placemark: MKPlacemark(coordinate: .carLocation))
+                        guard let carLocation = CLLocationCoordinate2D.carLocation(for: selectedCarIndex)  else {
+                            return
+                        }
+                        carSelection = MKMapItem(placemark: MKPlacemark(coordinate: carLocation))
+                        showCarsPosition = true
                     } label: {
                         Image("signage")
                             .resizable()
@@ -199,7 +225,7 @@ struct MapView: View {
         .onAppear(){
             cars = HomeCarsModel().allCars()
             selectedCar = cars[selectedCarIndex]
-
+            
         }
         .onChange(of: selectedCarIndex, { oldValue, newValue in
             selectedCar = cars[newValue]
@@ -234,7 +260,7 @@ struct MapView: View {
         .sheet(isPresented: $showDetails, content: {
             LocationDetailsView(mapSelection: $mapSelection, show: $showDetails, getDirections: $getDirections, distance: $distance, travelTime: $travelTime)
                 .presentationDetents([.height(240)])
-                .presentationBackgroundInteraction(.enabled(upThrough: .height(340)))
+                .presentationBackgroundInteraction(.enabled(upThrough: .height(240)))
                 .presentationCornerRadius(12)
         })
         .sheet(isPresented: $showCarDetails, content: {
@@ -328,12 +354,12 @@ extension MapView {
         guard let mapSelection = mapSelection else {
             return
         }
-
+        
         let request = MKDirections.Request()
         request.source = MKMapItem(placemark: .init(coordinate: .userLocation))
         request.destination = mapSelection
         request.transportType = .automobile
-
+        
         let directions = MKDirections(request: request)
         directions.calculate { response, error in
             guard let response = response, let route = response.routes.first else {
@@ -347,12 +373,12 @@ extension MapView {
         guard let mapSelection = carSelection else {
             return
         }
-
+        
         let request = MKDirections.Request()
         request.source = MKMapItem(placemark: .init(coordinate: .userLocation))
         request.destination = mapSelection
         request.transportType = .automobile
-
+        
         let directions = MKDirections(request: request)
         directions.calculate { response, error in
             guard let response = response, let route = response.routes.first else {
@@ -363,7 +389,6 @@ extension MapView {
     }
 }
 
-/*TODO: сделать чтобы оно трекалось в реальном времени либо хотябы пересчитывалось по onappear*/
 
 extension CLLocationCoordinate2D {
     static var userLocation: CLLocationCoordinate2D {
@@ -376,9 +401,19 @@ extension CLLocationCoordinate2D {
         }
         return userLocation
     }
-    static var carLocation: CLLocationCoordinate2D {
-        return CLLocationCoordinate2D(latitude: 55.753995, longitude: 37.594069)
+    
+    static func carLocation(for index: Int) -> CLLocationCoordinate2D? {
+        let selectedCar = HomeCarsModel().car(index: index)
+        
+        guard let latitude = Double(selectedCar.carLocationLatitude ?? ""),
+              let longitude = Double(selectedCar.carLocationLongitude ?? "") else {
+            return nil
+        }
+        return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
+    
+    //        return CLLocationCoordinate2D(latitude: 55.753995, longitude: 37.594069)
+    
 }
 
 extension MKCoordinateRegion {

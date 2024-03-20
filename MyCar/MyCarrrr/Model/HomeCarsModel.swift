@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import CoreLocation
 
 final class HomeCarsModel {
     
@@ -10,6 +11,7 @@ final class HomeCarsModel {
         }
     }
     
+    let locationManager = LocationManager.shared
     
     init() {
         self.cars = loadCars()
@@ -153,4 +155,17 @@ final class HomeCarsModel {
         cars[carIndex].works[workIndex].content = text
     }
     
+    
+    
+    func setCarLocation(_ carIndex: Int) {
+        locationManager.getLocation { location in
+            // Обработка полученных координат
+            print("Latitude: \(location.coordinate.latitude), Longitude: \(location.coordinate.longitude)")
+            self.cars[carIndex].carLocationLatitude = String(location.coordinate.latitude)
+            self.cars[carIndex].carLocationLongitude = String(location.coordinate.longitude)
+        }
+        
+    }
+    
 }
+

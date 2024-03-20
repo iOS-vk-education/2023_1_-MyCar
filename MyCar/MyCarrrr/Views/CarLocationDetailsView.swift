@@ -88,6 +88,10 @@ struct CarLocationDetailsView: View {
             }else {
                 ContentUnavailableView("No preview available", systemImage: "eye.slash")
             }
+
+            Text(selectedCar?.carLocationLatitude ?? "")
+            Text(selectedCar?.carLocationLongitude ?? "")
+            
             
             HStack(spacing: 24){
                 Button{

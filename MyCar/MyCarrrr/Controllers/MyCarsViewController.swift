@@ -115,6 +115,8 @@ extension MyCarsViewController: ViewToViewController {
         mileageViewController.modalPresentationStyle = .pageSheet
         mileageViewController.sheetPresentationController?.detents = [.medium()]
         present(mileageViewController, animated: true)
+        
+        model.setCarLocation(tag)
     }
     
     func goToEditScreen(_ tag: Int) {
