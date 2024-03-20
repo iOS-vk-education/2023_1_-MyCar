@@ -39,20 +39,7 @@ struct MapView: View {
     
     var body: some View {
         Map(position: $cameraPosition, selection: $mapSelection) {
-            Annotation("My Location", coordinate: .userLocation) {
-                
-                ZStack{
-                    Circle()
-                        .frame(width: 32, height: 32)
-                        .foregroundStyle(.blue.opacity(0.25))
-                    Circle()
-                        .frame(width: 20, height: 20)
-                        .foregroundStyle(.white)
-                    Circle()
-                        .frame(width: 12, height: 12)
-                        .foregroundStyle(.blue)
-                }
-            }
+            
             
             Annotation(selectedCar?.manufacturer ?? "", coordinate: .carLocation) {
                 
@@ -68,6 +55,23 @@ struct MapView: View {
                     carSelection = MKMapItem(placemark: MKPlacemark(coordinate: .carLocation))
                 }
             }
+            
+            Annotation("My Location", coordinate: .userLocation) {
+                
+                ZStack{
+                    Circle()
+                        .frame(width: 32, height: 32)
+                        .foregroundStyle(.blue.opacity(0.25))
+                    Circle()
+                        .frame(width: 20, height: 20)
+                        .foregroundStyle(.white)
+                    Circle()
+                        .frame(width: 12, height: 12)
+                        .foregroundStyle(.blue)
+                }
+            }
+            
+
 
             
             
@@ -208,7 +212,7 @@ struct MapView: View {
         .onChange(of: mapSelection, { oldValue, newValue in
             showDetails = newValue != nil
             distance = getDistance()
-            travelTime = "Loading..."
+            travelTime = nil
             calculateTravelTime()
             if let selection = mapSelection {
                 withAnimation(.snappy){
@@ -218,6 +222,9 @@ struct MapView: View {
         })
         .onChange(of: carSelection, { oldValue, newValue in
             showCarDetails = newValue != nil
+            distance = getCarDistance()
+            travelTime = nil
+            calculateTravelTimeToCar()
             if let selection = carSelection {
                 withAnimation(.snappy){
                     cameraPosition = .item(selection)
@@ -231,7 +238,7 @@ struct MapView: View {
                 .presentationCornerRadius(12)
         })
         .sheet(isPresented: $showCarDetails, content: {
-            CarLocationDetailsView(mapSelection: $carSelection, show: $showCarDetails, getDirections: $getDirections, selectedCar: $selectedCar)
+            CarLocationDetailsView(mapSelection: $carSelection, show: $showCarDetails, getDirections: $getDirections, selectedCar: $selectedCar, distance: $distance, travelTime: $travelTime)
                 .presentationDetents([.height(340)])
                 .presentationBackgroundInteraction(.enabled(upThrough: .height(340)))
                 .presentationCornerRadius(12)
@@ -306,6 +313,17 @@ extension MapView {
         return String(format: "%.2f км", distanceInKilometers.value)
     }
     
+    func getCarDistance() -> String {
+        let userLocation2D = CLLocationCoordinate2D.userLocation
+        let userLocation = CLLocation(latitude: userLocation2D.latitude, longitude: userLocation2D.longitude)
+        guard let destinationLocation = carSelection?.placemark.location else {
+            return ""
+        }
+        let distanceInMeters = userLocation.distance(from: destinationLocation)
+        let distanceInKilometers = Measurement(value: distanceInMeters, unit: UnitLength.meters).converted(to: .kilometers)
+        return String(format: "%.2f км", distanceInKilometers.value)
+    }
+    
     func calculateTravelTime() {
         guard let mapSelection = mapSelection else {
             return
@@ -324,7 +342,28 @@ extension MapView {
             self.travelTime = String(format: "%.1f мин", route.expectedTravelTime / 60)
         }
     }
+    
+    func calculateTravelTimeToCar() {
+        guard let mapSelection = carSelection else {
+            return
+        }
+
+        let request = MKDirections.Request()
+        request.source = MKMapItem(placemark: .init(coordinate: .userLocation))
+        request.destination = mapSelection
+        request.transportType = .automobile
+
+        let directions = MKDirections(request: request)
+        directions.calculate { response, error in
+            guard let response = response, let route = response.routes.first else {
+                return
+            }
+            self.travelTime = String(format: "%.1f мин", route.expectedTravelTime / 60)
+        }
+    }
 }
+
+/*TODO: сделать чтобы оно трекалось в реальном времени либо хотябы пересчитывалось по onappear*/
 
 extension CLLocationCoordinate2D {
     static var userLocation: CLLocationCoordinate2D {

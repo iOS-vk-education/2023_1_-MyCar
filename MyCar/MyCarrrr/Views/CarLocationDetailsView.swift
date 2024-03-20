@@ -13,7 +13,9 @@ struct CarLocationDetailsView: View {
     @Binding var show: Bool
     @Binding var getDirections: Bool
     @Binding var selectedCar: CarViewModel?
-
+    @Binding var distance: String?
+    @Binding var travelTime: String?
+    
     
     var body: some View {
         VStack{
@@ -22,13 +24,17 @@ struct CarLocationDetailsView: View {
                     Text(selectedCar?.manufacturer ?? "")
                         .font(.title2)
                         .fontWeight(.semibold)
-                        Text(selectedCar?.model ?? "")
-                            .font(.footnote)
-                            .foregroundStyle(.black)
-                            .lineLimit(2)
-                            .padding(.trailing)
+                    Text(selectedCar?.model ?? "")
+                        .font(.footnote)
+                        .foregroundStyle(.black)
+                        .lineLimit(2)
+                        .padding(.trailing)
+                    Rectangle()
+                        .frame(height: 1)
+                        .foregroundStyle(.gray)
                     
                 }
+                
                 
                 Spacer()
                 
@@ -42,14 +48,42 @@ struct CarLocationDetailsView: View {
                         .foregroundStyle(.gray, Color(.systemGray6))
                 }
             }
-            .padding()
+//            .padding()
+            .padding(.horizontal)
+            .padding(.top)
+            
+            HStack(){
+                VStack(alignment: .leading){
+                    Text("Расстояние до авто: " + (distance ?? ""))
+                        .font(.footnote)
+                        .foregroundStyle(.gray)
+                        .padding(.trailing)
+                    if let travelTime = travelTime {
+                        Text("Время в пути: " + travelTime)
+                            .font(.footnote)
+                            .foregroundStyle(.gray)
+                            .padding(.trailing)
+                    } else {
+                        HStack{
+                            Text("Время в пути: ")
+                                .font(.footnote)
+                                .foregroundStyle(.gray)
+                                .padding(.trailing)
+                            ProgressView()
+                        }
+
+                    }
+                }
+                Spacer()
+            }
+            .padding(.horizontal)
             
             if let img = selectedCar?.carImage {
                 Image(uiImage: img)
                     .resizable()
-                    .frame(height: 200)
+                    .frame(width: 150, height: 150)
                     .aspectRatio(contentMode: .fit)
-                    .clipShape(Rectangle())
+                    .clipShape(.buttonBorder)
                     .clipped()
             }else {
                 ContentUnavailableView("No preview available", systemImage: "eye.slash")
@@ -82,7 +116,7 @@ struct CarLocationDetailsView: View {
                 }
             }
             .padding(.horizontal)
-
+            
         }
     }
 }

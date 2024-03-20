@@ -11,7 +11,6 @@ import MapKit
 struct LocationDetailsView: View {
     @Binding var mapSelection: MKMapItem?
     @Binding var show: Bool
-    @State private var lookAroundScene: MKLookAroundScene?
     @Binding var getDirections: Bool
     @Binding var distance: String?
     @Binding var travelTime: String?
@@ -28,7 +27,6 @@ struct LocationDetailsView: View {
                         .foregroundStyle(.gray)
                         .lineLimit(2)
                         .padding(.trailing)
-                    //line here
                     Rectangle()
                         .frame(height: 1)
                         .foregroundStyle(.gray)
@@ -44,22 +42,31 @@ struct LocationDetailsView: View {
                         .frame(width: 24, height: 24)
                         .foregroundStyle(.gray, Color(.systemGray6))
                 }
-                
-
             }
             .padding(.horizontal)
             .padding(.top)
             
             HStack(){
                 VStack(alignment: .leading){
-                    Text("Расстояние до точки: " + (distance ?? ""))
+                    Text("Расстояние до точки: " + (distance ?? "Нет данных"))
                         .font(.footnote)
                         .foregroundStyle(.gray)
                         .padding(.trailing)
-                    Text("Время в пути: " + (travelTime ?? "net data"))
-                        .font(.footnote)
-                        .foregroundStyle(.gray)
-                        .padding(.trailing)
+                    if let travelTime = travelTime {
+                        Text("Время в пути: " + travelTime)
+                            .font(.footnote)
+                            .foregroundStyle(.gray)
+                            .padding(.trailing)
+                    } else {
+                        HStack{
+                            Text("Время в пути: ")
+                                .font(.footnote)
+                                .foregroundStyle(.gray)
+                                .padding(.trailing)
+                            ProgressView()
+                        }
+
+                    }
                 }
                 Spacer()
             }
@@ -92,9 +99,6 @@ struct LocationDetailsView: View {
                 Spacer()
             }
             .padding()
-
-            
-            
             
             HStack(spacing: 24){
                 Button{
@@ -123,26 +127,10 @@ struct LocationDetailsView: View {
                 }
             }
             .padding(.horizontal)
-
-        }
-        .onAppear{
-            fetchLookAroundPreview()
-        }
-        .onChange(of: mapSelection) { oldValue, newValue in
-            fetchLookAroundPreview()
             
         }
+       
     }
 }
 
-extension LocationDetailsView {
-    func fetchLookAroundPreview() {
-        if let mapSelection {
-            lookAroundScene = nil
-            Task {
-                let request = MKLookAroundSceneRequest(mapItem: mapSelection)
-                lookAroundScene = try? await request.scene
-            }
-        }
-    }
-}
+
