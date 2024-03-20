@@ -106,7 +106,7 @@ struct LocationDetailsView: View {
                         mapSelection.openInMaps()
                     }
                 } label: {
-                    Text("Open in Maps")
+                    Text("Открыть в картах")
                         .font(.headline)
                         .foregroundStyle(.white)
                         .frame(width: 170, height: 48)
@@ -118,7 +118,7 @@ struct LocationDetailsView: View {
                     getDirections = true
                     show = false
                 } label: {
-                    Text("Get Directions")
+                    Text("Маршрут")
                         .font(.headline)
                         .foregroundStyle(.white)
                         .frame(width: 170, height: 48)
