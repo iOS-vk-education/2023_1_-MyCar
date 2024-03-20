@@ -11,7 +11,7 @@ import MapKit
 struct CarLocationDetailsView: View {
     @Binding var mapSelection: MKMapItem?
     @Binding var show: Bool
-    @Binding var getDirections: Bool
+    @Binding var getCarDirections: Bool
     @Binding var selectedCar: CarViewModel?
     @Binding var distance: String?
     @Binding var travelTime: String?
@@ -88,9 +88,6 @@ struct CarLocationDetailsView: View {
             }else {
                 ContentUnavailableView("No preview available", systemImage: "eye.slash")
             }
-
-            Text(selectedCar?.carLocationLatitude ?? "")
-            Text(selectedCar?.carLocationLongitude ?? "")
             
             
             HStack(spacing: 24){
@@ -108,7 +105,7 @@ struct CarLocationDetailsView: View {
                 }
                 
                 Button{
-                    getDirections = true
+                    getCarDirections = true
                     show = false
                 } label: {
                     Text("Get Directions")

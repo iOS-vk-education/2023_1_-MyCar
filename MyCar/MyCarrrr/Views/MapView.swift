@@ -24,6 +24,8 @@ struct MapView: View {
     @State private var showCarDetails = false
     
     @State private var getDirections = false
+    @State private var getCarDirections = false
+    
     @State private var routeDisplaying = false
     @State private var route: MKRoute?
     @State private var routeDestionation: MKMapItem?
@@ -80,7 +82,6 @@ struct MapView: View {
                 }
                 
             }
-            
             
             ForEach(results, id: \.self) { item in
                 if routeDisplaying {
@@ -232,7 +233,12 @@ struct MapView: View {
         })
         .onChange(of: getDirections, { oldValue, newValue in
             if newValue {
-                fetchRoute()
+                fetchRoute(selection: mapSelection!)
+            }
+        })
+        .onChange(of: getCarDirections, { oldValue, newValue in
+            if newValue {
+                fetchRoute(selection: carSelection!)
             }
         })
         .onChange(of: mapSelection, { oldValue, newValue in
@@ -264,7 +270,7 @@ struct MapView: View {
                 .presentationCornerRadius(12)
         })
         .sheet(isPresented: $showCarDetails, content: {
-            CarLocationDetailsView(mapSelection: $carSelection, show: $showCarDetails, getDirections: $getDirections, selectedCar: $selectedCar, distance: $distance, travelTime: $travelTime)
+            CarLocationDetailsView(mapSelection: $carSelection, show: $showCarDetails, getCarDirections: $getCarDirections, selectedCar: $selectedCar, distance: $distance, travelTime: $travelTime)
                 .presentationDetents([.height(340)])
                 .presentationBackgroundInteraction(.enabled(upThrough: .height(340)))
                 .presentationCornerRadius(12)
@@ -287,24 +293,22 @@ extension MapView {
         self.results = results?.mapItems ?? []
     }
     
-    func fetchRoute() {
-        if let mapSelection {
-            let request = MKDirections.Request()
-            request.source = MKMapItem(placemark: .init(coordinate: .userLocation))
-            request.destination = mapSelection
+    func fetchRoute(selection: MKMapItem) {
+        let request = MKDirections.Request()
+        request.source = MKMapItem(placemark: .init(coordinate: .userLocation))
+        request.destination = selection
+        
+        Task {
+            let result = try? await MKDirections(request: request).calculate()
+            route = result?.routes.first
+            routeDestionation = selection
             
-            Task {
-                let result = try? await MKDirections(request: request).calculate()
-                route = result?.routes.first
-                routeDestionation = mapSelection
+            withAnimation(.snappy){
+                routeDisplaying = true
+                showDetails = false
                 
-                withAnimation(.snappy){
-                    routeDisplaying = true
-                    showDetails = false
-                    
-                    if let rect = route?.polyline.boundingMapRect, routeDisplaying{
-                        cameraPosition = .rect(rect)
-                    }
+                if let rect = route?.polyline.boundingMapRect, routeDisplaying{
+                    cameraPosition = .rect(rect)
                 }
             }
         }
@@ -318,6 +322,7 @@ extension MapView {
             showDetails = false
             showCarDetails = false
             getDirections = false
+            getCarDirections = false
             routeDisplaying = false
             
             results = [MKMapItem]()
