@@ -36,6 +36,8 @@ struct CarViewModel: Codable {
     
     var carLocationLatitude: String?
     var carLocationLongitude: String?
+    
+    var stsImage: UIImage?
 }
 
 struct CarInfo: Codable {

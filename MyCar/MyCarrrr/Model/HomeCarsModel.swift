@@ -138,6 +138,9 @@ final class HomeCarsModel {
     func updateInsuranceImage(_ image: UIImage, _ tag: Int) {
         cars[tag].insurenceImage = image
     }
+    func updateStsImage(_ image: UIImage, _ tag: Int) {
+        cars[tag].stsImage = image
+    }
     
     func updateInsureanceDate(_ carIndex: Int, date: String){
         cars[carIndex].insurenceDate = date
