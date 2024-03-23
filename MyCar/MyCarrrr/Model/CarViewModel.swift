@@ -20,7 +20,7 @@ extension ImageCodable where Self: UIImage {
 
 
 struct CarViewModel: Codable {
-    
+    var id = UUID()
     var manufacturer: String
     var model: String
     var milleage: Int
