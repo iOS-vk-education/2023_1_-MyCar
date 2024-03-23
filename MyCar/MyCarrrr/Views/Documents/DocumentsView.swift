@@ -74,7 +74,7 @@ struct DrivingLicenseView: View {
                 Spacer()
             }
             
-            NavigationLink(destination: DocumentsImageView(image: UIImage(systemName: "car")!)) {
+            NavigationLink(destination: DrivingLicenseImageView(image: UIImage(systemName: "car")!)) {
                 HStack{
                     Text("Посмотреть")
                         .font(.system(size: 20))

@@ -19,6 +19,9 @@ struct DocumentsRow: View {
     @State private var showingActionSheetSts = false
     @State private var showingActionSheetInsurance = false
     
+    @State private var showingEditSts = false
+    @State private var showingEditInsurance = false
+    
     @State private var showingImagePickerSts = false
     @State private var showingImagePickerInsurence = false
     @State private var selectedImage: UIImage?
@@ -47,7 +50,11 @@ struct DocumentsRow: View {
             //MARK: - STS image
             HStack() {
                 if let img = car.stsImage {
-                    NavigationLink(destination: DocumentsImageView(image: img)) {
+                    Button{
+                        withAnimation(.snappy){
+                            self.showingActionSheetSts = true
+                        }
+                    } label: {
                         VStack{
                             Text("СТС")
                                 .font(.system(size: 20))
@@ -65,10 +72,17 @@ struct DocumentsRow: View {
                         .background(Color(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0))
                         .clipShape(.buttonBorder)
                     }
+                    .sheet(isPresented: $showingActionSheetSts) {
+                        StsImageView(image: img, 
+                                     showingActionSheetSts: $showingActionSheetSts,
+                                     showingEditSts: $showingEditSts, 
+                                     carIndex: index,
+                                     updateCarsAction: updateCars)
+                    }
                 }else {
                     Button{
                         withAnimation(.snappy){
-                            self.showingActionSheetSts = true
+                            self.showingEditSts = true
                         }
                     } label: {
                         VStack{
@@ -88,7 +102,7 @@ struct DocumentsRow: View {
                         .background(Color(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0))
                         .clipShape(.buttonBorder)
                     }
-                    .actionSheet(isPresented: $showingActionSheetSts) {
+                    .actionSheet(isPresented: $showingEditSts) {
                         ActionSheet(title: Text("Выберите действие"), buttons: [
                             .default(Text("Камера"), action: {
                                 self.showingImagePickerSts = true
@@ -109,7 +123,7 @@ struct DocumentsRow: View {
                 
                 //MARK: - insurence image
                 if let img = car.insurenceImage {
-                    NavigationLink(destination: DocumentsImageView(image: img)) {
+                    NavigationLink(destination: InsurenceImageView(image: img)) {
                         VStack{
                             Text("Страховка")
                                 .font(.system(size: 20))
@@ -130,7 +144,7 @@ struct DocumentsRow: View {
                 }else {
                     Button{
                         withAnimation(.snappy){
-                            self.showingActionSheetInsurance = true
+                            self.showingEditInsurance = true
                         }
                     } label: {
                         VStack{
@@ -150,7 +164,7 @@ struct DocumentsRow: View {
                         .background(Color(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0))
                         .clipShape(.buttonBorder)
                     }
-                    .actionSheet(isPresented: $showingActionSheetInsurance) {
+                    .actionSheet(isPresented: $showingEditInsurance) {
                         ActionSheet(title: Text("Выберите действие"), buttons: [
                             .default(Text("Камера"), action: {
                                 self.showingImagePickerInsurence = true
@@ -187,6 +201,10 @@ struct DocumentsRow: View {
     func loadInsuranceImage() {
         guard let selectedImage = selectedImage else { return }
         HomeCarsModel().updateInsuranceImage(selectedImage, index)
+        updateCarsAction()
+    }
+    
+    func updateCars() {
         updateCarsAction()
     }
     

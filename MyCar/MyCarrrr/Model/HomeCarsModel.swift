@@ -158,8 +158,6 @@ final class HomeCarsModel {
         cars[carIndex].works[workIndex].content = text
     }
     
-    
-    
     func setCarLocation(_ carIndex: Int) {
         locationManager.getLocation { location in
             // Обработка полученных координат
@@ -168,6 +166,14 @@ final class HomeCarsModel {
             self.cars[carIndex].carLocationLongitude = String(location.coordinate.longitude)
         }
         
+    }
+    
+    func removeStsImage(_ carIndex: Int) {
+        cars[carIndex].stsImage = nil
+    }
+    
+    func removeInsureanceImage(_ carIndex: Int) {
+        cars[carIndex].insurenceImage = nil
     }
     
 }
