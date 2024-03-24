@@ -48,7 +48,7 @@ class InsurenceDateViewController: UIViewController {
 extension InsurenceDateViewController: DateViewDelegate {
     
     func didTapDateButton(_ date: String) {
-        model.updateInsureanceDate(carTag, date: date)
+        model.updateInsuranceDate(carTag, date: date)
         dateDelegate?.changeDate(date)
         dismiss(animated: true, completion: nil)
         NotificationCenter.default.post(name: .dataUpdated, object: nil)

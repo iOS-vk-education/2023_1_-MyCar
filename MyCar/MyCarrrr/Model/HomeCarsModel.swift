@@ -142,7 +142,7 @@ final class HomeCarsModel {
         cars[tag].stsImage = image
     }
     
-    func updateInsureanceDate(_ carIndex: Int, date: String){
+    func updateInsuranceDate(_ carIndex: Int, date: String){
         cars[carIndex].insurenceDate = date
     }
     

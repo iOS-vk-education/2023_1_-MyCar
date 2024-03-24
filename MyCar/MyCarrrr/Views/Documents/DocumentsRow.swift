@@ -75,7 +75,6 @@ struct DocumentsRow: View {
                     .sheet(isPresented: $showingActionSheetSts) {
                         StsImageView(image: img, 
                                      showingActionSheetSts: $showingActionSheetSts,
-                                     showingEditSts: $showingEditSts, 
                                      carIndex: index,
                                      updateCarsAction: updateCars)
                     }
@@ -122,8 +121,13 @@ struct DocumentsRow: View {
                 Spacer()
                 
                 //MARK: - insurence image
+                
                 if let img = car.insurenceImage {
-                    NavigationLink(destination: InsurenceImageView(image: img)) {
+                    Button{
+                        withAnimation(.snappy){
+                            self.showingActionSheetInsurance = true
+                        }
+                    } label: {
                         VStack{
                             Text("Страховка")
                                 .font(.system(size: 20))
@@ -140,6 +144,12 @@ struct DocumentsRow: View {
                         .frame(width: 175, height: 120)
                         .background(Color(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0))
                         .clipShape(.buttonBorder)
+                    }
+                    .sheet(isPresented: $showingActionSheetInsurance) {
+                        InsurenceImageView(image: img,
+                                           showingActionSheetInsurence: $showingActionSheetInsurance,
+                                           carIndex: index,
+                                           updateCarsAction: updateCars)
                     }
                 }else {
                     Button{
