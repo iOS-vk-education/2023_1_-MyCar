@@ -32,6 +32,7 @@
 		84618DF92BB064B700436C3B /* DrivingLicenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84618DF82BB064B700436C3B /* DrivingLicenseModel.swift */; };
 		84618DFB2BB0653B00436C3B /* HomeDrivingLicenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84618DFA2BB0653B00436C3B /* HomeDrivingLicenseModel.swift */; };
 		84618DFD2BB076C100436C3B /* DrivingLicenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84618DFC2BB076C100436C3B /* DrivingLicenseView.swift */; };
+		84618E072BB08E8F00436C3B /* SwiftUIImageViewer in Frameworks */ = {isa = PBXBuildFile; productRef = 84618E062BB08E8F00436C3B /* SwiftUIImageViewer */; };
 		846AA1C82B1FB3DF001FC13D /* TOButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AA1C72B1FB3DF001FC13D /* TOButtonView.swift */; };
 		846AA1CA2B1FD6E0001FC13D /* InsuranceButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AA1C92B1FD6E0001FC13D /* InsuranceButtonView.swift */; };
 		846AA1CC2B1FD835001FC13D /* MileageButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AA1CB2B1FD835001FC13D /* MileageButtonView.swift */; };
@@ -129,6 +130,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84618E072BB08E8F00436C3B /* SwiftUIImageViewer in Frameworks */,
 				C395F7468B294597335A7200 /* Pods_MyCarrrr.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -298,6 +300,9 @@
 			dependencies = (
 			);
 			name = MyCarrrr;
+			packageProductDependencies = (
+				84618E062BB08E8F00436C3B /* SwiftUIImageViewer */,
+			);
 			productName = MyCarrrr;
 			productReference = 559EFBB12AF14A5F0098672F /* MyCarrrr.app */;
 			productType = "com.apple.product-type.application";
@@ -326,6 +331,9 @@
 				Base,
 			);
 			mainGroup = 559EFBA82AF14A5F0098672F;
+			packageReferences = (
+				84618E052BB08E8F00436C3B /* XCRemoteSwiftPackageReference "swiftui-image-viewer" */,
+			);
 			productRefGroup = 559EFBB22AF14A5F0098672F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -655,6 +663,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		84618E052BB08E8F00436C3B /* XCRemoteSwiftPackageReference "swiftui-image-viewer" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/fuzzzlove/swiftui-image-viewer.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		84618E062BB08E8F00436C3B /* SwiftUIImageViewer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84618E052BB08E8F00436C3B /* XCRemoteSwiftPackageReference "swiftui-image-viewer" */;
+			productName = SwiftUIImageViewer;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 559EFBA92AF14A5F0098672F /* Project object */;
 }

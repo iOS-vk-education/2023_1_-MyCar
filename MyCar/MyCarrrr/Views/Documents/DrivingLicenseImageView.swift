@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import SwiftUIImageViewer
 
 
 struct DrivingLicenseImageView: View {
@@ -22,7 +23,21 @@ struct DrivingLicenseImageView: View {
     @State private var selectedImage: UIImage?
     
     let updateCarsAction: () -> Void
-
+    
+    @State private var showPhoto = false
+    
+    var closeButton: some View {
+        Button {
+            showPhoto = false
+        } label: {
+            Image(systemName: "xmark")
+                .font(.headline)
+        }
+        .buttonStyle(.bordered)
+        .clipShape(Circle())
+        .tint(.gray)
+        .padding()
+    }
     
     var body: some View {
         ZStack{
@@ -35,6 +50,9 @@ struct DrivingLicenseImageView: View {
                     .frame(width: 350, height: 500)
                     .aspectRatio(contentMode: .fit)
                     .padding()
+                    .onTapGesture {
+                        showPhoto = true
+                    }
                 
                 Spacer()
                 
@@ -91,6 +109,13 @@ struct DrivingLicenseImageView: View {
         .sheet(isPresented: $showingImagePickerDrivingLicence, onDismiss: loadDrivingLicenceImage){
             ImagePicker(image: self.$selectedImage, sourceType: self.sourceType)
                 .ignoresSafeArea()
+        }
+        .sheet(isPresented: $showPhoto){
+            SwiftUIImageViewer(image: Image(uiImage: image))
+                .overlay(alignment: .topTrailing) {
+                    closeButton
+                }
+                .background(Color.black)
         }
     }
     

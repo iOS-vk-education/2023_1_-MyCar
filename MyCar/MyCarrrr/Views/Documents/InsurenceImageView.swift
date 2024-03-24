@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import SwiftUIImageViewer
 
 struct InsurenceImageView: View {
     
@@ -24,7 +25,21 @@ struct InsurenceImageView: View {
     
     let carIndex: Int
     let updateCarsAction: () -> Void
-
+    
+    @State private var showPhoto = false
+    
+    var closeButton: some View {
+        Button {
+            showPhoto = false
+        } label: {
+            Image(systemName: "xmark")
+                .font(.headline)
+        }
+        .buttonStyle(.bordered)
+        .clipShape(Circle())
+        .tint(.gray)
+        .padding()
+    }
     
     var body: some View {
         ZStack{
@@ -37,6 +52,9 @@ struct InsurenceImageView: View {
                     .frame(width: 350, height: 500)
                     .aspectRatio(contentMode: .fit)
                     .padding()
+                    .onTapGesture {
+                        showPhoto = true
+                    }
                 
                 Spacer()
                 
@@ -100,7 +118,7 @@ struct InsurenceImageView: View {
                     .clipShape(.buttonBorder)
                 }
                 .padding()
-
+                
                 
             }
             .padding()
@@ -109,6 +127,13 @@ struct InsurenceImageView: View {
         .sheet(isPresented: $showingImagePickerInsurence, onDismiss: loadInsurenceImage){
             ImagePicker(image: self.$selectedImage, sourceType: self.sourceType)
                 .ignoresSafeArea()
+        }
+        .sheet(isPresented: $showPhoto){
+            SwiftUIImageViewer(image: Image(uiImage: image))
+                .overlay(alignment: .topTrailing) {
+                    closeButton
+                }
+                .background(Color.black)
         }
     }
     func loadInsurenceImage () {
