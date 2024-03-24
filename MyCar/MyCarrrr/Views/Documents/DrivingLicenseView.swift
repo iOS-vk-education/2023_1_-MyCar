@@ -23,6 +23,8 @@ struct DrivingLicenseView: View {
     var body: some View {
         VStack{
             HStack{
+                Image(systemName: "person.fill")
+                    .foregroundStyle(Color.white)
                 Text("Водительское удостоверение")
                     .font(.system(size: 20))
                     .bold()

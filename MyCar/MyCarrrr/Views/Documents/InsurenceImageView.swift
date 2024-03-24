@@ -20,6 +20,8 @@ struct InsurenceImageView: View {
     @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
     @State private var selectedImage: UIImage?
     
+    @State var selectedDate: Date
+    
     let carIndex: Int
     let updateCarsAction: () -> Void
 
@@ -35,6 +37,22 @@ struct InsurenceImageView: View {
                     .frame(width: 350, height: 500)
                     .aspectRatio(contentMode: .fit)
                     .padding()
+                
+                Spacer()
+                
+                DatePicker("Дата окончания", selection: $selectedDate, displayedComponents: .date)
+                    .font(.system(size: 20))
+                    .bold()
+                    .colorInvert()
+                    .padding()
+                    .onChange(of: selectedDate) {
+                        let currentDate = selectedDate
+                        let dateFormatter = DateFormatter()
+                        dateFormatter.dateFormat = "dd.MM.yyyy"
+                        let dateString = dateFormatter.string(from: currentDate)
+                        model.updateInsuranceDate(carIndex, date: dateString)
+                        updateCarsAction()
+                    }
                 
                 Spacer()
                 

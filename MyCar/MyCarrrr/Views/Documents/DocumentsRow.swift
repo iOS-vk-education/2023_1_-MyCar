@@ -27,6 +27,7 @@ struct DocumentsRow: View {
     @State private var selectedImage: UIImage?
     @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
     
+    @State var date: String?
     
     var body: some View {
         
@@ -148,6 +149,7 @@ struct DocumentsRow: View {
                     .sheet(isPresented: $showingActionSheetInsurance) {
                         InsurenceImageView(image: img,
                                            showingActionSheetInsurence: $showingActionSheetInsurance,
+                                           selectedDate: convertDate(),
                                            carIndex: index,
                                            updateCarsAction: updateCars)
                     }
@@ -216,6 +218,17 @@ struct DocumentsRow: View {
     
     func updateCars() {
         updateCarsAction()
+    }
+    
+    func convertDate () -> Date {
+        if let dateString = car.insurenceDate {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd.MM.yyyy"
+            if let date = dateFormatter.date(from: dateString){
+                return date
+            }
+        }
+        return Date()
     }
     
     /*TODO: - сделать чтобы во время HomeCarsModel().updateInsuranceImage(selectedImage, index) был progressview и кнопка была неактивной
