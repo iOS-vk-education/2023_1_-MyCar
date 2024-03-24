@@ -11,6 +11,7 @@ final class HomeCarsModel {
         }
     }
     
+    
     let locationManager = LocationManager.shared
     
     init() {
@@ -46,7 +47,6 @@ final class HomeCarsModel {
         }
         print("Нет данных в UserDefaults для ключа 'carsArrayKey'")
         return []
-        
     }
    
     

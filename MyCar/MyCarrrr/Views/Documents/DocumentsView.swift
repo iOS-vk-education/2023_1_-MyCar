@@ -27,7 +27,7 @@ struct DocumentsView: View {
                         .bold()
                         .multilineTextAlignment(.center)
                     
-                    DrivingLicenseView()
+                    DrivingLicenseView(updateCarsAction: updateCars)
                         .padding()
                     
                     HStack{
@@ -59,36 +59,5 @@ struct DocumentsView: View {
     }
     func updateCars () {
         cars = HomeCarsModel().allCars()
-    }
-}
-
-struct DrivingLicenseView: View {
-    var body: some View {
-        VStack{
-            HStack{
-                Text("Водительское удостоверение")
-                    .font(.system(size: 20))
-                    .bold()
-                    .foregroundStyle(.white)
-                    .lineLimit(1)
-                Spacer()
-            }
-            
-            NavigationLink(destination: DrivingLicenseImageView(image: UIImage(systemName: "car")!)) {
-                HStack{
-                    Text("Посмотреть")
-                        .font(.system(size: 20))
-                        .bold()
-                        .foregroundStyle(.white)
-                        .lineLimit(1)
-                    Spacer()
-                }
-                .padding()
-                .background(Color(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0))
-                .clipShape(.buttonBorder)
-            }
-            
-        }
-        
     }
 }
