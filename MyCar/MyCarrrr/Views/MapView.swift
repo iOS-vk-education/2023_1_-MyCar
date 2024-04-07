@@ -9,10 +9,19 @@ import MapKit
 import SwiftUI
 import CoreLocation
 
+//TODO: - сделать вместо одного results 2 массива для моек и сервисов и на них кастомные маркеры
+struct SearchResult: Identifiable {
+    let id = UUID()
+    let placemark: MKPlacemark
+    let tags: String
+}
+
+
 struct MapView: View {
     @State private var cameraPosition: MapCameraPosition = .region(.userRegion)
     @State private var searchText = ""
     @State private var results = [MKMapItem]()
+//    @State private var results = [SearchResult]()
     @State private var mapSelection: MKMapItem?
     
     @State private var distance: String?
@@ -41,6 +50,9 @@ struct MapView: View {
     @State private var selectedCarIndex = 0
     
     @State private var calculatingRoute = false
+    
+    @State private var autoServiceShowing = false
+    @State private var carWashShowing = false
     
     
     var body: some View {
@@ -169,7 +181,7 @@ struct MapView: View {
                     .padding(.vertical)
                     
                     Button{
-                        clearView()
+                        autoServiceShowing.toggle()
                         withAnimation(.snappy){
                             cameraPosition = .region(.userRegion)
                         }
@@ -182,9 +194,12 @@ struct MapView: View {
                             .resizable()
                             .frame(width: 32, height: 32)
                     }
+                    .padding(6)
+                    .background(autoServiceShowing ? .gray : .clear)
+                    .clipShape(.buttonBorder)
                     .padding(.bottom)
                     Button{
-                        clearView()
+                        carWashShowing.toggle()
                         withAnimation(.snappy){
                             cameraPosition = .region(.userRegion)
                         }
@@ -197,6 +212,9 @@ struct MapView: View {
                             .resizable()
                             .frame(width: 32, height: 32)
                     }
+                    .padding(6)
+                    .background(carWashShowing ? .gray : .clear)
+                    .clipShape(.buttonBorder)
                     .padding(.bottom)
                     Button{
                         withAnimation(.snappy){
@@ -208,9 +226,13 @@ struct MapView: View {
                             routeDisplaying = false
                             
                             results = [MKMapItem]()
+//                            results = [SearchResult]()
                             mapSelection = nil
                             route = nil
                             routeDestionation = nil
+                            
+                            autoServiceShowing = false
+                            carWashShowing = false
                         }
                         
                     } label: {
@@ -297,14 +319,63 @@ struct MapView: View {
 }
 
 extension MapView {
+    
+//    func searchPlaces() async {
+//        var autoServiceResults: [SearchResult] = []
+//        var carWashResults: [SearchResult] = []
+//        
+//        let request = MKLocalSearch.Request()
+//        request.region = .userRegion
+//        
+//        if autoServiceShowing {
+//            request.naturalLanguageQuery = "Автосервис"
+//            if let response = try? await MKLocalSearch(request: request).start() {
+//                autoServiceResults = response.mapItems.map { SearchResult(placemark: $0.placemark, tags: "AutoService") }
+//            }
+//        }
+//        
+//        if carWashShowing {
+//            request.naturalLanguageQuery = "Автомойка"
+//            if let response = try? await MKLocalSearch(request: request).start() {
+//                carWashResults = response.mapItems.map { SearchResult(placemark: $0.placemark, tags: "CarWash") }
+//            }
+//        }
+//        
+//        self.results = autoServiceResults + carWashResults
+//    }
+
     func searchPlaces() async {
+        var autoServiceResults: [MKMapItem] = []
+        var carWashResults: [MKMapItem] = []
+        
         let request = MKLocalSearch.Request()
-        request.naturalLanguageQuery = searchText
         request.region = .userRegion
         
-        let results = try? await MKLocalSearch(request: request).start()
-        self.results = results?.mapItems ?? []
+        if autoServiceShowing {
+            request.naturalLanguageQuery = "Автосервис"
+            if let response = try? await MKLocalSearch(request: request).start() {
+                autoServiceResults = response.mapItems
+            }
+        }
+        
+        if carWashShowing {
+            request.naturalLanguageQuery = "Автомойка"
+            if let response = try? await MKLocalSearch(request: request).start() {
+                carWashResults = response.mapItems
+            }
+        }
+        
+        self.results = autoServiceResults + carWashResults
     }
+
+//    func searchPlaces() async {
+//        let request = MKLocalSearch.Request()
+//        request.naturalLanguageQuery = searchText
+//        request.region = .userRegion
+//        
+//        let results = try? await MKLocalSearch(request: request).start()
+//        self.results = results?.mapItems ?? []
+//    }
     
     func fetchRoute(selection: MKMapItem) {
         calculatingRoute = true
@@ -342,10 +413,14 @@ extension MapView {
             calculatingRoute = false
             
             results = [MKMapItem]()
+//            results = [SearchResult]()
             mapSelection = nil
             carSelection = nil
             route = nil
             routeDestionation = nil
+            
+            autoServiceShowing = false
+            carWashShowing = false
         }
     }
     
