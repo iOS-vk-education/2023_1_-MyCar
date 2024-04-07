@@ -36,6 +36,8 @@
 		846AA1C82B1FB3DF001FC13D /* TOButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AA1C72B1FB3DF001FC13D /* TOButtonView.swift */; };
 		846AA1CA2B1FD6E0001FC13D /* InsuranceButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AA1C92B1FD6E0001FC13D /* InsuranceButtonView.swift */; };
 		846AA1CC2B1FD835001FC13D /* MileageButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AA1CB2B1FD835001FC13D /* MileageButtonView.swift */; };
+		846B6D122BC315140039698B /* Lesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846B6D112BC315140039698B /* Lesson.swift */; };
+		846B6D142BC315330039698B /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846B6D132BC315330039698B /* TutorialView.swift */; };
 		84709F902B229F3A00AD8347 /* MileageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84709F8F2B229F3A00AD8347 /* MileageViewController.swift */; };
 		84709F922B229FCC00AD8347 /* MileageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84709F912B229FCC00AD8347 /* MileageView.swift */; };
 		8472EBF02B2109B30027B383 /* WorkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472EBEF2B2109B30027B383 /* WorkModel.swift */; };
@@ -59,8 +61,6 @@
 		84CE9AE22B0300460070A8B2 /* UserDafaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE9AE12B0300460070A8B2 /* UserDafaultsService.swift */; };
 		84CE9AE42B0307370070A8B2 /* AddCarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE9AE32B0307370070A8B2 /* AddCarView.swift */; };
 		84CE9AE62B03073F0070A8B2 /* AddCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE9AE52B03073F0070A8B2 /* AddCarViewController.swift */; };
-		84E616152B8B978C000BC141 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E616142B8B978C000BC141 /* TutorialView.swift */; };
-		84E616172B8BBAB3000BC141 /* Lesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E616162B8BBAB3000BC141 /* Lesson.swift */; };
 		84F8EEAD2B337D170059F5A2 /* InsurenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F8EEAC2B337D170059F5A2 /* InsurenceViewController.swift */; };
 		84F8EEAF2B337D940059F5A2 /* InsurenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F8EEAE2B337D940059F5A2 /* InsurenceView.swift */; };
 		C395F7468B294597335A7200 /* Pods_MyCarrrr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24864BD75FEDB4706EECD45B /* Pods_MyCarrrr.framework */; };
@@ -99,6 +99,8 @@
 		846AA1C72B1FB3DF001FC13D /* TOButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TOButtonView.swift; sourceTree = "<group>"; };
 		846AA1C92B1FD6E0001FC13D /* InsuranceButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceButtonView.swift; sourceTree = "<group>"; };
 		846AA1CB2B1FD835001FC13D /* MileageButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MileageButtonView.swift; sourceTree = "<group>"; };
+		846B6D112BC315140039698B /* Lesson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lesson.swift; sourceTree = "<group>"; };
+		846B6D132BC315330039698B /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
 		84709F8F2B229F3A00AD8347 /* MileageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MileageViewController.swift; sourceTree = "<group>"; };
 		84709F912B229FCC00AD8347 /* MileageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MileageView.swift; sourceTree = "<group>"; };
 		8472EBEF2B2109B30027B383 /* WorkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkModel.swift; sourceTree = "<group>"; };
@@ -122,8 +124,6 @@
 		84CE9AE12B0300460070A8B2 /* UserDafaultsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDafaultsService.swift; sourceTree = "<group>"; };
 		84CE9AE32B0307370070A8B2 /* AddCarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCarView.swift; sourceTree = "<group>"; };
 		84CE9AE52B03073F0070A8B2 /* AddCarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCarViewController.swift; sourceTree = "<group>"; };
-		84E616142B8B978C000BC141 /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
-		84E616162B8BBAB3000BC141 /* Lesson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lesson.swift; sourceTree = "<group>"; };
 		84F8EEAC2B337D170059F5A2 /* InsurenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsurenceViewController.swift; sourceTree = "<group>"; };
 		84F8EEAE2B337D940059F5A2 /* InsurenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsurenceView.swift; sourceTree = "<group>"; };
 		F95325BC3F5539279FA98343 /* Pods-MyCarrrr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyCarrrr.release.xcconfig"; path = "Target Support Files/Pods-MyCarrrr/Pods-MyCarrrr.release.xcconfig"; sourceTree = "<group>"; };
@@ -182,6 +182,7 @@
 				55DAF91E2B209D2D003BB552 /* MapView.swift */,
 				84B733AD2BA2035E00C899E7 /* LocationDetailsView.swift */,
 				841BA86E2BA317180011564E /* CarLocationDetailsView.swift */,
+				846B6D132BC315330039698B /* TutorialView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -197,6 +198,7 @@
 				8472EBF32B210E6E0027B383 /* HomeWorkModel.swift */,
 				84618DF82BB064B700436C3B /* DrivingLicenseModel.swift */,
 				84618DFA2BB0653B00436C3B /* HomeDrivingLicenseModel.swift */,
+				846B6D112BC315140039698B /* Lesson.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -208,6 +210,7 @@
 				559EFBB22AF14A5F0098672F /* Products */,
 				E69D7C04ED4F1E4202CA95AE /* Pods */,
 				E7364A90FF23722C40AF6864 /* Frameworks */,
+				846B6D102BC313F90039698B /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -231,6 +234,13 @@
 				559EFBC22AF14A620098672F /* Info.plist */,
 			);
 			path = MyCarrrr;
+			sourceTree = "<group>";
+		};
+		846B6D102BC313F90039698B /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		8473868B2BAF3C83006CD936 /* Documents */ = {
@@ -407,6 +417,7 @@
 			files = (
 				84618DF72BB062A500436C3B /* StsImageView.swift in Sources */,
 				84CE9AE02B03003F0070A8B2 /* NetworkService.swift in Sources */,
+				846B6D142BC315330039698B /* TutorialView.swift in Sources */,
 				8472EBF22B210BD40027B383 /* TOCellTableViewCell.swift in Sources */,
 				846AA1CC2B1FD835001FC13D /* MileageButtonView.swift in Sources */,
 				840B60AE2B2AE251001FEA12 /* WorkEditView.swift in Sources */,
@@ -425,7 +436,6 @@
 				551805CE2B2266C700674218 /* PlaceClass.swift in Sources */,
 				844427DE2BAC65A900D61EF9 /* DocumentsView.swift in Sources */,
 				559EFBB72AF14A5F0098672F /* SceneDelegate.swift in Sources */,
-				84E616152B8B978C000BC141 /* TutorialView.swift in Sources */,
 				84709F902B229F3A00AD8347 /* MileageViewController.swift in Sources */,
 				8472EBF42B210E6E0027B383 /* HomeWorkModel.swift in Sources */,
 				559EFBCD2AF179870098672F /* TabBarController.swift in Sources */,
@@ -438,6 +448,7 @@
 				849908402B1A889D00304317 /* TOViewController.swift in Sources */,
 				847566EB2B23C07E003BC1F6 /* EditCarView.swift in Sources */,
 				84618DF52BB0624200436C3B /* InsurenceImageView.swift in Sources */,
+				846B6D122BC315140039698B /* Lesson.swift in Sources */,
 				847386912BAF3DDD006CD936 /* DrivingLicenseImageView.swift in Sources */,
 				559EFBC92AF14B740098672F /* MyCarsView.swift in Sources */,
 				8472EBF62B21188E0027B383 /* ChequeButtonView.swift in Sources */,
@@ -452,7 +463,6 @@
 				84CE9AE42B0307370070A8B2 /* AddCarView.swift in Sources */,
 				84F8EEAF2B337D940059F5A2 /* InsurenceView.swift in Sources */,
 				846AA1C82B1FB3DF001FC13D /* TOButtonView.swift in Sources */,
-				84E616172B8BBAB3000BC141 /* Lesson.swift in Sources */,
 				840B60B42B2AE708001FEA12 /* TODateView.swift in Sources */,
 				840B60B02B2AE3EA001FEA12 /* TOPriceViewController.swift in Sources */,
 				84618DFB2BB0653B00436C3B /* HomeDrivingLicenseModel.swift in Sources */,

@@ -7,6 +7,7 @@ class TabBarController: UITabBarController {
     
     private let hostingMapVC = UIHostingController(rootView: MapView())
     private let hostingDocumentsVC = UIHostingController(rootView: DocumentsView())
+    private let hostingTutorialVC = UIHostingController(rootView: TutorialView())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +20,8 @@ class TabBarController: UITabBarController {
         viewControllers = [setImage(vC: MyCarsViewController(model: model), image: UIImage(named: "garage")),
 //                           setImage(vC: MapViewController(), image: UIImage(named: "map")),
                            setImage(vC: hostingMapVC, image: UIImage(named: "map")),
-                           setImage(vC: hostingDocumentsVC, image: UIImage(systemName: "doc"))
+                           setImage(vC: hostingDocumentsVC, image: UIImage(systemName: "doc")),
+                           setImage(vC: hostingTutorialVC, image: UIImage(systemName: "doc"))
         ]
     }
     
