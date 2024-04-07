@@ -10,16 +10,17 @@ import CoreLocation
 
 class LocationManager: NSObject,  CLLocationManagerDelegate{
     
-    static let shareLocation = LocationManager()
+    static let shared = LocationManager()
     let manager = CLLocationManager()
     var completion: ((CLLocation) -> Void)?
     
-    //нахождение локации, но его наверное надо будет переделать
     public func getLocation(completion: @escaping((CLLocation) -> Void)) {
         self.completion = completion
         manager.requestWhenInUseAuthorization()
         manager.delegate = self
+        manager.pausesLocationUpdatesAutomatically = true
         manager.startUpdatingLocation()
+        
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -27,8 +28,6 @@ class LocationManager: NSObject,  CLLocationManagerDelegate{
             return
         }
         completion?(location)
-        manager.startUpdatingLocation()
+        manager.stopUpdatingLocation()
     }
-    
-    
 }

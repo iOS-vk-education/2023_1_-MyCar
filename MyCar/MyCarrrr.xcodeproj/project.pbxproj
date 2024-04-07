@@ -24,7 +24,15 @@
 		840B60B02B2AE3EA001FEA12 /* TOPriceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B60AF2B2AE3EA001FEA12 /* TOPriceViewController.swift */; };
 		840B60B22B2AE6DA001FEA12 /* TODateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B60B12B2AE6DA001FEA12 /* TODateViewController.swift */; };
 		840B60B42B2AE708001FEA12 /* TODateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B60B32B2AE708001FEA12 /* TODateView.swift */; };
+		841BA86F2BA317180011564E /* CarLocationDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841BA86E2BA317180011564E /* CarLocationDetailsView.swift */; };
 		843945442B35C14500977D6A /* InsurenceDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843945432B35C14500977D6A /* InsurenceDateViewController.swift */; };
+		844427DE2BAC65A900D61EF9 /* DocumentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844427DD2BAC65A900D61EF9 /* DocumentsView.swift */; };
+		84618DF52BB0624200436C3B /* InsurenceImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84618DF42BB0624200436C3B /* InsurenceImageView.swift */; };
+		84618DF72BB062A500436C3B /* StsImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84618DF62BB062A500436C3B /* StsImageView.swift */; };
+		84618DF92BB064B700436C3B /* DrivingLicenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84618DF82BB064B700436C3B /* DrivingLicenseModel.swift */; };
+		84618DFB2BB0653B00436C3B /* HomeDrivingLicenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84618DFA2BB0653B00436C3B /* HomeDrivingLicenseModel.swift */; };
+		84618DFD2BB076C100436C3B /* DrivingLicenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84618DFC2BB076C100436C3B /* DrivingLicenseView.swift */; };
+		84618E072BB08E8F00436C3B /* SwiftUIImageViewer in Frameworks */ = {isa = PBXBuildFile; productRef = 84618E062BB08E8F00436C3B /* SwiftUIImageViewer */; };
 		846AA1C82B1FB3DF001FC13D /* TOButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AA1C72B1FB3DF001FC13D /* TOButtonView.swift */; };
 		846AA1CA2B1FD6E0001FC13D /* InsuranceButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AA1C92B1FD6E0001FC13D /* InsuranceButtonView.swift */; };
 		846AA1CC2B1FD835001FC13D /* MileageButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AA1CB2B1FD835001FC13D /* MileageButtonView.swift */; };
@@ -34,6 +42,9 @@
 		8472EBF22B210BD40027B383 /* TOCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472EBF12B210BD40027B383 /* TOCellTableViewCell.swift */; };
 		8472EBF42B210E6E0027B383 /* HomeWorkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472EBF32B210E6E0027B383 /* HomeWorkModel.swift */; };
 		8472EBF62B21188E0027B383 /* ChequeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472EBF52B21188E0027B383 /* ChequeButtonView.swift */; };
+		8473868D2BAF3CA0006CD936 /* DocumentsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8473868C2BAF3CA0006CD936 /* DocumentsRow.swift */; };
+		8473868F2BAF3D6B006CD936 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8473868E2BAF3D6B006CD936 /* ImagePicker.swift */; };
+		847386912BAF3DDD006CD936 /* DrivingLicenseImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847386902BAF3DDD006CD936 /* DrivingLicenseImageView.swift */; };
 		847566E92B23C039003BC1F6 /* EditCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847566E82B23C039003BC1F6 /* EditCarViewController.swift */; };
 		847566EB2B23C07E003BC1F6 /* EditCarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847566EA2B23C07E003BC1F6 /* EditCarView.swift */; };
 		849908402B1A889D00304317 /* TOViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8499083F2B1A889D00304317 /* TOViewController.swift */; };
@@ -41,6 +52,7 @@
 		84B2F8342B38AD54006426FF /* ChequeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2F8332B38AD54006426FF /* ChequeViewController.swift */; };
 		84B2F8362B38AFB2006426FF /* ChequeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2F8352B38AFB2006426FF /* ChequeView.swift */; };
 		84B2F8382B38C15D006426FF /* NextTODateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2F8372B38C15D006426FF /* NextTODateViewController.swift */; };
+		84B733AE2BA2035E00C899E7 /* LocationDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B733AD2BA2035E00C899E7 /* LocationDetailsView.swift */; };
 		84CE9ADB2B02FFC80070A8B2 /* CarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE9ADA2B02FFC80070A8B2 /* CarViewModel.swift */; };
 		84CE9ADD2B02FFE80070A8B2 /* HomeCarsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE9ADC2B02FFE80070A8B2 /* HomeCarsModel.swift */; };
 		84CE9AE02B03003F0070A8B2 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE9ADF2B03003F0070A8B2 /* NetworkService.swift */; };
@@ -76,7 +88,14 @@
 		840B60AF2B2AE3EA001FEA12 /* TOPriceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TOPriceViewController.swift; sourceTree = "<group>"; };
 		840B60B12B2AE6DA001FEA12 /* TODateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TODateViewController.swift; sourceTree = "<group>"; };
 		840B60B32B2AE708001FEA12 /* TODateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TODateView.swift; sourceTree = "<group>"; };
+		841BA86E2BA317180011564E /* CarLocationDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarLocationDetailsView.swift; sourceTree = "<group>"; };
 		843945432B35C14500977D6A /* InsurenceDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsurenceDateViewController.swift; sourceTree = "<group>"; };
+		844427DD2BAC65A900D61EF9 /* DocumentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsView.swift; sourceTree = "<group>"; };
+		84618DF42BB0624200436C3B /* InsurenceImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsurenceImageView.swift; sourceTree = "<group>"; };
+		84618DF62BB062A500436C3B /* StsImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StsImageView.swift; sourceTree = "<group>"; };
+		84618DF82BB064B700436C3B /* DrivingLicenseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrivingLicenseModel.swift; sourceTree = "<group>"; };
+		84618DFA2BB0653B00436C3B /* HomeDrivingLicenseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDrivingLicenseModel.swift; sourceTree = "<group>"; };
+		84618DFC2BB076C100436C3B /* DrivingLicenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrivingLicenseView.swift; sourceTree = "<group>"; };
 		846AA1C72B1FB3DF001FC13D /* TOButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TOButtonView.swift; sourceTree = "<group>"; };
 		846AA1C92B1FD6E0001FC13D /* InsuranceButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceButtonView.swift; sourceTree = "<group>"; };
 		846AA1CB2B1FD835001FC13D /* MileageButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MileageButtonView.swift; sourceTree = "<group>"; };
@@ -86,6 +105,9 @@
 		8472EBF12B210BD40027B383 /* TOCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TOCellTableViewCell.swift; sourceTree = "<group>"; };
 		8472EBF32B210E6E0027B383 /* HomeWorkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWorkModel.swift; sourceTree = "<group>"; };
 		8472EBF52B21188E0027B383 /* ChequeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChequeButtonView.swift; sourceTree = "<group>"; };
+		8473868C2BAF3CA0006CD936 /* DocumentsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsRow.swift; sourceTree = "<group>"; };
+		8473868E2BAF3D6B006CD936 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		847386902BAF3DDD006CD936 /* DrivingLicenseImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrivingLicenseImageView.swift; sourceTree = "<group>"; };
 		847566E82B23C039003BC1F6 /* EditCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCarViewController.swift; sourceTree = "<group>"; };
 		847566EA2B23C07E003BC1F6 /* EditCarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCarView.swift; sourceTree = "<group>"; };
 		8499083F2B1A889D00304317 /* TOViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TOViewController.swift; sourceTree = "<group>"; };
@@ -93,6 +115,7 @@
 		84B2F8332B38AD54006426FF /* ChequeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChequeViewController.swift; sourceTree = "<group>"; };
 		84B2F8352B38AFB2006426FF /* ChequeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChequeView.swift; sourceTree = "<group>"; };
 		84B2F8372B38C15D006426FF /* NextTODateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextTODateViewController.swift; sourceTree = "<group>"; };
+		84B733AD2BA2035E00C899E7 /* LocationDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailsView.swift; sourceTree = "<group>"; };
 		84CE9ADA2B02FFC80070A8B2 /* CarViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarViewModel.swift; sourceTree = "<group>"; };
 		84CE9ADC2B02FFE80070A8B2 /* HomeCarsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCarsModel.swift; sourceTree = "<group>"; };
 		84CE9ADF2B03003F0070A8B2 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -111,6 +134,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84618E072BB08E8F00436C3B /* SwiftUIImageViewer in Frameworks */,
 				C395F7468B294597335A7200 /* Pods_MyCarrrr.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -142,6 +166,7 @@
 		556C3AE22AF9A5AE00D334B8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8473868B2BAF3C83006CD936 /* Documents */,
 				847566E72B23BFA7003BC1F6 /* ButtonsView */,
 				559EFBC82AF14B740098672F /* MyCarsView.swift */,
 				559EFBCA2AF169610098672F /* CarCellTableViewCell.swift */,
@@ -155,7 +180,8 @@
 				84F8EEAE2B337D940059F5A2 /* InsurenceView.swift */,
 				84B2F8352B38AFB2006426FF /* ChequeView.swift */,
 				55DAF91E2B209D2D003BB552 /* MapView.swift */,
-				84E616142B8B978C000BC141 /* TutorialView.swift */,
+				84B733AD2BA2035E00C899E7 /* LocationDetailsView.swift */,
+				841BA86E2BA317180011564E /* CarLocationDetailsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -169,7 +195,8 @@
 				556C3AE32AF9A8CE00D334B8 /* CarModel.swift */,
 				8472EBEF2B2109B30027B383 /* WorkModel.swift */,
 				8472EBF32B210E6E0027B383 /* HomeWorkModel.swift */,
-				84E616162B8BBAB3000BC141 /* Lesson.swift */,
+				84618DF82BB064B700436C3B /* DrivingLicenseModel.swift */,
+				84618DFA2BB0653B00436C3B /* HomeDrivingLicenseModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -204,6 +231,20 @@
 				559EFBC22AF14A620098672F /* Info.plist */,
 			);
 			path = MyCarrrr;
+			sourceTree = "<group>";
+		};
+		8473868B2BAF3C83006CD936 /* Documents */ = {
+			isa = PBXGroup;
+			children = (
+				844427DD2BAC65A900D61EF9 /* DocumentsView.swift */,
+				8473868C2BAF3CA0006CD936 /* DocumentsRow.swift */,
+				8473868E2BAF3D6B006CD936 /* ImagePicker.swift */,
+				847386902BAF3DDD006CD936 /* DrivingLicenseImageView.swift */,
+				84618DF42BB0624200436C3B /* InsurenceImageView.swift */,
+				84618DF62BB062A500436C3B /* StsImageView.swift */,
+				84618DFC2BB076C100436C3B /* DrivingLicenseView.swift */,
+			);
+			path = Documents;
 			sourceTree = "<group>";
 		};
 		847566E72B23BFA7003BC1F6 /* ButtonsView */ = {
@@ -263,6 +304,9 @@
 			dependencies = (
 			);
 			name = MyCarrrr;
+			packageProductDependencies = (
+				84618E062BB08E8F00436C3B /* SwiftUIImageViewer */,
+			);
 			productName = MyCarrrr;
 			productReference = 559EFBB12AF14A5F0098672F /* MyCarrrr.app */;
 			productType = "com.apple.product-type.application";
@@ -291,6 +335,9 @@
 				Base,
 			);
 			mainGroup = 559EFBA82AF14A5F0098672F;
+			packageReferences = (
+				84618E052BB08E8F00436C3B /* XCRemoteSwiftPackageReference "swiftui-image-viewer" */,
+			);
 			productRefGroup = 559EFBB22AF14A5F0098672F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -358,10 +405,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84618DF72BB062A500436C3B /* StsImageView.swift in Sources */,
 				84CE9AE02B03003F0070A8B2 /* NetworkService.swift in Sources */,
 				8472EBF22B210BD40027B383 /* TOCellTableViewCell.swift in Sources */,
 				846AA1CC2B1FD835001FC13D /* MileageButtonView.swift in Sources */,
 				840B60AE2B2AE251001FEA12 /* WorkEditView.swift in Sources */,
+				84B733AE2BA2035E00C899E7 /* LocationDetailsView.swift in Sources */,
 				556C3AE42AF9A8CE00D334B8 /* CarModel.swift in Sources */,
 				84F8EEAD2B337D170059F5A2 /* InsurenceViewController.swift in Sources */,
 				55DAF9212B20B3E4003BB552 /* Location.swift in Sources */,
@@ -370,7 +419,11 @@
 				559EFBB92AF14A5F0098672F /* MyCarsViewController.swift in Sources */,
 				559EFBB52AF14A5F0098672F /* AppDelegate.swift in Sources */,
 				849908422B1A88BA00304317 /* TOView.swift in Sources */,
+				8473868F2BAF3D6B006CD936 /* ImagePicker.swift in Sources */,
+				84618DF92BB064B700436C3B /* DrivingLicenseModel.swift in Sources */,
+				841BA86F2BA317180011564E /* CarLocationDetailsView.swift in Sources */,
 				551805CE2B2266C700674218 /* PlaceClass.swift in Sources */,
+				844427DE2BAC65A900D61EF9 /* DocumentsView.swift in Sources */,
 				559EFBB72AF14A5F0098672F /* SceneDelegate.swift in Sources */,
 				84E616152B8B978C000BC141 /* TutorialView.swift in Sources */,
 				84709F902B229F3A00AD8347 /* MileageViewController.swift in Sources */,
@@ -384,12 +437,16 @@
 				84B2F8382B38C15D006426FF /* NextTODateViewController.swift in Sources */,
 				849908402B1A889D00304317 /* TOViewController.swift in Sources */,
 				847566EB2B23C07E003BC1F6 /* EditCarView.swift in Sources */,
+				84618DF52BB0624200436C3B /* InsurenceImageView.swift in Sources */,
+				847386912BAF3DDD006CD936 /* DrivingLicenseImageView.swift in Sources */,
 				559EFBC92AF14B740098672F /* MyCarsView.swift in Sources */,
 				8472EBF62B21188E0027B383 /* ChequeButtonView.swift in Sources */,
 				84B2F8342B38AD54006426FF /* ChequeViewController.swift in Sources */,
 				84709F922B229FCC00AD8347 /* MileageView.swift in Sources */,
 				84CE9AE22B0300460070A8B2 /* UserDafaultsService.swift in Sources */,
 				559EFBCB2AF169610098672F /* CarCellTableViewCell.swift in Sources */,
+				8473868D2BAF3CA0006CD936 /* DocumentsRow.swift in Sources */,
+				84618DFD2BB076C100436C3B /* DrivingLicenseView.swift in Sources */,
 				846AA1CA2B1FD6E0001FC13D /* InsuranceButtonView.swift in Sources */,
 				847566E92B23C039003BC1F6 /* EditCarViewController.swift in Sources */,
 				84CE9AE42B0307370070A8B2 /* AddCarView.swift in Sources */,
@@ -398,6 +455,7 @@
 				84E616172B8BBAB3000BC141 /* Lesson.swift in Sources */,
 				840B60B42B2AE708001FEA12 /* TODateView.swift in Sources */,
 				840B60B02B2AE3EA001FEA12 /* TOPriceViewController.swift in Sources */,
+				84618DFB2BB0653B00436C3B /* HomeDrivingLicenseModel.swift in Sources */,
 				84CE9ADB2B02FFC80070A8B2 /* CarViewModel.swift in Sources */,
 				559EFBCF2AF17C350098672F /* MapViewController.swift in Sources */,
 				843945442B35C14500977D6A /* InsurenceDateViewController.swift in Sources */,
@@ -457,7 +515,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -511,7 +569,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -611,6 +669,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		84618E052BB08E8F00436C3B /* XCRemoteSwiftPackageReference "swiftui-image-viewer" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/fuzzzlove/swiftui-image-viewer.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		84618E062BB08E8F00436C3B /* SwiftUIImageViewer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84618E052BB08E8F00436C3B /* XCRemoteSwiftPackageReference "swiftui-image-viewer" */;
+			productName = SwiftUIImageViewer;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 559EFBA92AF14A5F0098672F /* Project object */;
 }
