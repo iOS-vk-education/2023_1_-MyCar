@@ -5,7 +5,7 @@ class TabBarController: UITabBarController {
 
     private let model = HomeCarsModel()
     
-    private let hostingVC = UIHostingController(rootView: TutorialView())
+    private let hostingTutorialVC = UIHostingController(rootView: TutorialView())
     
     
     override func viewDidLoad() {
@@ -18,7 +18,7 @@ class TabBarController: UITabBarController {
     private func setupTabBar() {
         viewControllers = [setImage(vC: MyCarsViewController(model: model), image: UIImage(named: "garage")),
                            setImage(vC: MapViewController(), image: UIImage(named: "map")),
-                           setImage(vC: hostingVC, image: UIImage(named: "lesson"))
+                           setImage(vC: hostingTutorialVC, image: UIImage(named: "lesson"))
         ]
     }
     
