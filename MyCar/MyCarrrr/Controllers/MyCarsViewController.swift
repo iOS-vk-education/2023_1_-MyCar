@@ -5,6 +5,7 @@ protocol ViewToViewController: AnyObject {
     func removeCar(index: Int)
     func goToAddScreen()
     func goToTOScreen(tag: Int)
+    func setCarLocation(index: Int)
 }
 
 
@@ -56,6 +57,10 @@ class MyCarsViewController: UIViewController {
 }
 
 extension MyCarsViewController: ViewToViewController {
+    func setCarLocation(index: Int) {
+        model.setCarLocation(index)
+    }
+    
     
     func cars() -> [CarViewModel] {
         model.allCars()

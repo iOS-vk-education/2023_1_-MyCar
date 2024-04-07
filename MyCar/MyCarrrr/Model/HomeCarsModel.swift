@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import CoreLocation
 
 final class HomeCarsModel {
     
@@ -10,6 +11,8 @@ final class HomeCarsModel {
         }
     }
     
+    
+    let locationManager = LocationManager.shared
     
     init() {
         self.cars = loadCars()
@@ -44,7 +47,6 @@ final class HomeCarsModel {
         }
         print("Нет данных в UserDefaults для ключа 'carsArrayKey'")
         return []
-        
     }
    
     
@@ -136,8 +138,11 @@ final class HomeCarsModel {
     func updateInsuranceImage(_ image: UIImage, _ tag: Int) {
         cars[tag].insurenceImage = image
     }
+    func updateStsImage(_ image: UIImage, _ tag: Int) {
+        cars[tag].stsImage = image
+    }
     
-    func updateInsureanceDate(_ carIndex: Int, date: String){
+    func updateInsuranceDate(_ carIndex: Int, date: String){
         cars[carIndex].insurenceDate = date
     }
     
@@ -153,4 +158,23 @@ final class HomeCarsModel {
         cars[carIndex].works[workIndex].content = text
     }
     
+    func setCarLocation(_ carIndex: Int) {
+        locationManager.getLocation { location in
+            // Обработка полученных координат
+            print("Latitude: \(location.coordinate.latitude), Longitude: \(location.coordinate.longitude)")
+            self.cars[carIndex].carLocationLatitude = String(location.coordinate.latitude)
+            self.cars[carIndex].carLocationLongitude = String(location.coordinate.longitude)
+        }
+        
+    }
+    
+    func removeStsImage(_ carIndex: Int) {
+        cars[carIndex].stsImage = nil
+    }
+    
+    func removeInsureanceImage(_ carIndex: Int) {
+        cars[carIndex].insurenceImage = nil
+    }
+    
 }
+
