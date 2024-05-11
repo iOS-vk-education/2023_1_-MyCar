@@ -13,10 +13,14 @@ class TabBarController: UITabBarController {
         super.viewDidLoad()
         tabBar.tintColor = .red
         tabBar.unselectedItemTintColor = .white
-        tabBar.backgroundColor = .gray
-        tabBar.barTintColor = .gray
+        
+        // Установка цвета фона и тинта таббара
+        tabBar.barTintColor = UIColor(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0, alpha: 1)
+        tabBar.backgroundColor = UIColor(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0, alpha: 1)
+        
         setupTabBar()
     }
+
     
     private func setupTabBar() {
         viewControllers = [setImage(vC: MyCarsViewController(model: model), image: UIImage(named: "garage"), title: "Гараж"),
