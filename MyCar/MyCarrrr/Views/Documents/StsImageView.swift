@@ -26,6 +26,8 @@ struct StsImageView: View {
     
     @State private var showPhoto = false
     
+    @Binding var isLoadingStsImage: Bool
+    
     var closeButton: some View {
         Button {
             showPhoto = false
@@ -45,14 +47,24 @@ struct StsImageView: View {
                 .ignoresSafeArea(.all)
                 .foregroundStyle(Color(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0))
             VStack{
-                Image(uiImage: image)
-                    .resizable()
-                    .frame(width: 350, height: 500)
-                    .aspectRatio(contentMode: .fit)
-                    .padding()
-                    .onTapGesture {
-                        showPhoto = true
-                    }
+                if isLoadingStsImage {
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle())
+                        .scaleEffect(1.5)
+                        .foregroundColor(.white)
+                        .tint(Color.white)
+                        .frame(width: 350, height: 500)
+                        .padding(.bottom)
+                } else {
+                    Image(uiImage: image)
+                        .resizable()
+                        .frame(width: 350, height: 500)
+                        .aspectRatio(contentMode: .fit)
+                        .padding()
+                        .onTapGesture {
+                            showPhoto = true
+                        }
+                }
                 
                 Spacer()
                 
@@ -86,9 +98,7 @@ struct StsImageView: View {
                     Spacer()
                     
                     Button{
-                        model.removeStsImage(carIndex)
-                        showingActionSheetSts = false
-                        updateCarsAction()
+                        deleteStsImage()
                     }label: {
                         Text("Удалить")
                             .font(.title3)
@@ -118,13 +128,34 @@ struct StsImageView: View {
                 .background(Color.black)
         }
     }
-    func loadStsImage () {
-        guard let selectedImage = selectedImage else { return }
-        withAnimation(.snappy){
-            image = selectedImage
+    
+    func deleteStsImage() {
+        
+        isLoadingStsImage = true
+        showingActionSheetSts = false
+        
+        DispatchQueue.global().async {
+            model.removeStsImage(carIndex)
+            DispatchQueue.main.async {
+                updateCarsAction()
+                isLoadingStsImage = false
+            }
         }
-        //TODO: - сделать асинхрон
-        HomeCarsModel().updateStsImage(selectedImage, carIndex)
-        updateCarsAction()
+    }
+    
+    func loadStsImage() {
+        guard let selectedImage = selectedImage else {
+            return
+        }
+
+        isLoadingStsImage = true
+
+        DispatchQueue.global().async {
+            HomeCarsModel().updateStsImage(selectedImage, carIndex)
+            DispatchQueue.main.async {
+                updateCarsAction()
+                isLoadingStsImage = false
+            }
+        }
     }
 }

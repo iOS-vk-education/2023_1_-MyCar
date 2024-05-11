@@ -27,6 +27,8 @@ struct InsurenceImageView: View {
     let updateCarsAction: () -> Void
     
     @State private var showPhoto = false
+
+    @Binding var isLoadingInsurenceImage: Bool
     
     var closeButton: some View {
         Button {
@@ -47,15 +49,24 @@ struct InsurenceImageView: View {
                 .ignoresSafeArea(.all)
                 .foregroundStyle(Color(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0))
             VStack{
-                Image(uiImage: image)
-                    .resizable()
-                    .frame(width: 350, height: 500)
-                    .aspectRatio(contentMode: .fit)
-                    .padding()
-                    .onTapGesture {
-                        showPhoto = true
-                    }
-                
+                if isLoadingInsurenceImage {
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle())
+                        .scaleEffect(1.5)
+                        .foregroundColor(.white)
+                        .tint(Color.white)
+                        .frame(width: 350, height: 500)
+                        .padding(.bottom)
+                } else {
+                    Image(uiImage: image)
+                        .resizable()
+                        .frame(width: 350, height: 500)
+                        .aspectRatio(contentMode: .fit)
+                        .padding()
+                        .onTapGesture {
+                            showPhoto = true
+                        }
+                }
                 Spacer()
                 
                 DatePicker("Дата окончания", selection: $selectedDate, displayedComponents: .date)
@@ -104,9 +115,7 @@ struct InsurenceImageView: View {
                     Spacer()
                     
                     Button{
-                        model.removeInsureanceImage(carIndex)
-                        showingActionSheetInsurence = false
-                        updateCarsAction()
+                        deleteInsurenceImage()
                     }label: {
                         Text("Удалить")
                             .font(.title3)
@@ -136,13 +145,34 @@ struct InsurenceImageView: View {
                 .background(Color.black)
         }
     }
-    func loadInsurenceImage () {
-        guard let selectedImage = selectedImage else { return }
-        withAnimation(.snappy){
-            image = selectedImage
+    
+    func deleteInsurenceImage() {
+        
+        isLoadingInsurenceImage = true
+        showingActionSheetInsurence = false
+        
+        DispatchQueue.global().async {
+            model.removeInsureanceImage(carIndex)
+            DispatchQueue.main.async {
+                updateCarsAction()
+                isLoadingInsurenceImage = false
+            }
         }
-        //TODO: - сделать асинхрон
-        HomeCarsModel().updateInsuranceImage(selectedImage, carIndex)
-        updateCarsAction()
+    }
+    
+    func loadInsurenceImage() {
+        guard let selectedImage = selectedImage else {
+            return
+        }
+
+        isLoadingInsurenceImage = true
+
+        DispatchQueue.global().async {
+            HomeCarsModel().updateInsuranceImage(selectedImage, carIndex)
+            DispatchQueue.main.async {
+                updateCarsAction()
+                isLoadingInsurenceImage = false
+            }
+        }
     }
 }
