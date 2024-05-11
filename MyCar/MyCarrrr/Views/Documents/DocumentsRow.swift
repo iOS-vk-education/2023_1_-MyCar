@@ -83,9 +83,9 @@ struct DocumentsRow: View {
                                     .frame(width: 50, height: 50)
                                     .padding(.bottom)
                             } else {
-                                Image(systemName: "doc")
+                                Image(uiImage: UIImage(named: "doc64")!)
                                     .resizable()
-                                    .frame(width: 32, height: 40)
+                                    .frame(width: 50, height: 50)
                                     .padding(.bottom)
                                     .foregroundStyle(Color.white)
                             }
@@ -132,10 +132,12 @@ struct DocumentsRow: View {
                                     .frame(width: 50, height: 50)
                                     .padding(.bottom)
                             } else {
-                                Image(systemName: "doc.badge.plus")
+//                                Image(systemName: "doc.badge.plus")
+                                Image(uiImage: UIImage(named: "adddoc")!)
                                     .resizable()
-                                    .frame(width: 42, height: 50)
+                                    .frame(width: 50, height: 50)
                                     .padding(.bottom)
+                                    .padding(.leading)
                                     .foregroundStyle(Color.white)
                             }
                         }
@@ -195,9 +197,10 @@ struct DocumentsRow: View {
                                     .frame(width: 50, height: 50)
                                     .padding(.bottom)
                             } else {
-                                Image(systemName: "doc")
+//                                Image(systemName: "doc")
+                                Image(uiImage: UIImage(named: "doc64")!)
                                     .resizable()
-                                    .frame(width: 32, height: 40)
+                                    .frame(width: 50, height: 50)
                                     .padding(.bottom)
                                     .foregroundStyle(Color.white)
                             }
@@ -245,10 +248,12 @@ struct DocumentsRow: View {
                                     .frame(width: 50, height: 50)
                                     .padding(.bottom)
                             } else {
-                                Image(systemName: "doc.badge.plus")
+//                                Image(systemName: "doc.badge.plus")
+                                Image(uiImage: UIImage(named: "adddoc")!)
                                     .resizable()
-                                    .frame(width: 42, height: 50)
+                                    .frame(width: 50, height: 50)
                                     .padding(.bottom)
+                                    .padding(.leading)
                                     .foregroundStyle(Color.white)
                             }
                         }
