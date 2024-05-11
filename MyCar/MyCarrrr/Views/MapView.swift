@@ -14,7 +14,6 @@ struct MapView: View {
     @State private var searchText = ""
     @State private var carWashResults = [MKMapItem]()
     @State private var carServiceResults = [MKMapItem]()
-//    @State private var results = [MKMapItem]()
     @State private var mapSelection: MKMapItem?
     
     @State private var distance: String?
@@ -223,12 +222,19 @@ struct MapView: View {
                                 await searchCarSevice()
                             }
                         } label: {
-                            Image("car-service")
-                                .resizable()
-                                .frame(width: 32, height: 32)
+                            if autoServiceShowing {
+                                Image("car-service")
+                                    .resizable()
+                                    .frame(width: 32, height: 32)
+                                    .colorInvert()
+                            }else {
+                                Image("car-service")
+                                    .resizable()
+                                    .frame(width: 32, height: 32)
+                            }
                         }
                         .padding(6)
-                        .background(autoServiceShowing ? .gray : .clear)
+                        .background(autoServiceShowing ? Color(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0) : .clear)
                         .clipShape(.buttonBorder)
                         .padding(.bottom)
                         Button{
@@ -241,12 +247,19 @@ struct MapView: View {
                                 await searchCarWash()
                             }
                         } label: {
-                            Image("car-wash")
-                                .resizable()
-                                .frame(width: 32, height: 32)
+                            if carWashShowing {
+                                Image("car-wash")
+                                    .resizable()
+                                    .frame(width: 32, height: 32)
+                                    .colorInvert()
+                            }else {
+                                Image("car-wash")
+                                    .resizable()
+                                    .frame(width: 32, height: 32)
+                            }
                         }
                         .padding(6)
-                        .background(carWashShowing ? .gray : .clear)
+                        .background(carWashShowing ? Color(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0) : .clear)
                         .clipShape(.buttonBorder)
                         .padding(.bottom)
                     }
