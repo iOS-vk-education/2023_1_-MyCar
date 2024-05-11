@@ -26,6 +26,8 @@ struct DrivingLicenseImageView: View {
     
     @State private var showPhoto = false
     
+    @Binding var isLoading: Bool
+    
     var closeButton: some View {
         Button {
             showPhoto = false
@@ -45,14 +47,24 @@ struct DrivingLicenseImageView: View {
                 .ignoresSafeArea(.all)
                 .foregroundStyle(Color(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0))
             VStack{
-                Image(uiImage: image)
-                    .resizable()
-                    .frame(width: 350, height: 500)
-                    .aspectRatio(contentMode: .fit)
-                    .padding()
-                    .onTapGesture {
-                        showPhoto = true
-                    }
+                if isLoading {
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle())
+                        .scaleEffect(1.5)
+                        .foregroundColor(.white)
+                        .tint(Color.white)
+                        .frame(width: 350, height: 500)
+                        .padding(.bottom)
+                } else {
+                    Image(uiImage: image)
+                        .resizable()
+                        .frame(width: 350, height: 500)
+                        .aspectRatio(contentMode: .fit)
+                        .padding()
+                        .onTapGesture {
+                            showPhoto = true
+                        }
+                }
                 
                 Spacer()
                 
@@ -86,9 +98,7 @@ struct DrivingLicenseImageView: View {
                     Spacer()
                     
                     Button{
-                        model.remove()
-                        showingActionSheetDrivingLicence = false
-                        updateCarsAction()
+                        deleteDrivingLicenceImage()
                     }label: {
                         Text("Удалить")
                             .font(.title3)
@@ -119,14 +129,35 @@ struct DrivingLicenseImageView: View {
         }
     }
     
+    func deleteDrivingLicenceImage() {
+        isLoading = true
+        showingActionSheetDrivingLicence = false
+        
+        DispatchQueue.global().async {
+            model.remove()
+            DispatchQueue.main.async {
+                updateCarsAction()
+                isLoading = false
+            }
+        }
+    }
+    
     func loadDrivingLicenceImage() {
         guard let selectedImage = selectedImage else { return }
+
         withAnimation(.snappy){
             image = selectedImage
         }
-        //TODO: - сделать асинхрон
-        model.changeDrivingLicenseImage(selectedImage)
-        updateCarsAction()
+
+        isLoading = true
+
+        DispatchQueue.global().async {
+            model.changeDrivingLicenseImage(selectedImage)
+            DispatchQueue.main.async {
+                updateCarsAction()
+                isLoading = false
+            }
+        }
     }
 
 }

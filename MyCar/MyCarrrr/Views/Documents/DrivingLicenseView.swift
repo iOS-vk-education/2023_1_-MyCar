@@ -17,6 +17,8 @@ struct DrivingLicenseView: View {
     @State private var showingImagePickerDrivingLicence = false
     @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
     @State private var selectedImage: UIImage?
+
+    @State private var isLoading = false
     
     let updateCarsAction: () -> Void
     
@@ -40,12 +42,25 @@ struct DrivingLicenseView: View {
                     }
                 } label: {
                     HStack{
-                        Text("Посмотреть")
-                            .font(.system(size: 20))
-                            .bold()
-                            .foregroundStyle(.white)
-                            .lineLimit(1)
-                        Spacer()
+                        if isLoading {
+                            ProgressView()
+                                .progressViewStyle(CircularProgressViewStyle())
+                                .foregroundColor(.white)
+                                .tint(Color.white)
+                            Text("Loading...")
+                                .font(.system(size: 20))
+                                .bold()
+                                .foregroundStyle(.white)
+                                .lineLimit(1)
+                            Spacer()
+                        }else {
+                            Text("Посмотреть")
+                                .font(.system(size: 20))
+                                .bold()
+                                .foregroundStyle(.white)
+                                .lineLimit(1)
+                            Spacer()
+                        }
                     }
                     .padding()
                     .background(Color(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0))
@@ -54,7 +69,8 @@ struct DrivingLicenseView: View {
                 .sheet(isPresented: $showingActionSheetDrivingLicence) {
                     DrivingLicenseImageView(image: img,
                                             showingActionSheetDrivingLicence: $showingActionSheetDrivingLicence,
-                                            updateCarsAction: updateCars)
+                                            updateCarsAction: updateCars, 
+                                            isLoading: $isLoading)
                 }
             }else{
                 Button{
@@ -63,12 +79,25 @@ struct DrivingLicenseView: View {
                     }
                 } label: {
                     HStack{
-                        Text("Добавить")
-                            .font(.system(size: 20))
-                            .bold()
-                            .foregroundStyle(.white)
-                            .lineLimit(1)
-                        Spacer()
+                        if isLoading {
+                            ProgressView()
+                                .progressViewStyle(CircularProgressViewStyle())
+                                .foregroundColor(.white)
+                                .tint(Color.white)
+                            Text("Loading...")
+                                .font(.system(size: 20))
+                                .bold()
+                                .foregroundStyle(.white)
+                                .lineLimit(1)
+                            Spacer()
+                        }else {
+                            Text("Добавить")
+                                .font(.system(size: 20))
+                                .bold()
+                                .foregroundStyle(.white)
+                                .lineLimit(1)
+                            Spacer()
+                        }
                     }
                     .padding()
                     .background(Color(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0))
@@ -102,8 +131,16 @@ struct DrivingLicenseView: View {
     
     func loadDrivingLicenceImage() {
         guard let selectedImage = selectedImage else { return }
-        HomeDrivingLicenseModel().addDrivingLicense(selectedImage)
-        updateCars()
+
+        isLoading = true
+
+        DispatchQueue.global().async {
+            HomeDrivingLicenseModel().addDrivingLicense(selectedImage)
+            DispatchQueue.main.async {
+                updateCars()
+                isLoading = false
+            }
+        }
     }
     
     func updateCars() {
