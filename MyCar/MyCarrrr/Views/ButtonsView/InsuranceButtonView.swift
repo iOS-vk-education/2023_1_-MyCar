@@ -34,7 +34,7 @@ class InsuranceButtonView: UIView {
         self.layer.cornerRadius = 15
         
         // Add UIImageView
-        imageView.image = UIImage(named: "insurence")
+        imageView.image = UIImage(named: "parking")
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(imageView)
@@ -46,9 +46,9 @@ class InsuranceButtonView: UIView {
             imageView.heightAnchor.constraint(equalToConstant: 27)
         ])
         
-        label.text = "Страховка"
+        label.text = "Место\nпарковки"
         label.textColor = .white
-        label.numberOfLines = 1
+        label.numberOfLines = 2
         label.font = UIFont.boldSystemFont(ofSize: 14)
         
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -56,7 +56,7 @@ class InsuranceButtonView: UIView {
 
         NSLayoutConstraint.activate([
             label.leftAnchor.constraint(equalTo: leftAnchor, constant: 10),
-            label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -29)
+            label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -11)
         ])
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapButton))

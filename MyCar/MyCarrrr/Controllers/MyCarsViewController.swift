@@ -1,4 +1,5 @@
 import UIKit
+import SwiftUI
 
 protocol ViewToViewController: AnyObject {
     func cars() -> [CarViewModel]
@@ -105,8 +106,13 @@ extension MyCarsViewController: ViewToViewController {
     }
     
     func goToInsurenceScreen(tag: Int) {
-        let vc = InsurenceViewController(model: model, tag: tag)
-        present(vc, animated: true)
+        setCarLocation(index: tag)
+        let alertController = UIAlertController(title: "Успешно!", message: "Место парковки авто было сохранено.", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) {_ in 
+            self.dismiss(animated: true)
+        }
+        alertController.addAction(okAction)
+        present(alertController, animated: true)
     }
 
     

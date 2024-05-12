@@ -39,7 +39,7 @@ class TOButtonView: UIView {
         backgroundColor = UIColor(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0, alpha: 1.0)
         self.layer.cornerRadius = 15
         
-        imageView.image = UIImage(named: "TO")
+        imageView.image = UIImage(named: "history2")
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(imageView)
