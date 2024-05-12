@@ -16,7 +16,7 @@ class MyCarsViewController: UIViewController {
     private let contentView = MyCarsView()
     private let model: HomeCarsModel
     
-
+    private let containerView = UIView()
 
     
     init(model: HomeCarsModel) {
@@ -106,15 +106,46 @@ extension MyCarsViewController: ViewToViewController {
     }
     
     func goToInsurenceScreen(tag: Int) {
-        setCarLocation(index: tag)
-        let alertController = UIAlertController(title: "Успешно!", message: "Место парковки авто было сохранено.", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default) {_ in 
-            self.dismiss(animated: true)
+        // Создаем view для затемнения экрана
+        let dimmingView = UIView(frame: view.bounds)
+        dimmingView.backgroundColor = UIColor.black.withAlphaComponent(0.5) // Прозрачный черный цвет
+        view.addSubview(dimmingView)
+        
+        let label = UILabel()
+        label.text = "Saving...\nPlease wait"
+        label.textColor = .white
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        dimmingView.addSubview(label)
+        
+        NSLayoutConstraint.activate([
+            label.centerXAnchor.constraint(equalTo: dimmingView.centerXAnchor),
+            label.centerYAnchor.constraint(equalTo: dimmingView.centerYAnchor, constant: -50),
+        ])
+        
+        let activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.color = .white
+        activityIndicator.center = view.center
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        
+        DispatchQueue.global().async {
+            self.setCarLocation(index: tag)
+            
+            DispatchQueue.main.async {
+                activityIndicator.stopAnimating()
+                dimmingView.removeFromSuperview()
+                
+                let alertController = UIAlertController(title: "Успешно!", message: "Место парковки авто было сохранено.", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+                    self.dismiss(animated: true)
+                }
+                alertController.addAction(okAction)
+                self.present(alertController, animated: true)
+            }
         }
-        alertController.addAction(okAction)
-        present(alertController, animated: true)
     }
-
     
     @objc func goBack() {
         dismiss(animated: true, completion: nil)
