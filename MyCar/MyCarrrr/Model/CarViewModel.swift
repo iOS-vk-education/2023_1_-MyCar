@@ -1,9 +1,6 @@
 import Foundation
 import UIKit
 
-
-
-
 public protocol ImageCodable: Codable {}
 extension UIImage: ImageCodable {}
 
@@ -17,7 +14,6 @@ extension ImageCodable where Self: UIImage {
         try container.encode(self.pngData()!)
     }
 }
-
 
 struct CarViewModel: Codable {
     var id = UUID()

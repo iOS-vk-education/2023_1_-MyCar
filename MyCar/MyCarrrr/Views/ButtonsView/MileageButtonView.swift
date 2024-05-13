@@ -39,7 +39,7 @@ class MileageButtonView: UIView {
         self.layer.cornerRadius = 15
         
         // Add UIImageView
-        imageView.image = UIImage(named: "TO")
+        imageView.image = UIImage(named: "speed")
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(imageView)

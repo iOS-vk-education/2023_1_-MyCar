@@ -7,7 +7,7 @@ final class HomeCarsModel {
     private var cars : [CarViewModel] = [] {
         didSet {
             print("saveCars")
-            saveCars()
+            saveCars(cars)
         }
     }
     
@@ -18,36 +18,71 @@ final class HomeCarsModel {
         self.cars = loadCars()
     }
     
-    func saveCars() {
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+
+    func saveCars(_ cars: [CarViewModel]) {
+        let encoder = JSONEncoder()
         do {
-            let encoder = JSONEncoder()
             let data = try encoder.encode(cars)
-            
-            
-            UserDefaults.standard.set(data, forKey: "carsArrayKey")
-            print("End saving")
+            let fileURL = getDocumentsDirectory().appendingPathComponent("cars.json")
+            try data.write(to: fileURL)
+            print("Данные успешно сохранены")
         } catch {
-            print("Ошибка при кодировании данных: \(error.localizedDescription)")
+            print("Ошибка при сохранении данных: \(error.localizedDescription)")
         }
     }
-    
-    func loadCars() -> [CarViewModel] {
-        if let savedData = UserDefaults.standard.data(forKey: "carsArrayKey") {
-            do {
-                // Преобразуйте данные в массив структур
-                let decoder = JSONDecoder()
-                let loadedCarsArray = try decoder.decode([CarViewModel].self, from: savedData)
 
-                // Теперь у вас есть загруженный массив структур
-                print("Загруженный массив структур: \(loadedCarsArray.count)")
-                return loadedCarsArray
+    func loadCars() -> [CarViewModel] {
+        let fileURL = getDocumentsDirectory().appendingPathComponent("cars.json")
+        if FileManager.default.fileExists(atPath: fileURL.path) {
+            do {
+                let data = try Data(contentsOf: fileURL)
+                let decoder = JSONDecoder()
+                let loadedCars = try decoder.decode([CarViewModel].self, from: data)
+                print("Загружено \(loadedCars.count) автомобилей")
+                return loadedCars
             } catch {
-                print("Ошибка при декодировании данных: \(error.localizedDescription)")
+                print("Ошибка при загрузке данных: \(error.localizedDescription)")
             }
+        } else {
+            print("Файл данных не найден")
         }
-        print("Нет данных в UserDefaults для ключа 'carsArrayKey'")
         return []
     }
+    
+//    func saveCars() {
+//        do {
+//            let encoder = JSONEncoder()
+//            let data = try encoder.encode(cars)
+//            
+//            
+//            UserDefaults.standard.set(data, forKey: "carsArrayKey")
+//            print("End saving")
+//        } catch {
+//            print("Ошибка при кодировании данных: \(error.localizedDescription)")
+//        }
+//    }
+//    
+//    func loadCars() -> [CarViewModel] {
+//        if let savedData = UserDefaults.standard.data(forKey: "carsArrayKey") {
+//            do {
+//                // Преобразуйте данные в массив структур
+//                let decoder = JSONDecoder()
+//                let loadedCarsArray = try decoder.decode([CarViewModel].self, from: savedData)
+//
+//                // Теперь у вас есть загруженный массив структур
+//                print("Загруженный массив структур: \(loadedCarsArray.count)")
+//                return loadedCarsArray
+//            } catch {
+//                print("Ошибка при декодировании данных: \(error.localizedDescription)")
+//            }
+//        }
+//        print("Нет данных в UserDefaults для ключа 'carsArrayKey'")
+//        return []
+//    }
    
     
     func carDataFromVin(vin: String, completion: @escaping (String?, String?, Int?, Error?) -> Void) {

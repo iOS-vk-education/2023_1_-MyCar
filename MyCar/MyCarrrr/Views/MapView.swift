@@ -9,19 +9,11 @@ import MapKit
 import SwiftUI
 import CoreLocation
 
-//TODO: - сделать вместо одного results 2 массива для моек и сервисов и на них кастомные маркеры
-struct SearchResult: Identifiable {
-    let id = UUID()
-    let placemark: MKPlacemark
-    let tags: String
-}
-
-
 struct MapView: View {
     @State private var cameraPosition: MapCameraPosition = .region(.userRegion)
     @State private var searchText = ""
-    @State private var results = [MKMapItem]()
-//    @State private var results = [SearchResult]()
+    @State private var carWashResults = [MKMapItem]()
+    @State private var carServiceResults = [MKMapItem]()
     @State private var mapSelection: MKMapItem?
     
     @State private var distance: String?
@@ -96,18 +88,31 @@ struct MapView: View {
                 
             }
             
-            ForEach(results, id: \.self) { item in
+            ForEach(carWashResults, id: \.self) { item in
                 if routeDisplaying {
                     if item == routeDestionation {
                         let placemark = item.placemark
-                        Marker(placemark.name ?? "", coordinate: placemark.coordinate)
+                        Marker(placemark.name ?? "", image: "car-wash", coordinate: placemark.coordinate)
+                            .tint(.blue)
                     }
                 }else {
                     let placemark = item.placemark
-                    Marker(placemark.name ?? "", coordinate: placemark.coordinate)
+                    Marker(placemark.name ?? "", image: "car-wash", coordinate: placemark.coordinate)
+                        .tint(.blue)
                 }
             }
             
+            ForEach(carServiceResults, id: \.self) { item in
+                if routeDisplaying {
+                    if item == routeDestionation {
+                        let placemark = item.placemark
+                        Marker(placemark.name ?? "", image: "car-wash", coordinate: placemark.coordinate)
+                    }
+                }else {
+                    let placemark = item.placemark
+                    Marker(placemark.name ?? "", image: "car-service", coordinate: placemark.coordinate)
+                }
+            }
             
             if let route {
                 MapPolyline(route.polyline)
@@ -179,69 +184,85 @@ struct MapView: View {
                             .frame(width: 32, height: 32)
                     }
                     .padding(.vertical)
-                    
-                    Button{
-                        autoServiceShowing.toggle()
-                        withAnimation(.snappy){
-                            cameraPosition = .region(.userRegion)
-                        }
-                        searchText = "Автосервис"
-                        Task{
-                            await searchPlaces()
-                        }
-                    } label: {
-                        Image("car-service")
-                            .resizable()
-                            .frame(width: 32, height: 32)
-                    }
-                    .padding(6)
-                    .background(autoServiceShowing ? .gray : .clear)
-                    .clipShape(.buttonBorder)
-                    .padding(.bottom)
-                    Button{
-                        carWashShowing.toggle()
-                        withAnimation(.snappy){
-                            cameraPosition = .region(.userRegion)
-                        }
-                        searchText = "Автомойка"
-                        Task{
-                            await searchPlaces()
-                        }
-                    } label: {
-                        Image("car-wash")
-                            .resizable()
-                            .frame(width: 32, height: 32)
-                    }
-                    .padding(6)
-                    .background(carWashShowing ? .gray : .clear)
-                    .clipShape(.buttonBorder)
-                    .padding(.bottom)
-                    Button{
-                        withAnimation(.snappy){
-                            cameraPosition = .region(.userRegion)
+                    if routeDisplaying {
+                        Button{
+                            withAnimation(.snappy){
+                                cameraPosition = .region(.userRegion)
+                                
+                                searchText = ""
+                                showDetails = false
+                                getDirections = false
+                                routeDisplaying = false
+                                
+                                carWashResults = [MKMapItem]()
+                                carServiceResults = [MKMapItem]()
+                                mapSelection = nil
+                                route = nil
+                                routeDestionation = nil
+                                
+                                autoServiceShowing = false
+                                carWashShowing = false
+                            }
                             
-                            searchText = ""
-                            showDetails = false
-                            getDirections = false
-                            routeDisplaying = false
-                            
-                            results = [MKMapItem]()
-//                            results = [SearchResult]()
-                            mapSelection = nil
-                            route = nil
-                            routeDestionation = nil
-                            
-                            autoServiceShowing = false
-                            carWashShowing = false
+                        } label: {
+                            Image(systemName: "xmark.circle.fill")
+                                .resizable()
+                                .frame(width: 32, height: 32)
+                                .foregroundStyle(.gray, Color(.systemGray6))
                         }
-                        
-                    } label: {
-                        Image(systemName: "xmark.circle.fill")
-                            .resizable()
-                            .frame(width: 32, height: 32)
-                            .foregroundStyle(.gray, Color(.systemGray6))
+                        .padding(.bottom)
+                    }else {
+                        Button{
+                            autoServiceShowing.toggle()
+                            withAnimation(.snappy){
+                                cameraPosition = .region(.userRegion)
+                            }
+                            searchText = "Автосервис"
+                            Task{
+                                await searchCarSevice()
+                            }
+                        } label: {
+                            if autoServiceShowing {
+                                Image("car-service")
+                                    .resizable()
+                                    .frame(width: 32, height: 32)
+                                    .colorInvert()
+                            }else {
+                                Image("car-service")
+                                    .resizable()
+                                    .frame(width: 32, height: 32)
+                            }
+                        }
+                        .padding(6)
+                        .background(autoServiceShowing ? Color(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0) : .clear)
+                        .clipShape(.buttonBorder)
+                        .padding(.bottom)
+                        Button{
+                            carWashShowing.toggle()
+                            withAnimation(.snappy){
+                                cameraPosition = .region(.userRegion)
+                            }
+                            searchText = "Автомойка"
+                            Task{
+                                await searchCarWash()
+                            }
+                        } label: {
+                            if carWashShowing {
+                                Image("car-wash")
+                                    .resizable()
+                                    .frame(width: 32, height: 32)
+                                    .colorInvert()
+                            }else {
+                                Image("car-wash")
+                                    .resizable()
+                                    .frame(width: 32, height: 32)
+                            }
+                        }
+                        .padding(6)
+                        .background(carWashShowing ? Color(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0) : .clear)
+                        .clipShape(.buttonBorder)
+                        .padding(.bottom)
                     }
-                    .padding(.bottom)
                     
                 }
                 .padding(.horizontal, 10)
@@ -319,34 +340,24 @@ struct MapView: View {
 }
 
 extension MapView {
-    
-//    func searchPlaces() async {
-//        var autoServiceResults: [SearchResult] = []
-//        var carWashResults: [SearchResult] = []
-//        
-//        let request = MKLocalSearch.Request()
-//        request.region = .userRegion
-//        
-//        if autoServiceShowing {
-//            request.naturalLanguageQuery = "Автосервис"
-//            if let response = try? await MKLocalSearch(request: request).start() {
-//                autoServiceResults = response.mapItems.map { SearchResult(placemark: $0.placemark, tags: "AutoService") }
-//            }
-//        }
-//        
-//        if carWashShowing {
-//            request.naturalLanguageQuery = "Автомойка"
-//            if let response = try? await MKLocalSearch(request: request).start() {
-//                carWashResults = response.mapItems.map { SearchResult(placemark: $0.placemark, tags: "CarWash") }
-//            }
-//        }
-//        
-//        self.results = autoServiceResults + carWashResults
-//    }
-
-    func searchPlaces() async {
-        var autoServiceResults: [MKMapItem] = []
+    func searchCarWash() async {
         var carWashResults: [MKMapItem] = []
+        
+        let request = MKLocalSearch.Request()
+        request.region = .userRegion
+        
+        if carWashShowing {
+            request.naturalLanguageQuery = "Автомойка"
+            if let response = try? await MKLocalSearch(request: request).start() {
+                carWashResults = response.mapItems
+            }
+        }
+        
+        self.carWashResults = carWashResults
+    }
+    
+    func searchCarSevice() async {
+        var autoServiceResults: [MKMapItem] = []
         
         let request = MKLocalSearch.Request()
         request.region = .userRegion
@@ -358,24 +369,8 @@ extension MapView {
             }
         }
         
-        if carWashShowing {
-            request.naturalLanguageQuery = "Автомойка"
-            if let response = try? await MKLocalSearch(request: request).start() {
-                carWashResults = response.mapItems
-            }
-        }
-        
-        self.results = autoServiceResults + carWashResults
+        self.carServiceResults = autoServiceResults
     }
-
-//    func searchPlaces() async {
-//        let request = MKLocalSearch.Request()
-//        request.naturalLanguageQuery = searchText
-//        request.region = .userRegion
-//        
-//        let results = try? await MKLocalSearch(request: request).start()
-//        self.results = results?.mapItems ?? []
-//    }
     
     func fetchRoute(selection: MKMapItem) {
         calculatingRoute = true
@@ -412,8 +407,8 @@ extension MapView {
             routeDisplaying = false
             calculatingRoute = false
             
-            results = [MKMapItem]()
-//            results = [SearchResult]()
+            carWashResults = [MKMapItem]()
+            carServiceResults = [MKMapItem]()
             mapSelection = nil
             carSelection = nil
             route = nil
@@ -508,8 +503,6 @@ extension CLLocationCoordinate2D {
         return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
     
-    //        return CLLocationCoordinate2D(latitude: 55.753995, longitude: 37.594069)
-    
 }
 
 extension MKCoordinateRegion {
@@ -518,6 +511,3 @@ extension MKCoordinateRegion {
     }
 }
 
-#Preview {
-    MapView()
-}

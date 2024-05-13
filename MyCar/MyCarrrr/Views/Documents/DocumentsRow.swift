@@ -28,6 +28,9 @@ struct DocumentsRow: View {
     @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
     
     @State var date: String?
+
+    @State var isLoadingStsImage = false
+    @State var isLoadingInsurenceImage = false
     
     var body: some View {
         
@@ -57,27 +60,47 @@ struct DocumentsRow: View {
                         }
                     } label: {
                         VStack{
-                            Text("СТС")
-                                .font(.system(size: 20))
-                                .bold()
-                                .foregroundStyle(.white)
-                                .padding(.top)
+                            if isLoadingStsImage {
+                                Text("Loading...")
+                                    .font(.system(size: 20))
+                                    .bold()
+                                    .foregroundStyle(.white)
+                                    .padding(.top)
+                            }else {
+                                Text("СТС")
+                                    .font(.system(size: 20))
+                                    .bold()
+                                    .foregroundStyle(.white)
+                                    .padding(.top)
+                            }
                             Spacer()
-                            Image(systemName: "doc")
-                                .resizable()
-                                .frame(width: 32, height: 40)
-                                .padding(.bottom)
-                                .foregroundStyle(Color.white)
+                            if isLoadingStsImage {
+                                ProgressView()
+                                    .progressViewStyle(CircularProgressViewStyle())
+                                    .scaleEffect(1.5)
+                                    .foregroundColor(.white)
+                                    .tint(Color.white)
+                                    .frame(width: 50, height: 50)
+                                    .padding(.bottom)
+                            } else {
+                                Image(uiImage: UIImage(named: "doc64")!)
+                                    .resizable()
+                                    .frame(width: 50, height: 50)
+                                    .padding(.bottom)
+                                    .foregroundStyle(Color.white)
+                            }
                         }
                         .frame(width: 175, height: 120)
                         .background(Color(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0))
                         .clipShape(.buttonBorder)
                     }
+                    .disabled(isLoadingStsImage)
                     .sheet(isPresented: $showingActionSheetSts) {
                         StsImageView(image: img, 
                                      showingActionSheetSts: $showingActionSheetSts,
                                      carIndex: index,
-                                     updateCarsAction: updateCars)
+                                     updateCarsAction: updateCars,
+                                     isLoadingStsImage: $isLoadingStsImage)
                     }
                 }else {
                     Button{
@@ -86,22 +109,43 @@ struct DocumentsRow: View {
                         }
                     } label: {
                         VStack{
-                            Text("СТС")
-                                .font(.system(size: 20))
-                                .bold()
-                                .foregroundStyle(.white)
-                                .padding(.top)
+                            if isLoadingStsImage {
+                                Text("Loading...")
+                                    .font(.system(size: 20))
+                                    .bold()
+                                    .foregroundStyle(.white)
+                                    .padding(.top)
+                            }else {
+                                Text("СТС")
+                                    .font(.system(size: 20))
+                                    .bold()
+                                    .foregroundStyle(.white)
+                                    .padding(.top)
+                            }
                             Spacer()
-                            Image(systemName: "doc.badge.plus")
-                                .resizable()
-                                .frame(width: 42, height: 50)
-                                .padding(.bottom)
-                                .foregroundStyle(Color.white)
+                            if isLoadingStsImage {
+                                ProgressView()
+                                    .progressViewStyle(CircularProgressViewStyle())
+                                    .scaleEffect(1.5)
+                                    .foregroundColor(.white)
+                                    .tint(Color.white)
+                                    .frame(width: 50, height: 50)
+                                    .padding(.bottom)
+                            } else {
+//                                Image(systemName: "doc.badge.plus")
+                                Image(uiImage: UIImage(named: "adddoc")!)
+                                    .resizable()
+                                    .frame(width: 50, height: 50)
+                                    .padding(.bottom)
+                                    .padding(.leading)
+                                    .foregroundStyle(Color.white)
+                            }
                         }
                         .frame(width: 175, height: 120)
                         .background(Color(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0))
                         .clipShape(.buttonBorder)
                     }
+                    .disabled(isLoadingStsImage)
                     .actionSheet(isPresented: $showingEditSts) {
                         ActionSheet(title: Text("Выберите действие"), buttons: [
                             .default(Text("Камера"), action: {
@@ -130,28 +174,49 @@ struct DocumentsRow: View {
                         }
                     } label: {
                         VStack{
-                            Text("Страховка")
-                                .font(.system(size: 20))
-                                .bold()
-                                .foregroundStyle(.white)
-                                .padding(.top)
+                            if isLoadingInsurenceImage {
+                                Text("Loading...")
+                                    .font(.system(size: 20))
+                                    .bold()
+                                    .foregroundStyle(.white)
+                                    .padding(.top)
+                            }else {
+                                Text("Страховка")
+                                    .font(.system(size: 20))
+                                    .bold()
+                                    .foregroundStyle(.white)
+                                    .padding(.top)
+                            }
                             Spacer()
-                            Image(systemName: "doc")
-                                .resizable()
-                                .frame(width: 32, height: 40)
-                                .padding(.bottom)
-                                .foregroundStyle(Color.white)
+                            if isLoadingInsurenceImage {
+                                ProgressView()
+                                    .progressViewStyle(CircularProgressViewStyle())
+                                    .scaleEffect(1.5)
+                                    .foregroundColor(.white)
+                                    .tint(Color.white)
+                                    .frame(width: 50, height: 50)
+                                    .padding(.bottom)
+                            } else {
+//                                Image(systemName: "doc")
+                                Image(uiImage: UIImage(named: "doc64")!)
+                                    .resizable()
+                                    .frame(width: 50, height: 50)
+                                    .padding(.bottom)
+                                    .foregroundStyle(Color.white)
+                            }
                         }
                         .frame(width: 175, height: 120)
                         .background(Color(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0))
                         .clipShape(.buttonBorder)
                     }
+                    .disabled(isLoadingInsurenceImage)
                     .sheet(isPresented: $showingActionSheetInsurance) {
                         InsurenceImageView(image: img,
                                            showingActionSheetInsurence: $showingActionSheetInsurance,
                                            selectedDate: convertDate(),
                                            carIndex: index,
-                                           updateCarsAction: updateCars)
+                                           updateCarsAction: updateCars, 
+                                           isLoadingInsurenceImage: $isLoadingInsurenceImage)
                     }
                 }else {
                     Button{
@@ -160,22 +225,43 @@ struct DocumentsRow: View {
                         }
                     } label: {
                         VStack{
-                            Text("Страховка")
-                                .font(.system(size: 20))
-                                .bold()
-                                .foregroundStyle(.white)
-                                .padding(.top)
+                            if isLoadingInsurenceImage {
+                                Text("Loading...")
+                                    .font(.system(size: 20))
+                                    .bold()
+                                    .foregroundStyle(.white)
+                                    .padding(.top)
+                            }else {
+                                Text("Страховка")
+                                    .font(.system(size: 20))
+                                    .bold()
+                                    .foregroundStyle(.white)
+                                    .padding(.top)
+                            }
                             Spacer()
-                            Image(systemName: "doc.badge.plus")
-                                .resizable()
-                                .frame(width: 42, height: 50)
-                                .padding(.bottom)
-                                .foregroundStyle(Color.white)
+                            if isLoadingInsurenceImage {
+                                ProgressView()
+                                    .progressViewStyle(CircularProgressViewStyle())
+                                    .scaleEffect(1.5)
+                                    .foregroundColor(.white)
+                                    .tint(Color.white)
+                                    .frame(width: 50, height: 50)
+                                    .padding(.bottom)
+                            } else {
+//                                Image(systemName: "doc.badge.plus")
+                                Image(uiImage: UIImage(named: "adddoc")!)
+                                    .resizable()
+                                    .frame(width: 50, height: 50)
+                                    .padding(.bottom)
+                                    .padding(.leading)
+                                    .foregroundStyle(Color.white)
+                            }
                         }
                         .frame(width: 175, height: 120)
                         .background(Color(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0))
                         .clipShape(.buttonBorder)
                     }
+                    .disabled(isLoadingInsurenceImage)
                     .actionSheet(isPresented: $showingEditInsurance) {
                         ActionSheet(title: Text("Выберите действие"), buttons: [
                             .default(Text("Камера"), action: {
@@ -203,18 +289,7 @@ struct DocumentsRow: View {
         .padding(.bottom)
         
     }
-    
-    func loadStsImage() {
-        guard let selectedImage = selectedImage else { return }
-        print("sts")
-        HomeCarsModel().updateStsImage(selectedImage, index)
-        updateCarsAction()
-    }
-    func loadInsuranceImage() {
-        guard let selectedImage = selectedImage else { return }
-        HomeCarsModel().updateInsuranceImage(selectedImage, index)
-        updateCarsAction()
-    }
+
     
     func updateCars() {
         updateCarsAction()
@@ -230,19 +305,33 @@ struct DocumentsRow: View {
         }
         return Date()
     }
-    
-    /*TODO: - сделать чтобы во время HomeCarsModel().updateInsuranceImage(selectedImage, index) был progressview и кнопка была неактивной
      
     func loadInsuranceImage() {
-        guard let selectedImage = selectedImage else { return }
-        
+        guard let selectedImage = selectedImage else {
+            return
+        }
+        isLoadingInsurenceImage = true
         DispatchQueue.global().async {
             HomeCarsModel().updateInsuranceImage(selectedImage, index)
-            
             DispatchQueue.main.async {
                 updateCarsAction()
+                isLoadingInsurenceImage = false
             }
         }
     }
-     */
+    
+    func loadStsImage() {
+        guard let selectedImage = selectedImage else { return }
+
+        isLoadingStsImage = true
+
+        DispatchQueue.global().async {
+            HomeCarsModel().updateStsImage(selectedImage, index)
+            DispatchQueue.main.async {
+                updateCarsAction()
+                isLoadingStsImage = false
+            }
+        }
+    }
+     
 }
