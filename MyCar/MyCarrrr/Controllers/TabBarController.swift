@@ -17,7 +17,9 @@ class TabBarController: UITabBarController {
         // Установка цвета фона и тинта таббара
         tabBar.barTintColor = UIColor(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0, alpha: 1)
         tabBar.backgroundColor = UIColor(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0, alpha: 1)
-        
+        let tabBarAppearance: UITabBarAppearance = UITabBarAppearance()
+        tabBarAppearance.configureWithDefaultBackground()
+        UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
         setupTabBar()
     }
 
