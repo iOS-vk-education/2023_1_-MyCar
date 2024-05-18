@@ -33,6 +33,7 @@
 		84618DFB2BB0653B00436C3B /* HomeDrivingLicenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84618DFA2BB0653B00436C3B /* HomeDrivingLicenseModel.swift */; };
 		84618DFD2BB076C100436C3B /* DrivingLicenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84618DFC2BB076C100436C3B /* DrivingLicenseView.swift */; };
 		84618E072BB08E8F00436C3B /* SwiftUIImageViewer in Frameworks */ = {isa = PBXBuildFile; productRef = 84618E062BB08E8F00436C3B /* SwiftUIImageViewer */; };
+		84688DE92BF8FCE700295713 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84688DE82BF8FCE700295713 /* OnboardingView.swift */; };
 		846AA1C82B1FB3DF001FC13D /* TOButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AA1C72B1FB3DF001FC13D /* TOButtonView.swift */; };
 		846AA1CA2B1FD6E0001FC13D /* InsuranceButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AA1C92B1FD6E0001FC13D /* InsuranceButtonView.swift */; };
 		846AA1CC2B1FD835001FC13D /* MileageButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AA1CB2B1FD835001FC13D /* MileageButtonView.swift */; };
@@ -96,6 +97,7 @@
 		84618DF82BB064B700436C3B /* DrivingLicenseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrivingLicenseModel.swift; sourceTree = "<group>"; };
 		84618DFA2BB0653B00436C3B /* HomeDrivingLicenseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDrivingLicenseModel.swift; sourceTree = "<group>"; };
 		84618DFC2BB076C100436C3B /* DrivingLicenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrivingLicenseView.swift; sourceTree = "<group>"; };
+		84688DE82BF8FCE700295713 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		846AA1C72B1FB3DF001FC13D /* TOButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TOButtonView.swift; sourceTree = "<group>"; };
 		846AA1C92B1FD6E0001FC13D /* InsuranceButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceButtonView.swift; sourceTree = "<group>"; };
 		846AA1CB2B1FD835001FC13D /* MileageButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MileageButtonView.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 		556C3AE22AF9A5AE00D334B8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				84688DE72BF8FCDA00295713 /* Onboarding */,
 				8473868B2BAF3C83006CD936 /* Documents */,
 				847566E72B23BFA7003BC1F6 /* ButtonsView */,
 				559EFBC82AF14B740098672F /* MyCarsView.swift */,
@@ -234,6 +237,14 @@
 				559EFBC22AF14A620098672F /* Info.plist */,
 			);
 			path = MyCarrrr;
+			sourceTree = "<group>";
+		};
+		84688DE72BF8FCDA00295713 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				84688DE82BF8FCE700295713 /* OnboardingView.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		846B6D102BC313F90039698B /* Recovered References */ = {
@@ -458,6 +469,7 @@
 				559EFBCB2AF169610098672F /* CarCellTableViewCell.swift in Sources */,
 				8473868D2BAF3CA0006CD936 /* DocumentsRow.swift in Sources */,
 				84618DFD2BB076C100436C3B /* DrivingLicenseView.swift in Sources */,
+				84688DE92BF8FCE700295713 /* OnboardingView.swift in Sources */,
 				846AA1CA2B1FD6E0001FC13D /* InsuranceButtonView.swift in Sources */,
 				847566E92B23C039003BC1F6 /* EditCarViewController.swift in Sources */,
 				84CE9AE42B0307370070A8B2 /* AddCarView.swift in Sources */,
@@ -602,6 +614,8 @@
 				INFOPLIST_FILE = MyCarrrr/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = myCar;
 				INFOPLIST_KEY_NSCameraUsageDescription = MyCarrrr;
+				INFOPLIST_KEY_NSContactsUsageDescription = "We need access to your phone to make calls.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Подтвердите использование Вашей геолокации!";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = MyCarrrr;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -613,7 +627,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "-.MyCarrrr";
+				PRODUCT_BUNDLE_IDENTIFIER = "-.MyCar";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -636,6 +650,8 @@
 				INFOPLIST_FILE = MyCarrrr/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = myCar;
 				INFOPLIST_KEY_NSCameraUsageDescription = MyCarrrr;
+				INFOPLIST_KEY_NSContactsUsageDescription = "We need access to your phone to make calls.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Подтвердите использование Вашей геолокации!";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = MyCarrrr;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -647,7 +663,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "-.MyCarrrr";
+				PRODUCT_BUNDLE_IDENTIFIER = "-.MyCar";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
