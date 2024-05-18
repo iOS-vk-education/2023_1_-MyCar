@@ -156,9 +156,9 @@
             filePath = "MyCarrrr/Controllers/MyCarsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
-            landmarkName = "goToTOScreen(tag:)"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
+            landmarkName = "goToInsurenceScreen(tag:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -172,8 +172,8 @@
             filePath = "MyCarrrr/Controllers/MyCarsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
             landmarkName = "goToTOScreen(tag:)"
             landmarkType = "7">
          </BreakpointContent>
