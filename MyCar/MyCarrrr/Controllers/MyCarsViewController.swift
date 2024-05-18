@@ -112,7 +112,7 @@ extension MyCarsViewController: ViewToViewController {
         view.addSubview(dimmingView)
         
         let label = UILabel()
-        label.text = "Saving...\nPlease wait"
+        label.text = "Сохранение...\nПожалуйста, подождите"
         label.textColor = .white
         label.numberOfLines = 0
         label.textAlignment = .center

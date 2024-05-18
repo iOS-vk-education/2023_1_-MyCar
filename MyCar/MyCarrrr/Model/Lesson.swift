@@ -38,7 +38,7 @@ let lessons2 = Lesson(id: 2, title: "Как поменять колесо?", sub
                               """,
                               image: "wheel-change", link: "https://www.youtube.com/watch?v=YYmnoTgKORs")
 
-let lessons3 = Lesson(id: 3, title: "Загорелся \"чек\"", subTitle: "", content: """
+let lessons3 = Lesson(id: 3, title: "Загорелся «чек»", subTitle: "", content: """
                               1. Не паникуйте.
                               2. Проверьте крышку бензобака и уровень топлива.
                               3. Запишитесь на диагностику в автосервис.
