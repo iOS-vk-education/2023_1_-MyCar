@@ -5,6 +5,7 @@ protocol ViewToViewController: AnyObject {
     func cars() -> [CarViewModel]
     func removeCar(index: Int)
     func goToAddScreen()
+    func goToOnboardingScreen()
     func goToTOScreen(tag: Int)
     func setCarLocation(index: Int)
 }
@@ -75,6 +76,14 @@ extension MyCarsViewController: ViewToViewController {
         let vc = AddCarViewController(model: model)
 //        vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
+    }
+    
+    func goToOnboardingScreen() {
+        let hostingVC = UIHostingController(rootView: OnboardingView(goToAddScreen: {
+            self.goToAddScreen()
+        }))
+        hostingVC.modalPresentationStyle = .fullScreen
+        present(hostingVC, animated: true)
     }
     
     func goToTOScreen(tag: Int) {

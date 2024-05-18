@@ -30,6 +30,7 @@ class MyCarsView: UIView {
     func setupUI() {
         setupHeaderLabel()
         setupAddCarButton()
+        setupOnboardingButton()
         setupCarTable()
 
     }
@@ -80,6 +81,22 @@ class MyCarsView: UIView {
         ])
     }
     
+    private func setupOnboardingButton() {
+        let addButton = UIButton(type: .detailDisclosure)
+        addButton.setTitle("", for: .normal)
+        addButton.addTarget(self, action: #selector(didTapOnboardingButton), for: .touchUpInside)
+        
+        self.addSubview(addButton)
+
+        addButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            addButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 45),
+            addButton.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 8),
+            addButton.widthAnchor.constraint(equalToConstant: 60),
+            addButton.heightAnchor.constraint(equalToConstant: 33)
+        ])
+    }
+    
     
     private func setupCarTable(){
         self.addSubview(carsTable)
@@ -106,6 +123,10 @@ class MyCarsView: UIView {
 
     @objc private func didTapAddCarButton() {
         delegate?.goToAddScreen()
+    }
+    
+    @objc private func didTapOnboardingButton() {
+        delegate?.goToOnboardingScreen()
     }
 }
 

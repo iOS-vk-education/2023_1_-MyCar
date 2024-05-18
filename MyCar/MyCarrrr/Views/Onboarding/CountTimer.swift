@@ -9,7 +9,7 @@ import Foundation
 import Combine
 import SwiftUI
 
-class CountTimer2: ObservableObject {
+class CountTimer: ObservableObject {
     @Published var progress: Double
     private var interval: TimeInterval
     private var max: Int
@@ -17,11 +17,16 @@ class CountTimer2: ObservableObject {
     private var cancellable: Cancellable?
     private var isPaused: Bool = false
     
-    init(items: Int, interval: TimeInterval, currentPage: Int) {
+    init(items: Int, interval: TimeInterval) {
         self.max = items
         self.progress = 0
         self.interval = interval
         self.publisher = Timer.publish(every: 0.1, on: .main, in: .default)
+    }
+    
+    var currentPage: Int {
+        get { Int(progress) }
+        set { progress = Double(newValue) }
     }
     
     func start() {

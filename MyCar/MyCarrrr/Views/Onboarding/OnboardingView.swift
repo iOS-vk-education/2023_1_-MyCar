@@ -9,58 +9,13 @@ import Foundation
 import SwiftUI
 import Combine
 
-class CountTimer: ObservableObject {
-    @Published var progress: Double
-    private var interval: TimeInterval
-    private var max: Int
-    private var publisher: Timer.TimerPublisher
-    private var cancellable: Cancellable?
-    private var isPaused: Bool = false
-    
-    init(items: Int, interval: TimeInterval) {
-        self.max = items
-        self.progress = 0
-        self.interval = interval
-        self.publisher = Timer.publish(every: 0.1, on: .main, in: .default)
-    }
-    
-    var currentPage: Int {
-        get { Int(progress) }
-        set { progress = Double(newValue) }
-    }
-    
-    func start() {
-        guard !isPaused else { return }
-        self.cancellable = self.publisher.autoconnect().sink(receiveValue: { _ in
-            var newProgress = self.progress + (0.1 / self.interval)
-            if Int(newProgress) >= self.max { newProgress = 0 }
-            self.progress = newProgress
-        })
-    }
-    
-    func pause() {
-        self.cancellable?.cancel()
-        self.cancellable = nil
-        self.isPaused = true
-    }
-    
-    func resume() {
-        self.isPaused = false
-        self.start()
-    }
-    
-    func advancePage(by number: Int) {
-        let newProgress = Swift.max((Int(self.progress) + number) % self.max, 0)
-        self.progress = Double(newProgress)
-    }
-}
-
-
-struct ContentView: View {
+struct OnboardingView: View {
     var images: [String] = ["story1", "bmw5", "bmw5", "bmw5", "bmw5", "bmw5"]
+    var goToAddScreen: () -> Void
     
     @State private var currentPage: Int = 0
     @ObservedObject var countTimer: CountTimer = CountTimer(items: 6, interval: 4.0)
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         GeometryReader { geometry in
@@ -102,7 +57,7 @@ struct ContentView: View {
                         Spacer()
                         Button {
                             withAnimation(.snappy) {
-                                // Действия при нажатии кнопки
+                                self.presentationMode.wrappedValue.dismiss()
                             }
                         } label: {
                             VStack {
@@ -123,7 +78,8 @@ struct ContentView: View {
                         Spacer()
                         Button {
                             withAnimation(.snappy) {
-                                // Действия при нажатии кнопки
+                                self.presentationMode.wrappedValue.dismiss()
+                                goToAddScreen()
                             }
                         } label: {
                             VStack {
@@ -158,11 +114,11 @@ struct ContentView: View {
         }
     }
 }
-
-
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
+//
+//
+//
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        OnboardingView()
+//    }
+//}
