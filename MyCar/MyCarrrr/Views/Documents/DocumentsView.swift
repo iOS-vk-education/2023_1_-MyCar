@@ -31,7 +31,7 @@ struct DocumentsView: View {
                         .padding()
                     
                     HStack{
-                        Text("Документы по автомобилям")
+                        Text("Автомобили")
                             .font(.system(size: 20))
                             .bold()
                             .foregroundStyle(.white)
@@ -60,4 +60,8 @@ struct DocumentsView: View {
     func updateCars () {
         cars = HomeCarsModel().allCars()
     }
+}
+
+#Preview {
+    DocumentsView()
 }
