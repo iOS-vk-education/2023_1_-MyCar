@@ -9,24 +9,6 @@ import Foundation
 import SwiftUI
 import Combine
 
-struct LoadingBar: View {
-    
-    var progress:CGFloat
-    
-    var body: some View {
-        GeometryReader{ geometry in
-            ZStack(alignment:.leading){
-                Rectangle()
-                    .foregroundColor(Color.red.opacity(0.5))
-                    .cornerRadius(5)
-                Rectangle().frame(width: geometry.size.width * self.progress,height: 10,alignment: .leading)
-                    .foregroundColor(.blue)
-                    .cornerRadius(5)
-            }
-        }
-    }
-}
-
 class CountTimer: ObservableObject {
     @Published var progress: Double
     private var interval: TimeInterval
@@ -40,6 +22,11 @@ class CountTimer: ObservableObject {
         self.progress = 0
         self.interval = interval
         self.publisher = Timer.publish(every: 0.1, on: .main, in: .default)
+    }
+    
+    var currentPage: Int {
+        get { Int(progress) }
+        set { progress = Double(newValue) }
     }
     
     func start() {
@@ -70,20 +57,22 @@ class CountTimer: ObservableObject {
 
 
 struct ContentView: View {
-    var images: [String] = ["story1", "bmw5"]
-    @ObservedObject var countTimer: CountTimer = CountTimer(items: 2, interval: 4.0)
+    var images: [String] = ["story1", "bmw5", "bmw5", "bmw5", "bmw5", "bmw5"]
+    
+    @State private var currentPage: Int = 0
+    @ObservedObject var countTimer: CountTimer = CountTimer(items: 6, interval: 4.0)
     
     var body: some View {
         GeometryReader { geometry in
             ZStack(alignment: .top) {
-                Image(self.images[Int(self.countTimer.progress)])
+                Image(self.images[self.currentPage])
                     .resizable()
                     .padding(.top, 30)
                     .padding(.bottom, 5)
                     .padding()
                 
                 HStack(alignment: .center, spacing: 4) {
-                    ForEach(self.images.indices) { image in
+                    ForEach(self.images.indices, id: \.self) { image in
                         LoadingBar(progress: min(max(CGFloat(self.countTimer.progress) - CGFloat(image), 0.0), 1.0))
                             .frame(width: nil, height: 2, alignment: .leading)
                             .animation(.linear)
@@ -97,13 +86,57 @@ struct ContentView: View {
                         .contentShape(Rectangle())
                         .onTapGesture {
                             self.countTimer.advancePage(by: -1)
+                            self.currentPage = self.countTimer.currentPage
                         }
                     Rectangle()
                         .foregroundColor(.clear)
                         .contentShape(Rectangle())
                         .onTapGesture {
                             self.countTimer.advancePage(by: 1)
+                            self.currentPage = self.countTimer.currentPage
                         }
+                }
+                
+                if currentPage == 0 {
+                    VStack{
+                        Spacer()
+                        Button {
+                            withAnimation(.snappy) {
+                                // Действия при нажатии кнопки
+                            }
+                        } label: {
+                            VStack {
+                                Text("Пропустить")
+                                    .font(.system(size: 20))
+                                    .bold()
+                                    .foregroundStyle(.white)
+                            }
+                            .frame(width: 175, height: 60)
+                            .background(Color(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0))
+                            .clipShape(.buttonBorder)
+                        }
+                    }
+                }
+                
+                if currentPage == 5 {
+                    VStack{
+                        Spacer()
+                        Button {
+                            withAnimation(.snappy) {
+                                // Действия при нажатии кнопки
+                            }
+                        } label: {
+                            VStack {
+                                Text("Добавить авто")
+                                    .font(.system(size: 20))
+                                    .bold()
+                                    .foregroundStyle(.white)
+                            }
+                            .frame(width: 175, height: 60)
+                            .background(Color(red: 31 / 255.0, green: 37 / 255.0, blue: 41 / 255.0))
+                            .clipShape(.buttonBorder)
+                        }
+                    }
                 }
             }
             .gesture(
@@ -117,10 +150,15 @@ struct ContentView: View {
             )
             .onAppear {
                 self.countTimer.start()
+                self.currentPage = self.countTimer.currentPage
+            }
+            .onReceive(self.countTimer.$progress) { progress in
+                self.currentPage = self.countTimer.currentPage
             }
         }
     }
 }
+
 
 
 struct ContentView_Previews: PreviewProvider {

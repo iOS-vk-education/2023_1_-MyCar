@@ -56,6 +56,8 @@
 		84B2F8362B38AFB2006426FF /* ChequeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2F8352B38AFB2006426FF /* ChequeView.swift */; };
 		84B2F8382B38C15D006426FF /* NextTODateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2F8372B38C15D006426FF /* NextTODateViewController.swift */; };
 		84B733AE2BA2035E00C899E7 /* LocationDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B733AD2BA2035E00C899E7 /* LocationDetailsView.swift */; };
+		84C3E0642BF9264500D5CE91 /* CountTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C3E0632BF9264500D5CE91 /* CountTimer.swift */; };
+		84C3E0662BF9267700D5CE91 /* LoadingBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C3E0652BF9267700D5CE91 /* LoadingBar.swift */; };
 		84CE9ADB2B02FFC80070A8B2 /* CarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE9ADA2B02FFC80070A8B2 /* CarViewModel.swift */; };
 		84CE9ADD2B02FFE80070A8B2 /* HomeCarsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE9ADC2B02FFE80070A8B2 /* HomeCarsModel.swift */; };
 		84CE9AE02B03003F0070A8B2 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE9ADF2B03003F0070A8B2 /* NetworkService.swift */; };
@@ -120,6 +122,8 @@
 		84B2F8352B38AFB2006426FF /* ChequeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChequeView.swift; sourceTree = "<group>"; };
 		84B2F8372B38C15D006426FF /* NextTODateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextTODateViewController.swift; sourceTree = "<group>"; };
 		84B733AD2BA2035E00C899E7 /* LocationDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailsView.swift; sourceTree = "<group>"; };
+		84C3E0632BF9264500D5CE91 /* CountTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountTimer.swift; sourceTree = "<group>"; };
+		84C3E0652BF9267700D5CE91 /* LoadingBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingBar.swift; sourceTree = "<group>"; };
 		84CE9ADA2B02FFC80070A8B2 /* CarViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarViewModel.swift; sourceTree = "<group>"; };
 		84CE9ADC2B02FFE80070A8B2 /* HomeCarsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCarsModel.swift; sourceTree = "<group>"; };
 		84CE9ADF2B03003F0070A8B2 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -243,6 +247,8 @@
 			isa = PBXGroup;
 			children = (
 				84688DE82BF8FCE700295713 /* OnboardingView.swift */,
+				84C3E0632BF9264500D5CE91 /* CountTimer.swift */,
+				84C3E0652BF9267700D5CE91 /* LoadingBar.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -445,8 +451,10 @@
 				84618DF92BB064B700436C3B /* DrivingLicenseModel.swift in Sources */,
 				841BA86F2BA317180011564E /* CarLocationDetailsView.swift in Sources */,
 				551805CE2B2266C700674218 /* PlaceClass.swift in Sources */,
+				84C3E0662BF9267700D5CE91 /* LoadingBar.swift in Sources */,
 				844427DE2BAC65A900D61EF9 /* DocumentsView.swift in Sources */,
 				559EFBB72AF14A5F0098672F /* SceneDelegate.swift in Sources */,
+				84C3E0642BF9264500D5CE91 /* CountTimer.swift in Sources */,
 				84709F902B229F3A00AD8347 /* MileageViewController.swift in Sources */,
 				8472EBF42B210E6E0027B383 /* HomeWorkModel.swift in Sources */,
 				559EFBCD2AF179870098672F /* TabBarController.swift in Sources */,
