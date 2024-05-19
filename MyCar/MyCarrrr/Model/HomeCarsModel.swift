@@ -116,6 +116,13 @@ final class HomeCarsModel {
         cars[index]
     }
     
+    func carForMap(index: Int) -> CarViewModel? {
+        guard index >= 0, index < cars.count else {
+            return nil
+        }
+        return cars[index]
+    }
+    
     func addCar(_ car: CarViewModel) {
         cars.append(car)
     }
