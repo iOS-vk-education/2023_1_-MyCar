@@ -10,7 +10,8 @@ import SwiftUI
 import SafariServices
 
 
-private let lessonsArray = [lessons1, lessons2, lessons3, lessons4]
+private let lessonsArray = [lessons1, lessons2, lessons3, lessons4, lessons5]
+private let dtpArray = [lessons6, lessons7, lessons8, lessons9]
 
 struct TutorialView: View {
     var body: some View {
@@ -20,7 +21,7 @@ struct TutorialView: View {
                     .resizable()
                     .edgesIgnoringSafeArea(.all)
                 VStack{
-                    Text("Руководства по обслуживанию")
+                    Text("Руководство")
                         .foregroundStyle(.white)
                         .font(.title)
                         .bold()
@@ -28,6 +29,31 @@ struct TutorialView: View {
                     
                     ScrollView {
                         VStack(spacing: 10) {
+                            HStack{
+                                Text("В случае ДТП")
+                                    .foregroundStyle(.white)
+                                    .font(.title2)
+                                    .bold()
+                                Spacer()
+                            }
+                            .padding(.bottom)
+                            ForEach(dtpArray, id: \.id) { lesson in
+                                NavigationLink(destination: LessonDetailView(lesson: lesson)) {
+                                    TutorialRow(lesson: lesson)
+                                }
+                            }
+                        }
+                        .padding()
+                        
+                        VStack(spacing: 10) {
+                            HStack{
+                                Text("Неисправность автомобиля")
+                                    .foregroundStyle(.white)
+                                    .font(.title2)
+                                    .bold()
+                                Spacer()
+                            }
+                            .padding(.bottom)
                             ForEach(lessonsArray, id: \.id) { lesson in
                                 NavigationLink(destination: LessonDetailView(lesson: lesson)) {
                                     TutorialRow(lesson: lesson)
@@ -124,6 +150,6 @@ struct SafariViewController: UIViewControllerRepresentable {
 }
 
 #Preview {
-        TutorialView()
+    TutorialView()
 }
 

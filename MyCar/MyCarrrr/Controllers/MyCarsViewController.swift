@@ -5,6 +5,7 @@ protocol ViewToViewController: AnyObject {
     func cars() -> [CarViewModel]
     func removeCar(index: Int)
     func goToAddScreen()
+    func goToOnboardingScreen()
     func goToTOScreen(tag: Int)
     func setCarLocation(index: Int)
 }
@@ -77,6 +78,14 @@ extension MyCarsViewController: ViewToViewController {
         present(vc, animated: true)
     }
     
+    func goToOnboardingScreen() {
+        let hostingVC = UIHostingController(rootView: OnboardingView(goToAddScreen: {
+            self.goToAddScreen()
+        }))
+        hostingVC.modalPresentationStyle = .fullScreen
+        present(hostingVC, animated: true)
+    }
+    
     func goToTOScreen(tag: Int) {
         //        let vc = TOViewController(model: model)
         //        present(vc, animated: true)
@@ -112,7 +121,7 @@ extension MyCarsViewController: ViewToViewController {
         view.addSubview(dimmingView)
         
         let label = UILabel()
-        label.text = "Saving...\nPlease wait"
+        label.text = "Сохранение...\nПожалуйста, подождите"
         label.textColor = .white
         label.numberOfLines = 0
         label.textAlignment = .center

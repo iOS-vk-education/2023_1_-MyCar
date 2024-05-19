@@ -67,10 +67,23 @@ class CarCellTableViewCell: UITableViewCell {
         contentView.addGestureRecognizer(tapGesture)
         contentView.isUserInteractionEnabled = true
         
+        NotificationCenter.default.addObserver(self, selector: #selector(handleInsuranceDateUpdated(_:)), name: .insuranceDateUpdated, object: nil)
+
+        
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc private func handleInsuranceDateUpdated(_ notification: Notification) {
+        if let userInfo = notification.userInfo,
+           let carIndex = userInfo["carIndex"] as? Int,
+           let date = userInfo["date"] as? String {
+            if carIndex == self.tag {
+                nextInsuranceLabel.text = "Страховка до: \(date)"
+            }
+        }
     }
     
     private func setupContentView() {

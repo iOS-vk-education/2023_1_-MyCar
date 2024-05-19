@@ -81,6 +81,7 @@ struct InsurenceImageView: View {
                         let dateString = dateFormatter.string(from: currentDate)
                         model.updateInsuranceDate(carIndex, date: dateString)
                         updateCarsAction()
+                        showingActionSheetInsurence = false
                     }
                 
                 Spacer()

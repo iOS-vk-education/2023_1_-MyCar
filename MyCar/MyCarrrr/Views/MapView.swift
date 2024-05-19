@@ -133,22 +133,24 @@ struct MapView: View {
         .disabled(calculatingRoute)
         .overlay(alignment: .top){
             VStack{
-                HStack{
-                    Button{
-                        withAnimation(.snappy){
-                            showCarsPosition.toggle()
+                if !cars.isEmpty {
+                    HStack{
+                        Button{
+                            withAnimation(.snappy){
+                                showCarsPosition.toggle()
+                            }
+                        } label: {
+                            if showCarsPosition {
+                                Image(systemName: "eye")
+                            }else {
+                                Image(systemName: "eye.slash")
+                            }
                         }
-                    } label: {
-                        if showCarsPosition {
-                            Image(systemName: "eye")
-                        }else {
-                            Image(systemName: "eye.slash")
-                        }
-                    }
-                    .padding(.leading)
-                    Picker("", selection: $selectedCarIndex) {
-                        ForEach(0..<cars.count, id : \.self) {
-                            Text(cars[$0].manufacturer)
+                        .padding(.leading)
+                        Picker("", selection: $selectedCarIndex) {
+                            ForEach(0..<cars.count, id : \.self) {
+                                Text(cars[$0].manufacturer)
+                            }
                         }
                     }
                 }
@@ -281,9 +283,18 @@ struct MapView: View {
         }
         .onAppear(){
             cars = HomeCarsModel().allCars()
-            selectedCar = cars[selectedCarIndex]
             
+            if !cars.isEmpty {
+                if selectedCarIndex < cars.count {
+                    selectedCar = cars[selectedCarIndex]
+                } else {
+                    print("selectedCarIndex is out of bounds")
+                }
+            } else {
+                print("No cars available")
+            }
         }
+
         .onChange(of: selectedCarIndex, { oldValue, newValue in
             selectedCar = cars[newValue]
         })
@@ -494,7 +505,10 @@ extension CLLocationCoordinate2D {
     }
     
     static func carLocation(for index: Int) -> CLLocationCoordinate2D? {
-        let selectedCar = HomeCarsModel().car(index: index)
+//        let selectedCar = HomeCarsModel().car(index: index)
+        guard let selectedCar = HomeCarsModel().carForMap(index: index) else {
+            return nil
+        }
         
         guard let latitude = Double(selectedCar.carLocationLatitude ?? ""),
               let longitude = Double(selectedCar.carLocationLongitude ?? "") else {
