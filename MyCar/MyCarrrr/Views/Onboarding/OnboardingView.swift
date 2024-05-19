@@ -10,11 +10,11 @@ import SwiftUI
 import Combine
 
 struct OnboardingView: View {
-    var images: [String] = ["story1", "bmw5", "bmw5", "bmw5", "bmw5", "bmw5"]
+    var images: [String] = ["first", "second", "third", "fourth", "last"]
     var goToAddScreen: () -> Void
     
     @State private var currentPage: Int = 0
-    @ObservedObject var countTimer: CountTimer = CountTimer(items: 6, interval: 4.0)
+    @ObservedObject var countTimer: CountTimer = CountTimer(items: 5, interval: 4.0)
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
@@ -73,7 +73,7 @@ struct OnboardingView: View {
                     }
                 }
                 
-                if currentPage == 5 {
+                if currentPage == 4 {
                     VStack{
                         Spacer()
                         Button {
@@ -112,13 +112,6 @@ struct OnboardingView: View {
                 self.currentPage = self.countTimer.currentPage
             }
         }
+        .background(Color(red: 0.76, green: 0.77, blue: 0.78))
     }
 }
-//
-//
-//
-//struct ContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        OnboardingView()
-//    }
-//}
