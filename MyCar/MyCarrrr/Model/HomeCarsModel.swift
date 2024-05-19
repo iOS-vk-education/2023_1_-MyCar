@@ -177,7 +177,10 @@ final class HomeCarsModel {
         cars[tag].stsImage = image
     }
     
-    func updateInsuranceDate(_ carIndex: Int, date: String){
+    func updateInsuranceDate(_ carIndex: Int, date: String) {
+//        NotificationCenter.default.post(name: .insuranceDateUpdated, object: nil)
+        NotificationCenter.default.post(name: .insuranceDateUpdated, object: nil, userInfo: ["carIndex": carIndex, "date": date])
+
         cars[carIndex].insurenceDate = date
     }
     
@@ -213,3 +216,6 @@ final class HomeCarsModel {
     
 }
 
+extension Notification.Name {
+    static let insuranceDateUpdated = Notification.Name("insuranceDateUpdated")
+}
