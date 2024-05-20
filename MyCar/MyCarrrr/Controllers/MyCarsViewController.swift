@@ -82,7 +82,7 @@ extension MyCarsViewController: ViewToViewController {
         let hostingVC = UIHostingController(rootView: OnboardingView(goToAddScreen: {
             self.goToAddScreen()
         }))
-        hostingVC.modalPresentationStyle = .fullScreen
+        hostingVC.modalPresentationStyle = .pageSheet
         present(hostingVC, animated: true)
     }
     
