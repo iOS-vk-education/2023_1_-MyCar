@@ -67,8 +67,7 @@
 		84F8EEAD2B337D170059F5A2 /* InsurenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F8EEAC2B337D170059F5A2 /* InsurenceViewController.swift */; };
 		84F8EEAF2B337D940059F5A2 /* InsurenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F8EEAE2B337D940059F5A2 /* InsurenceView.swift */; };
 		C395F7468B294597335A7200 /* Pods_MyCarrrr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24864BD75FEDB4706EECD45B /* Pods_MyCarrrr.framework */; };
-		CE2B538E2BFBD3DC00B6FE05 /* ChequeViewControllerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2B538D2BFBD3DC00B6FE05 /* ChequeViewControllerUITests.swift */; };
-		CE2B53902BFBD3DC00B6FE05 /* ChequeViewControllerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2B538F2BFBD3DC00B6FE05 /* ChequeViewControllerUITestsLaunchTests.swift */; };
+		CE2B538E2BFBD3DC00B6FE05 /* MainScreenNavigationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2B538D2BFBD3DC00B6FE05 /* MainScreenNavigationUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -145,8 +144,7 @@
 		84F8EEAC2B337D170059F5A2 /* InsurenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsurenceViewController.swift; sourceTree = "<group>"; };
 		84F8EEAE2B337D940059F5A2 /* InsurenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsurenceView.swift; sourceTree = "<group>"; };
 		CE2B538B2BFBD3DC00B6FE05 /* ChequeViewControllerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChequeViewControllerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE2B538D2BFBD3DC00B6FE05 /* ChequeViewControllerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChequeViewControllerUITests.swift; sourceTree = "<group>"; };
-		CE2B538F2BFBD3DC00B6FE05 /* ChequeViewControllerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChequeViewControllerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		CE2B538D2BFBD3DC00B6FE05 /* MainScreenNavigationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenNavigationUITests.swift; sourceTree = "<group>"; };
 		F95325BC3F5539279FA98343 /* Pods-MyCarrrr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyCarrrr.release.xcconfig"; path = "Target Support Files/Pods-MyCarrrr/Pods-MyCarrrr.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -323,8 +321,7 @@
 		CE2B538C2BFBD3DC00B6FE05 /* ChequeViewControllerUITests */ = {
 			isa = PBXGroup;
 			children = (
-				CE2B538D2BFBD3DC00B6FE05 /* ChequeViewControllerUITests.swift */,
-				CE2B538F2BFBD3DC00B6FE05 /* ChequeViewControllerUITestsLaunchTests.swift */,
+				CE2B538D2BFBD3DC00B6FE05 /* MainScreenNavigationUITests.swift */,
 			);
 			path = ChequeViewControllerUITests;
 			sourceTree = "<group>";
@@ -559,8 +556,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE2B53902BFBD3DC00B6FE05 /* ChequeViewControllerUITestsLaunchTests.swift in Sources */,
-				CE2B538E2BFBD3DC00B6FE05 /* ChequeViewControllerUITests.swift in Sources */,
+				CE2B538E2BFBD3DC00B6FE05 /* MainScreenNavigationUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
