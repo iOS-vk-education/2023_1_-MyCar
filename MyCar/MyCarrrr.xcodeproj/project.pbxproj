@@ -67,7 +67,18 @@
 		84F8EEAD2B337D170059F5A2 /* InsurenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F8EEAC2B337D170059F5A2 /* InsurenceViewController.swift */; };
 		84F8EEAF2B337D940059F5A2 /* InsurenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F8EEAE2B337D940059F5A2 /* InsurenceView.swift */; };
 		C395F7468B294597335A7200 /* Pods_MyCarrrr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24864BD75FEDB4706EECD45B /* Pods_MyCarrrr.framework */; };
+		CE2B538E2BFBD3DC00B6FE05 /* MainScreenNavigationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2B538D2BFBD3DC00B6FE05 /* MainScreenNavigationUITests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CE2B53912BFBD3DC00B6FE05 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 559EFBA92AF14A5F0098672F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 559EFBB02AF14A5F0098672F;
+			remoteInfo = MyCarrrr;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		24864BD75FEDB4706EECD45B /* Pods_MyCarrrr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyCarrrr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,6 +143,8 @@
 		84CE9AE52B03073F0070A8B2 /* AddCarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCarViewController.swift; sourceTree = "<group>"; };
 		84F8EEAC2B337D170059F5A2 /* InsurenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsurenceViewController.swift; sourceTree = "<group>"; };
 		84F8EEAE2B337D940059F5A2 /* InsurenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsurenceView.swift; sourceTree = "<group>"; };
+		CE2B538B2BFBD3DC00B6FE05 /* ChequeViewControllerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChequeViewControllerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE2B538D2BFBD3DC00B6FE05 /* MainScreenNavigationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenNavigationUITests.swift; sourceTree = "<group>"; };
 		F95325BC3F5539279FA98343 /* Pods-MyCarrrr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyCarrrr.release.xcconfig"; path = "Target Support Files/Pods-MyCarrrr/Pods-MyCarrrr.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -142,6 +155,13 @@
 			files = (
 				84618E072BB08E8F00436C3B /* SwiftUIImageViewer in Frameworks */,
 				C395F7468B294597335A7200 /* Pods_MyCarrrr.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE2B53882BFBD3DC00B6FE05 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,6 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				559EFBB32AF14A5F0098672F /* MyCarrrr */,
+				CE2B538C2BFBD3DC00B6FE05 /* ChequeViewControllerUITests */,
 				559EFBB22AF14A5F0098672F /* Products */,
 				E69D7C04ED4F1E4202CA95AE /* Pods */,
 				E7364A90FF23722C40AF6864 /* Frameworks */,
@@ -225,6 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				559EFBB12AF14A5F0098672F /* MyCarrrr.app */,
+				CE2B538B2BFBD3DC00B6FE05 /* ChequeViewControllerUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -296,6 +318,14 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		CE2B538C2BFBD3DC00B6FE05 /* ChequeViewControllerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				CE2B538D2BFBD3DC00B6FE05 /* MainScreenNavigationUITests.swift */,
+			);
+			path = ChequeViewControllerUITests;
+			sourceTree = "<group>";
+		};
 		E69D7C04ED4F1E4202CA95AE /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -338,6 +368,24 @@
 			productReference = 559EFBB12AF14A5F0098672F /* MyCarrrr.app */;
 			productType = "com.apple.product-type.application";
 		};
+		CE2B538A2BFBD3DC00B6FE05 /* ChequeViewControllerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE2B53932BFBD3DC00B6FE05 /* Build configuration list for PBXNativeTarget "ChequeViewControllerUITests" */;
+			buildPhases = (
+				CE2B53872BFBD3DC00B6FE05 /* Sources */,
+				CE2B53882BFBD3DC00B6FE05 /* Frameworks */,
+				CE2B53892BFBD3DC00B6FE05 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CE2B53922BFBD3DC00B6FE05 /* PBXTargetDependency */,
+			);
+			name = ChequeViewControllerUITests;
+			productName = ChequeViewControllerUITests;
+			productReference = CE2B538B2BFBD3DC00B6FE05 /* ChequeViewControllerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -345,11 +393,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1340;
+				LastSwiftUpdateCheck = 1400;
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
 					559EFBB02AF14A5F0098672F = {
 						CreatedOnToolsVersion = 13.4.1;
+					};
+					CE2B538A2BFBD3DC00B6FE05 = {
+						CreatedOnToolsVersion = 14.0.1;
+						TestTargetID = 559EFBB02AF14A5F0098672F;
 					};
 				};
 			};
@@ -370,6 +422,7 @@
 			projectRoot = "";
 			targets = (
 				559EFBB02AF14A5F0098672F /* MyCarrrr */,
+				CE2B538A2BFBD3DC00B6FE05 /* ChequeViewControllerUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -380,6 +433,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				559EFBBE2AF14A620098672F /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE2B53892BFBD3DC00B6FE05 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,7 +552,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CE2B53872BFBD3DC00B6FE05 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE2B538E2BFBD3DC00B6FE05 /* MainScreenNavigationUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CE2B53922BFBD3DC00B6FE05 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 559EFBB02AF14A5F0098672F /* MyCarrrr */;
+			targetProxy = CE2B53912BFBD3DC00B6FE05 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		559EFBC32AF14A620098672F /* Debug */ = {
@@ -681,6 +757,42 @@
 			};
 			name = Release;
 		};
+		CE2B53942BFBD3DC00B6FE05 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = DDCL.ChequeViewControllerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MyCarrrr;
+			};
+			name = Debug;
+		};
+		CE2B53952BFBD3DC00B6FE05 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = DDCL.ChequeViewControllerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MyCarrrr;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -698,6 +810,15 @@
 			buildConfigurations = (
 				559EFBC62AF14A620098672F /* Debug */,
 				559EFBC72AF14A620098672F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CE2B53932BFBD3DC00B6FE05 /* Build configuration list for PBXNativeTarget "ChequeViewControllerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE2B53942BFBD3DC00B6FE05 /* Debug */,
+				CE2B53952BFBD3DC00B6FE05 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

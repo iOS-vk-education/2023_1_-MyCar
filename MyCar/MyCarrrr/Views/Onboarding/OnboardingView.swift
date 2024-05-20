@@ -1,10 +1,3 @@
-//
-//  OnboardingView.swift
-//  MyCarrrr
-//
-//  Created by Сергей Васильев on 18.05.2024.
-//
-
 import Foundation
 import SwiftUI
 import Combine
@@ -14,9 +7,9 @@ struct OnboardingView: View {
     var goToAddScreen: () -> Void
     
     @State private var currentPage: Int = 0
-    @ObservedObject var countTimer: CountTimer = CountTimer(items: 5, interval: 4.0)
+    @ObservedObject var countTimer: CountTimer = CountTimer(items: 5, interval: 8.0)
     @Environment(\.presentationMode) var presentationMode
-    
+
     var body: some View {
         GeometryReader { geometry in
             ZStack(alignment: .top) {
