@@ -33,7 +33,7 @@ class CountTimer: ObservableObject {
         guard !isPaused else { return }
         self.cancellable = self.publisher.autoconnect().sink(receiveValue: { _ in
             var newProgress = self.progress + (0.1 / self.interval)
-            if Int(newProgress) >= self.max { newProgress = 0 }
+            if Int(newProgress) >= self.max { newProgress = Double(self.max) - 0.0001 }
             self.progress = newProgress
         })
     }
