@@ -82,6 +82,24 @@ struct InsurenceImageView: View {
                         model.updateInsuranceDate(carIndex, date: dateString)
                         updateCarsAction()
                         showingActionSheetInsurence = false
+                        
+                        let car = model.car(index: carIndex)
+                        let content = UNMutableNotificationContent()
+                        content.title = "Заканчивается страховка!"
+                        content.body = "У вашего \(car.manufacturer) остался один день до окончания страховки."
+                        content.sound = .default
+
+                        //MARK: это для презентации
+                        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+                        let request = UNNotificationRequest(identifier: "notification", content: content, trigger: trigger)
+
+                        UNUserNotificationCenter.current().add(request) { error in
+                            if let error = error {
+                                print("Ошибка отправки уведомления: (error.localizedDescription)")
+                            } else {
+                                print("Уведомление успешно отправлено")
+                            }
+                        }
                     }
                 
                 Spacer()
